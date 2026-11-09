@@ -101,6 +101,7 @@
   --conector-ancho: 200px; /* columna de una flecha con texto entre dos cajas (lámina 6) */
   --conector-alto: 56px; /* fila de una flecha vertical entre dos cajas (lámina 6) */
   --barra-alto: 24px; /* grosor de una barra de datos (tope de la guía de visualización) */
+  --grafico-fila-alto: 64px; /* alto de cada fila del gráfico de barras (lámina 8) */
   --radio-barra: 4px; /* extremo redondeado de una barra; la base queda recta */
   --separacion-grafico: 2px; /* hueco del color del fondo entre marcas que se tocan */
   --medidor-segmento: 28px; /* ancho de cada uno de los 4 segmentos de un medidor de nivel */
@@ -133,4 +134,6 @@
   --duracion-giro: 600ms;
   /* Viaje de un paquete de datos por la flecha (lámina 13): 3 paquetes → 2 × 250 + 900 = 1,4 s */
   --duracion-flujo: 900ms;
+  /* Cuenta de una cifra de 0 a su valor (lámina 15) */
+  --duracion-conteo: 1200ms;
 }

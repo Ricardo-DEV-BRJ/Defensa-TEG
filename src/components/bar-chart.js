@@ -12,7 +12,7 @@
  * aMilisegundos (re-exportada de comun.js). Parte de vista: crear.
  */
 import { formatear } from '../core/datos.js';
-import { aMilisegundos, leerDuraciones, movimientoReducido } from './comun.js';
+import { aMilisegundos, alRevelarse, leerDuraciones, movimientoReducido } from './comun.js';
 
 export { aMilisegundos };
 
@@ -24,15 +24,33 @@ export const PISTA = { inicio: 52, fin: 92 };
 // ── Lógica pura ──────────────────────────────────────────────────────────────
 
 /**
+ * ¿Se muestra el desacuerdo junto a la barra? Solo cuando pesa más que el acuerdo: ahí el % de
+ * acuerdo solo cuenta la mitad de la historia (ADR-014).
+ * @param {number} acuerdo
+ * @param {number} desacuerdo
+ * @returns {boolean}
+ */
+export function desacuerdoDestacado(acuerdo, desacuerdo) {
+  return Number.isFinite(desacuerdo) && desacuerdo > acuerdo;
+}
+
+/**
  * Ítems destacados de un grupo, de mayor a menor acuerdo (empates: orden del cuestionario).
  * @param {object[]} items likert.items
  * @param {number} grupo valor de grupo_lamina_8
- * @returns {{ id: string, texto: string, valor: number }[]}
+ * @returns {{ id: string, texto: string, valor: number, desacuerdo: number,
+ *   mostrarDesacuerdo: boolean }[]}
  */
 export function prepararBarras(items, grupo) {
   const barras = (items ?? [])
     .filter((item) => item.destacado_lamina_8 && item.grupo_lamina_8 === grupo)
-    .map((item) => ({ id: item.id, texto: item.resumen, valor: item.acuerdo_pct }));
+    .map((item) => ({
+      id: item.id,
+      texto: item.resumen,
+      valor: item.acuerdo_pct,
+      desacuerdo: item.desacuerdo_pct,
+      mostrarDesacuerdo: desacuerdoDestacado(item.acuerdo_pct, item.desacuerdo_pct),
+    }));
   if (barras.length === 0) throw new Error(`no hay ítems destacados en el grupo ${grupo}`);
   for (const { id, texto, valor } of barras) {
     if (!Number.isFinite(valor) || valor < 0 || valor > 100) {
@@ -88,6 +106,9 @@ export function calcularTiempos(indice, { giro, retardo, paso }) {
 
 // ── Vista ────────────────────────────────────────────────────────────────────
 
+// «75% en desacuerdo»: el rojo nunca va solo, siempre con la palabra.
+const textoDesacuerdo = (desacuerdo) => `${formatear(desacuerdo, 'porcentaje')} en desacuerdo`;
+
 /**
  * Dibuja el gráfico dentro de `elemento` (debe estar ya en el documento, para leer los tokens).
  * @param {HTMLElement} elemento
@@ -135,7 +156,13 @@ export function crear(elemento, datos) {
   });
   svg.setAttribute(
     'aria-label',
-    `Porcentaje de acuerdo: ${barras.map((b) => `${b.id} ${b.texto}, ${formatear(b.valor, 'porcentaje')}`).join('; ')}`,
+    `Porcentaje de acuerdo: ${barras
+      .map(
+        (b) =>
+          `${b.id} ${b.texto}, ${formatear(b.valor, 'porcentaje')}` +
+          (b.mostrarDesacuerdo ? ` (${textoDesacuerdo(b.desacuerdo)})` : ''),
+      )
+      .join('; ')}`,
   );
 
   const filas = geometria.filas.map((fila) => {
@@ -165,15 +192,22 @@ export function crear(elemento, datos) {
       { class: 'barras__valor', x: pct(fila.fin), dx: separacion, y: fila.centro },
       formatear(fila.valor, 'porcentaje'),
     );
+    if (fila.mostrarDesacuerdo) {
+      valor.append(
+        nodo(
+          'tspan',
+          { class: 'barras__desacuerdo', dx: separacion },
+          `· ${textoDesacuerdo(fila.desacuerdo)}`,
+        ),
+      );
+    }
     grupo.append(texto, pista, barra, valor);
     svg.append(grupo);
     return { barra, valor };
   });
   elemento.replaceChildren(svg);
 
-  let animado = false;
   let animaciones = [];
-  const visible = () => elemento.closest('[data-fragment]')?.hasAttribute('data-visible') ?? true;
   const cancelar = () => {
     for (const animacion of animaciones) animacion.cancel();
     animaciones = [];
@@ -199,27 +233,6 @@ export function crear(elemento, datos) {
     });
   }
 
-  return {
-    activar() {
-      animado = false;
-    },
-    desactivar() {
-      cancelar();
-      animado = false;
-    },
-    // El dibujo estático ya es el estado final: animar solo agrega el crecimiento.
-    paso() {
-      if (!visible()) {
-        cancelar();
-        animado = false;
-      } else if (!animado) {
-        animado = true;
-        animar();
-      }
-    },
-    saltarAlFinal() {
-      cancelar();
-      animado = visible();
-    },
-  };
+  // El dibujo estático ya es el estado final: animar solo agrega el crecimiento.
+  return alRevelarse(elemento, { animar, detener: cancelar });
 }

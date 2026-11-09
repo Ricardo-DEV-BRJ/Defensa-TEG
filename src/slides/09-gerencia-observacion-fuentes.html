@@ -5,7 +5,8 @@
   Todo desde data/observacion.json. Una columna por paso:
   1. Entrevista: los cuatro hallazgos que destacan las notas (facturas dobles, tasa BCV y
      Excel paralelo, prioridad del stock mínimo, tablero con rotación).
-  2. Observación: los seis indicadores del guion con su medidor de nivel (1 a 4).
+  2. Observación: los seis indicadores del guion con su medidor de nivel (1 a 4); el componente
+     level-meter (src/components/level-meter.js) los llena segmento a segmento al aparecer.
   3. Matriz de fuentes: un reporte diario en Excel.
 -->
 <div class="plantilla">
@@ -24,7 +25,7 @@
 
       <div class="panel" data-fragment="2">
         <p class="etiqueta">Observación directa</p>
-        <ul class="niveles">
+        <ul class="niveles" data-componente="level-meter">
           <li>
             <span data-dato="observacion.areas.0.indicadores.2.nombre"></span>
             <span class="medidor" data-vars="nivel=observacion.areas.0.indicadores.2.nivel">

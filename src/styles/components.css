@@ -968,186 +968,51 @@
   background: var(--color-primario);
 }
 
-/* ── Leyenda de un gráfico: muestra de color + texto (el color nunca va solo) ── */
-.leyenda {
-  display: flex;
-  gap: var(--espacio-l);
-  margin: 0;
-  padding: 0;
-  font-size: var(--texto-min);
-  list-style: none;
-}
-
-.leyenda > li {
-  display: flex;
-  align-items: center;
-  gap: var(--espacio-xs);
-}
-
-.leyenda__muestra {
-  width: var(--espacio-m);
-  height: var(--barra-alto);
-  border-radius: var(--radio-barra);
-}
-
-.leyenda__muestra--desacuerdo {
-  background: var(--color-alerta);
-}
-
-.leyenda__muestra--neutral {
-  background: var(--color-neutro-grafico);
-}
-
-.leyenda__muestra--acuerdo {
-  background: var(--color-primario);
-}
-
-/* ── Likert (lámina 8): barra apilada divergente centrada en el neutral ───────
- * La fila recibe --desacuerdo, --neutral y --acuerdo (0–100) desde likert.json con
- * data-vars. La barra mide 200 unidades (−100 a +100): 1 unidad = 0,5 % de su ancho.
- * El neutral queda centrado en el eje; el desacuerdo crece a la izquierda y el acuerdo
- * a la derecha. Una separación del color del fondo divide los tramos (no un borde).
+/* ── Gráfico de barras (lámina 8, bar-chart.js) ──────────────────────────────
+ * SVG de una fila por ítem: texto a la izquierda; pista gris y barra del % de acuerdo a la
+ * derecha, con el valor en la punta. Un solo color de datos (petróleo): no lleva leyenda, la
+ * nota sobre el gráfico dice qué mide. Los textos usan el color de texto, no el de la barra.
  */
-.likert {
-  display: grid;
-  gap: var(--espacio-s);
-  margin: 0;
-  padding: 0;
-  list-style: none;
+.barras__svg {
+  display: block;
+  overflow: visible;
 }
 
-.likert__fila {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  align-items: center;
-  column-gap: var(--espacio-m);
-}
-
-.likert__texto {
-  margin: 0;
+.barras__texto,
+.barras__valor {
   font-size: var(--texto-compacto);
-  line-height: var(--interlineado-titulo);
+  color: var(--color-texto);
+  fill: currentColor;
+  dominant-baseline: central;
 }
 
-.likert__id {
-  display: inline-block;
-  min-width: 2.2em;
+.barras__id {
   font-size: var(--texto-min);
   font-weight: 700;
   color: var(--color-secundario);
+  fill: currentColor;
 }
 
-/* A cada lado queda espacio para el valor de la punta, aun con una barra al 100 %. */
-.likert__barra {
-  position: relative;
-  height: var(--barra-alto);
-  margin-inline: var(--espacio-xl);
-}
-
-/* Eje en el punto neutro. */
-.likert__barra::before {
-  content: '';
-  position: absolute;
-  top: calc(-1 * var(--espacio-xs));
-  bottom: calc(-1 * var(--espacio-xs));
-  left: 50%;
-  width: 1px;
-  background: var(--color-secundario);
-}
-
-.likert__segmento {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  border-inline: 1px solid var(--color-fondo);
-  transition: transform var(--duracion-giro) ease;
-  transition-delay: calc(var(--orden, 0) * var(--retardo-paso) / 2);
-}
-
-.likert__segmento--neutral {
-  left: calc(50% - var(--neutral) * 0.25%);
-  width: calc(var(--neutral) * 0.5%);
-  background: var(--color-neutro-grafico);
-  transform-origin: center;
-}
-
-.likert__segmento--desacuerdo {
-  right: calc(50% + var(--neutral) * 0.25%);
-  width: calc(var(--desacuerdo) * 0.5%);
-  border-radius: var(--radio-barra) 0 0 var(--radio-barra);
-  background: var(--color-alerta);
-  transform-origin: right center;
-}
-
-.likert__segmento--acuerdo {
-  left: calc(50% + var(--neutral) * 0.25%);
-  width: calc(var(--acuerdo) * 0.5%);
-  border-radius: 0 var(--radio-barra) var(--radio-barra) 0;
-  background: var(--color-primario);
-  transform-origin: left center;
-}
-
-/* Valor en la punta de la barra (texto en color de texto, no del tramo). */
-.likert__valor {
-  position: absolute;
-  top: 50%;
-  font-size: var(--texto-min);
+.barras__valor {
   font-weight: 700;
-  line-height: 1;
-  white-space: nowrap;
-  transform: translateY(-50%);
-  transition: opacity var(--duracion-paso) ease;
-  transition-delay: calc(var(--orden, 0) * var(--retardo-paso) / 2 + var(--duracion-giro));
 }
 
-.likert__valor--acuerdo {
-  left: calc(50% + var(--neutral) * 0.25% + var(--acuerdo) * 0.5% + var(--espacio-xs));
+/* «· 75% en desacuerdo» después del valor, solo cuando el desacuerdo pesa más que el acuerdo. */
+.barras__desacuerdo {
+  font-weight: 400;
+  color: var(--color-alerta);
+  fill: currentColor;
 }
 
-.likert__valor--desacuerdo {
-  right: calc(50% + var(--neutral) * 0.25% + var(--desacuerdo) * 0.5% + var(--espacio-xs));
+.barras__pista {
+  fill: var(--color-vacio-grafico);
 }
 
-.likert__fila:nth-child(2) {
-  --orden: 1;
-}
-
-.likert__fila:nth-child(3) {
-  --orden: 2;
-}
-
-.likert__fila:nth-child(4) {
-  --orden: 3;
-}
-
-.likert__fila:nth-child(5) {
-  --orden: 4;
-}
-
-/* Antes de su paso, las barras están en cero y los valores ocultos. */
-.likert-grupo[data-fragment]:not([data-visible]) .likert__segmento {
-  transform: scaleX(0);
-}
-
-.likert-grupo[data-fragment]:not([data-visible]) .likert__valor {
-  opacity: 0;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .likert__segmento,
-  .likert__valor {
-    transition: none;
-  }
-}
-
-.escenario[data-modo='vista-general'] .likert-grupo[data-fragment] .likert__segmento {
-  transform: none;
-  transition: none;
-}
-
-.escenario[data-modo='vista-general'] .likert-grupo[data-fragment] .likert__valor {
-  opacity: 1;
-  transition: none;
+.barras__barra {
+  fill: var(--color-primario);
+  /* La barra crece desde su base (izquierda). */
+  transform-box: fill-box;
+  transform-origin: left center;
 }
 
 /* ── Tres columnas (lámina 9: entrevista · observación · matriz) ─────────────── */
@@ -1674,10 +1539,13 @@
   display: none;
 }
 
-.escenario:not([data-modo='vista-general'])
-  .plantilla__cuerpo:has(> .demo[data-visible])
-  > :not(.demo) {
-  display: none;
+/* Solo en pantalla: al imprimir, la lámina 14 sale con sus paneles (print.css oculta las .demo). */
+@media screen {
+  .escenario:not([data-modo='vista-general'])
+    .plantilla__cuerpo:has(> .demo[data-visible])
+    > :not(.demo) {
+    display: none;
+  }
 }
 
 /* Al pasar de display: none a visible, parte de opacidad 0 (la transición es la del fragmento). */
@@ -2042,4 +1910,60 @@
   width: 0.4em;
   height: 0.4em;
   background: var(--color-acento);
+}
+
+/* ── Gantt interactivo (lámina 16, gantt.js) ──────────────────────────────────
+ * Cada fase es un botón; sus actividades salen en un recuadro debajo del cronograma, encima
+ * de lo que haya ahí (las metas), hasta que se cierra.
+ */
+.gantt {
+  position: relative;
+}
+
+.gantt__fila[role='button'],
+.gantt__detalle[role='button'] {
+  cursor: pointer;
+}
+
+.gantt__fila[role='button']:focus-visible,
+.gantt__detalle[role='button']:focus-visible {
+  outline: var(--borde-fino) solid var(--color-texto);
+  outline-offset: var(--borde-fino);
+}
+
+.gantt__fila[aria-expanded='true'] .gantt__nombre {
+  font-weight: 700;
+  color: var(--color-primario);
+}
+
+.gantt__detalle {
+  position: absolute;
+  top: calc(100% + var(--espacio-m));
+  right: 0;
+  left: 0;
+  z-index: 1;
+  padding: var(--espacio-m);
+  border: var(--borde-fino) solid var(--color-primario);
+  border-top: var(--borde-grueso) solid var(--color-acento);
+  border-radius: var(--radio);
+  background: var(--color-fondo);
+}
+
+.gantt__detalle[hidden] {
+  display: none;
+}
+
+.gantt__detalle .lista-compacta {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: var(--espacio-l);
+}
+
+/* Con el recuadro de actividades abierto, lo demás del cuerpo (las metas) se oculta al instante
+ * y no asoma por debajo del recuadro. Se usa opacidad en el contenedor, que no tiene transición:
+ * la visibilidad la heredarían los fragmentos con su transición de 400 ms. */
+@media screen {
+  .plantilla__cuerpo:has(.gantt__detalle:not([hidden])) > :not(.gantt) {
+    opacity: 0;
+    pointer-events: none;
+  }
 }

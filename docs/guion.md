@@ -58,8 +58,8 @@ Si van atrasados, se recortan los Caps. II y III, nunca el VI. Al minuto 10 debe
 
 ## Lámina 8 · Lo que dijo el personal operativo (1:30)
 - **Pregunta guía:** ¿Qué percibe el personal sobre el registro de datos y lo que necesita?
-- **En pantalla:** barras con los ítems destacados de `data/likert.json` (2.3 y 2.4 = 100% acuerdo; 2.5, 3.2, 3.3, 4.2 = 75% acuerdo; 1.1 = 75% desacuerdo; 2.6 = 50% desacuerdo). Pie: «n = 4, cada respuesta = 25%».
-- **Qué decir:** consenso total en integrar datos y automatizar el inventario.
+- **En pantalla:** barras de % de acuerdo (`bar-chart`) con los ítems destacados de `data/likert.json`, en dos pasos: «Lo que necesitan» (2.3 y 2.4 = 100%; 2.5, 3.2 y 3.3 = 75%) y «Cómo están hoy» (4.2 = 75%; 1.1 y 2.6 = 25%, con «75% en desacuerdo» y «50% en desacuerdo» junto a la barra). Pie: «n = 4, cada respuesta = 25%».
+- **Qué decir:** consenso total en integrar datos y automatizar el inventario. En lo actual, el 75% está en desacuerdo con que el registro sea rápido y centralizado (1.1) y el 50% duda de los equipos y la disposición para una nueva plataforma (2.6).
 
 ## Lámina 9 · Gerencia, observación y fuentes (1:15)
 - **Pregunta guía:** ¿Qué confirmaron la entrevista, la observación y la matriz de fuentes?

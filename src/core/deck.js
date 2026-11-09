@@ -254,14 +254,30 @@ export function crearDeck({ escenario, laminas, plantillas = {}, datos = {}, com
   function saltarAlFinal() {
     if (!estado) return;
     llamar(estado.lamina, 'saltarAlFinal');
-    for (const animacion of vistas[estado.lamina - 1].seccion.getAnimations({ subtree: true })) {
-      if (animacion.effect?.getComputedTiming().iterations === Infinity) continue;
-      try {
-        animacion.finish();
-      } catch {
-        // Una animación sin estado final alcanzable se deja como está.
-      }
-    }
+    terminarAnimaciones(vistas[estado.lamina - 1].seccion);
+  }
+
+  // Impresión y PDF (RF-10, print.css): todas las láminas con sus fragmentos visibles y sus
+  // componentes en el estado final, sin estados interactivos abiertos (desactivar los cierra).
+  // main.js lo llama en beforeprint.
+  function prepararImpresion() {
+    if (!estado) return;
+    cerrarVistaGeneral();
+    vistas.forEach((vista, indice) => {
+      for (const elemento of vista.fragmentos) elemento.setAttribute('data-visible', '');
+      llamar(indice + 1, 'desactivar');
+      llamar(indice + 1, 'saltarAlFinal');
+      terminarAnimaciones(vista.seccion);
+    });
+  }
+
+  // Después de imprimir (afterprint), la lámina actual vuelve a su paso, sin animar. Las demás
+  // quedan con todo visible hasta que se llegue a ellas, y entonces se pintan en su paso.
+  function terminarImpresion() {
+    if (!estado) return;
+    pintar();
+    llamar(estado.lamina, 'activar');
+    saltarAlFinal(); // también termina el desvanecido de los pasos que vuelven a ocultarse
   }
 
   function iniciar(n = 1) {
@@ -293,7 +309,21 @@ export function crearDeck({ escenario, laminas, plantillas = {}, datos = {}, com
     alternarVistaGeneral,
     cerrarVistaGeneral,
     alternarNegro,
+    prepararImpresion,
+    terminarImpresion,
   });
+}
+
+// Lleva al estado final las animaciones CSS y Web Animations de una sección, salvo las infinitas.
+function terminarAnimaciones(seccion) {
+  for (const animacion of seccion.getAnimations({ subtree: true })) {
+    if (animacion.effect?.getComputedTiming().iterations === Infinity) continue;
+    try {
+      animacion.finish();
+    } catch {
+      // Una animación sin estado final alcanzable se deja como está.
+    }
+  }
 }
 
 function crearVista(documento, info, numero, html) {

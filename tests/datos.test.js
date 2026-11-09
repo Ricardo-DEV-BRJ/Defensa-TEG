@@ -236,22 +236,31 @@ describe('enlaces data-dato de las láminas', () => {
   });
 });
 
-describe('lámina 8 (Likert)', () => {
+describe('lámina 8 (bar-chart)', () => {
   const html = readFileSync(
     new URL('../src/slides/08-resultados-personal.html', import.meta.url),
     'utf8',
   );
-  const posicionesEnLamina = new Set(
-    [...html.matchAll(/likert\.items\.(\d+)\.resumen/g)].map(([, i]) => Number(i)),
+  const destacados = likert.items.filter((item) => item.destacado_lamina_8);
+  const gruposEnLamina = [...html.matchAll(/data-componente="bar-chart" data-grupo="(\d+)"/g)].map(
+    ([, grupo]) => Number(grupo),
   );
-  const destacados = likert.items.flatMap((item, i) => (item.destacado_lamina_8 ? [i] : []));
 
-  it('muestra exactamente los ítems marcados con destacado_lamina_8', () => {
-    expect([...posicionesEnLamina].sort((a, b) => a - b)).toEqual(destacados);
+  it('cada ítem destacado tiene resumen para pantalla y un grupo (paso) de la lámina', () => {
+    for (const item of destacados) {
+      expect(item.resumen, item.id).toBeTruthy();
+      expect(gruposEnLamina, item.id).toContain(item.grupo_lamina_8);
+    }
   });
 
-  it('cada ítem destacado tiene su resumen para pantalla', () => {
-    for (const i of destacados) expect(likert.items[i].resumen, likert.items[i].id).toBeTruthy();
+  it('la lámina tiene un gráfico por grupo, y ningún grupo queda vacío', () => {
+    const gruposEnDatos = [...new Set(destacados.map((item) => item.grupo_lamina_8))].sort();
+    expect([...gruposEnLamina].sort()).toEqual(gruposEnDatos);
+  });
+
+  it('solo los ítems destacados tienen grupo', () => {
+    const conGrupo = likert.items.filter((item) => 'grupo_lamina_8' in item);
+    expect(conGrupo).toEqual(destacados);
   });
 });
 
@@ -260,20 +269,10 @@ describe('lámina 16 (Gantt)', () => {
     new URL('../src/slides/16-implementacion.html', import.meta.url),
     'utf8',
   );
-  const filas = [
-    ...html.matchAll(
-      /class="gantt__fila([^"]*)"\s*data-vars="inicio=cronograma\.fases\.(\d+)\.inicio fin=cronograma\.fases\.\2\.fin"/g,
-    ),
-  ];
 
-  it('dibuja cada fase del cronograma, en orden, con su inicio y su fin', () => {
-    expect(filas.map(([, , i]) => Number(i))).toEqual(cronograma.fases.map((_, i) => i));
-  });
-
-  it('solo la fase que termina en la última semana lleva el rótulo antes de la barra', () => {
-    for (const [, clases, i] of filas) {
-      const terminaEnElBorde = cronograma.fases[i].fin === cronograma.total_semanas;
-      expect(clases.includes('gantt__fila--rotulo-antes'), `fase ${i}`).toBe(terminaEnElBorde);
-    }
+  it('las filas las arma el componente gantt desde cronograma.json, no el HTML', () => {
+    expect(html).toContain('data-componente="gantt"');
+    expect(html).toContain('<ol class="gantt__filas"></ol>');
+    expect(html).not.toMatch(/cronograma\.fases\.\d+\.inicio/);
   });
 });

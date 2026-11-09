@@ -6,8 +6,11 @@ import { iniciarTeclado } from './core/keyboard.js';
 import { iniciarRouter, leerHash } from './core/router.js';
 import { iniciarEscalado } from './core/scaler.js';
 import * as barChart from './components/bar-chart.js';
+import * as counter from './components/counter.js';
 import * as dataFlow from './components/data-flow.js';
 import * as dedupSim from './components/dedup-sim.js';
+import * as gantt from './components/gantt.js';
+import * as levelMeter from './components/level-meter.js';
 import * as stockCalc from './components/stock-calc.js';
 
 // Todo data/*.json y el HTML de cada lámina entran al bundle para no usar fetch (ADR-006 §8).
@@ -31,8 +34,11 @@ const plantillas = porNombre(
 // Componentes interactivos por el nombre que usan las láminas en data-componente (ADR-006 §7).
 const componentes = {
   'bar-chart': barChart,
+  counter,
   'data-flow': dataFlow,
   'dedup-sim': dedupSim,
+  gantt,
+  'level-meter': levelMeter,
   'stock-calc': stockCalc,
 };
 
@@ -71,6 +77,11 @@ iniciarTeclado(
 // La lámina inicial sale del hash para que recargar conserve la posición (RF-04).
 // El router ya escucha, así que el primer slidechange escribe #/n en la dirección.
 deck.iniciar(leerHash(window.location.hash, deck.total) ?? 1);
+
+// Imprimir o guardar como PDF (Ctrl+P, RF-10): todas las láminas principales en su estado final
+// (print.css las pone una por página); al cerrar el diálogo, todo vuelve a como estaba.
+window.addEventListener('beforeprint', () => deck.prepararImpresion());
+window.addEventListener('afterprint', () => deck.terminarImpresion());
 
 // ?guias en la dirección dibuja el margen seguro del 5 % para revisar las láminas.
 if (new URLSearchParams(window.location.search).has('guias')) {

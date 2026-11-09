@@ -17,7 +17,15 @@
  * Parte pura (tests/data-flow.test.js): suavizar, duracionRafaga, posicionesRafaga,
  * capaMasAlta, debeLanzarRafaga y alternarAmpliada. Parte de vista: crear (ADR-006 §7).
  */
-import { aMilisegundos, leerDuraciones, movimientoReducido } from './comun.js';
+import {
+  aMilisegundos,
+  alternarAmpliada,
+  hacerBoton,
+  leerDuraciones,
+  movimientoReducido,
+} from './comun.js';
+
+export { alternarAmpliada };
 
 // ── Lógica pura ──────────────────────────────────────────────────────────────
 
@@ -71,16 +79,6 @@ export function capaMasAlta(visibles) {
  */
 export function debeLanzarRafaga(anterior, nueva) {
   return nueva > anterior;
-}
-
-/**
- * Clic en la capa n: la amplía, o la cierra si ya estaba ampliada.
- * @param {number | null} actual
- * @param {number} n
- * @returns {number | null}
- */
-export function alternarAmpliada(actual, n) {
-  return actual === n ? null : n;
 }
 
 // ── Vista ────────────────────────────────────────────────────────────────────
@@ -183,26 +181,13 @@ export function crear(elemento) {
     }
   }
 
-  // Botones sin <button> (las capas tienen bloques dentro): Enter y Espacio los activan.
-  function comoBoton(nodo, etiqueta, accion) {
-    nodo.setAttribute('role', 'button');
-    nodo.setAttribute('tabindex', '0');
-    nodo.setAttribute('title', etiqueta);
-    nodo.dataset.interactivo = ''; // el clic no avanza la lámina (ADR-006 §5)
-    nodo.addEventListener('click', accion);
-    nodo.addEventListener('keydown', (evento) => {
-      if (evento.key !== 'Enter' && evento.key !== ' ') return;
-      evento.preventDefault();
-      accion();
-    });
-  }
-
+  // Las capas tienen bloques dentro y no pueden ser <button>: hacerBoton les da el mismo trato.
   for (const capa of capas) {
-    comoBoton(capa.nodo, 'Ampliar o cerrar los componentes de esta capa', () =>
+    hacerBoton(capa.nodo, 'Ampliar o cerrar los componentes de esta capa', () =>
       ampliar(alternarAmpliada(ampliada, capa.n)),
     );
   }
-  comoBoton(flujo, 'Repetir el flujo de datos', lanzar);
+  hacerBoton(flujo, 'Repetir el flujo de datos', lanzar);
   flujo.setAttribute('aria-label', 'Repetir el flujo de datos');
   ampliar(null);
 

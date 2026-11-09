@@ -323,3 +323,70 @@ bundle (lo resuelven unas 30 líneas propias que se pueden explicar); framework 
   (`posicionesRafaga`) con pruebas, igual que cuándo lanzar una ráfaga y qué capa ampliar. Si se
   quisiera un flujo continuo, bastaría con relanzar la ráfaga al terminar, pero rompería la regla
   de 1,5 s.
+
+## ADR-012 · counter, gantt y level-meter mejoran lo que ya se ve
+- **Contexto:** `PROMPTS.md` 4.5 pide `counter.js` (lámina 15), `gantt.js` (16) y `level-meter.js`
+  (9). Las tres láminas ya mostraban sus datos con HTML y CSS, y la defensa es el 17-11-2026: hay
+  que animarlas sin arriesgar lo que funciona.
+- **Decisión:**
+  - Los tres siguen el contrato del ADR-006 §7 con un ciclo común, `alRevelarse` (en
+    `src/components/comun.js`): animan una vez cuando aparece su fragmento, se detienen si se
+    oculta, y la tecla S, la llegada con «anterior» y el movimiento reducido dejan el estado
+    final. `bar-chart` usa el mismo ciclo.
+  - **counter:** se agrega a la cifra que ya tiene `data-dato` y `data-formato`; cuenta de 0 al
+    valor de `costos.json` en `--duracion-conteo` (1,2 s) con `requestAnimationFrame`. Sin
+    animación, la cifra ya es la final.
+  - **level-meter:** se agrega a la lista de indicadores; lee cada nivel de `observacion.json` por
+    la ruta de su `data-vars` y pinta los segmentos llenos uno tras otro, desde el gris de
+    «vacío» (Web Animations, 1,3 s). La leyenda no se anima.
+  - **gantt:** arma las filas desde `cronograma.json` (antes eran cinco filas copiadas a mano) y
+    deja el crecimiento de las barras a las transiciones CSS que ya existían. El rótulo
+    «semanas a–b» va antes de la barra si después no quedan 4 semanas. Clic, Enter o Espacio en una
+    fase muestra sus actividades (Tabla 24) en un recuadro bajo el cronograma; mientras está
+    abierto, las metas se ocultan.
+  - `hacerBoton` y `alternarAmpliada` pasan a `comun.js` para que `data-flow` y `gantt` los
+    compartan.
+- **Consecuencias:** la lógica de cada uno (`valorEnInstante`, `segmentosLlenos`,
+  `tiempoDeSegmento`, `filasDelGantt`, `rotuloAntes`) tiene pruebas. La lámina 16 ya no tiene
+  `data-dato` en las filas del cronograma: los textos los escribe `gantt.js` desde los datos.
+
+## ADR-013 · Impresión y PDF: print.css más un estado final preparado por el deck
+- **Contexto:** RF-10 pide exportar a PDF con `@media print`: una lámina por página, 16:9,
+  componentes en estado final y sin la reserva. Muchos estados ocultos dependen de que un
+  fragmento no tenga `data-visible` (barras en cero, tarjetas giradas, cadenas, metas), así que
+  forzar la opacidad con CSS no basta.
+- **Decisión:**
+  - `src/styles/print.css` (cargado en `index.html`, reglas dentro de `@media print`): página de
+    1920 × 1080 px sin márgenes (`@page`), escenario sin escala, cada lámina principal en su
+    página con salto antes de cada una salvo la primera (sin página en blanco al final), reserva
+    oculta, fondos impresos (`print-color-adjust: exact`), sin transiciones ni animaciones, y sin
+    lo que solo sirve en vivo: demostraciones de la lámina 14 (salen sus paneles), recuadro de
+    actividades del Gantt, paquetes del flujo, guías, pantalla negra e «Ir a lámina».
+  - `deck.prepararImpresion()` en `beforeprint`: cierra la vista general, marca todos los
+    fragmentos de todas las láminas como visibles y, en cada componente, llama a `desactivar`
+    (cierra recuadros, capas ampliadas y demostraciones) y a `saltarAlFinal`; termina las
+    animaciones. `deck.terminarImpresion()` en `afterprint`: la lámina actual vuelve a su paso,
+    sin animar.
+  - Las reglas que en pantalla reemplazan los paneles de la 14 y ocultan las metas bajo el
+    recuadro del Gantt quedan dentro de `@media screen`.
+- **Consecuencias:** Ctrl+P → «Guardar como PDF» da 17 páginas de 1440 × 810 pt (16:9),
+  verificado con Chrome. Si un navegador no disparara `beforeprint`, `print.css` igual muestra
+  todos los fragmentos, aunque algún estado interno podría quedar a medias.
+
+## ADR-014 · Lámina 8 con barras de % de acuerdo (bar-chart) en lugar de la barra divergente
+- **Contexto:** la lámina 8 se construyó con una barra apilada divergente en CSS (desacuerdo ·
+  neutral · acuerdo). `PROMPTS.md` 4.1 pide un componente `bar-chart.js` en SVG con barras
+  horizontales animadas del % de acuerdo de los ítems con `destacado_lamina_8`, usado en esa lámina.
+- **Decisión:**
+  - La lámina 8 usa dos `bar-chart`, uno por paso: «Lo que necesitan» y «Cómo están hoy». Cada
+    ítem destacado de `likert.json` lleva `grupo_lamina_8` (1 o 2) para saber en qué paso va; las
+    barras se ordenan de mayor a menor acuerdo.
+  - Una nota sobre el gráfico dice qué mide («de acuerdo o totalmente de acuerdo»); con un solo
+    color de datos no hace falta leyenda.
+  - El desacuerdo, que la barra divergente mostraba, se escribe junto a la barra («· 75% en
+    desacuerdo», en rojo y con la palabra) cuando pesa más que el acuerdo: hoy, 1.1 (75%) y 2.6
+    (50%). La regla sale de los datos (`desacuerdoDestacado`), no de una lista de ítems.
+  - Se borraron los estilos de la barra divergente y de su leyenda. El token
+    `--color-neutro-grafico` se conserva para la lámina de reserva 18 (cuestionario completo).
+- **Consecuencias:** el % de acuerdo no oculta un desacuerdo mayoritario. El neutral no se muestra
+  en la lámina; el detalle completo de cada ítem queda para la reserva 18.

@@ -4,7 +4,8 @@
   Pregunta guía: ¿Se puede llevar a la práctica?
   Cuatro tarjetas en el orden del guion, una por paso (TEG 6.5.1 a 6.5.4). Cifras desde
   costos.json (Tabla 22), likert.json, observacion.json y marco-legal.json.
-  Pendiente (Fase 4, counter.js): contador animado de 0 a USD 56,10.
+  Componente counter (src/components/counter.js): la cifra cuenta de 0 a USD 56,10 al aparecer
+  la tarjeta económica.
   El retorno (USD 250/mes de ahorro → menos de un mes) se dice (notas).
 -->
 <div class="plantilla">
@@ -28,7 +29,12 @@
 
       <div class="panel" data-fragment="2">
         <p class="etiqueta">Económica</p>
-        <p class="cifra cifra--media" data-dato="costos.total" data-formato="usd"></p>
+        <p
+          class="cifra cifra--media"
+          data-componente="counter"
+          data-dato="costos.total"
+          data-formato="usd"
+        ></p>
         <ul class="lista-compacta">
           <li>
             <span data-dato="costos.rubros.0.total" data-formato="decimal"></span> VPS +

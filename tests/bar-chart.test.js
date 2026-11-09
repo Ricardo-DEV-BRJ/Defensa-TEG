@@ -1,9 +1,11 @@
 // Lógica pura del componente bar-chart (lámina 8).
 import { describe, expect, it } from 'vitest';
+import likert from '../data/likert.json';
 import {
   aMilisegundos,
   calcularGeometria,
   calcularTiempos,
+  desacuerdoDestacado,
   prepararBarras,
   PISTA,
 } from '../src/components/bar-chart.js';
@@ -21,7 +23,7 @@ describe('prepararBarras', () => {
 
   it('toma solo los destacados del grupo, de mayor a menor acuerdo (empates en su orden)', () => {
     expect(prepararBarras(items, 1).map((b) => b.id)).toEqual(['2.3', '2.4', '2.5']);
-    expect(prepararBarras(items, 2)).toEqual([{ id: '1.1', texto: 'Ítem 1.1', valor: 25 }]);
+    expect(prepararBarras(items, 2)).toMatchObject([{ id: '1.1', texto: 'Ítem 1.1', valor: 25 }]);
   });
 
   it('ignora los ítems no destacados', () => {
@@ -71,5 +73,23 @@ describe('tiempos', () => {
     ['rápido', 99],
   ])('aMilisegundos(%s) → %s', (texto, esperado) => {
     expect(aMilisegundos(texto, 99)).toBe(esperado);
+  });
+});
+
+describe('desacuerdo junto a la barra', () => {
+  it('se muestra solo cuando el desacuerdo pesa más que el acuerdo', () => {
+    expect(desacuerdoDestacado(25, 75)).toBe(true);
+    expect(desacuerdoDestacado(25, 50)).toBe(true);
+    expect(desacuerdoDestacado(50, 50)).toBe(false);
+    expect(desacuerdoDestacado(75, 0)).toBe(false);
+    expect(desacuerdoDestacado(25, undefined)).toBe(false);
+  });
+
+  it('con likert.json, en la lámina 8 solo lo llevan 1.1 (75%) y 2.6 (50%)', () => {
+    const conDesacuerdo = [1, 2]
+      .flatMap((grupo) => prepararBarras(likert.items, grupo))
+      .filter((barra) => barra.mostrarDesacuerdo)
+      .map((barra) => `${barra.id}: ${barra.desacuerdo}`);
+    expect(conDesacuerdo).toEqual(['1.1: 75', '2.6: 50']);
   });
 });

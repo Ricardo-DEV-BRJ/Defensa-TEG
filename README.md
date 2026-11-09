@@ -29,6 +29,9 @@ npm run build     # genera dist/ (abre con doble clic en dist/index.html)
 npm run qr -- https://…   # genera el QR del cierre (public/img/qr.svg y data/cierre.json)
 ```
 
+PDF de la presentación: con la presentación abierta, Ctrl+P → «Guardar como PDF». Sale una lámina
+principal por página (16:9), en su estado final y sin las láminas de reserva (`src/styles/print.css`).
+
 ## Atajos de teclado
 → / espacio / AvPag: avanzar · ← / RePag: retroceder · O: vista general · F: pantalla completa ·
 B: pantalla negra · P: presentador · T: reiniciar cronómetro · S: saltar animación · G + número + Enter: ir a lámina.

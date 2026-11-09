@@ -58,3 +58,69 @@ export function fabricaDeElementos(documento) {
     return nodo;
   };
 }
+
+/**
+ * Contrato del ADR-006 §7 para un componente que se anima cuando aparece su fragmento:
+ * anima una vez al hacerse visible; si se oculta, se detiene y volverá a animar al reaparecer.
+ * `detener` debe dejar el estado final (el dibujo sin animar ya es el estado final).
+ * @param {HTMLElement} elemento
+ * @param {{ animar: () => void, detener: () => void }} acciones
+ * @returns {{ activar(): void, desactivar(): void, paso(): void, saltarAlFinal(): void }}
+ */
+export function alRevelarse(elemento, { animar, detener }) {
+  let animado = false;
+  const visible = () => elemento.closest('[data-fragment]')?.hasAttribute('data-visible') ?? true;
+  return {
+    activar() {
+      animado = false;
+    },
+    desactivar() {
+      detener();
+      animado = false;
+    },
+    paso() {
+      if (!visible()) {
+        detener();
+        animado = false;
+      } else if (!animado) {
+        animado = true;
+        animar();
+      }
+    },
+    saltarAlFinal() {
+      detener();
+      animado = visible();
+    },
+  };
+}
+
+/**
+ * Hace que un elemento que no es <button> se comporte como uno: foco con Tab, Enter y Espacio
+ * lo activan, y su clic no avanza la lámina (ADR-006 §5; keyboard.js trata role=button como
+ * botón).
+ * @param {HTMLElement} nodo
+ * @param {string} etiqueta texto de ayuda (title)
+ * @param {() => void} accion
+ */
+export function hacerBoton(nodo, etiqueta, accion) {
+  nodo.setAttribute('role', 'button');
+  nodo.setAttribute('tabindex', '0');
+  nodo.setAttribute('title', etiqueta);
+  nodo.dataset.interactivo = '';
+  nodo.addEventListener('click', accion);
+  nodo.addEventListener('keydown', (evento) => {
+    if (evento.key !== 'Enter' && evento.key !== ' ') return;
+    evento.preventDefault();
+    accion();
+  });
+}
+
+/**
+ * Clic en el elemento n: lo amplía, o lo cierra si ya estaba ampliado.
+ * @param {number | null} actual
+ * @param {number} n
+ * @returns {number | null}
+ */
+export function alternarAmpliada(actual, n) {
+  return actual === n ? null : n;
+}

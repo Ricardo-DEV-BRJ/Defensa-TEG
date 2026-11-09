@@ -1,0 +1,82 @@
+/*
+ * Impresión y PDF (RF-10): Ctrl+P → «Guardar como PDF» da una lámina principal por página,
+ * en 16:9 y en su estado final, sin las láminas de reserva.
+ * El estado final lo prepara el deck en beforeprint (deck.prepararImpresion, ADR-013): marca
+ * todos los fragmentos como visibles, así que las reglas de «antes de su paso» dejan de aplicarse,
+ * y lleva cada componente a su estado final. Estas reglas cubren además el caso de que el
+ * navegador no dispare beforeprint: los fragmentos se ven igual.
+ */
+
+/* Página del tamaño exacto del escenario (--escenario-ancho × --escenario-alto) y sin márgenes;
+ * var() no funciona dentro de @page, por eso van los valores (una prueba los compara). */
+@page {
+  size: 1920px 1080px;
+  margin: 0;
+}
+
+@media print {
+  /* Los fondos (capas, barras, medidores) forman parte del contenido: se imprimen. */
+  *,
+  *::before,
+  *::after {
+    print-color-adjust: exact;
+    transition: none !important;
+    animation: none !important;
+  }
+
+  body {
+    background: var(--color-fondo);
+  }
+
+  /* El escenario deja de estar fijo y escalado: las láminas van una debajo de otra. */
+  .escenario,
+  .escenario[data-modo='vista-general'] {
+    position: static;
+    display: block;
+    width: auto;
+    height: auto;
+    padding: 0;
+    overflow: visible;
+    outline: none;
+    transform: none;
+  }
+
+  /* Cada lámina principal ocupa su página, con su margen seguro; la reserva no se imprime. */
+  .escenario .lamina,
+  .escenario[data-modo='vista-general'] .lamina {
+    display: block !important;
+    width: var(--escenario-ancho);
+    height: var(--escenario-alto);
+    overflow: hidden;
+    outline: none;
+    zoom: 1;
+    break-inside: avoid;
+  }
+
+  .escenario .lamina[data-reserva] {
+    display: none !important;
+  }
+
+  /* Salto antes de cada lámina principal salvo la primera: no queda una página en blanco al final. */
+  .lamina:not([data-reserva]) ~ .lamina:not([data-reserva]) {
+    break-before: page;
+  }
+
+  /* Todos los pasos a la vista. */
+  [data-fragment] {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  /* Lo que solo sirve en vivo: demostraciones de la lámina 14 (se imprimen sus paneles),
+   * recuadro de actividades del Gantt, paquetes del flujo de datos, guías, pantalla negra e
+   * indicador «Ir a lámina». */
+  .demo,
+  .gantt__detalle,
+  .flujo__paquetes,
+  .ir-a,
+  .escenario[data-guias]::after,
+  body[data-negro]::after {
+    display: none !important;
+  }
+}
