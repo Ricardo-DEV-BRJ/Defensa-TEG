@@ -32,13 +32,13 @@ git add . && git commit -m "chore: estructura inicial" && git push
 > Crea src/styles/tokens.css con la paleta y reglas de docs/identidad-visual.md. Configura @font-face con Barlow Condensed y Barlow desde public/fonts/ (yo coloco los .woff2). Crea las plantillas de lámina: portada, título + contenido, dos columnas, cifra grande y diagrama.
 
 ## Fase 3 · Contenido
-**3.x** (repetir por lámina, de la 1 a la 16)
+**3.x** (repetir por lámina, de la 1 a la 17; desde el ADR-008 las conclusiones ocupan la 11 y la 12)
 > /nueva-lamina 1
 
 Después de cada bloque de láminas:
 > /revisar-lamina 1
 
-Al terminar las 16:
+Al terminar las 17:
 > /verificar-datos
 
 ## Fase 4 · Componentes interactivos
@@ -46,16 +46,16 @@ Al terminar las 16:
 > Implementa src/components/bar-chart.js en SVG que lea data/likert.json y dibuje barras horizontales animadas de % de acuerdo para los ítems con destacado_lamina_8. Úsalo en la lámina 8.
 
 **4.2**
-> Implementa src/components/dedup-sim.js para la lámina 13. Lógica pura separada de la vista según data/arquitectura.json → deduplicacion: dos ventas con igual cliente, productos, cantidades y monto en menos de 60 s se marcan como duplicado y bloquean el despacho; solo el rol administrador puede anularla. Vista: botón "Simular corte de luz" → la caja emite dos ventas iguales → al "volver la luz" el pipeline las importa en orden, marca la duplicada en rojo y bloquea el despacho. Pruebas Vitest de la lógica.
+> Implementa src/components/dedup-sim.js para la lámina 14. Lógica pura separada de la vista según data/arquitectura.json → deduplicacion: dos ventas con igual cliente, productos, cantidades y monto en menos de 60 s se marcan como duplicado y bloquean el despacho; solo el rol administrador puede anularla. Vista: botón "Simular corte de luz" → la caja emite dos ventas iguales → al "volver la luz" el pipeline las importa en orden, marca la duplicada en rojo y bloquea el despacho. Pruebas Vitest de la lógica.
 
 **4.3**
 > Implementa src/components/stock-calc.js: deslizadores para z, σd, L y d̄ que recalculan SS = z·σd·√L y PR = d̄·L + SS en vivo. Prueba con el ejemplo de data/arquitectura.json (SS ≈ 11,43; PR ≈ 71,43).
 
 **4.4**
-> Implementa src/components/data-flow.js para la lámina 12: las 5 capas de data/arquitectura.json apiladas, puntos de datos que suben de captura a visualización con requestAnimationFrame, y clic en una capa para expandir sus componentes. Debe pausar con prefers-reduced-motion y saltar al estado final con la tecla S.
+> Implementa src/components/data-flow.js para la lámina 13: las 5 capas de data/arquitectura.json apiladas, puntos de datos que suben de captura a visualización con requestAnimationFrame, y clic en una capa para expandir sus componentes. Debe pausar con prefers-reduced-motion y saltar al estado final con la tecla S.
 
 **4.5**
-> Implementa counter.js (lámina 14 con data/costos.json), gantt.js (lámina 15 con data/cronograma.json) y level-meter.js (lámina 9 con data/observacion.json).
+> Implementa counter.js (lámina 15 con data/costos.json), gantt.js (lámina 16 con data/cronograma.json) y level-meter.js (lámina 9 con data/observacion.json).
 
 ## Fase 5 · Presentador, cronómetro y PDF
 **5.1**
@@ -79,7 +79,7 @@ Al terminar las 16:
 
 ## Fase 7 · Publicación
 **7.1**
-> Crea .github/workflows/deploy.yml para publicar dist/ en GitHub Pages en cada push a main. Completa el README con capturas, instrucciones, atajos de teclado y licencia. Crea la lámina de reserva 20 "Cómo se construyó esta presentación".
+> Crea .github/workflows/deploy.yml para publicar dist/ en GitHub Pages en cada push a main. Completa el README con capturas, instrucciones, atajos de teclado y licencia. Crea la lámina de reserva 21 "Cómo se construyó esta presentación".
 
 **7.2** (en la terminal)
 ```

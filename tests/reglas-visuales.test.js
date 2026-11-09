@@ -92,9 +92,19 @@ describe('uso de los tokens', () => {
   });
 
   it('el verde acento nunca se usa como color de texto', () => {
-    const comoTexto = /(?:^|[^-\w])(?:color|fill)\s*:\s*var\(--color-acento\)/m;
-    expect(quienes(comoTexto)).toEqual([]);
-    expect(tokensCss).not.toMatch(comoTexto);
+    // color: siempre es texto. fill: solo es texto si la regla apunta a <text> o <tspan> de SVG;
+    // como relleno de una forma (íconos, marcas) el acento está permitido.
+    const comoColor = /(?:^|[^-\w])color\s*:\s*var\(--color-acento\)/m;
+    const comoRelleno = /(?:^|[^-\w])fill\s*:\s*var\(--color-acento\)/m;
+    const reglasCss = (css) => [...css.matchAll(/([^{}]+)\{([^{}]*)\}/g)];
+    const rellenaTexto = (css) =>
+      reglasCss(css).some(
+        ([, selector, cuerpo]) => comoRelleno.test(cuerpo) && /\b(?:text|tspan)\b/.test(selector),
+      );
+    expect(quienes(comoColor)).toEqual([]);
+    expect(tokensCss).not.toMatch(comoColor);
+    expect(archivosFuente.filter((ruta) => rellenaTexto(contenido[ruta]))).toEqual([]);
+    expect(quienes(/<(?:text|tspan)[^>]*fill="[^"]*acento/)).toEqual([]);
   });
 
   it('ningún tamaño de letra de tokens.css es menor que 28 px', () => {
@@ -118,10 +128,11 @@ describe('uso de los tokens', () => {
 });
 
 describe('isologo UVM', () => {
-  it('solo aparece en las láminas 1 y 16', () => {
-    const permitidas = slides.laminas
-      .filter((lamina) => lamina.id === 1 || lamina.id === 16)
-      .map((lamina) => `src/slides/${lamina.archivo}`);
+  it('solo aparece en la primera lámina (portada) y en la última principal (cierre)', () => {
+    const principales = slides.laminas.filter((lamina) => !lamina.reserva);
+    const permitidas = [principales[0], principales.at(-1)].map(
+      (lamina) => `src/slides/${lamina.archivo}`,
+    );
     const laminas = listar('src/slides/'); // sin recorrer src/slides/plantillas/
     const conIsologo = laminas.filter((ruta) => contenido[ruta].includes('uvm-isologo'));
     expect(conIsologo.filter((ruta) => !permitidas.includes(ruta))).toEqual([]);

@@ -10,10 +10,10 @@ Si van atrasados, se recortan los Caps. II y III, nunca el VI. Al minuto 10 debe
 | Cap. II – Marco teórico | 5–6 | 2:00 | Rafael Pérez |
 | Cap. III – Marco metodológico | 7 | 2:15 | Ricardo Briceño |
 | Cap. IV – Resultados | 8–10 | 4:00 | Ricardo Briceño |
-| Cap. V – Conclusiones | 11 | 1:30 | Ricardo Briceño |
-| Cap. VI – La propuesta | 12–15 | 5:15 | Rafael (12–13), Ricardo (14–15) |
-| Cierre | 16 | 0:30 | Ricardo Briceño |
-| **Total** | **16** | **19:00** | |
+| Cap. V – Conclusiones | 11–12 | 1:30 | Ricardo Briceño |
+| Cap. VI – La propuesta | 13–16 | 5:15 | Rafael (13–14), Ricardo (15–16) |
+| Cierre | 17 | 0:30 | Ricardo Briceño |
+| **Total** | **17** | **19:00** | |
 
 ---
 
@@ -28,17 +28,17 @@ Si van atrasados, se recortan los Caps. II y III, nunca el VI. Al minuto 10 debe
   1. Fallas eléctricas → desincronización entre stock lógico y físico → ventas duplicadas y reembolsos.
   2. Precios en divisas (USDT, euros) en un Excel paralelo → riesgo de vender bajo costo.
   3. Sin control de temperatura y humedad en el almacén → riesgo de mermas por deterioro.
-  4. Sin roles de acceso: todo el personal administrativo cambia precios; carpetas de despacho en papel.
+  4. Sin roles ni permisos de usuario → todo el personal administrativo cambia precios; y, en el mismo paso, sin Programa Sustentable formal → carpetas de despacho en papel (TEG 1.1).
 - **Qué decir:** tres niveles en una frase (global: sostenibilidad + digitalización; Latinoamérica: barreras de costo y brecha academia-empresa; Venezuela: volatilidad, multimoneda, fallas de servicios) y bajar a la empresa. La desincronización no causa mermas físicas, sí pérdidas económicas.
 
 ## Lámina 3 · Objetivos (0:45)
 - **Pregunta guía:** ¿Qué nos propusimos lograr?
-- **En pantalla:** objetivo general; abajo los específicos con verbo resaltado: **Describir** la situación actual · **Identificar** necesidades y requerimientos de Big Data · **Determinar** los elementos del Programa Sustentable · **Proponer** arquitectura, infraestructura e interfaces.
+- **En pantalla:** objetivo general y, abajo, los cuatro objetivos específicos completos, tal como están en el TEG (1.3), con el verbo resaltado: **Describir** · **Identificar** · **Determinar** · **Proponer** (`data/objetivos.json`).
 - **Qué decir:** «Diseñar un modelo sustentable de digitalización de procesos mediante Big Data para optimizar la gestión logística y reducir las mermas». La conclusión retoma cada objetivo.
 
 ## Lámina 4 · Justificación, alcance y limitaciones (0:45)
 - **Pregunta guía:** ¿Por qué vale la pena y hasta dónde llega?
-- **En pantalla:** cuatro íconos (teórica, metodológica, práctica, social) y columnas «Incluye» / «No incluye».
+- **En pantalla:** cuatro tarjetas con ícono (teórica, metodológica, práctica, social), cada una con una frase de apoyo que resume su apartado del TEG (1.4.1 a 1.4.4), y columnas «Incluye» / «No incluye».
 - **Qué decir:** incluye diseño conceptual, lógico y estructural, desde requerimientos hasta tableros. No incluye rutas VRP/TSP (línea futura). Limitaciones: presupuesto de PyME, sin historial depurado, resistencia al cambio, brecha digital. Vínculo con el Desarrollo Humano Sustentable de la UVM.
 
 ## Lámina 5 · Antecedentes (0:50)
@@ -73,9 +73,12 @@ Si van atrasados, se recortan los Caps. II y III, nunca el VI. Al minuto 10 debe
   3. 50% duda de la disposición, 75% dice que los equipos sirven → barrera humana → capacitación por roles y semáforos.
 - **Qué decir:** lámina clave del diagnóstico. Limitaciones: n pequeño, un ítem por indicador, sin registros históricos → la propuesta mide primero la línea base.
 
-## Lámina 11 · Un objetivo, una conclusión (1:30)
-- **Pregunta guía:** ¿Se cumplieron los objetivos?
-- **En pantalla:**
+## Láminas 11 y 12 · Un objetivo, una conclusión (0:45 + 0:45)
+- **Pregunta guía:** ¿Se cumplieron los objetivos? (11) · ¿Se cumplió el objetivo general? (12)
+- **En pantalla:** las conclusiones **literales** del TEG (5.1, `data/objetivos.json`), cada una junto
+  a su objetivo y con marca de cumplido. Lámina 11: objetivos 1 (Describir) y 2 (Identificar).
+  Lámina 12: objetivos 3 (Determinar) y 4 (Proponer) y la conclusión general.
+- **Ideas clave para decir (resumen):**
 
 | Objetivo | Conclusión |
 | --- | --- |
@@ -86,27 +89,27 @@ Si van atrasados, se recortan los Caps. II y III, nunca el VI. Al minuto 10 debe
 
 - **Qué decir:** objetivo general alcanzado, ajustado a la escala de la empresa; no se generaliza. Recomendaciones: línea base el primer mes; UPS en caja y equipo del sistema; roles y bitácora ya; capacitación; extensión UVM. Líneas futuras: LSTM + NDVI, blockchain, huella de carbono, VRP/TSP.
 
-## Lámina 12 · Estructura del modelo y arquitectura (1:45)
+## Lámina 13 · Estructura del modelo y arquitectura (1:45)
 - **Pregunta guía:** ¿Qué es AgroData JM y cómo fluyen los datos?
 - **En pantalla:** Figura 15 / animación de capas (`data/arquitectura.json`): Captura → Integración (ETL cada 15 min existencias, diario ventas; deduplicación; multimoneda) → Almacenamiento (PostgreSQL en estrella: 3 hechos, 5 dimensiones; MinIO) → Analítica → Visualización. Transversales: gobernanza y sostenibilidad.
 - **Qué decir:** tres pilares (Programa Sustentable, gobernanza, arquitectura). Docker en un VPS: si se va la luz en la empresa, datos y tableros siguen disponibles; al volver, el conector importa lo pendiente y la deduplicación frena los cobros repetidos antes del despacho.
 
-## Lámina 13 · Procesos, gobernanza y modelos analíticos (1:30)
+## Lámina 14 · Procesos, gobernanza y modelos analíticos (1:30)
 - **Pregunta guía:** ¿Cómo resuelve cada componente un problema del diagnóstico?
 - **En pantalla:** Programa Sustentable (6 procesos BPMN; Figura 16; −80% papel) · Gobernanza (roles Gerencia, Administración, Ventas, Almacén, Soporte TI; bitácora; TLS; respaldos; ISO/IEC 27001) · Modelos: SS = z·σd·√L, PR = d̄·L + SS, IR = UV/IP. Demostración: simulador de duplicados y calculadora de stock.
 - **Qué decir:** previsión con promedio móvil y suavizamiento → Holt-Winters con 24 meses; MAPE. Módulo multimoneda reemplaza el Excel y alerta si la tasa tiene más de 24 h o el margen es negativo. Mostrar captura real del sistema (`public/img/capturas-sistema/`).
 
-## Lámina 14 · Factibilidad (1:15)
+## Lámina 15 · Factibilidad (1:15)
 - **Pregunta guía:** ¿Se puede llevar a la práctica?
 - **En pantalla:** cuatro tarjetas (`data/costos.json`): Técnica (equipos nivel 3, 75% aptos, software libre) · Económica (**USD 56,10** = 36,00 + 15,00 + 5,10; recurrente ≈ USD 87/año; 240 h + 12 h aportadas) · Operativa (respaldo gerencial, 100% a favor de automatizar; riesgo: cambio) · Legal (CRBV 28, 60, 305; facturación intacta; precios en Bs a tasa BCV).
 - **Qué decir:** el retorno se calcula con la línea base; ilustración: con USD 250/mes de ahorro se recupera en menos de un mes.
 
-## Lámina 15 · Implementación e indicadores (0:45)
+## Lámina 16 · Implementación e indicadores (0:45)
 - **Pregunta guía:** ¿Cómo se implementa y cómo sabremos que funcionó?
 - **En pantalla:** Gantt de 24 semanas (`data/cronograma.json`) y metas: exactitud ≥ 98%, 100% duplicados detectados, 100% usuarios con rol en el mes 1, −80% papel.
 - **Qué decir:** PHVA, comité quincenal, evaluaciones a 3 y 6 meses; matriz de riesgos disponible.
 
-## Lámina 16 · Cierre (0:30)
+## Lámina 17 · Cierre (0:30)
 - **Pregunta guía:** ¿Qué debe recordar el jurado?
 - **En pantalla:** una frase grande, «Gracias», isologo UVM y QR.
 - **Qué decir:** «Una arquitectura de datos ligera, montada sobre lo que la empresa ya tiene, por USD 56,10, ataca la causa de los reembolsos, empieza a medir mermas, papel y energía, y se puede replicar en otras PyMEs de Trujillo».

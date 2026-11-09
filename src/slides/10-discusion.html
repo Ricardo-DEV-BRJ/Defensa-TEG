@@ -1,0 +1,57 @@
+<!--
+  Lámina 10 · Discusión (plantilla «Título + contenido» con el bloque «cadena», variantes
+  «compacta» y «decision»).
+  Pregunta guía: ¿Qué aprendimos al cruzar las fuentes?
+  Tres cruces de fuentes, uno por paso, tal como los discute el TEG (4.2, págs. 110–112):
+  dato → interpretación → decisión. Las cifras salen de likert.json y observacion.json.
+  Las limitaciones (n pequeño, un ítem por indicador, sin historial) se dicen (notas).
+-->
+<div class="plantilla">
+  <h2 class="plantilla__titulo">Discusión: las contradicciones que dieron forma al modelo</h2>
+  <div class="plantilla__cuerpo cadenas cadenas--compacta cadenas--decision">
+    <p class="cadenas__cabecera" data-fragment="1">
+      <span class="etiqueta">Dato</span>
+      <span class="etiqueta">Interpretación</span>
+      <span class="etiqueta">Decisión</span>
+    </p>
+    <ol class="cadenas__filas">
+      <li class="cadena" data-fragment="1">
+        <p class="cadena__paso">
+          <strong data-dato="likert.items.2.acuerdo_pct" data-formato="porcentaje"></strong> cree
+          automatizada la mayoría de las tareas (<span data-dato="likert.items.2.id"></span>), pero
+          despacho y consolidación siguen en nivel
+          <strong data-dato="observacion.areas.1.indicadores.1.nivel"></strong>
+        </p>
+        <span class="cadena__flecha"><span class="solo-lector">se interpreta como</span></span>
+        <p class="cadena__paso">
+          Digitalización como conversión: registros digitales, pero aislados
+        </p>
+        <span class="cadena__flecha"><span class="solo-lector">por eso</span></span>
+        <p class="cadena__paso">Integrar las fuentes de datos</p>
+      </li>
+      <li class="cadena" data-fragment="2">
+        <p class="cadena__paso">
+          <strong data-dato="likert.items.4.desacuerdo_pct" data-formato="porcentaje"></strong> no
+          ve necesario más almacenamiento (<span data-dato="likert.items.4.id"></span>); la matriz
+          registra <strong data-dato="observacion.matriz_fuentes.volumen"></strong>
+        </p>
+        <span class="cadena__flecha"><span class="solo-lector">se interpreta como</span></span>
+        <p class="cadena__paso">Big Data por variedad de fuentes, no por volumen</p>
+        <span class="cadena__flecha"><span class="solo-lector">por eso</span></span>
+        <p class="cadena__paso">Arquitectura ligera en un VPS, no un clúster</p>
+      </li>
+      <li class="cadena" data-fragment="3">
+        <p class="cadena__paso">
+          <strong data-dato="likert.items.9.desacuerdo_pct" data-formato="porcentaje"></strong> duda
+          de equipos y disposición (<span data-dato="likert.items.9.id"></span>), pero
+          <strong data-dato="likert.items.14.acuerdo_pct" data-formato="porcentaje"></strong> dice
+          que los equipos funcionan (<span data-dato="likert.items.14.id"></span>)
+        </p>
+        <span class="cadena__flecha"><span class="solo-lector">se interpreta como</span></span>
+        <p class="cadena__paso">La reserva es la disposición frente al cambio, no los equipos</p>
+        <span class="cadena__flecha"><span class="solo-lector">por eso</span></span>
+        <p class="cadena__paso">Capacitación por roles e interfaces con semáforos</p>
+      </li>
+    </ol>
+  </div>
+</div>

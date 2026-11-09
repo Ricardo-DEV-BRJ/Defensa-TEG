@@ -13,6 +13,7 @@
     {
       "id": "1.1",
       "enunciado": "Los datos de inventario y despacho se registran de forma rápida y centralizada en un único sistema digital.",
+      "resumen": "Registro rápido y centralizado de inventario y despacho",
       "frecuencias": [
         1,
         2,
@@ -103,6 +104,7 @@
     {
       "id": "2.3",
       "enunciado": "La empresa necesita integrar datos provenientes de distintas fuentes (formatos de texto, tablas, imágenes o sensores).",
+      "resumen": "Integrar datos de distintas fuentes",
       "frecuencias": [
         0,
         0,
@@ -118,6 +120,7 @@
     {
       "id": "2.4",
       "enunciado": "La automatización del cálculo de stock y alertas de vencimiento mejoraría la eficiencia operacional.",
+      "resumen": "Automatizar el cálculo de stock y las alertas de vencimiento",
       "frecuencias": [
         0,
         0,
@@ -133,6 +136,7 @@
     {
       "id": "2.5",
       "enunciado": "Contar con modelos predictivos para anticipar la demanda de alimentos reduciría significativamente las mermas de productos.",
+      "resumen": "Modelos predictivos de demanda para reducir mermas",
       "frecuencias": [
         0,
         0,
@@ -148,6 +152,7 @@
     {
       "id": "2.6",
       "enunciado": "La empresa dispone de equipos computacionales y disposición del personal para adoptar una nueva plataforma digital.",
+      "resumen": "Equipos y disposición del personal para una nueva plataforma",
       "frecuencias": [
         0,
         2,
@@ -178,6 +183,7 @@
     {
       "id": "3.2",
       "enunciado": "Diagramar y estandarizar formalmente los procesos operativos ayudaría a reducir fallas y desperdicios de productos.",
+      "resumen": "Estandarizar los procesos para reducir fallas y desperdicios",
       "frecuencias": [
         0,
         0,
@@ -193,6 +199,7 @@
     {
       "id": "3.3",
       "enunciado": "Es necesario que existan normas claras sobre quién tiene permiso para ver o cambiar la información del trabajo diario.",
+      "resumen": "Normas claras sobre quién puede ver o cambiar la información",
       "frecuencias": [
         0,
         0,
@@ -223,6 +230,7 @@
     {
       "id": "4.2",
       "enunciado": "Los equipos de computación e internet con los que trabajamos actualmente funcionan bien para usar un nuevo sistema.",
+      "resumen": "Equipos e internet actuales aptos para un nuevo sistema",
       "frecuencias": [
         0,
         0,

@@ -1,0 +1,156 @@
+<!--
+  Lámina 9 · Gerencia, observación y fuentes de datos (plantilla «Título + contenido» con los
+  bloques «columnas-3», «panel», «niveles» y «medidor»).
+  Pregunta guía: ¿Qué confirmaron la entrevista, la observación y la matriz de fuentes?
+  Todo desde data/observacion.json. Una columna por paso:
+  1. Entrevista: los cuatro hallazgos que destacan las notas (facturas dobles, tasa BCV y
+     Excel paralelo, prioridad del stock mínimo, tablero con rotación).
+  2. Observación: los seis indicadores del guion con su medidor de nivel (1 a 4).
+  3. Matriz de fuentes: un reporte diario en Excel.
+-->
+<div class="plantilla">
+  <h2 class="plantilla__titulo">Gerencia, observación y fuentes de datos</h2>
+  <div class="plantilla__cuerpo apilado">
+    <div class="columnas-3">
+      <div class="panel" data-fragment="1">
+        <p class="etiqueta">Entrevista a la gerencia</p>
+        <ul class="lista-compacta">
+          <li data-dato="observacion.entrevista_gerencia.0"></li>
+          <li data-dato="observacion.entrevista_gerencia.1"></li>
+          <li data-dato="observacion.entrevista_gerencia.2"></li>
+          <li data-dato="observacion.entrevista_gerencia.6"></li>
+        </ul>
+      </div>
+
+      <div class="panel" data-fragment="2">
+        <p class="etiqueta">Observación directa</p>
+        <ul class="niveles">
+          <li>
+            <span data-dato="observacion.areas.0.indicadores.2.nombre"></span>
+            <span class="medidor" data-vars="nivel=observacion.areas.0.indicadores.2.nivel">
+              <span class="medidor__segmentos" aria-hidden="true"
+                ><span></span><span></span><span></span><span></span
+              ></span>
+              <span
+                class="medidor__valor"
+                data-dato="observacion.areas.0.indicadores.2.nivel"
+              ></span>
+            </span>
+          </li>
+          <li>
+            <span data-dato="observacion.areas.2.indicadores.0.nombre"></span>
+            <span class="medidor" data-vars="nivel=observacion.areas.2.indicadores.0.nivel">
+              <span class="medidor__segmentos" aria-hidden="true"
+                ><span></span><span></span><span></span><span></span
+              ></span>
+              <span
+                class="medidor__valor"
+                data-dato="observacion.areas.2.indicadores.0.nivel"
+              ></span>
+            </span>
+          </li>
+          <li>
+            <span data-dato="observacion.areas.2.indicadores.2.nombre"></span>
+            <span class="medidor" data-vars="nivel=observacion.areas.2.indicadores.2.nivel">
+              <span class="medidor__segmentos" aria-hidden="true"
+                ><span></span><span></span><span></span><span></span
+              ></span>
+              <span
+                class="medidor__valor"
+                data-dato="observacion.areas.2.indicadores.2.nivel"
+              ></span>
+            </span>
+          </li>
+          <li>
+            <span data-dato="observacion.areas.2.indicadores.1.nombre"></span>
+            <span class="medidor" data-vars="nivel=observacion.areas.2.indicadores.1.nivel">
+              <span class="medidor__segmentos" aria-hidden="true"
+                ><span></span><span></span><span></span><span></span
+              ></span>
+              <span
+                class="medidor__valor"
+                data-dato="observacion.areas.2.indicadores.1.nivel"
+              ></span>
+            </span>
+          </li>
+          <li>
+            <span data-dato="observacion.areas.1.indicadores.1.nombre"></span>
+            <span class="medidor" data-vars="nivel=observacion.areas.1.indicadores.1.nivel">
+              <span class="medidor__segmentos" aria-hidden="true"
+                ><span></span><span></span><span></span><span></span
+              ></span>
+              <span
+                class="medidor__valor"
+                data-dato="observacion.areas.1.indicadores.1.nivel"
+              ></span>
+            </span>
+          </li>
+          <li>
+            <span data-dato="observacion.areas.3.indicadores.0.nombre"></span>
+            <span class="medidor" data-vars="nivel=observacion.areas.3.indicadores.0.nivel">
+              <span class="medidor__segmentos" aria-hidden="true"
+                ><span></span><span></span><span></span><span></span
+              ></span>
+              <span
+                class="medidor__valor"
+                data-dato="observacion.areas.3.indicadores.0.nivel"
+              ></span>
+            </span>
+          </li>
+        </ul>
+        <!-- Leyenda: los niveles de muestra son la escala misma (1 a 4); su significado, de los datos. -->
+        <ul class="escala-niveles">
+          <li>
+            <span class="medidor" data-var-nivel="1" aria-hidden="true">
+              <span class="medidor__segmentos"
+                ><span></span><span></span><span></span><span></span
+              ></span>
+            </span>
+            <span data-dato="observacion.escala.1"></span>
+          </li>
+          <li>
+            <span class="medidor" data-var-nivel="2" aria-hidden="true">
+              <span class="medidor__segmentos"
+                ><span></span><span></span><span></span><span></span
+              ></span>
+            </span>
+            <span data-dato="observacion.escala.2"></span>
+          </li>
+          <li>
+            <span class="medidor" data-var-nivel="3" aria-hidden="true">
+              <span class="medidor__segmentos"
+                ><span></span><span></span><span></span><span></span
+              ></span>
+            </span>
+            <span data-dato="observacion.escala.3"></span>
+          </li>
+          <li>
+            <span class="medidor" data-var-nivel="4" aria-hidden="true">
+              <span class="medidor__segmentos"
+                ><span></span><span></span><span></span><span></span
+              ></span>
+            </span>
+            <span data-dato="observacion.escala.4"></span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="panel" data-fragment="3">
+        <p class="etiqueta">Matriz de fuentes</p>
+        <p class="dato-medio" data-dato="observacion.matriz_fuentes.volumen"></p>
+        <ul class="lista-compacta">
+          <li>
+            <strong>Formato:</strong> <span data-dato="observacion.matriz_fuentes.formato"></span>
+          </li>
+          <li>
+            <strong>Frecuencia:</strong>
+            <span data-dato="observacion.matriz_fuentes.frecuencia"></span>
+          </li>
+          <li>
+            <strong>Fuente:</strong> <span data-dato="observacion.matriz_fuentes.fuente"></span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

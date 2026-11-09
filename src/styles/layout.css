@@ -87,10 +87,10 @@ body {
   }
 }
 
-/* ── Vista general (tecla O): las 16 principales, sin las de reserva ───────── */
+/* ── Vista general (tecla O): las principales, sin las de reserva ──────────── */
 .escenario[data-modo='vista-general'] {
   display: grid;
-  grid-template-columns: repeat(4, max-content);
+  grid-template-columns: repeat(var(--vista-general-columnas), max-content);
   gap: var(--espacio-m);
   place-content: center;
   padding: var(--margen-seguro-y) var(--margen-seguro-x);

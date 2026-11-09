@@ -1,0 +1,104 @@
+<!--
+  Lámina 13 · Estructura del modelo y arquitectura (plantilla «Título + contenido» con el
+  bloque «arquitectura»). Demostración clave (★).
+  Pregunta guía: ¿Qué es AgroData JM y cómo fluyen los datos?
+  Las cinco capas y los dos componentes transversales desde data/arquitectura.json (TEG
+  Tabla 19 y Figura 15). Las capas se apilan de abajo (captura) hacia arriba (visualización)
+  y aparecen en ese orden, una por paso; al final, los transversales.
+  Pendiente (Fase 4, data-flow.js): paquetes de datos que suben por la flecha y clic en una
+  capa para ampliar sus tecnologías. Los tres pilares y el VPS ante cortes se dicen (notas).
+-->
+<div class="plantilla">
+  <h2 class="plantilla__titulo">Estructura del modelo y arquitectura</h2>
+  <div class="plantilla__cuerpo apilado">
+    <div class="arquitectura">
+      <section class="transversal" data-fragment="6">
+        <h3 class="transversal__titulo" data-dato="arquitectura.transversales.0.nombre"></h3>
+        <ul class="lista-compacta">
+          <li data-dato="arquitectura.transversales.0.componentes.0"></li>
+          <li data-dato="arquitectura.transversales.0.componentes.1"></li>
+          <li data-dato="arquitectura.transversales.0.componentes.2"></li>
+          <li data-dato="arquitectura.transversales.0.componentes.3"></li>
+          <li data-dato="arquitectura.transversales.0.componentes.4"></li>
+        </ul>
+      </section>
+      <p class="flujo" data-fragment="1"><span class="flujo__texto">Flujo de datos</span></p>
+      <ol class="arquitectura__capas" reversed>
+        <li class="capa" data-fragment="5">
+          <span class="capa__numero" data-dato="arquitectura.capas.4.n"></span>
+          <div>
+            <p class="capa__nombre" data-dato="arquitectura.capas.4.nombre"></p>
+            <p class="capa__funcion" data-dato="arquitectura.capas.4.funcion"></p>
+          </div>
+          <ul class="capa__componentes">
+            <li data-dato="arquitectura.capas.4.componentes.0"></li>
+            <li data-dato="arquitectura.capas.4.componentes.1"></li>
+            <li data-dato="arquitectura.capas.4.componentes.2"></li>
+            <li data-dato="arquitectura.capas.4.componentes.3"></li>
+          </ul>
+        </li>
+        <li class="capa" data-fragment="4">
+          <span class="capa__numero" data-dato="arquitectura.capas.3.n"></span>
+          <div>
+            <p class="capa__nombre" data-dato="arquitectura.capas.3.nombre"></p>
+            <p class="capa__funcion" data-dato="arquitectura.capas.3.funcion"></p>
+          </div>
+          <ul class="capa__componentes">
+            <li data-dato="arquitectura.capas.3.componentes.0"></li>
+            <li data-dato="arquitectura.capas.3.componentes.1"></li>
+            <li data-dato="arquitectura.capas.3.componentes.2"></li>
+            <li data-dato="arquitectura.capas.3.componentes.3"></li>
+            <li data-dato="arquitectura.capas.3.componentes.4"></li>
+            <li data-dato="arquitectura.capas.3.componentes.5"></li>
+          </ul>
+        </li>
+        <li class="capa" data-fragment="3">
+          <span class="capa__numero" data-dato="arquitectura.capas.2.n"></span>
+          <div>
+            <p class="capa__nombre" data-dato="arquitectura.capas.2.nombre"></p>
+            <p class="capa__funcion" data-dato="arquitectura.capas.2.funcion"></p>
+          </div>
+          <ul class="capa__componentes">
+            <li data-dato="arquitectura.capas.2.componentes.0"></li>
+            <li data-dato="arquitectura.capas.2.componentes.1"></li>
+            <li data-dato="arquitectura.capas.2.componentes.2"></li>
+          </ul>
+        </li>
+        <li class="capa" data-fragment="2">
+          <span class="capa__numero" data-dato="arquitectura.capas.1.n"></span>
+          <div>
+            <p class="capa__nombre" data-dato="arquitectura.capas.1.nombre"></p>
+            <p class="capa__funcion" data-dato="arquitectura.capas.1.funcion"></p>
+          </div>
+          <ul class="capa__componentes">
+            <li data-dato="arquitectura.capas.1.componentes.0"></li>
+            <li data-dato="arquitectura.capas.1.componentes.1"></li>
+            <li data-dato="arquitectura.capas.1.componentes.2"></li>
+            <li data-dato="arquitectura.capas.1.componentes.3"></li>
+          </ul>
+        </li>
+        <li class="capa" data-fragment="1">
+          <span class="capa__numero" data-dato="arquitectura.capas.0.n"></span>
+          <div>
+            <p class="capa__nombre" data-dato="arquitectura.capas.0.nombre"></p>
+            <p class="capa__funcion" data-dato="arquitectura.capas.0.funcion"></p>
+          </div>
+          <ul class="capa__componentes">
+            <li data-dato="arquitectura.capas.0.componentes.0"></li>
+            <li data-dato="arquitectura.capas.0.componentes.1"></li>
+            <li data-dato="arquitectura.capas.0.componentes.2"></li>
+            <li data-dato="arquitectura.capas.0.componentes.3"></li>
+          </ul>
+        </li>
+      </ol>
+      <section class="transversal" data-fragment="6">
+        <h3 class="transversal__titulo" data-dato="arquitectura.transversales.1.nombre"></h3>
+        <ul class="lista-compacta">
+          <li data-dato="arquitectura.transversales.1.componentes.0"></li>
+          <li data-dato="arquitectura.transversales.1.componentes.1"></li>
+          <li data-dato="arquitectura.transversales.1.componentes.2"></li>
+        </ul>
+      </section>
+    </div>
+  </div>
+</div>

@@ -7,7 +7,9 @@
 /* ── Estructura común: título, cuerpo y pie ────────────────────────────────── */
 .plantilla {
   display: grid;
-  grid-template-rows: auto minmax(0, 1fr) auto;
+  /* El pie es una fila implícita: si la lámina no lo tiene, no queda un hueco al final. */
+  grid-template-rows: auto minmax(0, 1fr);
+  grid-auto-rows: auto;
   gap: var(--espacio-l);
   height: 100%;
 }
@@ -165,6 +167,86 @@
 .plantilla-portada__lugar {
   margin: 0;
   font-family: var(--fuente-texto);
+  font-size: var(--texto-min);
+  color: var(--color-secundario);
+}
+
+/* ── Cierre: la misma composición de la portada (isologo · texto) ─────────────── */
+.plantilla-cierre__texto {
+  display: grid;
+  gap: var(--espacio-l);
+}
+
+.plantilla-cierre__frase {
+  margin: 0;
+  font-family: var(--fuente-titulos);
+  font-size: var(--texto-portada);
+  font-weight: 400;
+  line-height: var(--interlineado-titulo);
+  text-wrap: balance;
+}
+
+/* Cita con su autor: sin los márgenes que el navegador pone a figure y blockquote. */
+.plantilla-cierre__cita,
+.plantilla-cierre__cita blockquote {
+  margin: 0;
+}
+
+.plantilla-cierre__autor {
+  margin-top: var(--espacio-s);
+  font-family: var(--fuente-titulos);
+  font-size: var(--texto-cuerpo);
+  color: var(--color-secundario);
+}
+
+.plantilla-cierre__autor::before {
+  content: '— ';
+}
+
+/* «Gracias» y, cuando haya URL, el QR a su derecha. */
+.plantilla-cierre__pie {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espacio-l);
+}
+
+.plantilla-cierre__gracias {
+  margin: 0;
+  font-family: var(--fuente-titulos);
+  font-size: var(--texto-cifra);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--color-primario);
+}
+
+.plantilla-cierre__gracias::after {
+  content: '';
+  display: block;
+  width: var(--marca-titulo-ancho);
+  height: var(--borde-grueso);
+  margin-top: var(--espacio-m);
+  background: var(--color-acento);
+}
+
+.plantilla-cierre__qr {
+  min-width: 0;
+  margin: 0;
+  text-align: center;
+}
+
+/* Cuadrado: solo se fija el alto, como el isologo. */
+.plantilla-cierre__qr > img {
+  display: block;
+  height: var(--qr-alto);
+  width: auto;
+  margin-inline: auto;
+}
+
+/* Una dirección larga se parte en renglones en lugar de salirse del margen. */
+.plantilla-cierre__qr > figcaption {
+  margin-top: var(--espacio-xs);
+  overflow-wrap: anywhere;
   font-size: var(--texto-min);
   color: var(--color-secundario);
 }

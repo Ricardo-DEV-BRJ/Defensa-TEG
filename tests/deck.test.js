@@ -122,13 +122,14 @@ describe('fragmentos', () => {
 describe('con data/slides.json', () => {
   const estructura = slides.laminas.map((lamina) => ({ pasos: 0, reserva: lamina.reserva }));
 
-  it('avanzando desde la 1 se recorren las 16 principales en orden y se para en la 16', () => {
+  it('avanzando desde la 1 se recorren todas las principales en orden y se para en la última', () => {
+    const principales = slides.laminas.filter((lamina) => !lamina.reserva).map((l) => l.id);
     const visitadas = [1];
     let actual = estado(1);
-    for (let i = 0; i < 30; i++) {
+    for (let i = 0; i < 40; i++) {
       actual = siguienteEstado(actual, estructura);
       if (actual.lamina !== visitadas.at(-1)) visitadas.push(actual.lamina);
     }
-    expect(visitadas).toEqual(Array.from({ length: 16 }, (_, i) => i + 1));
+    expect(visitadas).toEqual(principales);
   });
 });

@@ -17,7 +17,7 @@ Plan B si falta tiempo: reveal.js descargado localmente.
 ```
 src/core/        deck.js, router.js, keyboard.js, scaler.js, sync.js, timer.js, rehearsal.js
 src/components/  bar-chart.js, data-flow.js, dedup-sim.js, stock-calc.js, gantt.js, counter.js, level-meter.js
-src/slides/      01-portada.html … 16-cierre.html, 17–20 reserva
+src/slides/      01-portada.html … 17-cierre.html, 18–21 reserva
 src/styles/      tokens.css, layout.css, components.css, print.css
 src/main.js      index.html (proyector) · presenter.html (presentador)
 tests/           router, timer, fórmulas, deduplicación
@@ -49,23 +49,23 @@ tests/           router, timer, fórmulas, deduplicación
 | 8 | Barras Likert que crecen | bar-chart (likert.json) |
 | 9 | Medidores de nivel 1–4 | level-meter (observacion.json) |
 | 10 | Tarjetas dato → interpretación → decisión | Fragmentos |
-| 11 | Tabla de objetivos con checks | Fragmentos + SVG |
-| 12 ★ | Capas con paquetes de datos que suben; clic expande tecnologías | data-flow (arquitectura.json) |
-| 13 ★ | Simulador de corte de luz + calculadora SS/PR | dedup-sim, stock-calc |
-| 14 ★ | Contador 0 → USD 56,10 con desglose | counter (costos.json) |
-| 15 | Gantt de 24 semanas + metas | gantt (cronograma.json) |
-| 16 | Frase final, Gracias, QR | QR generado localmente |
-| 17–20 | Reserva: Likert completo, roles, riesgos, cómo se construyó | — |
+| 11–12 | Conclusiones literales del TEG, objetivo por objetivo, con checks | Fragmentos |
+| 13 ★ | Capas con paquetes de datos que suben; clic expande tecnologías | data-flow (arquitectura.json) |
+| 14 ★ | Simulador de corte de luz + calculadora SS/PR | dedup-sim, stock-calc |
+| 15 ★ | Contador 0 → USD 56,10 con desglose | counter (costos.json) |
+| 16 | Gantt de 24 semanas + metas | gantt (cronograma.json) |
+| 17 | Frase final, Gracias, QR | QR generado localmente |
+| 18–21 | Reserva: Likert completo, roles, riesgos, cómo se construyó | — |
 
 ## Fases (contar hacia atrás desde la fecha de defensa)
 | Fase | Días | Criterio de terminado |
 | --- | --- | --- |
 | 0. Arranque | 1 | `npm run dev` funciona; primer commit en GitHub |
-| 1. Motor base | 2–3 | Navegación 1–16 con teclado y presentador; recarga conserva lámina |
+| 1. Motor base | 2–3 | Navegación 1–17 con teclado y presentador; recarga conserva lámina |
 | 2. Sistema visual | 3–4 | Láminas usan solo `tokens.css`; contraste AA |
 | 3. Contenido | 4–6 | Cada cifra coincide con el TEG (uno transcribe, otro verifica) |
 | 4. Componentes | 6–9 | Pruebas de SS/PR y deduplicación pasan |
-| 5. Presentador y cronómetro | 9–10 | Dos ventanas sincronizadas; PDF de 16 páginas |
+| 5. Presentador y cronómetro | 9–10 | Dos ventanas sincronizadas; PDF de 17 páginas |
 | 6. Calidad y ensayos | 11–14 | Dos ensayos seguidos en 18:30–19:30; Lighthouse ≥ 90; prueba en el TV de la sala |
 | 7. Publicación | 15 | GitHub Pages, `dist/` en 2 USB, PDF, etiqueta `v1.0-defensa` |
 

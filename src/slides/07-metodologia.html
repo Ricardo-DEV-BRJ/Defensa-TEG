@@ -1,0 +1,116 @@
+<!--
+  Lámina 7 · Cómo se investigó (plantilla «Título + contenido» con los bloques «panel»,
+  «triangulacion» y «destacado»).
+  Pregunta guía: ¿Cómo obtuvimos el diagnóstico y por qué es confiable?
+  Todas las cifras desde data/metodologia.json (verificado contra el TEG 3.1–3.5); los
+  «3 expertos» y los «4 niveles» se cuentan desde los datos (formato «cantidad»).
+  Paso 1: tipo y diseño. Paso 2: población. Paso 3: los cuatro instrumentos convergen en el
+  diagnóstico. Paso 4: validez por juicio de expertos.
+  Sin Alfa de Cronbach y las fases se dicen (notas).
+-->
+<div class="plantilla">
+  <h2 class="plantilla__titulo">Cómo se investigó</h2>
+  <div class="plantilla__cuerpo apilado apilado--compacto">
+    <div class="columnas-2">
+      <div class="panel" data-fragment="1">
+        <p class="etiqueta">Tipo y diseño</p>
+        <ul class="lista-compacta">
+          <li>
+            <strong>Tipo:</strong> <span data-dato="metodologia.tipo.0"></span> ·
+            <span data-dato="metodologia.tipo.1"></span>
+          </li>
+          <li><strong>Enfoque:</strong> <span data-dato="metodologia.enfoque"></span></li>
+          <li>
+            <strong>Diseño:</strong> <span data-dato="metodologia.diseno.0"></span> ·
+            <span data-dato="metodologia.diseno.1"></span>
+          </li>
+          <li>
+            <strong>Triangulación:</strong> <span data-dato="metodologia.triangulacion"></span>
+          </li>
+        </ul>
+      </div>
+      <div class="panel" data-fragment="2">
+        <p class="etiqueta">Población: censo</p>
+        <p class="dato-grande">N = <span data-dato="metodologia.poblacion.total"></span></p>
+        <ul class="lista-compacta">
+          <li>
+            <span data-dato="metodologia.poblacion.estratos.0.n"></span> gerentes ·
+            <span data-dato="metodologia.poblacion.estratos.1.n"></span> operativos
+          </li>
+          <li>
+            <span data-dato="metodologia.registros.cobertura_pct" data-formato="porcentaje"></span>
+            de los registros · <span data-dato="metodologia.registros.periodo"></span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div>
+      <p class="etiqueta" data-fragment="3">Instrumentos y triangulación</p>
+      <div class="triangulacion escalonado" data-fragment="3">
+        <div class="fuente">
+          <div class="fuente__caja">
+            <p
+              class="fuente__instrumento"
+              data-dato="metodologia.poblacion.estratos.0.instrumento"
+            ></p>
+            <p class="fuente__destino">
+              <span data-dato="metodologia.poblacion.estratos.0.n"></span> gerentes
+            </p>
+          </div>
+          <span class="flecha-abajo" aria-hidden="true"></span>
+        </div>
+        <div class="fuente">
+          <div class="fuente__caja">
+            <p
+              class="fuente__instrumento"
+              data-dato="metodologia.poblacion.estratos.1.instrumento"
+            ></p>
+            <p class="fuente__destino">
+              <span data-dato="metodologia.poblacion.estratos.1.n"></span> operativos
+            </p>
+          </div>
+          <span class="flecha-abajo" aria-hidden="true"></span>
+        </div>
+        <div class="fuente">
+          <div class="fuente__caja">
+            <p class="fuente__instrumento">
+              <span data-dato="metodologia.observacion.instrumento"></span> (escala de
+              <span data-dato="observacion.escala" data-formato="cantidad"></span> niveles)
+            </p>
+            <p class="fuente__destino" data-dato="metodologia.observacion.objeto"></p>
+          </div>
+          <span class="flecha-abajo" aria-hidden="true"></span>
+        </div>
+        <div class="fuente">
+          <div class="fuente__caja">
+            <p class="fuente__instrumento" data-dato="metodologia.registros.instrumento"></p>
+            <p class="fuente__destino">
+              <span
+                data-dato="metodologia.registros.cobertura_pct"
+                data-formato="porcentaje"
+              ></span>
+              de los registros
+            </p>
+          </div>
+          <span class="flecha-abajo" aria-hidden="true"></span>
+        </div>
+        <p class="triangulacion__destino">Diagnóstico por triangulación concurrente</p>
+      </div>
+    </div>
+
+    <div class="destacado destacado--compacto" data-fragment="4">
+      <p class="etiqueta">Validez</p>
+      <p class="destacado__texto">
+        <strong
+          >Juicio de
+          <span data-dato="metodologia.validez.expertos" data-formato="cantidad"></span>
+          expertos:</strong
+        >
+        <span data-dato="metodologia.validez.expertos.0"></span> ·
+        <span data-dato="metodologia.validez.expertos.1"></span> ·
+        <span data-dato="metodologia.validez.expertos.2"></span>
+      </p>
+    </div>
+  </div>
+</div>

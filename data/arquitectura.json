@@ -96,5 +96,69 @@
       "SS_esperado": 11.43,
       "PR_esperado": 71.43
     }
+  },
+  "modelo": {
+    "fuente": "TEG, 6.4.1 a 6.4.5 (Tablas 17 y 18)",
+    "verificado_contra_teg": true,
+    "pilares": [
+      "Programa Sustentable",
+      "Gobernanza y seguridad de datos",
+      "Arquitectura tecnológica multicapa"
+    ],
+    "programa_sustentable": {
+      "procesos_bpmn": [
+        {
+          "proceso": "Recepción de mercancía",
+          "responsable": "Almacén"
+        },
+        {
+          "proceso": "Almacenamiento y control ambiental",
+          "responsable": "Almacén"
+        },
+        {
+          "proceso": "Venta, facturación y despacho",
+          "responsable": "Ventas / Almacén"
+        },
+        {
+          "proceso": "Actualización de precios multimoneda",
+          "responsable": "Administración"
+        },
+        {
+          "proceso": "Gestión de mermas y bajas",
+          "responsable": "Almacén / Gerencia"
+        },
+        {
+          "proceso": "Reposición y compras",
+          "responsable": "Gerencia"
+        }
+      ],
+      "figura": "Figura 16 (proceso propuesto de venta y despacho con control de duplicados)",
+      "reduccion_papel_pct": 80
+    },
+    "gobernanza": {
+      "roles": [
+        "Gerencia",
+        "Administración",
+        "Ventas",
+        "Almacén",
+        "Soporte TI"
+      ],
+      "referencia": "ISO/IEC 27001",
+      "matriz": "TEG Tabla 18 (lámina de reserva 18)",
+      "controles": "Ver transversales → Gobernanza y seguridad (Tabla 19)"
+    },
+    "prevision": {
+      "sin_historial": "Promedio móvil y suavizamiento exponencial, con el criterio de la gerencia sobre las temporadas de siembra y fertilización",
+      "con_historial": "Holt-Winters estacional",
+      "historial_requerido_meses": 24,
+      "condicion": "Dos ciclos estacionales completos de datos depurados",
+      "metrica_error": "MAPE"
+    },
+    "multimoneda": {
+      "reemplaza": "Hoja de cálculo paralela de precios en USDT y euros",
+      "alerta_antiguedad_tasa_horas": 24,
+      "alerta_margen_negativo": true,
+      "efecto": "Impide vender por debajo del costo real"
+    }
   }
 }

@@ -1,0 +1,89 @@
+<!--
+  Lámina 15 · Factibilidad (plantilla «Título + contenido» con los bloques «cuadricula-2»,
+  «panel» y «cifra»). Demostración clave (★).
+  Pregunta guía: ¿Se puede llevar a la práctica?
+  Cuatro tarjetas en el orden del guion, una por paso (TEG 6.5.1 a 6.5.4). Cifras desde
+  costos.json (Tabla 22), likert.json, observacion.json y marco-legal.json.
+  Pendiente (Fase 4, counter.js): contador animado de 0 a USD 56,10.
+  El retorno (USD 250/mes de ahorro → menos de un mes) se dice (notas).
+-->
+<div class="plantilla">
+  <h2 class="plantilla__titulo">Factibilidad</h2>
+  <div class="plantilla__cuerpo apilado">
+    <div class="cuadricula-2">
+      <div class="panel" data-fragment="1">
+        <p class="etiqueta">Técnica</p>
+        <ul class="lista-compacta">
+          <li>
+            Equipos y red local en nivel
+            <strong data-dato="observacion.areas.3.indicadores.0.nivel"></strong>
+          </li>
+          <li>
+            <strong data-dato="likert.items.14.acuerdo_pct" data-formato="porcentaje"></strong> del
+            personal los considera aptos (<span data-dato="likert.items.14.id"></span>)
+          </li>
+          <li>Software libre: <span data-dato="costos.rubros.2.descripcion"></span></li>
+        </ul>
+      </div>
+
+      <div class="panel" data-fragment="2">
+        <p class="etiqueta">Económica</p>
+        <p class="cifra cifra--media" data-dato="costos.total" data-formato="usd"></p>
+        <ul class="lista-compacta">
+          <li>
+            <span data-dato="costos.rubros.0.total" data-formato="decimal"></span> VPS +
+            <span data-dato="costos.rubros.1.total" data-formato="decimal"></span> dominio +
+            <span data-dato="costos.contingencia" data-formato="decimal"></span> contingencia (<span
+              data-dato="costos.contingencia_pct"
+              data-formato="porcentaje"
+            ></span
+            >)
+          </li>
+          <li>
+            Recurrente:
+            <strong data-dato="costos.recurrente_anual.total" data-formato="usd"></strong> al año
+          </li>
+          <li>
+            <strong>Desarrollo:</strong> <span data-dato="costos.rubros.3.descripcion"></span>
+          </li>
+          <li>
+            <strong>Capacitación:</strong> <span data-dato="costos.rubros.4.descripcion"></span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="panel" data-fragment="3">
+        <p class="etiqueta">Operativa</p>
+        <ul class="lista-compacta">
+          <li>Respaldo de la gerencia</li>
+          <li>
+            <strong data-dato="likert.items.7.acuerdo_pct" data-formato="porcentaje"></strong> a
+            favor de automatizar stock y vencimientos (<span data-dato="likert.items.7.id"></span>)
+          </li>
+          <li>
+            Riesgo: resistencia al cambio (<strong
+              data-dato="likert.items.9.desacuerdo_pct"
+              data-formato="porcentaje"
+            ></strong>
+            duda de la disposición, <span data-dato="likert.items.9.id"></span>)
+          </li>
+        </ul>
+      </div>
+
+      <div class="panel" data-fragment="4">
+        <p class="etiqueta">Legal</p>
+        <ul class="lista-compacta">
+          <li>
+            CRBV arts.
+            <span data-dato="marco-legal.factibilidad_legal.crbv.0.articulo"></span>,
+            <span data-dato="marco-legal.factibilidad_legal.crbv.1.articulo"></span> y
+            <span data-dato="marco-legal.factibilidad_legal.crbv.2.articulo"></span>
+          </li>
+          <li data-dato="marco-legal.factibilidad_legal.puntos.0"></li>
+          <li data-dato="marco-legal.factibilidad_legal.puntos.1"></li>
+          <li><strong data-dato="marco-legal.factibilidad_legal.conclusion"></strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

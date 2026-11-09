@@ -1,0 +1,98 @@
+{
+  "fuente": "TEG, Cap. II (ODS y 2.3 Bases legales, págs. 64–66) y 6.5.4 Factibilidad legal",
+  "verificado_contra_teg": true,
+  "ods": [
+    {
+      "numero": 2,
+      "nombre": "Hambre Cero"
+    },
+    {
+      "numero": 9,
+      "nombre": "Industria, Innovación e Infraestructura"
+    },
+    {
+      "numero": 12,
+      "nombre": "Producción y Consumo Responsables"
+    }
+  ],
+  "leyes": [
+    {
+      "sigla": "LOCTI",
+      "nombre": "Ley Orgánica de Ciencia, Tecnología e Innovación",
+      "anio": 2014,
+      "articulos": [
+        1,
+        7
+      ],
+      "relacion": "Innovación de procesos y soberanía alimentaria"
+    },
+    {
+      "sigla": "Infogobierno",
+      "nombre": "Ley de Infogobierno",
+      "anio": 2013,
+      "articulos": [
+        4,
+        12
+      ],
+      "relacion": "Seguridad de la información y tecnologías libres"
+    },
+    {
+      "sigla": "Mensajes de Datos",
+      "nombre": "Ley sobre Mensajes de Datos y Firmas Electrónicas",
+      "anio": 2001,
+      "articulos": [
+        4
+      ],
+      "relacion": "Del papel a lo digital, con el mismo valor probatorio"
+    },
+    {
+      "sigla": "Delitos Informáticos",
+      "nombre": "Ley Especial contra los Delitos Informáticos",
+      "anio": 2001,
+      "articulos": [
+        6
+      ],
+      "relacion": "Acceso indebido: credenciales, roles y bitácora"
+    },
+    {
+      "sigla": "CRBV",
+      "nombre": "Constitución de la República Bolivariana de Venezuela",
+      "anio": 1999,
+      "articulos": [
+        305
+      ],
+      "relacion": "Agricultura sustentable y seguridad alimentaria"
+    },
+    {
+      "sigla": "LOA",
+      "nombre": "Ley Orgánica del Ambiente",
+      "anio": 2006,
+      "articulos": [
+        3
+      ],
+      "relacion": "Criterios ambientales en la actividad agrocomercial"
+    }
+  ],
+  "factibilidad_legal": {
+    "crbv": [
+      {
+        "articulo": 28,
+        "contenido": "Derecho a acceder a la información propia que conste en registros"
+      },
+      {
+        "articulo": 60,
+        "contenido": "La ley limitará el uso de la informática para garantizar el honor y la intimidad"
+      },
+      {
+        "articulo": 305,
+        "contenido": "Agricultura sustentable como base de la seguridad alimentaria"
+      }
+    ],
+    "puntos": [
+      "La facturación sigue en el sistema administrativo; el modelo solo extrae y analiza los datos",
+      "Precios al público en bolívares a la tasa oficial del BCV",
+      "Otras monedas solo para la gestión interna de costos"
+    ],
+    "conclusion": "No se identifican impedimentos legales para la implementación"
+  }
+}

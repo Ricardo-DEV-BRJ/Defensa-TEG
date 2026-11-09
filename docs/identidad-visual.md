@@ -5,7 +5,7 @@ institucional (el TEG es un trabajo de los estudiantes, no un producto de la uni
 Fuente: Manual de identidad de la Universidad Valle del Momboy.
 
 ## Reglas
-- Isologo UVM (`public/img/uvm-isologo.png`) solo en las láminas 1 y 16.
+- Isologo UVM (`public/img/uvm-isologo.png`) solo en las láminas 1 y 17 (portada y cierre).
 - El isologo se usa completo (árbol + anillo de texto), sin cambiar colores, estirar ni recortar.
   Versiones permitidas por el manual: color, positivo, escala de grises y negativo.
 - Tema claro (se proyecta en un televisor).
@@ -37,4 +37,4 @@ Descartados del manual: `#bcd4de` (ilegible sobre claro) y `#809e3e` (redundante
 
 ## Imágenes disponibles
 - `public/img/figuras-teg/`: Figura 1 (modelo teórico), 15 (arquitectura), 16 (BPMN venta y despacho), 17 (modelo en estrella), 18 (prototipo del tablero).
-- `public/img/capturas-sistema/`: 16 capturas del sistema AgroData JM tomadas del Anexo 20 (tablero ejecutivo, pagos y monedas, bitácora, etc.). Revisar cuáles usar en la lámina 13.
+- `public/img/capturas-sistema/`: 16 capturas del sistema AgroData JM tomadas del Anexo 20 (tablero ejecutivo, pagos y monedas, bitácora, etc.). Revisar cuáles usar en la lámina 14.

@@ -32,7 +32,7 @@
       "segundos": 45,
       "expositor": "Rafael Pérez",
       "pregunta": "¿Qué nos propusimos lograr?",
-      "notas": "Objetivo general: diseñar un modelo sustentable de digitalización de procesos mediante Big Data para optimizar la gestión logística y reducir las mermas. Específicos: Describir, Identificar, Determinar, Proponer. La conclusión retoma cada uno.",
+      "notas": "En pantalla están completos el objetivo general y los cuatro específicos (TEG 1.3). Leer el general; de los específicos, nombrar el verbo y la idea central (Describir, Identificar, Determinar, Proponer): leerlos enteros toma más de un minuto y la lámina tiene 45 s. La conclusión retoma cada uno.",
       "reserva": false
     },
     {
@@ -117,15 +117,26 @@
       "archivo": "11-conclusiones.html",
       "titulo": "Un objetivo, una conclusión",
       "capitulo": "V",
-      "segundos": 90,
+      "segundos": 45,
       "expositor": "Ricardo Briceño",
       "pregunta": "¿Se cumplieron los objetivos?",
-      "notas": "Objetivo general alcanzado, ajustado a la escala de la empresa; no se generaliza al sector. Recomendaciones: línea base el primer mes, UPS en caja, roles y bitácora inmediatos, capacitación, extensión UVM. Líneas futuras: LSTM, blockchain, huella de carbono, VRP/TSP.",
+      "notas": "En pantalla, las conclusiones literales del TEG (5.1) de los objetivos 1 y 2. Destacar: digitalización como conversión y fallas eléctricas; integrar fuentes, arquitectura ligera y la barrera de la disposición al cambio.",
       "reserva": false
     },
     {
       "id": 12,
-      "archivo": "12-arquitectura.html",
+      "archivo": "12-conclusiones-propuesta.html",
+      "titulo": "Un objetivo, una conclusión (continuación)",
+      "capitulo": "V",
+      "segundos": 45,
+      "expositor": "Ricardo Briceño",
+      "pregunta": "¿Se cumplió el objetivo general?",
+      "notas": "En pantalla, las conclusiones literales del TEG (5.1) de los objetivos 3 y 4 y la conclusión general. Objetivo general alcanzado, ajustado a la escala de la empresa; no se generaliza al sector. Recomendaciones: línea base el primer mes, UPS en caja, roles y bitácora inmediatos, capacitación, extensión UVM. Líneas futuras: LSTM, blockchain, huella de carbono, VRP/TSP.",
+      "reserva": false
+    },
+    {
+      "id": 13,
+      "archivo": "13-arquitectura.html",
       "titulo": "Estructura del modelo y arquitectura",
       "capitulo": "VI",
       "segundos": 105,
@@ -135,8 +146,8 @@
       "reserva": false
     },
     {
-      "id": 13,
-      "archivo": "13-procesos-gobernanza-analitica.html",
+      "id": 14,
+      "archivo": "14-procesos-gobernanza-analitica.html",
       "titulo": "Procesos, gobernanza y modelos analíticos",
       "capitulo": "VI",
       "segundos": 90,
@@ -146,8 +157,8 @@
       "reserva": false
     },
     {
-      "id": 14,
-      "archivo": "14-factibilidad.html",
+      "id": 15,
+      "archivo": "15-factibilidad.html",
       "titulo": "Factibilidad",
       "capitulo": "VI",
       "segundos": 75,
@@ -157,8 +168,8 @@
       "reserva": false
     },
     {
-      "id": 15,
-      "archivo": "15-implementacion.html",
+      "id": 16,
+      "archivo": "16-implementacion.html",
       "titulo": "Implementación e indicadores",
       "capitulo": "VI",
       "segundos": 45,
@@ -168,8 +179,8 @@
       "reserva": false
     },
     {
-      "id": 16,
-      "archivo": "16-cierre.html",
+      "id": 17,
+      "archivo": "17-cierre.html",
       "titulo": "Cierre",
       "capitulo": "—",
       "segundos": 30,
@@ -179,19 +190,19 @@
       "reserva": false
     },
     {
-      "id": 17,
-      "archivo": "17-reserva-likert.html",
+      "id": 18,
+      "archivo": "18-reserva-likert.html",
       "titulo": "Reserva: resultados completos del cuestionario",
       "capitulo": "IV",
       "segundos": 0,
       "expositor": "—",
-      "pregunta": "¿Cuáles fueron las 14 respuestas?",
+      "pregunta": "¿Qué respondió el personal en cada ítem del cuestionario?",
       "notas": "Solo si el jurado pregunta.",
       "reserva": true
     },
     {
-      "id": 18,
-      "archivo": "18-reserva-roles.html",
+      "id": 19,
+      "archivo": "19-reserva-roles.html",
       "titulo": "Reserva: matriz de roles y permisos",
       "capitulo": "VI",
       "segundos": 0,
@@ -201,8 +212,8 @@
       "reserva": true
     },
     {
-      "id": 19,
-      "archivo": "19-reserva-riesgos.html",
+      "id": 20,
+      "archivo": "20-reserva-riesgos.html",
       "titulo": "Reserva: matriz de riesgos",
       "capitulo": "VI",
       "segundos": 0,
@@ -212,8 +223,8 @@
       "reserva": true
     },
     {
-      "id": 20,
-      "archivo": "20-reserva-como-se-construyo.html",
+      "id": 21,
+      "archivo": "21-reserva-como-se-construyo.html",
       "titulo": "Reserva: cómo se construyó esta presentación",
       "capitulo": "—",
       "segundos": 0,

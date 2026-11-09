@@ -1,24 +1,36 @@
 // Punto de entrada de la vista del proyector (index.html): el único lugar donde se conectan
 // los módulos del motor (ADR-006).
-import slides from '../data/slides.json';
 import { crearDeck } from './core/deck.js';
+import { rellenarDatos } from './core/datos.js';
 import { iniciarTeclado } from './core/keyboard.js';
 import { iniciarRouter, leerHash } from './core/router.js';
 import { iniciarEscalado } from './core/scaler.js';
 
-// HTML de cada lámina, incluido en el bundle para no usar fetch (ADR-006 §8).
-// Clave: nombre del archivo, como en el campo «archivo» de slides.json.
-const archivos = import.meta.glob('./slides/*.html', {
-  query: '?raw',
-  import: 'default',
-  eager: true,
-});
-const plantillas = Object.fromEntries(
-  Object.entries(archivos).map(([ruta, html]) => [ruta.split('/').pop(), html]),
+// Todo data/*.json y el HTML de cada lámina entran al bundle para no usar fetch (ADR-006 §8).
+// Claves: nombre del archivo sin extensión (datos) y nombre con extensión (plantillas).
+const porNombre = (archivos, quitarExtension) =>
+  Object.fromEntries(
+    Object.entries(archivos).map(([ruta, contenido]) => {
+      const nombre = ruta.split('/').pop();
+      return [quitarExtension ? nombre.replace(/\.json$/, '') : nombre, contenido];
+    }),
+  );
+const datos = porNombre(
+  import.meta.glob('../data/*.json', { import: 'default', eager: true }),
+  true,
+);
+const plantillas = porNombre(
+  import.meta.glob('./slides/*.html', { query: '?raw', import: 'default', eager: true }),
+  false,
 );
 
 const escenario = document.querySelector('.escenario');
-const deck = crearDeck({ escenario, laminas: slides.laminas, plantillas });
+const deck = crearDeck({ escenario, laminas: datos.slides.laminas, plantillas });
+
+// Cifras y textos del TEG desde data/*.json (data-dato="archivo.ruta").
+for (const ruta of rellenarDatos(escenario, datos)) {
+  console.warn(`Dato no encontrado o con formato inválido: data-dato="${ruta}"`);
+}
 
 iniciarEscalado(escenario);
 iniciarRouter(deck);
@@ -34,7 +46,8 @@ iniciarTeclado(
     pantallaCompleta: alternarPantallaCompleta,
     // abrirPresentador (P) y reiniciarCronometro (T) llegan en la Fase 5.
   },
-  { escenario },
+  // G + número acepta tantas cifras como tenga el total de láminas (20 → 2).
+  { escenario, maxDigitos: String(deck.total).length },
 );
 
 // La lámina inicial sale del hash para que recargar conserve la posición (RF-04).

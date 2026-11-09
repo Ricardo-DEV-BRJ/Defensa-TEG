@@ -1,0 +1,41 @@
+{
+  "fuente": "TEG, 1.3 Objetivos de la investigación (págs. 27–28) y 5.1 Conclusiones (págs. 117–118)",
+  "verificado_contra_teg": true,
+  "nota": "texto_teg y conclusion_teg son copias literales del TEG; verbo + complemento es lo que se ve en pantalla (lámina 3), sin el punto final. En el objetivo general se unifican «Big Data» y «Empresa Agro Comercializadora JM» en mayúsculas, como en el resto del TEG. resumen es la versión corta del guion. Las conclusiones literales se muestran en las láminas 11 (objetivos 1 y 2) y 12 (objetivos 3 y 4 y general); una prueba lo exige.",
+  "general": {
+    "texto_teg": "Diseñar un modelo sustentable de digitalización de procesos mediante big data para la empresa agro comercializadora JM para optimizar la gestión logística y reducir las mermas de productos agrícolas.",
+    "verbo": "Diseñar",
+    "complemento": "un modelo sustentable de digitalización de procesos mediante Big Data para la Empresa Agro Comercializadora JM para optimizar la gestión logística y reducir las mermas de productos agrícolas",
+    "conclusion_teg": "En conjunto, se concluye que el objetivo general fue alcanzado: se diseñó un modelo sustentable de digitalización de procesos mediante Big Data ajustado a la escala, a los recursos y a las condiciones del entorno de la empresa. Dado el tamaño reducido de la población estudiada, estas conclusiones se refieren a la Empresa Agro Comercializadora JM y no se generalizan al sector."
+  },
+  "especificos": [
+    {
+      "verbo": "Describir",
+      "complemento": "la situación actual en la que se encuentran los procesos logísticos y de gestión de datos informativos en la Empresa Agro Comercializadora JM",
+      "resumen": "la situación actual",
+      "texto_teg": "Describir la situación actual en la que se encuentran los procesos logísticos y de gestión de datos informativos en la Empresa Agro Comercializadora JM.",
+      "conclusion_teg": "En relación con el primer objetivo específico, se concluye que los procesos logísticos y de gestión de datos de la Empresa Agro Comercializadora JM se encuentran en un nivel de digitalización como conversión: los registros de venta e inventario se llevan en un sistema administrativo local, pero este permanece aislado, depende del servicio eléctrico y se complementa con hojas de cálculo manuales. Las fallas eléctricas provocan la desincronización entre el inventario lógico y el físico, las ventas duplicadas y los reembolsos a clientes, mientras que la consolidación de carga, el control de mermas y los despachos se realizan de forma manual o en papel. Aunque el personal operativo percibe que la mayoría de sus tareas están automatizadas, la observación directa mostró que los procesos de apoyo no lo están."
+    },
+    {
+      "verbo": "Identificar",
+      "complemento": "las necesidades de digitalización de procesos y los requerimientos de técnicas de Big Data aplicables para optimizar la toma de decisiones estratégico-logísticas en la Empresa Agro Comercializadora JM",
+      "resumen": "necesidades y requerimientos de Big Data",
+      "texto_teg": "Identificar las necesidades de digitalización de procesos y los requerimientos de técnicas de Big Data aplicables para optimizar la toma de decisiones estratégico-logísticas en la Empresa Agro Comercializadora JM.",
+      "conclusion_teg": "En cuanto al segundo objetivo, se identificó que la empresa requiere integrar fuentes heterogéneas de datos, como el sistema administrativo, las tasas de cambio en distintas monedas y los registros operativos de recepción, conteos y mermas; automatizar el cálculo del stock mínimo y las alertas de vencimiento, y anticipar la demanda en función de las temporadas de siembra y fertilización. El volumen de datos actual es moderado, por lo que estos requerimientos se satisfacen con una arquitectura ligera y no con infraestructuras de procesamiento distribuido. La principal barrera identificada no es la infraestructura, que se considera apta, sino la disposición del personal frente al cambio."
+    },
+    {
+      "verbo": "Determinar",
+      "complemento": "los elementos conceptuales y operativos que deben integrar un diseño formal de Programa Sustentable y de Digitalización de procesos basado en técnicas de Big Data que responda de forma óptima a las necesidades específicas de la Empresa Agro Comercializadora JM",
+      "resumen": "los elementos del Programa Sustentable",
+      "texto_teg": "Determinar los elementos conceptuales y operativos que deben integrar un diseño formal de Programa Sustentable y de Digitalización de procesos basado en técnicas de Big Data que responda de forma óptima a las necesidades específicas de la Empresa Agro Comercializadora JM.",
+      "conclusion_teg": "Respecto al tercer objetivo, se determinó que el modelo debe integrar tres elementos: un Programa Sustentable que documente en BPMN 2.0 los procesos de recepción, almacenamiento, venta y despacho, mermas y actualización de precios; un esquema de gobernanza de datos basado en roles, permisos y bitácora de auditoría, que elimine el acceso irrestricto a la modificación de precios, e indicadores de ecoeficiencia referidos al uso de papel, al consumo energético y a las mermas, cuyas metas deben fijarse a partir de una línea base, pues la empresa no lleva hoy esos registros."
+    },
+    {
+      "verbo": "Proponer",
+      "complemento": "la arquitectura lógica, la infraestructura tecnológica y las interfaces del modelo de digitalización y Big Data, con base en los requerimientos diagnosticados, para responder a las necesidades de eficiencia económica y ecoeficiencia ambiental de la Empresa Agro Comercializadora JM",
+      "resumen": "arquitectura, infraestructura e interfaces",
+      "texto_teg": "Proponer la arquitectura lógica, la infraestructura tecnológica y las interfaces del modelo de digitalización y Big Data, con base en los requerimientos diagnosticados, para responder a las necesidades de eficiencia económica y ecoeficiencia ambiental de la Empresa Agro Comercializadora JM.",
+      "conclusion_teg": "En relación con el cuarto objetivo, se propuso el Modelo AgroData JM, estructurado en cinco capas (captura de datos, integración, almacenamiento analítico, analítica y visualización) y dos componentes transversales de gobernanza y sostenibilidad, desarrollado en el Capítulo VI. La arquitectura se apoya en la infraestructura existente, que el 75,0 % del personal consideró apta (ítem 4.2) y que la observación ubicó en el nivel 3, y se complementa con una plataforma alojada en un servidor privado virtual (VPS), que integra el frontend, el backend, la base de datos y el almacenamiento de objetos, sin adquisición de equipos, con una inversión estimada de USD 56,10. Su eficacia deberá comprobarse mediante la operación piloto y los indicadores definidos en la propuesta."
+    }
+  ]
+}

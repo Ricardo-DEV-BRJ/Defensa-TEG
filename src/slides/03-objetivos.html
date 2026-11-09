@@ -1,0 +1,40 @@
+<!--
+  Lámina 3 · Objetivos (plantilla «Título + contenido» con los bloques «destacado» y «lista-verbos»).
+  Pregunta guía: ¿Qué nos propusimos lograr?
+  Objetivo general y los cuatro específicos completos, desde data/objetivos.json (TEG 1.3).
+  El general se ve desde el inicio; los específicos aparecen uno por paso.
+  La lámina 11 retoma cada objetivo con el mismo número.
+-->
+<div class="plantilla">
+  <h2 class="plantilla__titulo">Objetivos</h2>
+  <div class="plantilla__cuerpo apilado">
+    <div class="destacado destacado--compacto">
+      <p class="etiqueta">Objetivo general</p>
+      <p class="destacado__texto">
+        <strong data-dato="objetivos.general.verbo"></strong>
+        <span data-dato="objetivos.general.complemento"></span>
+      </p>
+    </div>
+    <div>
+      <p class="etiqueta" data-fragment="1">Objetivos específicos</p>
+      <ol class="lista-verbos">
+        <li data-fragment="1">
+          <strong class="lista-verbos__verbo" data-dato="objetivos.especificos.0.verbo"></strong>
+          <span data-dato="objetivos.especificos.0.complemento"></span>
+        </li>
+        <li data-fragment="2">
+          <strong class="lista-verbos__verbo" data-dato="objetivos.especificos.1.verbo"></strong>
+          <span data-dato="objetivos.especificos.1.complemento"></span>
+        </li>
+        <li data-fragment="3">
+          <strong class="lista-verbos__verbo" data-dato="objetivos.especificos.2.verbo"></strong>
+          <span data-dato="objetivos.especificos.2.complemento"></span>
+        </li>
+        <li data-fragment="4">
+          <strong class="lista-verbos__verbo" data-dato="objetivos.especificos.3.verbo"></strong>
+          <span data-dato="objetivos.especificos.3.complemento"></span>
+        </li>
+      </ol>
+    </div>
+  </div>
+</div>

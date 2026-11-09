@@ -51,18 +51,30 @@
   --color-secundario: #5c6b6d; /* 5,3:1 · notas, fuentes, «n = 4» */
   --color-fondo: #f7f9f8; /* fondo de lámina */
   --color-pantalla-negra: #000; /* tecla B; no forma parte de la paleta */
+  /* Gris neutro de los gráficos (punto medio de una escala divergente): validado con
+   * dataviz/validate_palette.js junto a alerta y primario (ΔE ≥ 11 en todas las CVD). */
+  --color-neutro-grafico: color-mix(in srgb, var(--color-secundario) 60%, var(--color-fondo));
+  /* Fondo de una capa de la arquitectura (lámina 13): petróleo muy suave sobre el fondo. */
+  --color-capa: color-mix(in srgb, var(--color-primario) 8%, var(--color-fondo));
+  /* Segmento vacío de un medidor de nivel (lámina 9). */
+  --color-vacio-grafico: color-mix(in srgb, var(--color-secundario) 22%, var(--color-fondo));
 
   /* ── Familias ── */
   --fuente-titulos: 'Barlow Condensed', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
   --fuente-texto: 'Barlow', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  /* Fórmulas: fuente matemática del sistema (no se descarga). Barlow no tiene σ ni √ y pone la
+   * barra de d̄ cruzando la d (parece «đ»); Cambria Math viene con Windows. */
+  --fuente-formulas: 'Cambria Math', 'STIX Two Math', 'Latin Modern Math', 'Times New Roman', serif;
 
   /* ── Tamaños de letra en el escenario: ninguno menor que 28 px ── */
   --texto-min: 28px; /* notas, fuentes, pies de figura */
+  --texto-compacto: 32px; /* textos largos que deben ir completos (objetivos del TEG) */
   --texto-cuerpo: 40px; /* listas y textos cortos */
   --texto-destacado: 48px; /* subtítulos de columna, etiqueta de una cifra */
   --texto-titulo: 72px; /* título de lámina */
   --texto-portada: 80px; /* título de la portada */
   --texto-cifra: 220px; /* cifra grande */
+  --texto-cifra-media: 120px; /* cifra protagonista dentro de una tarjeta (lámina 15) */
 
   --interlineado-titulo: 1.05;
   --interlineado-texto: 1.25;
@@ -78,9 +90,26 @@
   --borde-fino: 2px;
   --borde-grueso: 8px;
   --marca-titulo-ancho: 120px; /* barra verde bajo los títulos */
+  --radio: 8px; /* esquinas de cajas */
+  --flecha-ancho: 96px; /* columna que ocupa una flecha entre dos cajas */
+  --flecha-punta: 24px;
+  --icono-tamano: 72px; /* íconos dibujados en SVG (lámina 4) */
+  --perspectiva: 1200px; /* profundidad del giro 3D de las tarjetas */
+  --punto-tamano: 24px; /* puntos de la línea de tiempo (lámina 5) */
+  --conector-ancho: 200px; /* columna de una flecha con texto entre dos cajas (lámina 6) */
+  --conector-alto: 56px; /* fila de una flecha vertical entre dos cajas (lámina 6) */
+  --barra-alto: 24px; /* grosor de una barra de datos (tope de la guía de visualización) */
+  --radio-barra: 4px; /* extremo redondeado de una barra; la base queda recta */
+  --separacion-grafico: 2px; /* hueco del color del fondo entre marcas que se tocan */
+  --medidor-segmento: 28px; /* ancho de cada uno de los 4 segmentos de un medidor de nivel */
+  --transversal-ancho: 220px; /* columnas de los componentes transversales (lámina 13) */
+  --flujo-ancho: 48px; /* columna de la flecha «flujo de datos» (lámina 13) */
+  --capa-nombre-ancho: 320px; /* columna con el nombre y la función de cada capa (lámina 13) */
 
-  /* Isologo UVM (solo láminas 1 y 16): se fija el alto y el ancho sigue su proporción */
+  /* Isologo UVM (solo portada y cierre): se fija el alto y el ancho sigue su proporción */
   --isologo-alto: 520px;
+  /* Código QR del cierre (lámina 17): legible desde las primeras filas del público */
+  --qr-alto: 280px;
 
   /* ── Escenario fijo 16:9 y margen seguro del 5 % por el overscan (96 px × 54 px) ── */
   --escenario-ancho: 1920px;
@@ -88,9 +117,16 @@
   --margen-seguro-x: calc(var(--escenario-ancho) * 0.05);
   --margen-seguro-y: calc(var(--escenario-alto) * 0.05);
 
-  /* Vista general: miniaturas a 1/5 (384 × 216 px), 4 por fila dentro del margen seguro */
-  --vista-general-zoom: 0.2;
+  /* Vista general: 17 miniaturas al 16 % (307 × 173 px), 5 por fila y 4 filas, dentro del
+   * margen seguro (5 × 307 + 4 × 32 = 1663 ≤ 1728 de ancho; 4 × 173 + 3 × 32 = 788 ≤ 972 de alto) */
+  --vista-general-zoom: 0.16;
+  --vista-general-columnas: 5;
 
   /* ── Movimiento (máximo 1,5 s) ── */
   --duracion-fragmento: 400ms;
+  /* Secuencia dentro de un fragmento (cadena): 5 elementos → 4 × 250 + 300 = 1,3 s */
+  --duracion-paso: 300ms;
+  --retardo-paso: 250ms;
+  /* Giro de una tarjeta: 4 tarjetas → 3 × 250 + 600 = 1,35 s */
+  --duracion-giro: 600ms;
 }

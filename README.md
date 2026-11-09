@@ -16,7 +16,7 @@ Autores: Br. Rafael Pérez · Técn. Ricardo Briceño — Tutora: MSc. Yajaira S
 | `docs/requisitos.md` | Requisitos funcionales y no funcionales |
 | `docs/decisiones.md` | Registro de decisiones de arquitectura (ADR) |
 | `docs/identidad-visual.md` | Paleta, tipografía y reglas del isologo |
-| `data/*.json` | Cifras transcritas del TEG (slides, Likert, observación, costos, cronograma, arquitectura, antecedentes) |
+| `data/*.json` | Cifras transcritas del TEG (slides, Likert, observación, costos, cronograma, arquitectura, antecedentes, metodología, marco legal). Los que tienen `"verificado_contra_teg": false` salen del guion y falta contrastarlos |
 | `.claude/commands/` | Comandos `/nueva-lamina`, `/revisar-lamina`, `/verificar-datos`, `/ensayo` |
 | `public/img/` | Isologo UVM, figuras del TEG y capturas del sistema AgroData JM |
 
@@ -26,6 +26,7 @@ npm install
 npm run dev       # desarrollo
 npm test          # pruebas
 npm run build     # genera dist/ (abre con doble clic en dist/index.html)
+npm run qr -- https://…   # genera el QR del cierre (public/img/qr.svg y data/cierre.json)
 ```
 
 ## Atajos de teclado

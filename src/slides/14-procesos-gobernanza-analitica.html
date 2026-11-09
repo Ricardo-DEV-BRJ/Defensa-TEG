@@ -1,0 +1,93 @@
+<!--
+  Lámina 14 · Procesos, gobernanza y modelos analíticos (plantilla «Título + contenido» con los
+  bloques «columnas-3», «panel», «fichas», «formula» y «captura»). Demostración clave (★).
+  Pregunta guía: ¿Cómo resuelve cada componente un problema del diagnóstico?
+  Todo desde data/arquitectura.json (modelo verificado contra el TEG 6.4; fórmulas de la Tabla 20
+  según Chopra y Meindl, 2013). Un panel por paso:
+  1. Programa Sustentable: los 6 procesos BPMN (Tabla 17), la Figura 16 y la reducción de papel.
+  2. Gobernanza: roles (Tabla 18), controles, ISO/IEC 27001 y captura real de la bitácora
+     (captura-16 = Anexo 20, Figura 34).
+  3. Modelos analíticos: SS, PR e IR.
+  Pendiente (Fase 4): simulador de duplicados (dedup-sim.js) y calculadora de stock
+  (stock-calc.js). Previsión y multimoneda se dicen (notas).
+-->
+<div class="plantilla">
+  <h2 class="plantilla__titulo">Procesos, gobernanza y modelos analíticos</h2>
+  <div class="plantilla__cuerpo apilado">
+    <div class="columnas-3">
+      <div class="panel panel--espaciado" data-fragment="1">
+        <p class="etiqueta">Programa Sustentable</p>
+        <p class="dato-medio">
+          <span
+            data-dato="arquitectura.modelo.programa_sustentable.procesos_bpmn"
+            data-formato="cantidad"
+          ></span>
+          procesos en BPMN 2.0
+        </p>
+        <ul class="lista-compacta lista-compacta--min">
+          <li data-dato="arquitectura.modelo.programa_sustentable.procesos_bpmn.0.proceso"></li>
+          <li data-dato="arquitectura.modelo.programa_sustentable.procesos_bpmn.1.proceso"></li>
+          <li data-dato="arquitectura.modelo.programa_sustentable.procesos_bpmn.2.proceso"></li>
+          <li data-dato="arquitectura.modelo.programa_sustentable.procesos_bpmn.3.proceso"></li>
+          <li data-dato="arquitectura.modelo.programa_sustentable.procesos_bpmn.4.proceso"></li>
+          <li data-dato="arquitectura.modelo.programa_sustentable.procesos_bpmn.5.proceso"></li>
+        </ul>
+        <p class="nota" data-dato="arquitectura.modelo.programa_sustentable.figura"></p>
+        <p class="dato-medio">
+          −<span
+            data-dato="arquitectura.modelo.programa_sustentable.reduccion_papel_pct"
+            data-formato="porcentaje"
+          ></span>
+          de papel
+        </p>
+      </div>
+
+      <div class="panel panel--espaciado" data-fragment="2">
+        <p class="etiqueta">Gobernanza y seguridad</p>
+        <ul class="fichas">
+          <li data-dato="arquitectura.modelo.gobernanza.roles.0"></li>
+          <li data-dato="arquitectura.modelo.gobernanza.roles.1"></li>
+          <li data-dato="arquitectura.modelo.gobernanza.roles.2"></li>
+          <li data-dato="arquitectura.modelo.gobernanza.roles.3"></li>
+          <li data-dato="arquitectura.modelo.gobernanza.roles.4"></li>
+        </ul>
+        <ul class="lista-en-linea">
+          <li data-dato="arquitectura.transversales.0.componentes.0"></li>
+          <li data-dato="arquitectura.transversales.0.componentes.1"></li>
+          <li data-dato="arquitectura.transversales.0.componentes.2"></li>
+          <li data-dato="arquitectura.transversales.0.componentes.3"></li>
+          <li data-dato="arquitectura.transversales.0.componentes.4"></li>
+        </ul>
+        <p class="nota">
+          Referencia: <span data-dato="arquitectura.modelo.gobernanza.referencia"></span>
+        </p>
+        <figure class="captura">
+          <img
+            src="img/capturas-sistema/captura-16.png"
+            alt="Bitácora de auditoría del sistema AgroData JM: quién hizo qué, cuándo y con qué resultado"
+          />
+          <figcaption>Bitácora de auditoría en el sistema (Anexo 20)</figcaption>
+        </figure>
+      </div>
+
+      <div class="panel panel--espaciado" data-fragment="3">
+        <p class="etiqueta">Modelos analíticos</p>
+        <div class="formula">
+          <p class="formula__nombre">Inventario de seguridad</p>
+          <p class="formula__expresion">SS = <span data-dato="arquitectura.formulas.SS"></span></p>
+        </div>
+        <div class="formula">
+          <p class="formula__nombre">Punto de reorden</p>
+          <p class="formula__expresion">PR = <span data-dato="arquitectura.formulas.PR"></span></p>
+        </div>
+        <div class="formula">
+          <p class="formula__nombre">
+            Índice de rotación (unidades vendidas / inventario promedio)
+          </p>
+          <p class="formula__expresion">IR = <span data-dato="arquitectura.formulas.IR"></span></p>
+        </div>
+        <p class="nota">Fuente: <span data-dato="arquitectura.formulas.fuente"></span></p>
+      </div>
+    </div>
+  </div>
+</div>

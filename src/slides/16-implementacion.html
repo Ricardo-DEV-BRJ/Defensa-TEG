@@ -1,0 +1,144 @@
+<!--
+  Lámina 16 · Implementación e indicadores (plantilla «Título + contenido» con los bloques
+  «gantt», «metas» y «panel»).
+  Pregunta guía: ¿Cómo se implementa y cómo sabremos que funcionó?
+  Todo desde data/cronograma.json, verificado contra el TEG: fases en semanas (6.4.8, que la
+  Tabla 24 reparte en quincenas) y las cuatro metas del guion (Tabla 25) con su línea base.
+  Las barras se ubican con data-vars: --inicio y --fin de cada fase sobre --total semanas; las
+  líneas verticales marcan los --meses.
+  1. Cronograma: las barras crecen de izquierda a derecha, una fase tras otra.
+  2. Metas: cuatro tarjetas, una tras otra.
+  Se dice (notas): PHVA, comité quincenal, evaluaciones a los 3 y 6 meses, matriz de riesgos.
+  El Gantt es CSS; no hace falta un componente gantt.js.
+-->
+<div class="plantilla">
+  <h2 class="plantilla__titulo">Implementación e indicadores</h2>
+  <div class="plantilla__cuerpo apilado apilado--compacto">
+    <div
+      class="gantt"
+      data-fragment="1"
+      data-vars="total=cronograma.total_semanas meses=cronograma.total_meses"
+    >
+      <p class="etiqueta">
+        <span data-dato="cronograma.fases" data-formato="cantidad"></span> fases en
+        <span data-dato="cronograma.total_semanas"></span> semanas (<span
+          data-dato="cronograma.total_meses"
+        ></span>
+        meses), solapadas para acortar el plazo
+      </p>
+      <ol class="gantt__filas">
+        <li
+          class="gantt__fila"
+          data-vars="inicio=cronograma.fases.0.inicio fin=cronograma.fases.0.fin"
+        >
+          <span class="gantt__numero">Fase <span data-dato="cronograma.fases.0.fase"></span></span>
+          <span class="gantt__nombre" data-dato="cronograma.fases.0.nombre"></span>
+          <span class="gantt__pista">
+            <span class="gantt__barra"></span>
+            <span class="gantt__semanas">
+              semanas <span data-dato="cronograma.fases.0.inicio"></span>–<span
+                data-dato="cronograma.fases.0.fin"
+              ></span>
+            </span>
+          </span>
+        </li>
+        <li
+          class="gantt__fila"
+          data-vars="inicio=cronograma.fases.1.inicio fin=cronograma.fases.1.fin"
+        >
+          <span class="gantt__numero">Fase <span data-dato="cronograma.fases.1.fase"></span></span>
+          <span class="gantt__nombre" data-dato="cronograma.fases.1.nombre"></span>
+          <span class="gantt__pista">
+            <span class="gantt__barra"></span>
+            <span class="gantt__semanas">
+              semanas <span data-dato="cronograma.fases.1.inicio"></span>–<span
+                data-dato="cronograma.fases.1.fin"
+              ></span>
+            </span>
+          </span>
+        </li>
+        <li
+          class="gantt__fila"
+          data-vars="inicio=cronograma.fases.2.inicio fin=cronograma.fases.2.fin"
+        >
+          <span class="gantt__numero">Fase <span data-dato="cronograma.fases.2.fase"></span></span>
+          <span class="gantt__nombre" data-dato="cronograma.fases.2.nombre"></span>
+          <span class="gantt__pista">
+            <span class="gantt__barra"></span>
+            <span class="gantt__semanas">
+              semanas <span data-dato="cronograma.fases.2.inicio"></span>–<span
+                data-dato="cronograma.fases.2.fin"
+              ></span>
+            </span>
+          </span>
+        </li>
+        <li
+          class="gantt__fila"
+          data-vars="inicio=cronograma.fases.3.inicio fin=cronograma.fases.3.fin"
+        >
+          <span class="gantt__numero">Fase <span data-dato="cronograma.fases.3.fase"></span></span>
+          <span class="gantt__nombre" data-dato="cronograma.fases.3.nombre"></span>
+          <span class="gantt__pista">
+            <span class="gantt__barra"></span>
+            <span class="gantt__semanas">
+              semanas <span data-dato="cronograma.fases.3.inicio"></span>–<span
+                data-dato="cronograma.fases.3.fin"
+              ></span>
+            </span>
+          </span>
+        </li>
+        <!-- La última fase termina en el borde: su rótulo va antes de la barra. -->
+        <li
+          class="gantt__fila gantt__fila--rotulo-antes"
+          data-vars="inicio=cronograma.fases.4.inicio fin=cronograma.fases.4.fin"
+        >
+          <span class="gantt__numero">Fase <span data-dato="cronograma.fases.4.fase"></span></span>
+          <span class="gantt__nombre" data-dato="cronograma.fases.4.nombre"></span>
+          <span class="gantt__pista">
+            <span class="gantt__barra"></span>
+            <span class="gantt__semanas">
+              semanas <span data-dato="cronograma.fases.4.inicio"></span>–<span
+                data-dato="cronograma.fases.4.fin"
+              ></span>
+            </span>
+          </span>
+        </li>
+      </ol>
+    </div>
+
+    <div>
+      <p class="etiqueta" data-fragment="2">Indicadores de éxito y su meta</p>
+      <div class="metas escalonado" data-fragment="2">
+        <div class="panel meta">
+          <p class="meta__indicador" data-dato="cronograma.metas.0.indicador"></p>
+          <p class="meta__cifra" data-dato="cronograma.metas.0.cifra"></p>
+          <p class="nota">Línea base: <span data-dato="cronograma.metas.0.linea_base"></span></p>
+        </div>
+        <div class="panel meta">
+          <p class="meta__indicador" data-dato="cronograma.metas.1.indicador"></p>
+          <p class="meta__cifra">
+            <span data-dato="cronograma.metas.1.cifra"></span>
+            <span class="meta__complemento" data-dato="cronograma.metas.1.complemento"></span>
+          </p>
+          <p class="nota">Línea base: <span data-dato="cronograma.metas.1.linea_base"></span></p>
+        </div>
+        <div class="panel meta">
+          <p class="meta__indicador" data-dato="cronograma.metas.2.indicador"></p>
+          <p class="meta__cifra">
+            <span data-dato="cronograma.metas.2.cifra"></span>
+            <span class="meta__complemento" data-dato="cronograma.metas.2.complemento"></span>
+          </p>
+          <p class="nota">Línea base: <span data-dato="cronograma.metas.2.linea_base"></span></p>
+        </div>
+        <div class="panel meta">
+          <p class="meta__indicador" data-dato="cronograma.metas.3.indicador"></p>
+          <p class="meta__cifra">
+            <span data-dato="cronograma.metas.3.cifra"></span>
+            <span class="meta__complemento" data-dato="cronograma.metas.3.complemento"></span>
+          </p>
+          <p class="nota">Línea base: <span data-dato="cronograma.metas.3.linea_base"></span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

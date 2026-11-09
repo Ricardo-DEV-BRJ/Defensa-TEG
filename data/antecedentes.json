@@ -1,32 +1,37 @@
-[
-  {
-    "autor": "Chacón Ramírez et al.",
-    "anio": 2023,
-    "ambito": "Venezuela",
-    "aporte": "Arquitectura nube + local + borde para Agro 4.0 bajo cortes eléctricos"
-  },
-  {
-    "autor": "Peña de Marchán",
-    "anio": 2024,
-    "ambito": "Venezuela",
-    "aporte": "Uso transparente y ético del Big Data → gobernanza y explicabilidad"
-  },
-  {
-    "autor": "Chávez",
-    "anio": 2025,
-    "ambito": "Internacional",
-    "aporte": "Integración de datos y optimización de recursos como claves del Big Data agro"
-  },
-  {
-    "autor": "Garavito Hernández et al.",
-    "anio": 2026,
-    "ambito": "Internacional",
-    "aporte": "Big Data + IA en la cadena de suministro; la calidad del dato de origen es el obstáculo principal"
-  },
-  {
-    "autor": "Hernández Romero",
-    "anio": 2026,
-    "ambito": "México",
-    "aporte": "PyMEs agroalimentarias adoptan sostenibilidad con soluciones de bajo costo; el capital es la barrera"
-  }
-]
+{
+  "fuente": "TEG, 2.1 Antecedentes (desde la pág. 36) y 4.2 Contraste con los antecedentes",
+  "verificado_contra_teg": true,
+  "nota": "Orden cronológico para la línea de tiempo (lámina 5). En 4.2 el TEG dice que la baja calidad de los datos de origen es «uno de los principales obstáculos» (no «el principal»).",
+  "estudios": [
+    {
+      "autor": "Chacón Ramírez et al.",
+      "anio": 2023,
+      "ambito": "Venezuela",
+      "aporte": "Arquitectura nube + local + borde para Agro 4.0 bajo cortes eléctricos"
+    },
+    {
+      "autor": "Peña de Marchán",
+      "anio": 2024,
+      "ambito": "Venezuela",
+      "aporte": "Uso transparente y ético del Big Data → gobernanza y explicabilidad"
+    },
+    {
+      "autor": "Chávez",
+      "anio": 2025,
+      "ambito": "Internacional",
+      "aporte": "Integración de datos y optimización de recursos como claves del Big Data agro"
+    },
+    {
+      "autor": "Garavito Hernández et al.",
+      "anio": 2026,
+      "ambito": "Internacional",
+      "aporte": "Big Data + IA en la cadena de suministro; la calidad del dato de origen es uno de los principales obstáculos"
+    },
+    {
+      "autor": "Hernández Romero",
+      "anio": 2026,
+      "ambito": "México",
+      "aporte": "PyMEs agroalimentarias adoptan sostenibilidad con soluciones de bajo costo; el capital es la barrera"
+    }
+  ]
+}

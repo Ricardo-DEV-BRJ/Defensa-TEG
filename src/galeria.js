@@ -42,7 +42,7 @@ iniciarTeclado(
     cerrar: () => deck.cerrarVistaGeneral(),
     saltarAnimacion: () => deck.saltarAlFinal(),
   },
-  { escenario },
+  { escenario, maxDigitos: String(deck.total).length },
 );
 deck.iniciar(leerHash(window.location.hash, deck.total) ?? 1);
 

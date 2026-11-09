@@ -1,6 +1,6 @@
 # Defensa TEG – Modelo AgroData JM
 
-Presentación web de 16 láminas (+4 de reserva) para la defensa del Trabajo Especial de Grado
+Presentación web de 17 láminas (+4 de reserva) para la defensa del Trabajo Especial de Grado
 «Diseño de un modelo sustentable de digitalización de procesos mediante Big Data para la Empresa
 Agro Comercializadora JM» (UVM, Ingeniería en Computación, 2026).
 Autores: Br. Rafael Pérez y Técn. Ricardo Briceño. Tutora: MSc. Yajaira Segovia.
@@ -23,7 +23,7 @@ Duración objetivo: 19 minutos (máximo 20). Se proyecta en un televisor 16:9 co
 - Texto mínimo 28 px en el escenario; máximo 3–4 ideas por lámina.
 - Colores, fuentes y espaciados solo desde `src/styles/tokens.css` (ver identidad visual).
   `#88c426` nunca como color de texto sobre fondo claro.
-- Isologo UVM solo en las láminas 1 y 16, completo, sin deformar ni recolorear.
+- Isologo UVM solo en las láminas 1 y 17 (portada y cierre), completo, sin deformar ni recolorear.
 - Animaciones con CSS o Web Animations API, ≤ 1,5 s; respetar `prefers-reduced-motion`.
   Todo componente animado debe poder saltar a su estado final (tecla S).
 - Separar lógica pura (testeable) de la vista en los componentes interactivos.

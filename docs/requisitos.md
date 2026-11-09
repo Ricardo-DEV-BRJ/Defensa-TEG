@@ -3,7 +3,7 @@
 ## Funcionales
 | ID | Requisito |
 | --- | --- |
-| RF-01 | Mostrar las 16 láminas en el orden de `data/slides.json`; las de reserva (17–20) solo por número. |
+| RF-01 | Mostrar las 17 láminas en el orden de `data/slides.json`; las de reserva (18–21) solo por número. |
 | RF-02 | Navegar con → / espacio / clic / AvPag (avanzar) y ← / RePag (retroceder), compatible con presentador inalámbrico. |
 | RF-03 | Mostrar fragmentos paso a paso dentro de una lámina (`data-fragment`). |
 | RF-04 | URL por lámina (`#/n`); recargar conserva la posición. |

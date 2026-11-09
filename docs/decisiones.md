@@ -29,7 +29,7 @@ Formato: contexto → decisión → consecuencias. Agregar una entrada por cada 
 
 ## ADR-006 · Arquitectura del motor: deck, router, keyboard y scaler
 **Estado:** propuesta (9 de noviembre de 2026). Implementado: scaler, router, deck y keyboard
-(tareas 1.2 y 1.3). Pendiente de aprobar: §8 (presentador como vista de `index.html` y fuentes).
+(tareas 1.2 y 1.3) y datos (con la lámina 3). Pendiente de aprobar: §8 (presentador como vista de `index.html` y fuentes).
 
 ### Contexto
 El motor debe cubrir RF-01 a RF-05 y RF-11, servir de base al presentador, el cronómetro, el ensayo
@@ -83,9 +83,10 @@ escribirHash(n)       → '#/n'
 iniciarRouter(deck, ventana = window) → detener()
 
 // keyboard.js
-interpretarTecla(tecla, estado, { ahora, enControl, enBoton })
+interpretarTecla(tecla, estado, { ahora, enControl, enBoton, maxDigitos })
   → { accion, argumento, estado, consumida }   // consumida: anular la acción del navegador
-iniciarTeclado(acciones, { documento = document, escenario, reloj = Date.now }) → detener()
+iniciarTeclado(acciones, { documento = document, escenario, reloj = Date.now, maxDigitos })
+  → detener()   // maxDigitos = cifras del total de láminas, calculado en main.js
 
 // scaler.js
 calcularEscala(anchoVentana, altoVentana, ancho = 1920, alto = 1080) → número
@@ -93,8 +94,10 @@ calcularEscala(anchoVentana, altoVentana, ancho = 1920, alto = 1080) → número
 iniciarEscalado(escenario, ventana = window) → detener()
 
 // datos.js
-resolverDato(datos, ruta) → valor | undefined
-formatear(valor, formato) → texto   // formatos: numero, decimal, porcentaje, usd
+resolverDato(datos, ruta) → valor | undefined   // 'objetivos.especificos.0.verbo'
+formatear(valor, formato) → texto | null   // texto (por defecto), numero, decimal, porcentaje, usd,
+                                           // cantidad (elementos de una lista u objeto)
+rellenarDatos(raiz, datos) → rutas no encontradas   // main.js lo llama una vez sobre el escenario
 ```
 
 **3. Eventos.** El deck es un `EventTarget` nativo y emite `CustomEvent` cuyo `detail` es un objeto
@@ -119,15 +122,15 @@ resize ─▶ scaler (independiente)
 ```
 
 **4. Navegación.**
-- Secuencia principal 1–16; la reserva 17–20 queda fuera de ella.
+- Secuencia principal 1–17; la reserva 18–21 queda fuera de ella (ADR-008).
 - **Siguiente:** si quedan fragmentos, revela el próximo; si no, pasa a la lámina siguiente en el
-  paso 0. En la 16 completa no hace nada (no vuelve al inicio).
+  paso 0. En la última principal completa no hace nada (no vuelve al inicio).
 - **Anterior:** si hay fragmentos visibles, oculta el último; si no, va a la lámina anterior **en su
   estado final** (todos los fragmentos visibles y componentes terminados). En la 1 no hace nada.
-- **Ir a n** (G + número, hash, vista general): lámina n en el paso 0; fuera de 1–20 se ignora.
+- **Ir a n** (G + número, hash, vista general): lámina n en el paso 0; fuera de 1–21 se ignora.
 - **Reserva:** solo se llega por número (RF-01): G + número o el hash. Dentro de una lámina de
   reserva, → y ← solo revelan u ocultan sus fragmentos; para salir se usa G + número.
-- **Vista general (O):** cuadrícula de las 16 principales a 1/5 de su tamaño. → y ← mueven la
+- **Vista general (O):** cuadrícula de las principales (5 por fila, al 16 % de su tamaño). → y ← mueven la
   selección de lámina en lámina; un clic elige y cierra; O, Esc o Enter cierran.
 - **Fragmentos:** `data-fragment="n"` con n ≥ 1; los elementos con el mismo n aparecen juntos y los
   pasos son los valores distintos en orden. El deck marca `data-visible` y el CSS hace la transición
@@ -150,7 +153,7 @@ resize ─▶ scaler (independiente)
 
 - Ignora teclas con Ctrl, Alt o Meta (Ctrl+R y Alt+Tab siguen funcionando) y las repeticiones de
   tecla sostenida al navegar.
-- Si el foco está en un `input`, `select` o `textarea` (calculadora de la lámina 13), solo AvPág y
+- Si el foco está en un `input`, `select` o `textarea` (calculadora de la lámina 14), solo AvPág y
   RePág navegan, y primero quitan el foco; las demás teclas son del control.
 - Con el foco en un botón, Espacio y Enter son del botón (lo activan) y no cambian de lámina.
 - El clic avanza solo si no cae dentro de `a, button, input, select, textarea, label, [data-interactivo]`.
@@ -209,16 +212,16 @@ bundle (lo resuelven unas 30 líneas propias que se pueden explicar); framework 
 - Cambian `vite.config.js` (plugin; `presenter.html` sin JS) y la redacción de RF-06 en
   `docs/requisitos.md` (presentador como vista de `index.html`).
 - Pruebas previstas: escala (1920×1080 → 1; 3840×2160 → 2; 1366×768; valores inválidos); hash
-  (válido, 0, 21, texto, vacío); navegación (fragmentos, bordes 1 y 16, reserva, estado final al
+  (válido, 0, 21, texto, vacío); navegación (fragmentos, bordes 1 y última principal, reserva, estado final al
   retroceder); teclado (mapa, modificadores, repetición, foco en un control, G + número con Enter,
   Esc y tiempo agotado); datos (rutas válidas e inválidas, formato es-VE).
 - Pendiente al cerrar la Fase 1: probar a mano en Firefox el doble clic, las fuentes y la
   comunicación entre ventanas.
 
 ## ADR-007 · Sistema visual: tokens, plantillas y reglas comprobadas
-- **Contexto:** las 16 láminas deben verse coherentes y respetar `docs/identidad-visual.md` y las
-  reglas de CLAUDE.md (texto ≥ 28 px, `#88c426` nunca como texto, isologo solo en las láminas 1 y
-  16) sin depender de que alguien lo revise a mano cada vez.
+- **Contexto:** las láminas deben verse coherentes y respetar `docs/identidad-visual.md` y las
+  reglas de CLAUDE.md (texto ≥ 28 px, `#88c426` nunca como texto, isologo solo en la portada y el
+  cierre) sin depender de que alguien lo revise a mano cada vez.
 - **Decisión:**
   - `src/styles/tokens.css` concentra la paleta, las fuentes (`@font-face` locales), los tamaños de
     letra, los espaciados y las medidas del escenario.
@@ -229,9 +232,40 @@ bundle (lo resuelven unas 30 líneas propias que se pueden explicar); framework 
   - `tests/reglas-visuales.test.js` comprueba: paleta y contrastes iguales a los documentados; AA
     en los colores de texto; ningún color, tamaño de letra ni espaciado escrito a mano fuera de
     `tokens.css`; el acento nunca como color de texto; láminas sin estilos en línea; isologo solo en
-    las láminas 1 y 16 y dimensionado solo por el alto.
+    la portada y en la última lámina principal (cierre) y dimensionado solo por el alto.
   - A las fuentes instaladas (subconjunto «latin») les faltan → ← ↑ ≥ ≤ ≈ √ σ ●; los dibuja la fuente
     de respaldo de la lista (Segoe UI en Windows).
 - **Consecuencias:** un cambio de color o de tamaño se hace en un solo archivo, y una regla rota
   hace fallar `npm test`. Las cifras de las plantillas usan `data-dato`, que no tiene efecto hasta
   implementar `src/core/datos.js` (ADR-006 §7); hace falta antes de la Fase 3.
+
+## ADR-008 · Conclusiones literales en dos láminas (17 principales)
+- **Contexto:** el guion resumía las conclusiones en una línea por objetivo. Los autores pidieron
+  mostrar en pantalla las conclusiones literales del TEG (5.1), porque no usarán notas a la vista;
+  suman unas 420 palabras y no caben legibles (≥ 28 px) en una sola lámina.
+- **Decisión:** dividir el Cap. V en dos láminas: la 11 (objetivos 1 y 2) y la nueva 12 (objetivos
+  3 y 4 y conclusión general), con el texto tomado de `data/objetivos.json` → `conclusion_teg`.
+  Las láminas siguientes se renumeran: propuesta 13–16, cierre 17, reserva 18–21. Los 90 s de la
+  antigua lámina 11 se reparten en 45 + 45, así que el total sigue en 19:00.
+- **Consecuencias:** se actualizaron `slides.json`, guion, requisitos (RF-01), plan, identidad
+  visual, CLAUDE.md, `PROMPTS.md`, este registro y las pruebas, que ahora derivan de los datos la
+  primera y la última lámina principal (isologo, recorrido completo). La vista general pasa a 5
+  miniaturas por fila para que quepan las 17. El contexto del ADR-002 («16 láminas») se deja como
+  estaba, porque describe el momento de esa decisión.
+
+## ADR-009 · QR del cierre generado en desarrollo como SVG estático
+- **Contexto:** el guion pide un QR en la lámina 17. CLAUDE.md prohíbe recursos remotos en tiempo
+  de ejecución (nada de servicios web de QR) y pide guardar todo dentro del repositorio. Al
+  9-11-2026 la URL todavía no está definida.
+- **Decisión:**
+  - `scripts/generar-qr.mjs` (`npm run qr -- <url>`) usa la dependencia de desarrollo `qrcode`
+    1.5.4 (MIT, versión exacta) para escribir `public/img/qr.svg` con los colores `--color-texto`
+    y `--color-fondo` de `tokens.css`, con corrección de errores M y el margen de 4 módulos.
+  - La URL y el texto que se lee bajo el QR (sin `https://`) quedan en `data/cierre.json`.
+  - La lámina muestra el SVG con `<img>` y el texto con `data-dato`: la presentación no carga
+    ninguna librería de QR.
+- **Consecuencias:** la presentación sigue sin dependencias en tiempo de ejecución y el SVG se
+  versiona con el repositorio. Si cambia la URL, hay que volver a ejecutar el comando. Mientras
+  no haya URL, la lámina 17 no muestra el QR: en su lugar hay un comentario «QR», y el script
+  imprime el bloque `<figure>` que lo reemplaza. Las funciones puras del script (`validarUrl`,
+  `textoVisible`, `leerColor`, `generarSvg`) se prueban en `tests/qr.test.js`.

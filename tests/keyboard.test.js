@@ -6,11 +6,11 @@ const accionDe = (key, extra, contexto) =>
   interpretarTecla(tecla(key, extra), ESTADO_INICIAL, contexto).accion;
 
 /** Presiona varias teclas seguidas y devuelve el último resultado. */
-function secuencia(teclas, { ahora = 0, paso = 100 } = {}) {
+function secuencia(teclas, { ahora = 0, paso = 100, maxDigitos } = {}) {
   let estado = ESTADO_INICIAL;
   let r;
   teclas.forEach((key, i) => {
-    r = interpretarTecla(tecla(key), estado, { ahora: ahora + i * paso });
+    r = interpretarTecla(tecla(key), estado, { ahora: ahora + i * paso, maxDigitos });
     estado = r.estado;
   });
   return r;
@@ -96,8 +96,12 @@ describe('ir a lámina (G + número + Enter)', () => {
     expect(secuencia(['g', '1', '8', 'Backspace', 'Enter']).argumento).toBe(1);
   });
 
-  it('acepta como máximo dos dígitos', () => {
-    expect(secuencia(['g', '1', '2', '3', 'Enter']).argumento).toBe(12);
+  it('acepta como máximo maxDigitos cifras (2 con 20 láminas)', () => {
+    expect(secuencia(['g', '1', '2', '3', 'Enter'], { maxDigitos: 2 }).argumento).toBe(12);
+  });
+
+  it('sin maxDigitos no limita las cifras', () => {
+    expect(secuencia(['g', '1', '2', '3', 'Enter']).argumento).toBe(123);
   });
 
   it('Enter sin dígitos solo cancela', () => {

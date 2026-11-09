@@ -9,7 +9,6 @@
 
 /** Cuánto espera la secuencia «ir a» entre teclas antes de cancelarse. */
 export const ESPERA_IR_A_MS = 3000;
-const MAX_DIGITOS = 2; // hay 20 láminas
 
 /** Fuera de la secuencia «ir a». */
 export const ESTADO_INICIAL = Object.freeze({ digitos: null, desde: 0 });
@@ -51,10 +50,10 @@ const resultado = (accion, argumento, estado, consumida) => ({
   consumida,
 });
 
-function interpretarIrA(clave, digitos, ahora) {
+function interpretarIrA(clave, digitos, ahora, maxDigitos) {
   const continuar = (nuevos) => resultado(null, null, { digitos: nuevos, desde: ahora }, true);
   if (/^\d$/.test(clave)) {
-    return continuar(digitos.length < MAX_DIGITOS ? digitos + clave : digitos);
+    return continuar(digitos.length < maxDigitos ? digitos + clave : digitos);
   }
   if (clave === 'Backspace') return continuar(digitos.slice(0, -1));
   if (clave === 'Enter') {
@@ -71,16 +70,17 @@ function interpretarIrA(clave, digitos, ahora) {
  * @param {{ key: string, ctrlKey?: boolean, altKey?: boolean, metaKey?: boolean, repeat?: boolean }} tecla
  *   normalmente el KeyboardEvent
  * @param {{ digitos: string | null, desde: number }} estado secuencia «ir a» en curso
- * @param {{ ahora?: number, enControl?: boolean, enBoton?: boolean }} [contexto]
+ * @param {{ ahora?: number, enControl?: boolean, enBoton?: boolean, maxDigitos?: number }} [contexto]
  *   ahora: milisegundos actuales; enControl: el foco está en un campo o deslizador;
- *   enBoton: el foco está en un botón o enlace
+ *   enBoton: el foco está en un botón o enlace; maxDigitos: cifras del número de láminas
+ *   (main.js lo calcula desde slides.json; sin límite si no se indica)
  * @returns {{ accion: string | null, argumento: number | null, estado: object, consumida: boolean }}
  *   consumida indica si hay que anular el comportamiento normal del navegador
  */
 export function interpretarTecla(
   tecla,
   estado,
-  { ahora = 0, enControl = false, enBoton = false } = {},
+  { ahora = 0, enControl = false, enBoton = false, maxDigitos = Infinity } = {},
 ) {
   const ignorar = resultado(null, null, estado, false);
   // Ctrl, Alt o Meta: atajos del navegador y del sistema (Ctrl+R, Alt+Tab).
@@ -98,7 +98,7 @@ export function interpretarTecla(
   if (enBoton && (clave === ' ' || clave === 'Enter')) return ignorar;
 
   if (estado.digitos !== null && ahora - estado.desde <= ESPERA_IR_A_MS) {
-    const enIrA = interpretarIrA(clave, estado.digitos, ahora);
+    const enIrA = interpretarIrA(clave, estado.digitos, ahora, maxDigitos);
     if (enIrA) return enIrA;
   }
   if (clave === 'g') return resultado(null, null, { digitos: '', desde: ahora }, true);
@@ -115,12 +115,12 @@ export function interpretarTecla(
  * Conecta el teclado y el clic con las acciones.
  * @param {Record<string, (argumento?: number) => void>} acciones por ejemplo { siguiente, irA };
  *   las acciones que falten (presentador, cronómetro) se ignoran
- * @param {{ documento?: Document, escenario?: HTMLElement, reloj?: () => number }} [opciones]
+ * @param {{ documento?: Document, escenario?: HTMLElement, reloj?: () => number, maxDigitos?: number }} [opciones]
  * @returns {() => void} función que deja de escuchar
  */
 export function iniciarTeclado(
   acciones,
-  { documento = document, escenario, reloj = Date.now } = {},
+  { documento = document, escenario, reloj = Date.now, maxDigitos = Infinity } = {},
 ) {
   let estado = ESTADO_INICIAL;
   let temporizador;
@@ -150,7 +150,7 @@ export function iniciarTeclado(
     const activo = documento.activeElement;
     const enControl = Boolean(activo?.matches?.(SELECTOR_CONTROL));
     const enBoton = Boolean(activo?.matches?.(SELECTOR_BOTON));
-    const r = interpretarTecla(evento, estado, { ahora: reloj(), enControl, enBoton });
+    const r = interpretarTecla(evento, estado, { ahora: reloj(), enControl, enBoton, maxDigitos });
     estado = r.estado;
     pintarIndicador();
     programarCancelacion();

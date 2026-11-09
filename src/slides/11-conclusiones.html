@@ -1,0 +1,25 @@
+<!--
+  Lámina 11 · Un objetivo, una conclusión (plantilla «Título + contenido» con el bloque
+  «lista-verbos», variantes «cumplidos» y «literal»).
+  Pregunta guía: ¿Se cumplieron los objetivos?
+  Conclusiones literales del TEG (5.1, págs. 117–118) de los objetivos 1 y 2, desde
+  data/objetivos.json (verbo y conclusion_teg). Un objetivo por paso, con su marca de cumplido.
+  Continúa en la lámina 12 (objetivos 3 y 4 y conclusión general).
+-->
+<div class="plantilla">
+  <h2 class="plantilla__titulo">Un objetivo, una conclusión</h2>
+  <div class="plantilla__cuerpo apilado">
+    <ol class="lista-verbos lista-verbos--cumplidos lista-verbos--literal">
+      <li data-fragment="1">
+        <strong class="lista-verbos__verbo" data-dato="objetivos.especificos.0.verbo"></strong>
+        <span data-dato="objetivos.especificos.0.conclusion_teg"></span>
+        <span class="cumplido"><span class="solo-lector">cumplido</span></span>
+      </li>
+      <li data-fragment="2">
+        <strong class="lista-verbos__verbo" data-dato="objetivos.especificos.1.verbo"></strong>
+        <span data-dato="objetivos.especificos.1.conclusion_teg"></span>
+        <span class="cumplido"><span class="solo-lector">cumplido</span></span>
+      </li>
+    </ol>
+  </div>
+</div>

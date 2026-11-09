@@ -1,0 +1,187 @@
+<!--
+  Lámina 8 · Lo que dijo el personal operativo (plantilla «Título + contenido» con los
+  bloques «leyenda» y «likert»).
+  Pregunta guía: ¿Qué percibe el personal sobre el registro de datos y lo que necesita?
+  Barra apilada divergente por ítem (desacuerdo · neutral · acuerdo), centrada en el neutral,
+  con los 8 ítems marcados con destacado_lamina_8 en data/likert.json (una prueba lo exige).
+  Los anchos salen de los datos con data-vars; el valor de la punta, con data-dato.
+  Paso 1: lo que necesitan (todo acuerdo). Paso 2: cómo están hoy.
+  La redacción completa de los 15 ítems va en la lámina de reserva 17.
+-->
+<div class="plantilla">
+  <h2 class="plantilla__titulo">Lo que dijo el personal operativo</h2>
+  <div class="plantilla__cuerpo apilado apilado--compacto">
+    <ul class="leyenda" data-fragment="1">
+      <li><span class="leyenda__muestra leyenda__muestra--desacuerdo"></span>Desacuerdo</li>
+      <li><span class="leyenda__muestra leyenda__muestra--neutral"></span>Neutral</li>
+      <li><span class="leyenda__muestra leyenda__muestra--acuerdo"></span>Acuerdo</li>
+    </ul>
+
+    <div class="likert-grupo" data-fragment="1">
+      <p class="etiqueta">Lo que necesitan</p>
+      <ol class="likert">
+        <li
+          class="likert__fila"
+          data-vars="desacuerdo=likert.items.6.desacuerdo_pct neutral=likert.items.6.neutral_pct acuerdo=likert.items.6.acuerdo_pct"
+        >
+          <p class="likert__texto">
+            <span class="likert__id" data-dato="likert.items.6.id"></span>
+            <span data-dato="likert.items.6.resumen"></span>
+          </p>
+          <div class="likert__barra">
+            <span class="likert__segmento likert__segmento--desacuerdo"></span>
+            <span class="likert__segmento likert__segmento--neutral"></span>
+            <span class="likert__segmento likert__segmento--acuerdo"></span>
+            <span
+              class="likert__valor likert__valor--acuerdo"
+              data-dato="likert.items.6.acuerdo_pct"
+              data-formato="porcentaje"
+            ></span>
+          </div>
+        </li>
+        <li
+          class="likert__fila"
+          data-vars="desacuerdo=likert.items.7.desacuerdo_pct neutral=likert.items.7.neutral_pct acuerdo=likert.items.7.acuerdo_pct"
+        >
+          <p class="likert__texto">
+            <span class="likert__id" data-dato="likert.items.7.id"></span>
+            <span data-dato="likert.items.7.resumen"></span>
+          </p>
+          <div class="likert__barra">
+            <span class="likert__segmento likert__segmento--desacuerdo"></span>
+            <span class="likert__segmento likert__segmento--neutral"></span>
+            <span class="likert__segmento likert__segmento--acuerdo"></span>
+            <span
+              class="likert__valor likert__valor--acuerdo"
+              data-dato="likert.items.7.acuerdo_pct"
+              data-formato="porcentaje"
+            ></span>
+          </div>
+        </li>
+        <li
+          class="likert__fila"
+          data-vars="desacuerdo=likert.items.8.desacuerdo_pct neutral=likert.items.8.neutral_pct acuerdo=likert.items.8.acuerdo_pct"
+        >
+          <p class="likert__texto">
+            <span class="likert__id" data-dato="likert.items.8.id"></span>
+            <span data-dato="likert.items.8.resumen"></span>
+          </p>
+          <div class="likert__barra">
+            <span class="likert__segmento likert__segmento--desacuerdo"></span>
+            <span class="likert__segmento likert__segmento--neutral"></span>
+            <span class="likert__segmento likert__segmento--acuerdo"></span>
+            <span
+              class="likert__valor likert__valor--acuerdo"
+              data-dato="likert.items.8.acuerdo_pct"
+              data-formato="porcentaje"
+            ></span>
+          </div>
+        </li>
+        <li
+          class="likert__fila"
+          data-vars="desacuerdo=likert.items.11.desacuerdo_pct neutral=likert.items.11.neutral_pct acuerdo=likert.items.11.acuerdo_pct"
+        >
+          <p class="likert__texto">
+            <span class="likert__id" data-dato="likert.items.11.id"></span>
+            <span data-dato="likert.items.11.resumen"></span>
+          </p>
+          <div class="likert__barra">
+            <span class="likert__segmento likert__segmento--desacuerdo"></span>
+            <span class="likert__segmento likert__segmento--neutral"></span>
+            <span class="likert__segmento likert__segmento--acuerdo"></span>
+            <span
+              class="likert__valor likert__valor--acuerdo"
+              data-dato="likert.items.11.acuerdo_pct"
+              data-formato="porcentaje"
+            ></span>
+          </div>
+        </li>
+        <li
+          class="likert__fila"
+          data-vars="desacuerdo=likert.items.12.desacuerdo_pct neutral=likert.items.12.neutral_pct acuerdo=likert.items.12.acuerdo_pct"
+        >
+          <p class="likert__texto">
+            <span class="likert__id" data-dato="likert.items.12.id"></span>
+            <span data-dato="likert.items.12.resumen"></span>
+          </p>
+          <div class="likert__barra">
+            <span class="likert__segmento likert__segmento--desacuerdo"></span>
+            <span class="likert__segmento likert__segmento--neutral"></span>
+            <span class="likert__segmento likert__segmento--acuerdo"></span>
+            <span
+              class="likert__valor likert__valor--acuerdo"
+              data-dato="likert.items.12.acuerdo_pct"
+              data-formato="porcentaje"
+            ></span>
+          </div>
+        </li>
+      </ol>
+    </div>
+
+    <div class="likert-grupo" data-fragment="2">
+      <p class="etiqueta">Cómo están hoy</p>
+      <ol class="likert">
+        <li
+          class="likert__fila"
+          data-vars="desacuerdo=likert.items.0.desacuerdo_pct neutral=likert.items.0.neutral_pct acuerdo=likert.items.0.acuerdo_pct"
+        >
+          <p class="likert__texto">
+            <span class="likert__id" data-dato="likert.items.0.id"></span>
+            <span data-dato="likert.items.0.resumen"></span>
+          </p>
+          <div class="likert__barra">
+            <span class="likert__segmento likert__segmento--desacuerdo"></span>
+            <span class="likert__segmento likert__segmento--neutral"></span>
+            <span class="likert__segmento likert__segmento--acuerdo"></span>
+            <span
+              class="likert__valor likert__valor--desacuerdo"
+              data-dato="likert.items.0.desacuerdo_pct"
+              data-formato="porcentaje"
+            ></span>
+          </div>
+        </li>
+        <li
+          class="likert__fila"
+          data-vars="desacuerdo=likert.items.9.desacuerdo_pct neutral=likert.items.9.neutral_pct acuerdo=likert.items.9.acuerdo_pct"
+        >
+          <p class="likert__texto">
+            <span class="likert__id" data-dato="likert.items.9.id"></span>
+            <span data-dato="likert.items.9.resumen"></span>
+          </p>
+          <div class="likert__barra">
+            <span class="likert__segmento likert__segmento--desacuerdo"></span>
+            <span class="likert__segmento likert__segmento--neutral"></span>
+            <span class="likert__segmento likert__segmento--acuerdo"></span>
+            <span
+              class="likert__valor likert__valor--desacuerdo"
+              data-dato="likert.items.9.desacuerdo_pct"
+              data-formato="porcentaje"
+            ></span>
+          </div>
+        </li>
+        <li
+          class="likert__fila"
+          data-vars="desacuerdo=likert.items.14.desacuerdo_pct neutral=likert.items.14.neutral_pct acuerdo=likert.items.14.acuerdo_pct"
+        >
+          <p class="likert__texto">
+            <span class="likert__id" data-dato="likert.items.14.id"></span>
+            <span data-dato="likert.items.14.resumen"></span>
+          </p>
+          <div class="likert__barra">
+            <span class="likert__segmento likert__segmento--desacuerdo"></span>
+            <span class="likert__segmento likert__segmento--neutral"></span>
+            <span class="likert__segmento likert__segmento--acuerdo"></span>
+            <span
+              class="likert__valor likert__valor--acuerdo"
+              data-dato="likert.items.14.acuerdo_pct"
+              data-formato="porcentaje"
+            ></span>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </div>
+  <p class="plantilla__pie">
+    n = <span data-dato="likert.n"></span> · <span data-dato="likert.nota"></span>
+  </p>
+</div>

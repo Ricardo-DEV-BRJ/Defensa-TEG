@@ -1,0 +1,1639 @@
+/*
+ * Bloques de contenido reutilizables dentro de las plantillas.
+ * Todo valor sale de tokens.css.
+ */
+
+/* Texto solo para lectores de pantalla (por ejemplo, lo que dice una flecha). */
+.solo-lector {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Dato que no se encontró en data/*.json (src/core/datos.js): se ve, no se oculta. */
+[data-dato-roto] {
+  color: var(--color-alerta);
+  outline: var(--borde-fino) dashed var(--color-alerta);
+}
+
+/* Bloques apilados y centrados en el alto del cuerpo de la lámina. */
+.apilado {
+  display: grid;
+  align-content: center;
+  gap: var(--espacio-l);
+}
+
+/* Etiqueta corta sobre un bloque («Objetivo general»). */
+.etiqueta {
+  margin: 0 0 var(--espacio-s);
+  font-size: var(--texto-min);
+  font-weight: 700;
+  color: var(--color-secundario);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* Bloque destacado: barra verde a la izquierda (forma) y texto más grande. */
+.destacado {
+  padding-left: var(--espacio-m);
+  border-left: var(--borde-grueso) solid var(--color-acento);
+}
+
+.destacado__texto {
+  margin: 0;
+  font-size: var(--texto-destacado);
+}
+
+/* Variante para un texto destacado largo (objetivo general completo). */
+.destacado--compacto .destacado__texto {
+  font-size: var(--texto-cuerpo);
+  line-height: var(--interlineado-titulo);
+}
+
+/* ── Lista de verbos: número y verbo a la izquierda, texto completo a la derecha ──
+ * Pensada para los objetivos específicos (lámina 3): todas las filas comparten las dos
+ * columnas (subgrid), así los textos quedan alineados aunque los verbos midan distinto.
+ */
+.lista-verbos {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  column-gap: var(--espacio-m);
+  row-gap: var(--espacio-m);
+  margin: 0;
+  padding: 0;
+  font-size: var(--texto-compacto);
+  line-height: var(--interlineado-titulo);
+  list-style: none;
+  counter-reset: paso;
+}
+
+.lista-verbos > li {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: subgrid;
+  align-items: baseline;
+  counter-increment: paso;
+}
+
+.lista-verbos__verbo {
+  padding-left: var(--espacio-s);
+  border-left: var(--borde-grueso) solid var(--color-acento);
+  font-size: var(--texto-cuerpo);
+}
+
+/* Número del objetivo, generado por CSS (no se escribe a mano). */
+.lista-verbos__verbo::before {
+  content: counter(paso);
+  margin-right: var(--espacio-s);
+  font-size: var(--texto-min);
+  color: var(--color-secundario);
+}
+
+/* Variante con marca de cumplido (lámina 11): tercera columna con el check, texto a 40 px. */
+.lista-verbos--cumplidos {
+  grid-template-columns: max-content minmax(0, 1fr) auto;
+  font-size: var(--texto-cuerpo);
+}
+
+.lista-verbos--cumplidos .lista-verbos__verbo {
+  font-size: var(--texto-destacado);
+}
+
+/* Variante para conclusiones literales del TEG (láminas 11 y 12): párrafos completos a 28 px. */
+.lista-verbos--literal {
+  font-size: var(--texto-min);
+  line-height: var(--interlineado-texto);
+}
+
+.lista-verbos--literal .lista-verbos__verbo {
+  font-size: var(--texto-cuerpo);
+  line-height: var(--interlineado-titulo);
+}
+
+/* La lámina 12 continúa la numeración de la 11 (objetivos 3 y 4). */
+.lista-verbos--desde-3 {
+  counter-reset: paso 2;
+}
+
+/* Texto destacado largo y literal (conclusión general, lámina 12). */
+.destacado--literal .destacado__texto {
+  font-size: var(--texto-min);
+  line-height: var(--interlineado-texto);
+}
+
+/* Marca de cumplido dibujada como forma; aparece después de su fila. */
+.cumplido {
+  align-self: center;
+  width: var(--espacio-l);
+  height: var(--espacio-l);
+  background: var(--color-acento);
+  clip-path: polygon(14% 50%, 0 64%, 38% 100%, 100% 24%, 86% 10%, 38% 72%);
+  transition: transform var(--duracion-paso) ease;
+  transition-delay: var(--duracion-fragmento);
+}
+
+.lista-verbos > li[data-fragment]:not([data-visible]) .cumplido {
+  transform: scale(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cumplido {
+    transition: none;
+  }
+}
+
+.escenario[data-modo='vista-general'] .lista-verbos > li[data-fragment] .cumplido {
+  transform: none;
+  transition: none;
+}
+
+/* ── Cadena: causa → efecto → consecuencia (láminas 2 y 10) ────────────────
+ * Cinco columnas: caja · flecha · caja · flecha · caja. La cabecera y todas las filas
+ * comparten columnas (subgrid), así las causas quedan alineadas a la izquierda y los
+ * efectos a la derecha. Una fila de dos cajas cruza el centro con una flecha larga.
+ *
+ *   <div class="cadenas">
+ *     <p class="cadenas__cabecera"><span class="etiqueta">Causa</span>…</p>
+ *     <ol class="cadenas__filas"><li class="cadena">caja · flecha · caja</li>…</ol>
+ *   </div>
+ */
+.cadenas {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1fr) var(--flecha-ancho) minmax(0, 1fr) var(--flecha-ancho)
+    minmax(0, 1fr);
+  align-content: center;
+  row-gap: var(--espacio-s);
+}
+
+.cadenas__cabecera,
+.cadenas__filas,
+.cadena {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: subgrid;
+  margin: 0;
+}
+
+/* Cabecera: primera etiqueta sobre las causas, la última sobre los efectos. */
+.cadenas__cabecera > :first-child {
+  grid-column: 1;
+}
+
+.cadenas__cabecera > :last-child {
+  grid-column: 5;
+}
+
+/* Con tres etiquetas, la del medio va sobre la columna central. */
+.cadenas__cabecera > :nth-child(2):not(:last-child) {
+  grid-column: 3;
+}
+
+.cadenas__filas {
+  row-gap: var(--espacio-m);
+  padding: 0;
+  list-style: none;
+}
+
+.cadena {
+  align-items: center;
+}
+
+/* Fila que completa a la anterior en el mismo paso: va más pegada a ella. */
+.cadena--continua {
+  margin-top: calc(var(--espacio-s) - var(--espacio-m));
+}
+
+/* Variante compacta: cajas con texto de 32 px (cadenas de frases largas). */
+.cadenas--compacta .cadena__paso {
+  font-size: var(--texto-compacto);
+}
+
+/* Variante «dato → interpretación → decisión» (lámina 10): el dato en texto normal con
+ * sus cifras en negrita; la decisión en petróleo con una barra verde (forma) a la izquierda. */
+.cadenas--decision .cadena > .cadena__paso:first-child {
+  font-weight: 400;
+  color: var(--color-texto);
+  border-color: var(--color-secundario);
+}
+
+.cadenas--decision .cadena > .cadena__paso:last-child {
+  color: var(--color-primario);
+  border-color: var(--color-primario);
+  box-shadow: inset var(--borde-grueso) 0 0 var(--color-acento);
+}
+
+.cadena__paso {
+  margin: 0;
+  padding: var(--espacio-s) var(--espacio-m);
+  border: var(--borde-fino) solid var(--color-secundario);
+  border-radius: var(--radio);
+  line-height: var(--interlineado-titulo);
+}
+
+/* La causa, primero y en petróleo; la consecuencia, al final y en rojo (y con palabras). */
+.cadena > .cadena__paso:first-child {
+  grid-column: 1;
+  font-weight: 700;
+  color: var(--color-primario);
+  border-color: var(--color-primario);
+}
+
+.cadena > .cadena__paso:last-child {
+  grid-column: 5;
+  font-weight: 700;
+  color: var(--color-alerta);
+  border-color: var(--color-alerta);
+}
+
+/* Flecha dibujada como forma: la línea es un degradado de un solo color cuyo ancho
+ * se anima (se «dibuja» sin estirar la punta); la punta triangular aparece al final. */
+.cadena__flecha {
+  position: relative;
+  height: var(--borde-grueso);
+  margin: 0 var(--flecha-punta) 0 var(--espacio-s);
+  background: linear-gradient(var(--color-secundario), var(--color-secundario)) left center / 100%
+    100% no-repeat;
+}
+
+.cadena__flecha::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  width: var(--flecha-punta);
+  height: calc(var(--flecha-punta) * 1.4);
+  background: var(--color-secundario);
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+  transform: translateY(-50%);
+}
+
+/* Fila de dos cajas: la única flecha es el 2.º de 3 hijos y cruza las columnas 2 a 4. */
+.cadena > .cadena__flecha:nth-child(2):nth-last-child(2) {
+  grid-column: 2 / 5;
+}
+
+/* Al revelar la fila (data-fragment), sus elementos aparecen en orden: caja, flecha… */
+.cadena > * {
+  transition:
+    opacity var(--duracion-paso) ease,
+    background-size var(--duracion-paso) ease;
+  transition-delay: calc(var(--orden, 0) * var(--retardo-paso));
+}
+
+/* La punta, cuando la línea ya llegó. */
+.cadena__flecha::after {
+  transition: opacity var(--duracion-paso) ease;
+  transition-delay: calc((var(--orden, 0) + 1) * var(--retardo-paso));
+}
+
+.cadena > :nth-child(2) {
+  --orden: 1;
+}
+
+.cadena > :nth-child(3) {
+  --orden: 2;
+}
+
+.cadena > :nth-child(4) {
+  --orden: 3;
+}
+
+.cadena > :nth-child(5) {
+  --orden: 4;
+}
+
+.cadena[data-fragment]:not([data-visible]) > .cadena__paso {
+  opacity: 0;
+}
+
+.cadena[data-fragment]:not([data-visible]) > .cadena__flecha {
+  background-size: 0 100%;
+}
+
+.cadena[data-fragment]:not([data-visible]) > .cadena__flecha::after {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cadena > *,
+  .cadena__flecha::after {
+    transition: none;
+  }
+}
+
+/* En la vista general, la cadena se ve completa y sin animación. */
+.escenario[data-modo='vista-general'] .cadena[data-fragment] > * {
+  opacity: 1;
+  background-size: 100% 100%;
+  transition: none;
+}
+
+.escenario[data-modo='vista-general'] .cadena[data-fragment] > .cadena__flecha::after {
+  opacity: 1;
+  transition: none;
+}
+
+/* ── Tarjetas con ícono (lámina 4): entran volteándose, una tras otra (CSS 3D) ── */
+.tarjetas-icono {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--espacio-m);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  perspective: var(--perspectiva);
+}
+
+/* Cabecera con ícono y nombre; debajo, el texto de apoyo a todo el ancho de la tarjeta. */
+.tarjeta-icono {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-content: start;
+  align-items: center;
+  gap: var(--espacio-s);
+  padding: var(--espacio-m);
+  border: var(--borde-fino) solid var(--color-primario);
+  border-top: var(--borde-grueso) solid var(--color-acento);
+  border-radius: var(--radio);
+  color: var(--color-primario);
+  backface-visibility: hidden;
+  transition:
+    transform var(--duracion-giro) ease,
+    opacity var(--duracion-giro) ease;
+  transition-delay: calc(var(--orden, 0) * var(--retardo-paso));
+}
+
+.tarjeta-icono:nth-child(2) {
+  --orden: 1;
+}
+
+.tarjeta-icono:nth-child(3) {
+  --orden: 2;
+}
+
+.tarjeta-icono:nth-child(4) {
+  --orden: 3;
+}
+
+.tarjeta-icono__nombre {
+  font-weight: 700;
+  line-height: var(--interlineado-titulo);
+}
+
+.tarjeta-icono__texto {
+  grid-column: 1 / -1;
+  margin: 0;
+  font-size: var(--texto-compacto);
+  line-height: var(--interlineado-titulo);
+  color: var(--color-texto);
+}
+
+/* Antes de su paso, cada tarjeta está de espaldas (y la cara trasera no se ve). */
+.tarjetas-icono[data-fragment]:not([data-visible]) > .tarjeta-icono {
+  opacity: 0;
+  transform: rotateY(-180deg);
+}
+
+/* Íconos SVG: trazo en el color del texto; detalles en verde acento (forma, no texto). */
+.icono {
+  width: var(--icono-tamano);
+  height: var(--icono-tamano);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.icono .acento {
+  fill: var(--color-acento);
+  stroke: none;
+}
+
+.icono .acento-trazo {
+  stroke: var(--color-acento);
+}
+
+.icono .grueso {
+  stroke-width: 7;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tarjeta-icono {
+    transition: none;
+  }
+}
+
+.escenario[data-modo='vista-general'] .tarjetas-icono[data-fragment] > .tarjeta-icono {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+
+/* ── Dos columnas dentro de un cuerpo apilado (Incluye / No incluye) ─────────── */
+.columnas-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--espacio-xl);
+}
+
+/* Columna de lo que queda fuera: título en rojo, además de la palabra «No». */
+.columna--fuera .columna__titulo {
+  color: var(--color-alerta);
+  border-color: var(--color-alerta);
+}
+
+/* ── Lista con marcas de sí (✓ verde) y no (✗ roja), dibujadas como formas ─── */
+.lista-marcas {
+  display: grid;
+  gap: var(--espacio-s);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lista-marcas > li {
+  position: relative;
+  padding-left: var(--espacio-l);
+  line-height: var(--interlineado-titulo);
+}
+
+.lista-marcas > li::before {
+  content: '';
+  position: absolute;
+  top: 0.1em;
+  left: 0;
+  width: 0.8em;
+  height: 0.8em;
+}
+
+/* Aclaración debajo de un elemento de la lista. */
+.lista-marcas .nota {
+  display: block;
+  margin-top: var(--espacio-xs);
+}
+
+.lista-marcas--si > li::before {
+  background: var(--color-acento);
+  clip-path: polygon(14% 50%, 0 64%, 38% 100%, 100% 24%, 86% 10%, 38% 72%);
+}
+
+.lista-marcas--no > li::before {
+  background: var(--color-alerta);
+  clip-path: polygon(
+    20% 0,
+    50% 30%,
+    80% 0,
+    100% 20%,
+    70% 50%,
+    100% 80%,
+    80% 100%,
+    50% 70%,
+    20% 100%,
+    0 80%,
+    30% 50%,
+    0 20%
+  );
+}
+
+/* ── Línea de tiempo (lámina 5): año, punto sobre una línea y tarjeta debajo ──
+ * Cada hito es una columna con tres filas: año · punto · tarjeta. La línea es una sola
+ * forma que cruza todos los puntos; su altura sale de los mismos tokens que el año.
+ */
+.linea-tiempo {
+  position: relative;
+  display: grid;
+  grid-auto-columns: minmax(0, 1fr);
+  grid-auto-flow: column;
+  gap: var(--espacio-m);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.linea-tiempo::before {
+  content: '';
+  position: absolute;
+  top: calc(var(--texto-destacado) + var(--espacio-s) + var(--punto-tamano) / 2);
+  right: 0;
+  left: 0;
+  height: var(--borde-grueso);
+  background: var(--color-secundario);
+  transform: translateY(-50%);
+}
+
+.hito {
+  display: grid;
+  grid-template-rows: var(--texto-destacado) var(--punto-tamano) 1fr;
+  justify-items: start;
+  gap: var(--espacio-s);
+  transition:
+    opacity var(--duracion-paso) ease,
+    transform var(--duracion-paso) ease;
+  transition-delay: calc(var(--orden, 0) * var(--retardo-paso));
+}
+
+.hito:nth-child(2) {
+  --orden: 1;
+}
+
+.hito:nth-child(3) {
+  --orden: 2;
+}
+
+.hito:nth-child(4) {
+  --orden: 3;
+}
+
+.hito:nth-child(5) {
+  --orden: 4;
+}
+
+.hito__anio {
+  margin: 0;
+  font-size: var(--texto-destacado);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--color-primario);
+}
+
+.hito__punto {
+  position: relative;
+  width: var(--punto-tamano);
+  height: var(--punto-tamano);
+  border-radius: 50%;
+  background: var(--color-primario);
+}
+
+.hito__tarjeta {
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: var(--espacio-xs);
+  justify-self: stretch;
+  padding: var(--espacio-m);
+  border: var(--borde-fino) solid var(--color-primario);
+  border-radius: var(--radio);
+}
+
+/* Siempre ocupa dos líneas: así el ámbito y el aporte quedan alineados entre tarjetas. */
+.hito__autor {
+  min-height: calc(2em * var(--interlineado-titulo));
+  margin: 0;
+  font-weight: 700;
+  line-height: var(--interlineado-titulo);
+  color: var(--color-primario);
+}
+
+.hito__aporte {
+  margin: 0;
+  font-size: var(--texto-compacto);
+  line-height: var(--interlineado-titulo);
+}
+
+/* Marco verde sobre el borde de los antecedentes que se destacan (aparece en su propio
+ * paso). Va por dentro de la tarjeta para no salirse del margen seguro en los extremos. */
+.hito__resalte {
+  position: absolute;
+  inset: calc(-1 * var(--borde-fino));
+  border: var(--borde-grueso) solid var(--color-acento);
+  border-radius: var(--radio);
+  pointer-events: none;
+}
+
+/* Al revelar la línea, los hitos aparecen de izquierda a derecha. */
+.linea-tiempo[data-fragment]:not([data-visible]) > .hito {
+  opacity: 0;
+  transform: translateY(var(--espacio-m));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hito {
+    transition: none;
+  }
+}
+
+.escenario[data-modo='vista-general'] .linea-tiempo[data-fragment] > .hito {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+
+/* Variante de .apilado con menos aire entre bloques (láminas muy llenas). */
+.apilado--compacto {
+  gap: var(--espacio-m);
+}
+
+/* ── Modelo integrador (lámina 6): Figura 1 del TEG redibujada ────────────────
+ * Fila 1: caja · flecha → · caja central · ← flecha · caja.
+ * Fila 2: flecha ↓ bajo la caja central.  Fila 3: caja de llegada.
+ */
+.integrador {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1fr) var(--conector-ancho) minmax(0, 1fr) var(--conector-ancho)
+    minmax(0, 1fr);
+  grid-template-rows: auto var(--conector-alto) auto;
+  align-items: stretch;
+}
+
+.integrador__caja {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  border: var(--borde-fino) solid var(--color-primario);
+  border-radius: var(--radio);
+  overflow: hidden;
+}
+
+.integrador__caja--izquierda {
+  grid-area: 1 / 1;
+}
+
+.integrador__caja--centro {
+  grid-area: 1 / 3;
+}
+
+.integrador__caja--derecha {
+  grid-area: 1 / 5;
+}
+
+.integrador__caja--llegada {
+  grid-area: 3 / 3;
+}
+
+.integrador__titulo {
+  margin: 0;
+  padding: var(--espacio-xs) var(--espacio-m);
+  font-size: var(--texto-compacto);
+  font-weight: 700;
+  line-height: var(--interlineado-titulo);
+  color: var(--color-fondo);
+  text-transform: uppercase;
+  background: var(--color-primario);
+}
+
+/* Lista compacta (32 px, poco aire, marca cuadrada verde): para cajas y paneles. */
+.lista-compacta {
+  display: grid;
+  align-content: start;
+  gap: var(--espacio-xs);
+  margin: 0;
+  padding: 0;
+  font-size: var(--texto-compacto);
+  line-height: var(--interlineado-titulo);
+  list-style: none;
+}
+
+.lista-compacta > li {
+  position: relative;
+  padding-left: var(--espacio-m);
+}
+
+.lista-compacta > li::before {
+  content: '';
+  position: absolute;
+  top: 0.4em;
+  left: 0;
+  width: 0.4em;
+  height: 0.4em;
+  background: var(--color-acento);
+}
+
+.integrador__lista {
+  padding: var(--espacio-s) var(--espacio-m);
+}
+
+/* Conectores: flecha dibujada (línea + punta) y su rótulo (fuente condensada: cabe en el hueco). */
+.conector {
+  position: relative;
+  margin: 0;
+  font-size: var(--texto-min);
+  line-height: var(--interlineado-titulo);
+  color: var(--color-secundario);
+}
+
+.conector::before,
+.conector::after {
+  content: '';
+  position: absolute;
+  background: var(--color-secundario);
+}
+
+.conector--derecha {
+  grid-area: 1 / 2;
+}
+
+.conector--izquierda {
+  grid-area: 1 / 4;
+}
+
+.conector--abajo {
+  grid-area: 2 / 3;
+}
+
+/* Horizontales: línea a media altura, rótulo encima, punta en el extremo de llegada. */
+.conector--derecha::before,
+.conector--izquierda::before {
+  top: 50%;
+  height: var(--borde-grueso);
+  transform: translateY(-50%);
+}
+
+.conector--derecha::before {
+  right: calc(var(--espacio-s) + var(--flecha-punta));
+  left: var(--espacio-s);
+}
+
+.conector--izquierda::before {
+  right: var(--espacio-s);
+  left: calc(var(--espacio-s) + var(--flecha-punta));
+}
+
+.conector--derecha::after,
+.conector--izquierda::after {
+  top: 50%;
+  width: var(--flecha-punta);
+  height: calc(var(--flecha-punta) * 1.4);
+  transform: translateY(-50%);
+}
+
+.conector--derecha::after {
+  right: var(--espacio-s);
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+}
+
+.conector--izquierda::after {
+  left: var(--espacio-s);
+  clip-path: polygon(100% 0, 0 50%, 100% 100%);
+}
+
+.conector--derecha .conector__texto,
+.conector--izquierda .conector__texto {
+  position: absolute;
+  right: var(--espacio-xs);
+  bottom: calc(50% + var(--espacio-s));
+  left: var(--espacio-xs);
+  text-align: center;
+}
+
+/* Vertical: línea centrada, punta abajo y rótulo a la derecha. */
+.conector--abajo::before {
+  top: 0;
+  bottom: var(--flecha-punta);
+  left: 50%;
+  width: var(--borde-grueso);
+  transform: translateX(-50%);
+}
+
+.conector--abajo::after {
+  bottom: 0;
+  left: 50%;
+  width: calc(var(--flecha-punta) * 1.4);
+  height: var(--flecha-punta);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform: translateX(-50%);
+}
+
+.conector--abajo .conector__texto {
+  position: absolute;
+  top: 50%;
+  left: calc(50% + var(--espacio-m));
+  white-space: nowrap;
+  transform: translateY(-50%);
+}
+
+/* ── Franja de leyes: sigla en negrita y artículos (de marco-legal.json) ────── */
+.franja-leyes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espacio-s);
+  margin: 0;
+  padding: 0;
+  font-size: var(--texto-min);
+  list-style: none;
+}
+
+.franja-leyes > li {
+  padding: var(--espacio-xs) var(--espacio-s);
+  border: var(--borde-fino) solid var(--color-secundario);
+  border-radius: var(--radio);
+  white-space: nowrap;
+}
+
+.franja-leyes strong {
+  margin-right: var(--espacio-xs);
+}
+
+/* ── Panel: recuadro con etiqueta, para agrupar un bloque de información ─────── */
+.panel {
+  padding: var(--espacio-m);
+  border: var(--borde-fino) solid var(--color-primario);
+  border-top: var(--borde-grueso) solid var(--color-acento);
+  border-radius: var(--radio);
+}
+
+/* Dato destacado dentro de un panel («N = 6»). */
+.dato-grande {
+  margin: 0 0 var(--espacio-xs);
+  font-size: var(--texto-titulo);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--color-primario);
+}
+
+/* ── Escalonado: los hijos de un fragmento aparecen uno tras otro ───────────── */
+.escalonado > * {
+  transition:
+    opacity var(--duracion-paso) ease,
+    transform var(--duracion-paso) ease;
+  transition-delay: calc(var(--orden, 0) * var(--retardo-paso));
+}
+
+.escalonado > :nth-child(2) {
+  --orden: 1;
+}
+
+.escalonado > :nth-child(3) {
+  --orden: 2;
+}
+
+.escalonado > :nth-child(4) {
+  --orden: 3;
+}
+
+.escalonado > :nth-child(5) {
+  --orden: 4;
+}
+
+.escalonado[data-fragment]:not([data-visible]) > * {
+  opacity: 0;
+  transform: translateY(var(--espacio-m));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .escalonado > * {
+    transition: none;
+  }
+}
+
+.escenario[data-modo='vista-general'] .escalonado[data-fragment] > * {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+
+/* ── Triangulación (lámina 7): cuatro fuentes que convergen en el diagnóstico ── */
+.triangulacion {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  column-gap: var(--espacio-m);
+}
+
+.fuente {
+  display: grid;
+  grid-template-rows: 1fr auto;
+}
+
+.fuente__caja {
+  padding: var(--espacio-s) var(--espacio-m);
+  border: var(--borde-fino) solid var(--color-primario);
+  border-radius: var(--radio);
+  font-size: var(--texto-compacto);
+  line-height: var(--interlineado-titulo);
+}
+
+.fuente__instrumento {
+  margin: 0;
+  font-weight: 700;
+  color: var(--color-primario);
+}
+
+/* A quién o a qué se aplicó: con una flechita dibujada delante. */
+.fuente__destino {
+  margin: var(--espacio-xs) 0 0;
+}
+
+.fuente__destino::before {
+  content: '';
+  display: inline-block;
+  width: 0.8em;
+  height: 0.55em;
+  margin-right: var(--espacio-xs);
+  background: var(--color-secundario);
+  clip-path: polygon(0 35%, 60% 35%, 60% 0, 100% 50%, 60% 100%, 60% 65%, 0 65%);
+}
+
+/* Flecha vertical (línea + punta) que baja de cada fuente al diagnóstico. */
+.flecha-abajo {
+  position: relative;
+  justify-self: center;
+  width: calc(var(--flecha-punta) * 1.4);
+  height: var(--conector-alto);
+}
+
+.flecha-abajo::before,
+.flecha-abajo::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  background: var(--color-secundario);
+  transform: translateX(-50%);
+}
+
+.flecha-abajo::before {
+  top: 0;
+  bottom: var(--flecha-punta);
+  width: var(--borde-grueso);
+}
+
+.flecha-abajo::after {
+  bottom: 0;
+  width: 100%;
+  height: var(--flecha-punta);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+
+.triangulacion__destino {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: var(--espacio-s) var(--espacio-m);
+  border-radius: var(--radio);
+  font-weight: 700;
+  color: var(--color-fondo);
+  text-align: center;
+  background: var(--color-primario);
+}
+
+/* ── Leyenda de un gráfico: muestra de color + texto (el color nunca va solo) ── */
+.leyenda {
+  display: flex;
+  gap: var(--espacio-l);
+  margin: 0;
+  padding: 0;
+  font-size: var(--texto-min);
+  list-style: none;
+}
+
+.leyenda > li {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-xs);
+}
+
+.leyenda__muestra {
+  width: var(--espacio-m);
+  height: var(--barra-alto);
+  border-radius: var(--radio-barra);
+}
+
+.leyenda__muestra--desacuerdo {
+  background: var(--color-alerta);
+}
+
+.leyenda__muestra--neutral {
+  background: var(--color-neutro-grafico);
+}
+
+.leyenda__muestra--acuerdo {
+  background: var(--color-primario);
+}
+
+/* ── Likert (lámina 8): barra apilada divergente centrada en el neutral ───────
+ * La fila recibe --desacuerdo, --neutral y --acuerdo (0–100) desde likert.json con
+ * data-vars. La barra mide 200 unidades (−100 a +100): 1 unidad = 0,5 % de su ancho.
+ * El neutral queda centrado en el eje; el desacuerdo crece a la izquierda y el acuerdo
+ * a la derecha. Una separación del color del fondo divide los tramos (no un borde).
+ */
+.likert {
+  display: grid;
+  gap: var(--espacio-s);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.likert__fila {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: center;
+  column-gap: var(--espacio-m);
+}
+
+.likert__texto {
+  margin: 0;
+  font-size: var(--texto-compacto);
+  line-height: var(--interlineado-titulo);
+}
+
+.likert__id {
+  display: inline-block;
+  min-width: 2.2em;
+  font-size: var(--texto-min);
+  font-weight: 700;
+  color: var(--color-secundario);
+}
+
+/* A cada lado queda espacio para el valor de la punta, aun con una barra al 100 %. */
+.likert__barra {
+  position: relative;
+  height: var(--barra-alto);
+  margin-inline: var(--espacio-xl);
+}
+
+/* Eje en el punto neutro. */
+.likert__barra::before {
+  content: '';
+  position: absolute;
+  top: calc(-1 * var(--espacio-xs));
+  bottom: calc(-1 * var(--espacio-xs));
+  left: 50%;
+  width: 1px;
+  background: var(--color-secundario);
+}
+
+.likert__segmento {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  border-inline: 1px solid var(--color-fondo);
+  transition: transform var(--duracion-giro) ease;
+  transition-delay: calc(var(--orden, 0) * var(--retardo-paso) / 2);
+}
+
+.likert__segmento--neutral {
+  left: calc(50% - var(--neutral) * 0.25%);
+  width: calc(var(--neutral) * 0.5%);
+  background: var(--color-neutro-grafico);
+  transform-origin: center;
+}
+
+.likert__segmento--desacuerdo {
+  right: calc(50% + var(--neutral) * 0.25%);
+  width: calc(var(--desacuerdo) * 0.5%);
+  border-radius: var(--radio-barra) 0 0 var(--radio-barra);
+  background: var(--color-alerta);
+  transform-origin: right center;
+}
+
+.likert__segmento--acuerdo {
+  left: calc(50% + var(--neutral) * 0.25%);
+  width: calc(var(--acuerdo) * 0.5%);
+  border-radius: 0 var(--radio-barra) var(--radio-barra) 0;
+  background: var(--color-primario);
+  transform-origin: left center;
+}
+
+/* Valor en la punta de la barra (texto en color de texto, no del tramo). */
+.likert__valor {
+  position: absolute;
+  top: 50%;
+  font-size: var(--texto-min);
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+  transform: translateY(-50%);
+  transition: opacity var(--duracion-paso) ease;
+  transition-delay: calc(var(--orden, 0) * var(--retardo-paso) / 2 + var(--duracion-giro));
+}
+
+.likert__valor--acuerdo {
+  left: calc(50% + var(--neutral) * 0.25% + var(--acuerdo) * 0.5% + var(--espacio-xs));
+}
+
+.likert__valor--desacuerdo {
+  right: calc(50% + var(--neutral) * 0.25% + var(--desacuerdo) * 0.5% + var(--espacio-xs));
+}
+
+.likert__fila:nth-child(2) {
+  --orden: 1;
+}
+
+.likert__fila:nth-child(3) {
+  --orden: 2;
+}
+
+.likert__fila:nth-child(4) {
+  --orden: 3;
+}
+
+.likert__fila:nth-child(5) {
+  --orden: 4;
+}
+
+/* Antes de su paso, las barras están en cero y los valores ocultos. */
+.likert-grupo[data-fragment]:not([data-visible]) .likert__segmento {
+  transform: scaleX(0);
+}
+
+.likert-grupo[data-fragment]:not([data-visible]) .likert__valor {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .likert__segmento,
+  .likert__valor {
+    transition: none;
+  }
+}
+
+.escenario[data-modo='vista-general'] .likert-grupo[data-fragment] .likert__segmento {
+  transform: none;
+  transition: none;
+}
+
+.escenario[data-modo='vista-general'] .likert-grupo[data-fragment] .likert__valor {
+  opacity: 1;
+  transition: none;
+}
+
+/* ── Tres columnas (lámina 9: entrevista · observación · matriz) ─────────────── */
+.columnas-3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--espacio-m);
+}
+
+/* Dato destacado de tamaño medio (un texto corto que debe resaltar). */
+.dato-medio {
+  margin: 0 0 var(--espacio-s);
+  font-size: var(--texto-destacado);
+  font-weight: 700;
+  line-height: var(--interlineado-titulo);
+  color: var(--color-primario);
+}
+
+/* ── Niveles de observación: indicador a la izquierda, medidor a la derecha ─── */
+.niveles {
+  display: grid;
+  gap: var(--espacio-s);
+  margin: 0;
+  padding: 0;
+  font-size: var(--texto-min);
+  line-height: var(--interlineado-titulo);
+  list-style: none;
+}
+
+.niveles > li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: var(--espacio-s);
+}
+
+/* Medidor de 4 segmentos: se llenan tantos como el nivel (data-var-nivel lo pone
+ * datos.js). Nivel 1 en rojo, 2 en ámbar, 3 y 4 en petróleo, siempre con su número:
+ * colores validados con dataviz/validate_palette.js (ΔE ≥ 11 en todas las CVD). */
+.medidor {
+  --color-nivel: var(--color-primario);
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-xs);
+}
+
+.medidor[data-var-nivel='1'] {
+  --color-nivel: var(--color-alerta);
+}
+
+.medidor[data-var-nivel='2'] {
+  --color-nivel: var(--color-advertencia);
+}
+
+.medidor__segmentos {
+  display: grid;
+  grid-template-columns: repeat(4, var(--medidor-segmento));
+  gap: var(--separacion-grafico);
+}
+
+.medidor__segmentos > span {
+  height: var(--barra-alto);
+  background: var(--color-vacio-grafico);
+}
+
+.medidor__segmentos > span:first-child {
+  border-radius: var(--radio-barra) 0 0 var(--radio-barra);
+}
+
+.medidor__segmentos > span:last-child {
+  border-radius: 0 var(--radio-barra) var(--radio-barra) 0;
+}
+
+.medidor[data-var-nivel='1'] .medidor__segmentos > span:nth-child(-n + 1),
+.medidor[data-var-nivel='2'] .medidor__segmentos > span:nth-child(-n + 2),
+.medidor[data-var-nivel='3'] .medidor__segmentos > span:nth-child(-n + 3),
+.medidor[data-var-nivel='4'] .medidor__segmentos > span:nth-child(-n + 4) {
+  background: var(--color-nivel);
+}
+
+.medidor__valor {
+  min-width: 1.6em;
+  font-weight: 700;
+  text-align: right;
+}
+
+/* Leyenda de la escala: un medidor de muestra por nivel y su significado. */
+.escala-niveles {
+  display: grid;
+  gap: var(--espacio-xs);
+  margin: var(--espacio-m) 0 0;
+  padding: var(--espacio-s) 0 0;
+  border-top: var(--borde-fino) solid var(--color-vacio-grafico);
+  font-size: var(--texto-min);
+  line-height: var(--interlineado-titulo);
+  color: var(--color-secundario);
+  list-style: none;
+}
+
+.escala-niveles > li {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-s);
+}
+
+/* ── Arquitectura por capas (lámina 13) ──────────────────────────────────────
+ * Columnas: transversal · flecha de flujo · capas apiladas · transversal.
+ * Las capas se leen de abajo (captura) hacia arriba (visualización): los datos suben.
+ */
+.arquitectura {
+  display: grid;
+  grid-template-columns:
+    var(--transversal-ancho) var(--flujo-ancho) minmax(0, 1fr)
+    var(--transversal-ancho);
+  gap: var(--espacio-s);
+}
+
+.arquitectura__capas {
+  display: grid;
+  gap: var(--espacio-s);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Columna del número con ancho fijo: nombres y componentes quedan alineados entre capas. */
+.capa {
+  display: grid;
+  grid-template-columns: var(--espacio-m) var(--capa-nombre-ancho) minmax(0, 1fr);
+  align-items: center;
+  column-gap: var(--espacio-m);
+  padding: var(--espacio-s) var(--espacio-m);
+  border-left: var(--borde-grueso) solid var(--color-primario);
+  border-radius: var(--radio);
+  background: var(--color-capa);
+}
+
+.capa__numero {
+  font-size: var(--texto-destacado);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--color-primario);
+}
+
+.capa__nombre {
+  margin: 0;
+  font-size: var(--texto-compacto);
+  font-weight: 700;
+  line-height: var(--interlineado-titulo);
+  color: var(--color-primario);
+}
+
+.capa__funcion {
+  margin: var(--espacio-xs) 0 0;
+  font-family: var(--fuente-texto);
+  font-size: var(--texto-min);
+  line-height: var(--interlineado-titulo);
+  color: var(--color-secundario);
+}
+
+/* Lista en una sola frase, separada por puntos medios (componentes de una capa, controles). */
+.capa__componentes,
+.lista-en-linea {
+  margin: 0;
+  padding: 0;
+  font-size: var(--texto-min);
+  line-height: var(--interlineado-titulo);
+  list-style: none;
+}
+
+.capa__componentes > li,
+.lista-en-linea > li {
+  display: inline;
+}
+
+/* El punto va pegado al final del elemento: si hay salto de línea, cae después del punto. */
+.capa__componentes > li:not(:last-child)::after,
+.lista-en-linea > li:not(:last-child)::after {
+  content: '\00a0·'; /* espacio que no se corta + punto medio */
+  color: var(--color-secundario);
+}
+
+/* Componentes transversales: atraviesan todas las capas. */
+.transversal {
+  display: grid;
+  align-content: start;
+  gap: var(--espacio-s);
+  padding: var(--espacio-s);
+  border: var(--borde-fino) solid var(--color-primario);
+  border-top: var(--borde-grueso) solid var(--color-acento);
+  border-radius: var(--radio);
+}
+
+.transversal__titulo {
+  margin: 0;
+  font-size: var(--texto-compacto);
+  font-weight: 700;
+  line-height: var(--interlineado-titulo);
+  color: var(--color-primario);
+}
+
+.transversal .lista-compacta {
+  font-size: var(--texto-min);
+}
+
+/* Flecha vertical «flujo de datos»: de la captura (abajo) a la visualización (arriba). */
+.flujo {
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+
+.flujo::before,
+.flujo::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  background: var(--color-secundario);
+  transform: translateX(-50%);
+}
+
+.flujo::before {
+  top: var(--flecha-punta);
+  bottom: 0;
+  width: var(--borde-grueso);
+}
+
+.flujo::after {
+  top: 0;
+  width: calc(var(--flecha-punta) * 1.4);
+  height: var(--flecha-punta);
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}
+
+.flujo__texto {
+  position: relative;
+  padding: var(--espacio-s) 0;
+  font-size: var(--texto-min);
+  color: var(--color-secundario);
+  background: var(--color-fondo);
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+/* Lista compacta con texto de 28 px (listas largas dentro de un panel). */
+.lista-compacta--min {
+  font-size: var(--texto-min);
+}
+
+/* ── Fichas: etiquetas cortas en fila (roles) ──────────────────────────────── */
+.fichas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espacio-xs);
+  margin: 0;
+  padding: 0;
+  font-size: var(--texto-min);
+  list-style: none;
+}
+
+.fichas > li {
+  padding: var(--espacio-xs) var(--espacio-s);
+  border: var(--borde-fino) solid var(--color-primario);
+  border-radius: var(--radio);
+  font-weight: 700;
+  line-height: var(--interlineado-titulo);
+  color: var(--color-primario);
+}
+
+/* ── Fórmula: nombre arriba y expresión grande (lámina 14) ─────────────────── */
+.formula {
+  margin: 0 0 var(--espacio-m);
+}
+
+.formula__nombre {
+  margin: 0;
+  font-family: var(--fuente-texto);
+  font-size: var(--texto-min);
+  color: var(--color-secundario);
+}
+
+.formula__expresion {
+  margin: var(--espacio-xs) 0 0;
+  font-family: var(--fuente-formulas);
+  font-size: var(--texto-cuerpo);
+  font-weight: 400;
+  line-height: var(--interlineado-titulo);
+  color: var(--color-primario);
+}
+
+/* ── Captura del sistema: imagen sin deformar, con borde y pie ─────────────── */
+.captura {
+  margin: 0;
+}
+
+.captura > img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: var(--borde-fino) solid var(--color-vacio-grafico);
+  border-radius: var(--radio);
+}
+
+.captura > figcaption {
+  margin-top: var(--espacio-xs);
+  font-family: var(--fuente-texto);
+  font-size: var(--texto-min);
+  color: var(--color-secundario);
+}
+
+/* Panel con separación vertical entre sus bloques (lámina 14). */
+.panel--espaciado > * + * {
+  margin-top: var(--espacio-s);
+}
+
+/* ── Cuadrícula de 2 × 2 tarjetas (lámina 15) ─────────────────────────────── */
+.cuadricula-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--espacio-m);
+}
+
+/* Cifra protagonista dentro de una tarjeta (USD 56,10). */
+.cifra--media {
+  font-size: var(--texto-cifra-media);
+}
+
+/* ── Gantt (lámina 16): una fila por fase sobre una pista de semanas ──────────
+ * .gantt recibe --total (semanas) y --meses; cada fila, --inicio y --fin (semanas, ambas
+ * incluidas) desde cronograma.json con data-vars. La barra empieza en (inicio − 1) / total
+ * y mide (fin − inicio + 1) / total del ancho de la pista. Las filas no tienen hueco entre
+ * sí, para que las líneas verticales de los meses se vean continuas.
+ */
+.gantt__filas {
+  display: grid;
+  grid-template-columns: max-content max-content minmax(0, 1fr);
+  column-gap: var(--espacio-m);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.gantt__fila {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: subgrid;
+  align-items: center;
+}
+
+.gantt__numero,
+.gantt__nombre {
+  padding-block: var(--espacio-s);
+  font-family: var(--fuente-titulos);
+  font-size: var(--texto-compacto);
+  line-height: var(--interlineado-titulo);
+}
+
+.gantt__numero {
+  font-weight: 700;
+  color: var(--color-primario);
+}
+
+/* Pista: una línea al inicio de cada mes y otra al final. */
+.gantt__pista {
+  position: relative;
+  align-self: stretch;
+  border-right: var(--separacion-grafico) solid var(--color-vacio-grafico);
+  background-image: repeating-linear-gradient(
+    to right,
+    var(--color-vacio-grafico) 0 var(--separacion-grafico),
+    transparent var(--separacion-grafico) calc(100% / var(--meses))
+  );
+}
+
+.gantt__barra {
+  position: absolute;
+  top: calc(50% - var(--barra-alto) / 2);
+  left: calc((var(--inicio) - 1) / var(--total) * 100%);
+  width: calc((var(--fin) - var(--inicio) + 1) / var(--total) * 100%);
+  height: var(--barra-alto);
+  border-radius: var(--radio-barra);
+  background: var(--color-primario);
+  transform-origin: left center;
+  transition: transform var(--duracion-giro) ease;
+  transition-delay: calc(var(--orden, 0) * var(--retardo-paso) / 2);
+}
+
+/* Rótulo «semanas 1–4» después de la barra (texto en color de texto, no de la barra). */
+.gantt__semanas {
+  position: absolute;
+  top: 50%;
+  left: calc(var(--fin) / var(--total) * 100% + var(--espacio-xs));
+  padding-inline: var(--espacio-xs);
+  font-size: var(--texto-min);
+  line-height: 1;
+  white-space: nowrap;
+  color: var(--color-secundario);
+  background: var(--color-fondo);
+  transform: translateY(-50%);
+  transition: opacity var(--duracion-paso) ease;
+  transition-delay: calc(var(--orden, 0) * var(--retardo-paso) / 2 + var(--duracion-giro));
+}
+
+/* La fase que termina en el borde lleva el rótulo antes de la barra. */
+.gantt__fila--rotulo-antes .gantt__semanas {
+  right: calc((var(--total) - var(--inicio) + 1) / var(--total) * 100% + var(--espacio-xs));
+  left: auto;
+}
+
+.gantt__fila:nth-child(2) {
+  --orden: 1;
+}
+
+.gantt__fila:nth-child(3) {
+  --orden: 2;
+}
+
+.gantt__fila:nth-child(4) {
+  --orden: 3;
+}
+
+.gantt__fila:nth-child(5) {
+  --orden: 4;
+}
+
+/* Antes de su paso, las barras están en cero y los rótulos ocultos. */
+.gantt[data-fragment]:not([data-visible]) .gantt__barra {
+  transform: scaleX(0);
+}
+
+.gantt[data-fragment]:not([data-visible]) .gantt__semanas {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gantt__barra,
+  .gantt__semanas {
+    transition: none;
+  }
+}
+
+.escenario[data-modo='vista-general'] .gantt[data-fragment] .gantt__barra {
+  transform: none;
+  transition: none;
+}
+
+.escenario[data-modo='vista-general'] .gantt[data-fragment] .gantt__semanas {
+  opacity: 1;
+  transition: none;
+}
+
+/* ── Metas (lámina 16): indicador, cifra de la meta y línea base ───────────── */
+.metas {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--espacio-m);
+}
+
+.meta > p {
+  margin: 0;
+}
+
+.meta > * + * {
+  margin-top: var(--espacio-xs);
+}
+
+.meta__indicador {
+  font-size: var(--texto-compacto);
+  font-weight: 700;
+  line-height: var(--interlineado-titulo);
+}
+
+.meta__cifra {
+  font-family: var(--fuente-titulos);
+  font-size: var(--texto-titulo);
+  font-weight: 700;
+  line-height: var(--interlineado-titulo);
+  color: var(--color-primario);
+}
+
+/* Plazo o condición de la meta, en su propia línea bajo la cifra. */
+.meta__complemento {
+  display: block;
+  font-family: var(--fuente-texto);
+  font-size: var(--texto-compacto);
+  line-height: var(--interlineado-texto);
+  font-weight: 400;
+  color: var(--color-texto);
+}

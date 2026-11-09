@@ -1,7 +1,12 @@
 {
-  "fuente": "TEG 6.4.8 y Tabla 24",
+  "fuente": "TEG 6.4.8 (fases en semanas) y 6.6.2, Tabla 24 (actividades por quincenas)",
+  "fuente_metas": "TEG 6.6.3, Tabla 25",
+  "verificado_contra_teg": true,
+  "nota": "6.4.8 da las fases en semanas; la Tabla 24 las reparte en doce quincenas (Q1 = semanas 1 y 2). Las actividades son las de la Tabla 24. En la Tabla 24 la Fase II se titula «Plataforma en la nube y captura»; aquí se usa el nombre de 6.4.8. En las metas, «meta» es el texto literal de la Tabla 25; «cifra» y «complemento» la separan para mostrarla en la lámina 16; «antes del despacho» sale de la fórmula del indicador en la Tabla 25.",
   "unidad": "semana",
   "total_semanas": 24,
+  "total_quincenas": 12,
+  "total_meses": 6,
   "fases": [
     {
       "fase": "I",
@@ -10,7 +15,7 @@
       "fin": 4,
       "actividades": [
         "Acta de inicio y medición de la línea base",
-        "Modelado BPMN de procesos actuales y propuestos",
+        "Modelado BPMN de los procesos actuales y propuestos",
         "Matriz de roles y permisos; bitácora de auditoría"
       ]
     },
@@ -21,8 +26,8 @@
       "fin": 8,
       "actividades": [
         "Contratación del VPS y del dominio; servicio de despliegue",
-        "Despliegue de frontend, backend, base de datos y MinIO",
-        "Conector de importación del sistema administrativo"
+        "Despliegue del frontend, el backend, la base de datos y MinIO",
+        "Desarrollo del conector de importación"
       ]
     },
     {
@@ -32,7 +37,7 @@
       "fin": 12,
       "actividades": [
         "Pipeline ETL con validación y deduplicación",
-        "Almacén dimensional y módulo multimoneda",
+        "Almacén de datos dimensional y módulo multimoneda",
         "Respaldos automáticos y pruebas de restauración"
       ]
     },
@@ -63,27 +68,58 @@
   "metas": [
     {
       "indicador": "Exactitud del inventario",
-      "meta": "≥ 98%"
+      "dimension": "Eficiencia operativa",
+      "formula": "[1 − (|stock lógico − stock físico| / stock físico)] × 100",
+      "linea_base": "Desfase reportado; se mide en el primer conteo",
+      "meta": "≥ 98%",
+      "cifra": "≥ 98%",
+      "frecuencia": "Quincenal; Almacén"
     },
     {
-      "indicador": "Duplicados detectados antes del despacho",
-      "meta": "100%"
+      "indicador": "Detección de duplicados",
+      "dimension": "Eficiencia operativa",
+      "formula": "(Duplicados detectados antes del despacho / duplicados totales) × 100",
+      "linea_base": "Sin control",
+      "meta": "100%",
+      "cifra": "100%",
+      "complemento": "antes del despacho",
+      "frecuencia": "Semanal; Administración"
     },
     {
       "indicador": "Usuarios con rol asignado",
-      "meta": "100% en el mes 1"
+      "dimension": "Gobernanza de datos",
+      "formula": "(Usuarios con rol / total de usuarios) × 100",
+      "linea_base": "0% (permisos amplios)",
+      "meta": "100% en el mes 1",
+      "cifra": "100%",
+      "complemento": "en el mes 1",
+      "frecuencia": "Mensual; Gerencia"
     },
     {
-      "indicador": "Reducción del uso de papel",
-      "meta": "80% a los 2 meses"
+      "indicador": "Uso de papel",
+      "dimension": "Ecoeficiencia",
+      "formula": "[(Hojas en el mes base − hojas en el mes actual) / hojas en el mes base] × 100",
+      "linea_base": "Uso continuo (nivel 2)",
+      "meta": "Reducción del 80% a los 2 meses",
+      "cifra": "−80%",
+      "complemento": "a los 2 meses",
+      "frecuencia": "Mensual; Almacén"
     },
     {
       "indicador": "Reembolsos por desincronización",
-      "meta": "0 a los 3 meses"
+      "dimension": "Eficiencia operativa",
+      "formula": "N.º de reembolsos por productos inexistentes o ventas duplicadas en el mes",
+      "linea_base": "Ocurrencia recurrente (entrevista); se cuantifica en la Fase I",
+      "meta": "Reducción sostenida respecto de la línea base",
+      "frecuencia": "Mensual; Administración"
     },
     {
-      "indicador": "Cumplimiento de inspecciones",
-      "meta": "≥ 95%"
+      "indicador": "Cumplimiento de inspecciones de almacenamiento",
+      "dimension": "Ecoeficiencia",
+      "formula": "(Inspecciones registradas / inspecciones programadas) × 100",
+      "linea_base": "Inexistente (nivel 1)",
+      "meta": "≥ 95%",
+      "frecuencia": "Semanal; Almacén"
     }
   ]
 }

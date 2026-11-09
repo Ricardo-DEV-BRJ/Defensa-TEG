@@ -1,0 +1,71 @@
+{
+  "fuente": "TEG, Cap. III: 3.1 a 3.5 (págs. 76–79)",
+  "verificado_contra_teg": true,
+  "tipo": [
+    "Aplicada",
+    "Proyectiva (proyecto factible)"
+  ],
+  "enfoque": "Mixto (cualitativo-cuantitativo)",
+  "diseno": [
+    "De campo",
+    "Documental"
+  ],
+  "triangulacion": "Concurrente",
+  "poblacion": {
+    "tipo": "Censo",
+    "total": 6,
+    "estratos": [
+      {
+        "estrato": "Directivo y administrativo",
+        "integrantes": "Gerentes administrativos",
+        "n": 2,
+        "instrumento": "Entrevista semiestructurada"
+      },
+      {
+        "estrato": "Operativo",
+        "integrantes": "Empleados",
+        "n": 4,
+        "instrumento": "Cuestionario en escala Likert"
+      }
+    ]
+  },
+  "registros": {
+    "cobertura_pct": 100,
+    "periodo": "Segundo trimestre de 2026",
+    "muestreo": "No probabilístico intencional",
+    "contenido": "Transacciones, guías de despacho, inventarios y reportes de mermas",
+    "instrumento": "Matriz de registro de fuentes de datos",
+    "anexo": 2
+  },
+  "observacion": {
+    "tecnica": "Observación directa participativa",
+    "objeto": "Infraestructura tecnológica y operativa",
+    "instrumento": "Guía de observación",
+    "anexo": 1,
+    "nota": "La escala de niveles está en observacion.json → escala."
+  },
+  "validez": {
+    "metodo": "Juicio de expertos",
+    "expertos": [
+      "Ing. Yerson Gonzales",
+      "Lic. Ana Ojeda",
+      "Lic. María Godoy"
+    ],
+    "areas": [
+      "Ingeniería de Sistemas",
+      "Metodología de la Investigación"
+    ],
+    "resultado": "Dictamen favorable unánime"
+  },
+  "confiabilidad": {
+    "alfa_de_cronbach": false,
+    "motivo": "Con n = 4 y un único ítem por indicador, el coeficiente sería estadísticamente inestable.",
+    "alternativa": "Validez de contenido por juicio de expertos y triangulación metodológica concurrente"
+  },
+  "fases": [
+    "Diagnóstico y Levantamiento de Información",
+    "Caracterización de las Fuentes de Datos",
+    "Diseño del Modelo de Digitalización y Arquitectura Big Data",
+    "Definición de la Factibilidad y de los Indicadores de Impacto"
+  ]
+}
