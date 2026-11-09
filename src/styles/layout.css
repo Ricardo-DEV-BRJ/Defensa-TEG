@@ -1,0 +1,24 @@
+/*
+ * Estructura de página. Fase 0: escenario fijo de 1920×1080 sin escalar.
+ * El escalado con transform: scale() llega en la Fase 1.2 (src/core/scaler.js).
+ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.escenario {
+  display: grid;
+  place-items: center;
+  width: var(--escenario-ancho);
+  height: var(--escenario-alto);
+  padding: var(--margen-seguro-y) var(--margen-seguro-x);
+  font-size: var(--texto-min);
+  /* Provisional: deja ver el borde del escenario mientras no hay paleta (Fase 2.1). */
+  outline: 1px dashed currentColor;
+}

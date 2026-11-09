@@ -1,0 +1,11 @@
+# Fuentes de verdad: no se reformatean automáticamente
+docs/
+data/
+public/
+*.md
+.claude/
+
+# Generados
+dist/
+coverage/
+package-lock.json

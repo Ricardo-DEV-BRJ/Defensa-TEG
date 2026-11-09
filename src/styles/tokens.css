@@ -1,0 +1,17 @@
+/*
+ * Tokens de diseño: única fuente de colores, fuentes y espaciados (docs/identidad-visual.md).
+ * Fase 0: solo las medidas estructurales fijadas en CLAUDE.md.
+ * La paleta y las fuentes Barlow se agregan en la Fase 2.1.
+ */
+:root {
+  /* Escenario fijo 16:9 */
+  --escenario-ancho: 1920px;
+  --escenario-alto: 1080px;
+
+  /* Margen seguro del 5 % por el overscan del televisor (96 px × 54 px) */
+  --margen-seguro-x: calc(var(--escenario-ancho) * 0.05);
+  --margen-seguro-y: calc(var(--escenario-alto) * 0.05);
+
+  /* Tamaño mínimo de texto dentro del escenario */
+  --texto-min: 28px;
+}
