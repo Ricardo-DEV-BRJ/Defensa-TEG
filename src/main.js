@@ -5,6 +5,10 @@ import { rellenarDatos } from './core/datos.js';
 import { iniciarTeclado } from './core/keyboard.js';
 import { iniciarRouter, leerHash } from './core/router.js';
 import { iniciarEscalado } from './core/scaler.js';
+import * as barChart from './components/bar-chart.js';
+import * as dataFlow from './components/data-flow.js';
+import * as dedupSim from './components/dedup-sim.js';
+import * as stockCalc from './components/stock-calc.js';
 
 // Todo data/*.json y el HTML de cada lámina entran al bundle para no usar fetch (ADR-006 §8).
 // Claves: nombre del archivo sin extensión (datos) y nombre con extensión (plantillas).
@@ -24,8 +28,22 @@ const plantillas = porNombre(
   false,
 );
 
+// Componentes interactivos por el nombre que usan las láminas en data-componente (ADR-006 §7).
+const componentes = {
+  'bar-chart': barChart,
+  'data-flow': dataFlow,
+  'dedup-sim': dedupSim,
+  'stock-calc': stockCalc,
+};
+
 const escenario = document.querySelector('.escenario');
-const deck = crearDeck({ escenario, laminas: datos.slides.laminas, plantillas });
+const deck = crearDeck({
+  escenario,
+  laminas: datos.slides.laminas,
+  plantillas,
+  datos,
+  componentes,
+});
 
 // Cifras y textos del TEG desde data/*.json (data-dato="archivo.ruta").
 for (const ruta of rellenarDatos(escenario, datos)) {

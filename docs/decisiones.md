@@ -269,3 +269,57 @@ bundle (lo resuelven unas 30 líneas propias que se pueden explicar); framework 
   no haya URL, la lámina 17 no muestra el QR: en su lugar hay un comentario «QR», y el script
   imprime el bloque `<figure>` que lo reemplaza. Las funciones puras del script (`validarUrl`,
   `textoVisible`, `leerColor`, `generarSvg`) se prueban en `tests/qr.test.js`.
+
+## ADR-010 · Componentes en el deck y simulador de duplicados (lámina 14)
+- **Contexto:** la Fase 4 empieza por los componentes interactivos. El contrato del ADR-006 §7
+  (`crear` → `activar`, `desactivar`, `paso`, `saltarAlFinal`) estaba diseñado, pero el deck aún no
+  lo cumplía. La lámina 14 ya llena el escenario con tres paneles y el simulador necesita espacio.
+- **Decisión:**
+  - `crearDeck` recibe `datos` y `componentes` (`{ 'bar-chart': módulo, 'dedup-sim': módulo }`,
+    armado en `main.js`). Cada elemento `data-componente="nombre"` recibe
+    `módulo.crear(elemento, datos)` cuando las láminas ya están en el documento; uno que falte o
+    falle se avisa en la consola y no detiene al resto.
+  - Qué método llamar en cada cambio lo decide una función pura, `llamadasAComponentes`:
+    desactivar al salir, activar al entrar y pasar el paso; al llegar con «anterior», el mismo
+    «saltar al final» de la tecla S (componentes y transiciones CSS).
+  - `src/components/dedup-sim.js` separa la lógica pura (clave de venta, detección con intervalo
+    estricto, importación en orden, anulación por rol y la simulación como función de estado) de
+    la vista, que se vuelve a dibujar desde el estado tras cada acción.
+  - En la lámina 14 el simulador es el paso 4 y ocupa el lugar de los tres paneles (`:has()`); con ←
+    vuelven los paneles. En la vista general se ven los paneles, que son el contenido de la lámina.
+    El simulador se reinicia cada vez que se entra a la lámina y sus clics no avanzan
+    (`data-interactivo`).
+  - Datos en `arquitectura.json → deduplicacion`: `rol_que_anula` = «Administración» (TEG 6.4.2:
+    «el administrador, quien es el único rol autorizado para anularla»; Tabla 18) y una venta de
+    ejemplo marcada como ficticia (`ejemplo_demo`). El intervalo sigue siendo el de demostración
+    (60 s).
+- **Consecuencias:** cualquier componente nuevo solo tiene que exportar `crear` y registrarse en
+  `main.js`. Las utilidades compartidas (tiempos, movimiento reducido, `fabricaDeElementos`)
+  viven en `src/components/comun.js`. La calculadora de stock (`stock-calc.js`) es el paso 5 de
+  la lámina 14: todo paso con la clase `.demo` reemplaza a los paneles y, si hay varios visibles,
+  solo se ve el último. Sus rangos están en `arquitectura.json → formulas.calculadora` (de
+  demostración; las definiciones son las del TEG 6.4.5). Queda pendiente llamar a
+  `saltarAlFinal` antes de imprimir (con `print.css`).
+
+## ADR-011 · Flujo de datos de la lámina 13 en ráfagas, no en bucle
+- **Contexto:** `PROMPTS.md` 4.4 pide puntos de datos que suban de la captura a la visualización
+  con `requestAnimationFrame`, clic en una capa para ver sus componentes, pausa con
+  `prefers-reduced-motion` y salto al estado final con S. CLAUDE.md limita las animaciones a
+  1,5 s, y un flujo sin fin compite con el expositor por la atención del jurado.
+- **Decisión:**
+  - Las capas siguen en el HTML de la lámina (el deck cuenta sus pasos al crearla);
+    `data-flow.js` les agrega el comportamiento. `data-capa` numera las capas (1 = captura) y una
+    prueba comprueba que coincide con su `data-dato`.
+  - El flujo va en **ráfagas**: cuando aparece una capa nueva, 3 paquetes suben por la flecha
+    desde la captura hasta la capa más alta visible en 1,4 s (`--retardo-paso` y el token nuevo
+    `--duracion-flujo`). Un clic en la flecha repite la ráfaga. Al retroceder no hay ráfaga.
+  - Movimiento reducido: no se lanza ninguna ráfaga. Tecla S y llegada con «anterior»: la
+    ráfaga se detiene en su estado final (los paquetes ya llegaron y no queda nada visible).
+  - Clic, Enter o Espacio en una capa la amplía (componentes en lista grande) y deja las demás
+    con número y nombre; otro clic la cierra. Al salir de la lámina se cierra.
+  - Las capas y la flecha son `role="button"` con `tabindex="0"`; `keyboard.js` trata
+    `[role="button"]` como un botón (Espacio y Enter son del elemento, las flechas navegan).
+- **Consecuencias:** la posición de cada paquete en el tiempo es una función pura
+  (`posicionesRafaga`) con pruebas, igual que cuándo lanzar una ráfaga y qué capa ampliar. Si se
+  quisiera un flujo continuo, bastaría con relanzar la ráfaga al terminar, pero rompería la regla
+  de 1,5 s.

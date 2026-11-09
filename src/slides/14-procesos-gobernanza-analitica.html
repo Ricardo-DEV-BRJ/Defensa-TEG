@@ -8,8 +8,10 @@
   2. Gobernanza: roles (Tabla 18), controles, ISO/IEC 27001 y captura real de la bitácora
      (captura-16 = Anexo 20, Figura 34).
   3. Modelos analíticos: SS, PR e IR.
-  Pendiente (Fase 4): simulador de duplicados (dedup-sim.js) y calculadora de stock
-  (stock-calc.js). Previsión y multimoneda se dicen (notas).
+  4. Demostración: el simulador de duplicados (src/components/dedup-sim.js) ocupa el lugar de
+     los tres paneles (ADR-010); con ← vuelven los paneles.
+  5. Demostración: la calculadora de stock (src/components/stock-calc.js) reemplaza al simulador.
+  Previsión y multimoneda se dicen (notas).
 -->
 <div class="plantilla">
   <h2 class="plantilla__titulo">Procesos, gobernanza y modelos analíticos</h2>
@@ -89,5 +91,8 @@
         <p class="nota">Fuente: <span data-dato="arquitectura.formulas.fuente"></span></p>
       </div>
     </div>
+
+    <div class="demo simulador" data-fragment="4" data-componente="dedup-sim"></div>
+    <div class="demo calculadora" data-fragment="5" data-componente="stock-calc"></div>
   </div>
 </div>

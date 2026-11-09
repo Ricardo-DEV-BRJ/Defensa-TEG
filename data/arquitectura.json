@@ -81,7 +81,26 @@
   "deduplicacion": {
     "regla": "Se marca como posible duplicado una venta con igual cliente, productos, cantidades y monto registrada en un intervalo breve; se bloquea el despacho y solo el administrador puede anularla.",
     "intervalo_sugerido_segundos": 60,
-    "nota": "El TEG dice 'intervalo breve'; 60 s es un valor de demostración."
+    "nota": "El TEG dice 'intervalo breve'; 60 s es un valor de demostración.",
+    "rol_que_anula": "Administración",
+    "fuente_rol": "TEG 6.4.2 (Figura 16): «bloquea la orden y notifica al administrador, quien es el único rol autorizado para anularla»; Tabla 18, «Anular transacciones duplicadas»: Administración M (modificar), Gerencia A (aprobar), los demás sin acceso.",
+    "ejemplo_demo": {
+      "nota": "Venta ficticia para la demostración de la lámina 14 (dedup-sim); no es un dato del TEG.",
+      "cliente": "Cliente de ejemplo",
+      "productos": [
+        {
+          "producto": "Producto A",
+          "cantidad": 2
+        },
+        {
+          "producto": "Producto B",
+          "cantidad": 1
+        }
+      ],
+      "monto_usd": 45,
+      "segundos_entre_ventas": 12,
+      "rol_inicial": "Ventas"
+    }
   },
   "formulas": {
     "SS": "z × σd × √L",
@@ -95,6 +114,49 @@
       "d_media": 20,
       "SS_esperado": 11.43,
       "PR_esperado": 71.43
+    },
+    "calculadora": {
+      "nota": "Deslizadores de la calculadora de la lámina 14 (stock-calc). Las definiciones son las del TEG 6.4.5 (fórmulas 1 y 2); los rangos y pasos son de la demostración, no datos del TEG. Valores iniciales: ejemplo_demo.",
+      "variables": [
+        {
+          "clave": "z",
+          "simbolo": "z",
+          "definicion": "factor asociado al nivel de servicio deseado",
+          "unidad": "",
+          "min": 0,
+          "max": 3,
+          "paso": 0.01
+        },
+        {
+          "clave": "sigma_d",
+          "simbolo": "σd",
+          "definicion": "desviación estándar de la demanda diaria",
+          "unidad": "unid./día",
+          "min": 0,
+          "max": 20,
+          "paso": 0.5
+        },
+        {
+          "clave": "L",
+          "simbolo": "L",
+          "definicion": "tiempo de reposición en días",
+          "unidad": "días",
+          "min": 1,
+          "max": 30,
+          "paso": 1
+        },
+        {
+          "clave": "d_media",
+          "simbolo": "d̄",
+          "definicion": "demanda diaria promedio",
+          "unidad": "unid./día",
+          "min": 0,
+          "max": 100,
+          "paso": 1
+        }
+      ],
+      "alerta": "Cuando las existencias de un producto alcanzan su punto de reorden, el sistema genera una alerta de compra en el tablero de la gerencia.",
+      "fuente_alerta": "TEG 6.4.5"
     }
   },
   "modelo": {

@@ -102,6 +102,29 @@ export function esFragmentoVisible(valor, fragmento, grupos) {
   return Number(valor) <= grupos[Math.min(fragmento, grupos.length) - 1];
 }
 
+/**
+ * Qué métodos de los componentes hay que llamar en un cambio de estado (ADR-006 §7):
+ * al salir de una lámina, desactivar los suyos; al entrar, activar los de la nueva y pasarles
+ * el paso actual, salvo si se llega con «anterior», que deja la lámina en su estado final.
+ * @param {Estado | null} previo
+ * @param {Estado} nuevo
+ * @param {'inicio' | 'secuencia' | 'salto'} origen
+ * @returns {{ lamina: number, metodo: 'activar' | 'desactivar' | 'paso' | 'saltarAlFinal',
+ *   argumento?: number }[]}
+ */
+export function llamadasAComponentes(previo, nuevo, origen) {
+  const { lamina, fragmento } = nuevo;
+  if (previo?.lamina === lamina) return [{ lamina, metodo: 'paso', argumento: fragmento }];
+  const vuelveAtras = origen === 'secuencia' && previo !== null && lamina < previo.lamina;
+  return [
+    ...(previo ? [{ lamina: previo.lamina, metodo: 'desactivar' }] : []),
+    { lamina, metodo: 'activar' },
+    vuelveAtras
+      ? { lamina, metodo: 'saltarAlFinal' }
+      : { lamina, metodo: 'paso', argumento: fragmento },
+  ];
+}
+
 // ── Vista ────────────────────────────────────────────────────────────────────
 
 /**
@@ -110,9 +133,12 @@ export function esFragmentoVisible(valor, fragmento, grupos) {
  * @param {HTMLElement} opciones.escenario
  * @param {object[]} opciones.laminas entradas de data/slides.json
  * @param {Record<string, string>} [opciones.plantillas] HTML de src/slides/ por nombre de archivo
+ * @param {object} [opciones.datos] todos los data/*.json por nombre, para los componentes
+ * @param {Record<string, { crear: Function }>} [opciones.componentes] módulos de src/components/
+ *   por el nombre que usan las láminas en data-componente
  * @returns {EventTarget & object} el deck (ver ADR-006 para su interfaz)
  */
-export function crearDeck({ escenario, laminas, plantillas = {} }) {
+export function crearDeck({ escenario, laminas, plantillas = {}, datos = {}, componentes = {} }) {
   const documento = escenario.ownerDocument;
   const vistas = laminas.map((info, indice) =>
     crearVista(documento, info, indice + 1, plantillas[info.archivo]),
@@ -123,6 +149,13 @@ export function crearDeck({ escenario, laminas, plantillas = {} }) {
   }));
   escenario.append(...vistas.map((vista) => vista.seccion));
   escenario.dataset.modo = 'normal';
+  // Los componentes se crean con las láminas ya en el documento, para que lean los tokens.
+  vistas.forEach((vista, indice) => {
+    vista.componentes = montarComponentes(vista.seccion, indice + 1, datos, componentes);
+  });
+  const llamar = (lamina, metodo, argumento) => {
+    for (const componente of vistas[lamina - 1].componentes) componente[metodo]?.(argumento);
+  };
 
   const deck = new EventTarget();
   let estado = null;
@@ -149,6 +182,12 @@ export function crearDeck({ escenario, laminas, plantillas = {} }) {
     }
     estado = nuevo;
     pintar();
+    for (const llamada of llamadasAComponentes(previo, estado, origen)) {
+      // Llegar con «anterior» es como pulsar S: también termina las transiciones CSS que el
+      // navegador empiece al mostrar la lámina (por ejemplo, las de @starting-style).
+      if (llamada.metodo === 'saltarAlFinal') saltarAlFinal();
+      else llamar(llamada.lamina, llamada.metodo, llamada.argumento);
+    }
     const { lamina, fragmento } = estado;
     const pasos = estructura[lamina - 1].pasos;
     if (previo?.lamina !== lamina) {
@@ -210,10 +249,11 @@ export function crearDeck({ escenario, laminas, plantillas = {} }) {
     if (modo === 'vista-general') alternarVistaGeneral();
   }
 
-  // Tecla S: lleva al estado final las animaciones CSS y Web Animations de la lámina actual.
-  // Los componentes interactivos (Fase 4) agregarán aquí su propio saltarAlFinal().
+  // Tecla S: los componentes de la lámina actual pasan a su estado final, y las animaciones CSS
+  // y Web Animations que queden se terminan.
   function saltarAlFinal() {
     if (!estado) return;
+    llamar(estado.lamina, 'saltarAlFinal');
     for (const animacion of vistas[estado.lamina - 1].seccion.getAnimations({ subtree: true })) {
       if (animacion.effect?.getComputedTiming().iterations === Infinity) continue;
       try {
@@ -274,6 +314,25 @@ function crearVista(documento, info, numero, html) {
     );
   }
   return { info, seccion, fragmentos, grupos: gruposDeFragmentos(valores) };
+}
+
+// Crea los componentes de una lámina: cada elemento data-componente="nombre" recibe
+// componentes[nombre].crear(elemento, datos). Uno que falte o falle se avisa y no detiene al resto.
+function montarComponentes(seccion, numero, datos, componentes) {
+  return [...seccion.querySelectorAll('[data-componente]')].flatMap((elemento) => {
+    const nombre = elemento.dataset.componente;
+    const modulo = componentes[nombre];
+    if (!modulo) {
+      console.warn(`Lámina ${numero}: no hay un componente «${nombre}».`);
+      return [];
+    }
+    try {
+      return [modulo.crear(elemento, datos)];
+    } catch (error) {
+      console.warn(`Lámina ${numero}: el componente «${nombre}» falló al crearse.`, error);
+      return [];
+    }
+  });
 }
 
 // Lámina sin archivo en src/slides/: solo número y título (tarea 1.3).

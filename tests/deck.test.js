@@ -5,6 +5,7 @@ import {
   esFragmentoVisible,
   gruposDeFragmentos,
   irAEstado,
+  llamadasAComponentes,
   siguienteEstado,
   vecinaPrincipal,
 } from '../src/core/deck.js';
@@ -131,5 +132,44 @@ describe('con data/slides.json', () => {
       if (actual.lamina !== visitadas.at(-1)) visitadas.push(actual.lamina);
     }
     expect(visitadas).toEqual(principales);
+  });
+});
+
+describe('llamadasAComponentes (ADR-006 §7)', () => {
+  it('al arrancar activa los componentes de la lámina y les da su paso', () => {
+    expect(llamadasAComponentes(null, estado(1, 0), 'inicio')).toEqual([
+      { lamina: 1, metodo: 'activar' },
+      { lamina: 1, metodo: 'paso', argumento: 0 },
+    ]);
+  });
+
+  it('al avanzar de lámina desactiva la anterior y activa la nueva en el paso 0', () => {
+    expect(llamadasAComponentes(estado(13, 3), estado(14, 0), 'secuencia')).toEqual([
+      { lamina: 13, metodo: 'desactivar' },
+      { lamina: 14, metodo: 'activar' },
+      { lamina: 14, metodo: 'paso', argumento: 0 },
+    ]);
+  });
+
+  it('al volver con «anterior» deja la lámina en su estado final, sin animar', () => {
+    expect(llamadasAComponentes(estado(15, 0), estado(14, 4), 'secuencia')).toEqual([
+      { lamina: 15, metodo: 'desactivar' },
+      { lamina: 14, metodo: 'activar' },
+      { lamina: 14, metodo: 'saltarAlFinal' },
+    ]);
+  });
+
+  it('un salto hacia atrás (G + número) entra en el paso 0, como cualquier salto', () => {
+    expect(llamadasAComponentes(estado(15, 0), estado(8, 0), 'salto').at(-1)).toEqual({
+      lamina: 8,
+      metodo: 'paso',
+      argumento: 0,
+    });
+  });
+
+  it('dentro de la misma lámina solo informa el paso nuevo', () => {
+    expect(llamadasAComponentes(estado(14, 3), estado(14, 4), 'secuencia')).toEqual([
+      { lamina: 14, metodo: 'paso', argumento: 4 },
+    ]);
   });
 });

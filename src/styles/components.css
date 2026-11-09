@@ -1637,3 +1637,409 @@
   font-weight: 400;
   color: var(--color-texto);
 }
+
+/* ── Botones de los componentes interactivos ───────────────────────────────── */
+.boton {
+  padding: var(--espacio-s) var(--espacio-m);
+  border: var(--borde-fino) solid var(--color-primario);
+  border-radius: var(--radio);
+  font-family: var(--fuente-titulos);
+  font-size: var(--texto-compacto);
+  font-weight: 700;
+  line-height: var(--interlineado-titulo);
+  color: var(--color-fondo);
+  background: var(--color-primario);
+  cursor: pointer;
+}
+
+.boton--secundario {
+  color: var(--color-primario);
+  background: transparent;
+}
+
+.boton:focus-visible,
+.simulador__rol select:focus-visible {
+  outline: var(--borde-fino) solid var(--color-texto);
+  outline-offset: var(--borde-fino);
+}
+
+/* ── Pasos de demostración (lámina 14: simulador y calculadora) ────────────────
+ * Cada .demo es un paso que, mientras se ve, ocupa el lugar de los tres paneles (ADR-010).
+ * Si hay varias visibles, solo se ve la última. En la vista general se ven los paneles, que son
+ * el contenido de la lámina.
+ */
+.demo[data-fragment]:not([data-visible]),
+.demo[data-visible]:has(~ .demo[data-visible]),
+.escenario[data-modo='vista-general'] .demo {
+  display: none;
+}
+
+.escenario:not([data-modo='vista-general'])
+  .plantilla__cuerpo:has(> .demo[data-visible])
+  > :not(.demo) {
+  display: none;
+}
+
+/* Al pasar de display: none a visible, parte de opacidad 0 (la transición es la del fragmento). */
+@starting-style {
+  .demo[data-visible] {
+    opacity: 0;
+  }
+}
+
+/* ── Simulador de duplicados (lámina 14, dedup-sim.js) ─────────────────────── */
+.simulador {
+  display: grid;
+  align-content: start;
+  gap: var(--espacio-m);
+}
+
+.simulador p {
+  margin: 0;
+}
+
+.simulador__etapas {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--espacio-m);
+}
+
+.simulador__etapa > * + * {
+  margin-top: var(--espacio-s);
+}
+
+/* Estado de la luz: punto verde con luz, rojo sin luz (siempre con su palabra). */
+.simulador__luz {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-s);
+  font-size: var(--texto-compacto);
+  font-weight: 700;
+}
+
+.simulador__luz::before {
+  content: '';
+  flex: none;
+  width: var(--punto-tamano);
+  height: var(--punto-tamano);
+  border-radius: 50%;
+  background: var(--color-acento);
+}
+
+.simulador__luz[data-luz='sin'] {
+  color: var(--color-alerta);
+}
+
+.simulador__luz[data-luz='sin']::before {
+  background: var(--color-alerta);
+}
+
+.simulador__lista {
+  display: grid;
+  gap: var(--espacio-s);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Ticket de la caja: borde punteado, como un comprobante. */
+.simulador__ticket {
+  display: grid;
+  padding: var(--espacio-s);
+  border: var(--borde-fino) dashed var(--color-secundario);
+  border-radius: var(--radio);
+  font-size: var(--texto-compacto);
+  line-height: var(--interlineado-titulo);
+}
+
+.simulador__fila {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: var(--espacio-s);
+  padding: var(--espacio-s);
+  border: var(--borde-fino) solid var(--color-vacio-grafico);
+  border-left: var(--borde-grueso) solid var(--color-acento);
+  border-radius: var(--radio);
+  font-size: var(--texto-compacto);
+  line-height: var(--interlineado-titulo);
+}
+
+.simulador__fila--duplicado,
+.simulador__fila--bloqueado {
+  border-color: var(--color-alerta);
+  background: var(--color-alerta-suave);
+}
+
+.simulador__fila--liberado > span {
+  color: var(--color-exito-texto);
+}
+
+.simulador__fila--bloqueado > span {
+  color: var(--color-alerta);
+}
+
+.simulador__fila--cancelado {
+  border-left-color: var(--color-secundario);
+}
+
+.simulador__fila--cancelado > span {
+  color: var(--color-secundario);
+}
+
+.simulador__porque {
+  display: block;
+}
+
+.simulador__controles {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--espacio-m);
+}
+
+.simulador__rol {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-s);
+  font-size: var(--texto-compacto);
+  font-weight: 700;
+}
+
+.simulador__rol select {
+  padding: var(--espacio-xs) var(--espacio-s);
+  border: var(--borde-fino) solid var(--color-primario);
+  border-radius: var(--radio);
+  font: inherit;
+  font-weight: 400;
+  color: var(--color-texto);
+  background: var(--color-fondo);
+}
+
+.simulador__mensaje {
+  font-size: var(--texto-compacto);
+  font-weight: 700;
+}
+
+/* ── Calculadora de stock (lámina 14, stock-calc.js) ───────────────────────── */
+.calculadora {
+  display: grid;
+  align-content: start;
+  gap: var(--espacio-m);
+}
+
+.calculadora p {
+  margin: 0;
+}
+
+.calculadora__cuerpo {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--espacio-m);
+}
+
+.calculadora__entradas,
+.calculadora__resultados {
+  display: grid;
+  align-content: start;
+  gap: var(--espacio-m);
+}
+
+.calculadora .etiqueta,
+.calculadora .formula {
+  margin: 0;
+}
+
+/* Definición a la izquierda, valor a la derecha y el deslizador debajo, a todo el ancho. */
+.calculadora__variable {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  column-gap: var(--espacio-s);
+}
+
+.calculadora__etiqueta {
+  font-size: var(--texto-min);
+  line-height: var(--interlineado-titulo);
+}
+
+.calculadora__lectura {
+  font-size: var(--texto-compacto);
+  white-space: nowrap;
+}
+
+.calculadora__valor {
+  font-weight: 700;
+  color: var(--color-primario);
+}
+
+.calculadora__simbolo {
+  font-family: var(--fuente-formulas);
+}
+
+.calculadora__entradas .boton {
+  justify-self: start;
+}
+
+/* Deslizador grande, para manejarlo con el ratón frente al jurado. */
+.calculadora__deslizador {
+  grid-column: 1 / -1;
+  width: 100%;
+  height: var(--espacio-m);
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
+  appearance: none;
+}
+
+.calculadora__deslizador::-webkit-slider-runnable-track {
+  height: var(--borde-grueso);
+  border-radius: var(--radio-barra);
+  background: var(--color-vacio-grafico);
+}
+
+.calculadora__deslizador::-webkit-slider-thumb {
+  width: var(--espacio-m);
+  height: var(--espacio-m);
+  margin-top: calc((var(--borde-grueso) - var(--espacio-m)) / 2);
+  border-radius: 50%;
+  background: var(--color-primario);
+  appearance: none;
+}
+
+.calculadora__deslizador::-moz-range-track {
+  height: var(--borde-grueso);
+  border-radius: var(--radio-barra);
+  background: var(--color-vacio-grafico);
+}
+
+.calculadora__deslizador::-moz-range-thumb {
+  width: var(--espacio-m);
+  height: var(--espacio-m);
+  border: none;
+  border-radius: 50%;
+  background: var(--color-primario);
+}
+
+.calculadora__deslizador:focus-visible {
+  outline: var(--borde-fino) solid var(--color-texto);
+  outline-offset: var(--borde-fino);
+}
+
+/* Composición del punto de reorden: demanda durante la reposición + inventario de seguridad.
+ * Cada tramo recibe su flex-grow desde stock-calc.js; un hueco del fondo los separa. */
+.calculadora__barra {
+  display: flex;
+  gap: var(--separacion-grafico);
+  height: var(--barra-alto);
+}
+
+.calculadora__segmento {
+  flex: 0 1 0;
+  min-width: 0;
+}
+
+.calculadora__segmento--demanda,
+.calculadora__muestra--demanda {
+  background: var(--color-primario);
+}
+
+.calculadora__segmento--ss,
+.calculadora__muestra--ss {
+  background: var(--color-acento);
+}
+
+.calculadora__segmento:last-child {
+  border-radius: 0 var(--radio-barra) var(--radio-barra) 0;
+}
+
+.calculadora__leyenda {
+  display: grid;
+  gap: var(--espacio-xs);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--texto-min);
+}
+
+.calculadora__leyenda li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: var(--espacio-xs);
+}
+
+.calculadora__muestra {
+  flex: none;
+  width: var(--punto-tamano);
+  height: var(--punto-tamano);
+  border-radius: var(--radio-barra);
+}
+
+/* ── Flujo de datos (lámina 13, data-flow.js) ─────────────────────────────────
+ * Paquetes: puntos verdes con un anillo del color del fondo, encima de la flecha. data-flow.js
+ * los mueve con transform en cada cuadro; sin ráfaga quedan transparentes.
+ */
+.flujo__paquetes {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.paquete {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: var(--punto-tamano);
+  height: var(--punto-tamano);
+  border-radius: 50%;
+  background: var(--color-acento);
+  box-shadow: 0 0 0 var(--separacion-grafico) var(--color-fondo);
+  opacity: 0;
+}
+
+.flujo[role='button'],
+.capa[role='button'] {
+  cursor: pointer;
+}
+
+.flujo[role='button']:focus-visible,
+.capa[role='button']:focus-visible {
+  outline: var(--borde-fino) solid var(--color-texto);
+  outline-offset: var(--borde-fino);
+}
+
+/* Capa ampliada: sus componentes en lista grande; las demás, solo número y nombre. */
+.arquitectura[data-ampliada] .capa[aria-expanded='false'] .capa__funcion,
+.arquitectura[data-ampliada] .capa[aria-expanded='false'] .capa__componentes {
+  display: none;
+}
+
+.capa[aria-expanded='true'] {
+  border-left-color: var(--color-acento);
+}
+
+.capa[aria-expanded='true'] .capa__componentes {
+  display: grid;
+  gap: var(--espacio-xs);
+  font-size: var(--texto-compacto);
+}
+
+.capa[aria-expanded='true'] .capa__componentes > li {
+  position: relative;
+  display: block;
+  padding-left: var(--espacio-m);
+}
+
+.capa[aria-expanded='true'] .capa__componentes > li::after {
+  content: none;
+}
+
+.capa[aria-expanded='true'] .capa__componentes > li::before {
+  content: '';
+  position: absolute;
+  top: 0.4em;
+  left: 0;
+  width: 0.4em;
+  height: 0.4em;
+  background: var(--color-acento);
+}

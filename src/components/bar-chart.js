@@ -9,9 +9,12 @@
  * { activar, desactivar, paso, saltarAlFinal }.
  *
  * Parte pura (tests/bar-chart.test.js): prepararBarras, calcularGeometria, calcularTiempos y
- * aMilisegundos. Parte de vista: crear.
+ * aMilisegundos (re-exportada de comun.js). Parte de vista: crear.
  */
 import { formatear } from '../core/datos.js';
+import { aMilisegundos, leerDuraciones, movimientoReducido } from './comun.js';
+
+export { aMilisegundos };
 
 const SVG = 'http://www.w3.org/2000/svg';
 
@@ -83,19 +86,6 @@ export function calcularTiempos(indice, { giro, retardo, paso }) {
   };
 }
 
-/**
- * «600ms» → 600, «0.6s» → 600; cualquier otra cosa → porDefecto.
- * @param {string} texto
- * @param {number} porDefecto
- */
-export function aMilisegundos(texto, porDefecto) {
-  const partes = String(texto ?? '')
-    .trim()
-    .match(/^(\d+(?:\.\d+)?)(ms|s)$/);
-  if (!partes) return porDefecto;
-  return partes[2] === 's' ? Number(partes[1]) * 1000 : Number(partes[1]);
-}
-
 // ── Vista ────────────────────────────────────────────────────────────────────
 
 /**
@@ -127,11 +117,7 @@ export function crear(elemento, datos) {
     altoFila: px('--grafico-fila-alto', 64),
     altoBarra: px('--barra-alto', 24),
   });
-  const duraciones = {
-    giro: aMilisegundos(token('--duracion-giro'), 600),
-    retardo: aMilisegundos(token('--retardo-paso'), 250),
-    paso: aMilisegundos(token('--duracion-paso'), 300),
-  };
+  const duraciones = leerDuraciones(estilo);
 
   const nodo = (etiqueta, atributos = {}, texto) => {
     const n = documento.createElementNS(SVG, etiqueta);
@@ -194,7 +180,7 @@ export function crear(elemento, datos) {
   };
   function animar() {
     cancelar();
-    if (ventana.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return;
+    if (movimientoReducido(ventana)) return;
     filas.forEach(({ barra, valor }, i) => {
       const t = calcularTiempos(i, duraciones);
       animaciones.push(

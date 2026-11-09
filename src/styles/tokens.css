@@ -56,6 +56,8 @@
   --color-neutro-grafico: color-mix(in srgb, var(--color-secundario) 60%, var(--color-fondo));
   /* Fondo de una capa de la arquitectura (lámina 13): petróleo muy suave sobre el fondo. */
   --color-capa: color-mix(in srgb, var(--color-primario) 8%, var(--color-fondo));
+  /* Fondo de una fila marcada como duplicado o bloqueada (simulador de la lámina 14). */
+  --color-alerta-suave: color-mix(in srgb, var(--color-alerta) 8%, var(--color-fondo));
   /* Segmento vacío de un medidor de nivel (lámina 9). */
   --color-vacio-grafico: color-mix(in srgb, var(--color-secundario) 22%, var(--color-fondo));
 
@@ -129,4 +131,6 @@
   --retardo-paso: 250ms;
   /* Giro de una tarjeta: 4 tarjetas → 3 × 250 + 600 = 1,35 s */
   --duracion-giro: 600ms;
+  /* Viaje de un paquete de datos por la flecha (lámina 13): 3 paquetes → 2 × 250 + 900 = 1,4 s */
+  --duracion-flujo: 900ms;
 }
