@@ -1,0 +1,226 @@
+{
+  "duracion_objetivo_segundos": 1140,
+  "margen_segundos": 60,
+  "laminas": [
+    {
+      "id": 1,
+      "archivo": "01-portada.html",
+      "titulo": "Portada",
+      "capitulo": "—",
+      "segundos": 45,
+      "expositor": "Rafael Pérez",
+      "pregunta": "¿Quiénes somos y qué venimos a defender?",
+      "notas": "Saludo al jurado. Frase gancho: «Una PyME agrocomercial puede perder dinero sin perder un solo producto: basta con que se vaya la luz».",
+      "reserva": false
+    },
+    {
+      "id": 2,
+      "archivo": "02-contexto-problema.html",
+      "titulo": "Contexto y problema",
+      "capitulo": "I",
+      "segundos": 75,
+      "expositor": "Rafael Pérez",
+      "pregunta": "¿Qué le pasa hoy a la Empresa Agro Comercializadora JM?",
+      "notas": "Tres niveles en una frase (global, Latinoamérica, Venezuela) y bajar a la empresa. Cuatro problemas: fallas eléctricas → desincronización y reembolsos; Excel paralelo en USDT/EUR; sin control de temperatura y humedad; sin roles de acceso y despacho en papel. La desincronización no causa mermas físicas, sí pérdidas económicas.",
+      "reserva": false
+    },
+    {
+      "id": 3,
+      "archivo": "03-objetivos.html",
+      "titulo": "Objetivos",
+      "capitulo": "I",
+      "segundos": 45,
+      "expositor": "Rafael Pérez",
+      "pregunta": "¿Qué nos propusimos lograr?",
+      "notas": "Objetivo general: diseñar un modelo sustentable de digitalización de procesos mediante Big Data para optimizar la gestión logística y reducir las mermas. Específicos: Describir, Identificar, Determinar, Proponer. La conclusión retoma cada uno.",
+      "reserva": false
+    },
+    {
+      "id": 4,
+      "archivo": "04-justificacion-alcance.html",
+      "titulo": "Justificación, alcance y limitaciones",
+      "capitulo": "I",
+      "segundos": 45,
+      "expositor": "Rafael Pérez",
+      "pregunta": "¿Por qué vale la pena y hasta dónde llega?",
+      "notas": "Justificación teórica, metodológica, práctica y social. Incluye diseño conceptual, lógico y estructural. No incluye rutas VRP/TSP (línea futura). Limitaciones: presupuesto, sin historial de datos, resistencia al cambio, brecha digital. Vínculo con el DHS de la UVM.",
+      "reserva": false
+    },
+    {
+      "id": 5,
+      "archivo": "05-antecedentes.html",
+      "titulo": "Antecedentes",
+      "capitulo": "II",
+      "segundos": 50,
+      "expositor": "Rafael Pérez",
+      "pregunta": "¿Qué dicen otros estudios y qué tomamos de cada uno?",
+      "notas": "No leer la tabla. Destacar Chacón Ramírez et al. (2023): nube ante cortes eléctricos; y Hernández Romero (2026): bajo costo con compromiso directivo.",
+      "reserva": false
+    },
+    {
+      "id": 6,
+      "archivo": "06-bases-teoricas-legales.html",
+      "titulo": "Bases teóricas, modelo integrador y bases legales",
+      "capitulo": "II",
+      "segundos": 70,
+      "expositor": "Rafael Pérez",
+      "pregunta": "¿Sobre qué conceptos y normas se apoya el modelo?",
+      "notas": "Figura 1: sostenibilidad como marco normativo, Big Data/XAI/Edge como motor tecnológico. ODS 2, 9 y 12. Leyes: LOCTI, Infogobierno, Mensajes de Datos (art. 4, papel → digital), Delitos Informáticos (art. 6, credenciales y bitácora), CRBV 305 y LOA 3.",
+      "reserva": false
+    },
+    {
+      "id": 7,
+      "archivo": "07-metodologia.html",
+      "titulo": "Cómo se investigó",
+      "capitulo": "III",
+      "segundos": 135,
+      "expositor": "Ricardo Briceño",
+      "pregunta": "¿Cómo obtuvimos el diagnóstico y por qué es confiable?",
+      "notas": "Aplicada y proyectiva, enfoque mixto, campo y documental, triangulación concurrente. Censo N = 6 (2 gerentes, 4 operativos) + registros del 2.º trimestre 2026. Entrevista, cuestionario Likert, observación 1–4, matriz de fuentes. Validez: 3 expertos. Sin Alfa de Cronbach porque n = 4 y un ítem por indicador: confiabilidad por expertos y triangulación. Decirlo con seguridad.",
+      "reserva": false
+    },
+    {
+      "id": 8,
+      "archivo": "08-resultados-personal.html",
+      "titulo": "Lo que dijo el personal operativo",
+      "capitulo": "IV",
+      "segundos": 90,
+      "expositor": "Ricardo Briceño",
+      "pregunta": "¿Qué percibe el personal sobre el registro de datos y lo que necesita?",
+      "notas": "Consenso total en integrar datos (2.3) y automatizar stock y vencimientos (2.4). n = 4: cada respuesta vale 25%.",
+      "reserva": false
+    },
+    {
+      "id": 9,
+      "archivo": "09-gerencia-observacion-fuentes.html",
+      "titulo": "Gerencia, observación y fuentes de datos",
+      "capitulo": "IV",
+      "segundos": 75,
+      "expositor": "Ricardo Briceño",
+      "pregunta": "¿Qué confirmaron la entrevista, la observación y la matriz de fuentes?",
+      "notas": "Entrevista: facturas dobles por fallas, solo tasa BCV y Excel paralelo, prioridad stock mínimo, tablero con rotación. Observación: temperatura, mermas y energía en nivel 1. Matriz: un reporte diario .xls.",
+      "reserva": false
+    },
+    {
+      "id": 10,
+      "archivo": "10-discusion.html",
+      "titulo": "Discusión: las contradicciones que dieron forma al modelo",
+      "capitulo": "IV",
+      "segundos": 75,
+      "expositor": "Ricardo Briceño",
+      "pregunta": "¿Qué aprendimos al cruzar las fuentes?",
+      "notas": "1) Creen estar automatizados pero apoyo en nivel 2 → digitalización como conversión → integrar. 2) Poco volumen → Big Data por variedad → VPS ligero, no clúster. 3) Duda de disposición pero equipos aptos → barrera humana → capacitación y semáforos. Limitaciones: n pequeño, sin registros históricos → medir línea base.",
+      "reserva": false
+    },
+    {
+      "id": 11,
+      "archivo": "11-conclusiones.html",
+      "titulo": "Un objetivo, una conclusión",
+      "capitulo": "V",
+      "segundos": 90,
+      "expositor": "Ricardo Briceño",
+      "pregunta": "¿Se cumplieron los objetivos?",
+      "notas": "Objetivo general alcanzado, ajustado a la escala de la empresa; no se generaliza al sector. Recomendaciones: línea base el primer mes, UPS en caja, roles y bitácora inmediatos, capacitación, extensión UVM. Líneas futuras: LSTM, blockchain, huella de carbono, VRP/TSP.",
+      "reserva": false
+    },
+    {
+      "id": 12,
+      "archivo": "12-arquitectura.html",
+      "titulo": "Estructura del modelo y arquitectura",
+      "capitulo": "VI",
+      "segundos": 105,
+      "expositor": "Rafael Pérez",
+      "pregunta": "¿Qué es AgroData JM y cómo fluyen los datos?",
+      "notas": "Tres pilares: Programa Sustentable, gobernanza, arquitectura. Cinco capas + dos transversales. Docker en un VPS: si se va la luz en la empresa, datos y tableros siguen disponibles; al volver, el conector importa lo pendiente y la deduplicación frena los cobros repetidos.",
+      "reserva": false
+    },
+    {
+      "id": 13,
+      "archivo": "13-procesos-gobernanza-analitica.html",
+      "titulo": "Procesos, gobernanza y modelos analíticos",
+      "capitulo": "VI",
+      "segundos": 90,
+      "expositor": "Rafael Pérez",
+      "pregunta": "¿Cómo resuelve cada componente un problema del diagnóstico?",
+      "notas": "BPMN de venta y despacho con control de duplicados (solo el administrador anula). Matriz de roles y bitácora. SS = z·σd·√L, PR = d̄·L + SS, IR = UV/IP. Previsión: promedio móvil y suavizamiento → Holt-Winters con 24 meses; MAPE. Multimoneda reemplaza el Excel. Demostrar simulador y calculadora.",
+      "reserva": false
+    },
+    {
+      "id": 14,
+      "archivo": "14-factibilidad.html",
+      "titulo": "Factibilidad",
+      "capitulo": "VI",
+      "segundos": 75,
+      "expositor": "Ricardo Briceño",
+      "pregunta": "¿Se puede llevar a la práctica?",
+      "notas": "Técnica: equipos nivel 3, 75% aptos, software libre. Económica: USD 56,10; recurrente ≈ USD 87/año; 240 h + 12 h aportadas por los autores. Operativa: respaldo gerencial; riesgo de resistencia al cambio. Legal: facturación intacta, precios en Bs a tasa BCV. Ilustración: con USD 250/mes de ahorro se recupera en menos de un mes.",
+      "reserva": false
+    },
+    {
+      "id": 15,
+      "archivo": "15-implementacion.html",
+      "titulo": "Implementación e indicadores",
+      "capitulo": "VI",
+      "segundos": 45,
+      "expositor": "Ricardo Briceño",
+      "pregunta": "¿Cómo se implementa y cómo sabremos que funcionó?",
+      "notas": "Cinco fases en 24 semanas con solapamientos. Metas: exactitud de inventario ≥ 98%, 100% duplicados detectados, 100% usuarios con rol en el mes 1, −80% papel. PHVA, comité quincenal, evaluaciones a 3 y 6 meses.",
+      "reserva": false
+    },
+    {
+      "id": 16,
+      "archivo": "16-cierre.html",
+      "titulo": "Cierre",
+      "capitulo": "—",
+      "segundos": 30,
+      "expositor": "Ricardo Briceño",
+      "pregunta": "¿Qué debe recordar el jurado?",
+      "notas": "«Una arquitectura de datos ligera, montada sobre lo que la empresa ya tiene, por USD 56,10, ataca la causa de los reembolsos, empieza a medir mermas, papel y energía, y se puede replicar en otras PyMEs de Trujillo». Agradecer e invitar a preguntas.",
+      "reserva": false
+    },
+    {
+      "id": 17,
+      "archivo": "17-reserva-likert.html",
+      "titulo": "Reserva: resultados completos del cuestionario",
+      "capitulo": "IV",
+      "segundos": 0,
+      "expositor": "—",
+      "pregunta": "¿Cuáles fueron las 14 respuestas?",
+      "notas": "Solo si el jurado pregunta.",
+      "reserva": true
+    },
+    {
+      "id": 18,
+      "archivo": "18-reserva-roles.html",
+      "titulo": "Reserva: matriz de roles y permisos",
+      "capitulo": "VI",
+      "segundos": 0,
+      "expositor": "—",
+      "pregunta": "¿Quién puede hacer qué?",
+      "notas": "Tabla 18 del TEG.",
+      "reserva": true
+    },
+    {
+      "id": 19,
+      "archivo": "19-reserva-riesgos.html",
+      "titulo": "Reserva: matriz de riesgos",
+      "capitulo": "VI",
+      "segundos": 0,
+      "expositor": "—",
+      "pregunta": "¿Qué puede fallar y cómo se mitiga?",
+      "notas": "Tabla 26 del TEG.",
+      "reserva": true
+    },
+    {
+      "id": 20,
+      "archivo": "20-reserva-como-se-construyo.html",
+      "titulo": "Reserva: cómo se construyó esta presentación",
+      "capitulo": "—",
+      "segundos": 0,
+      "expositor": "—",
+      "pregunta": "¿Cómo está hecha esta presentación?",
+      "notas": "Arquitectura del motor, commits, pruebas, Lighthouse.",
+      "reserva": true
+    }
+  ]
+}

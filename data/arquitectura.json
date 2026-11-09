@@ -1,0 +1,100 @@
+{
+  "fuente": "TEG Tabla 19 y Figura 15",
+  "capas": [
+    {
+      "n": 1,
+      "nombre": "Captura de datos",
+      "funcion": "Obtener los datos en su origen y trasladarlos de forma segura",
+      "componentes": [
+        "Conector de reportes del sistema administrativo",
+        "Formularios web: recepción, conteos, mermas, inspecciones",
+        "Consumo según factura eléctrica",
+        "Tabla de tasas BCV, USDT, EUR"
+      ]
+    },
+    {
+      "n": 2,
+      "nombre": "Integración e ingesta",
+      "funcion": "Depurar, validar, deduplicar y transformar",
+      "componentes": [
+        "Pipeline ETL (15 min existencias/alertas; diario ventas)",
+        "Reglas de calidad",
+        "Identificador único por transacción",
+        "Conversión multimoneda"
+      ]
+    },
+    {
+      "n": 3,
+      "nombre": "Almacenamiento analítico",
+      "funcion": "Conservar datos integrados e históricos",
+      "componentes": [
+        "PostgreSQL: staging + modelo en estrella (3 hechos, 5 dimensiones)",
+        "MinIO: archivos y respaldos",
+        "Docker en VPS"
+      ]
+    },
+    {
+      "n": 4,
+      "nombre": "Analítica",
+      "funcion": "Indicadores, clasificaciones, pronósticos y alertas",
+      "componentes": [
+        "Inventario de seguridad y punto de reorden",
+        "Previsión de demanda",
+        "Rotación A/M/B",
+        "Segmentación RFM",
+        "Conciliación y anomalías",
+        "Vencimientos y ambiente"
+      ]
+    },
+    {
+      "n": 5,
+      "nombre": "Visualización",
+      "funcion": "Presentar la información a cada rol",
+      "componentes": [
+        "Tablero ejecutivo",
+        "Tablero operativo",
+        "Tablero de sostenibilidad",
+        "Alertas por correo o mensajería, tipo semáforo"
+      ]
+    }
+  ],
+  "transversales": [
+    {
+      "nombre": "Gobernanza y seguridad",
+      "componentes": [
+        "RBAC",
+        "Bitácora de auditoría",
+        "Cifrado TLS",
+        "Respaldos",
+        "Diccionario de datos"
+      ]
+    },
+    {
+      "nombre": "Sostenibilidad",
+      "componentes": [
+        "Procesos BPMN 2.0",
+        "Indicadores de ecoeficiencia",
+        "Capacitación del personal"
+      ]
+    }
+  ],
+  "deduplicacion": {
+    "regla": "Se marca como posible duplicado una venta con igual cliente, productos, cantidades y monto registrada en un intervalo breve; se bloquea el despacho y solo el administrador puede anularla.",
+    "intervalo_sugerido_segundos": 60,
+    "nota": "El TEG dice 'intervalo breve'; 60 s es un valor de demostración."
+  },
+  "formulas": {
+    "SS": "z × σd × √L",
+    "PR": "d̄ × L + SS",
+    "IR": "UV / IP",
+    "fuente": "Chopra y Meindl (2013)",
+    "ejemplo_demo": {
+      "z": 1.65,
+      "sigma_d": 4,
+      "L": 3,
+      "d_media": 20,
+      "SS_esperado": 11.43,
+      "PR_esperado": 71.43
+    }
+  }
+}

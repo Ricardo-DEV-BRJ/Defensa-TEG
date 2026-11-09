@@ -1,0 +1,88 @@
+{
+  "fuente": "TEG Cap. IV, 4.1.3 Guía de observación directa (Anexo 1)",
+  "escala": {
+    "1": "Deficiente o inexistente",
+    "2": "Manual o empírico",
+    "3": "Parcialmente automatizado / adecuado",
+    "4": "Optimizado y digitalizado"
+  },
+  "areas": [
+    {
+      "area": "Captura y registro de datos logísticos",
+      "indicadores": [
+        {
+          "nombre": "Registro de entrada y salida de mercancía",
+          "nivel": 3
+        },
+        {
+          "nombre": "Trazabilidad de lotes perecederos",
+          "nivel": 3
+        },
+        {
+          "nombre": "Control de temperatura y humedad",
+          "nivel": 1
+        }
+      ]
+    },
+    {
+      "area": "Tiempos y flujos del ciclo logístico",
+      "indicadores": [
+        {
+          "nombre": "Actualización del stock disponible",
+          "nivel": 4
+        },
+        {
+          "nombre": "Verificación de despacho y consolidación de carga",
+          "nivel": 2
+        },
+        {
+          "nombre": "Planificación de rutas de transporte",
+          "nivel": 2
+        }
+      ]
+    },
+    {
+      "area": "Mermas y ecoeficiencia ambiental",
+      "indicadores": [
+        {
+          "nombre": "Cuantificación y almacenamiento de desperdicios",
+          "nivel": 1
+        },
+        {
+          "nombre": "Uso de papel en facturación y despacho",
+          "nivel": 2
+        },
+        {
+          "nombre": "Monitoreo del consumo energético en frío",
+          "nivel": 1
+        }
+      ]
+    },
+    {
+      "area": "Infraestructura informática local",
+      "indicadores": [
+        {
+          "nombre": "Equipos de cómputo y red local",
+          "nivel": 3
+        }
+      ]
+    }
+  ],
+  "entrevista_gerencia": [
+    "Fallas eléctricas causan ventas no descontadas y facturación doble; obliga a reembolsos.",
+    "El sistema solo usa la tasa BCV; Excel paralelo para precios en USDT (Binance) y euros; riesgo de vender bajo costo.",
+    "Consolidación diaria de ventas es suficiente; prioridad absoluta: control de inventario y stock mínimo de seguridad.",
+    "Compras dependen del clima y de las temporadas de siembra y fertilización.",
+    "Todo el personal administrativo tiene permisos amplios para modificar precios y facturar.",
+    "No se registran papel ni mermas; hay personal capacitado en sustancias peligrosas y equipos antiderrames.",
+    "Piden pantalla principal con rotación alta/media/baja y frecuencia de compra de clientes."
+  ],
+  "matriz_fuentes": {
+    "fuente": "Reportes diarios de ventas e inventario del sistema administrativo local",
+    "formato": "Hoja de cálculo Excel (.xls)",
+    "volumen": "1 reporte diario consolidado",
+    "frecuencia": "1 vez al día",
+    "ingesta_actual": "Solicitudes al sistema de inventario",
+    "ingesta_propuesta": "Pipeline ETL: limpieza, transformación y carga"
+  }
+}

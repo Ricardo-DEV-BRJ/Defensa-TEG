@@ -1,0 +1,239 @@
+{
+  "fuente": "TEG Cap. IV, Tablas 2 a 16 (cuestionario al estrato operativo)",
+  "n": 4,
+  "nota": "Cada respuesta equivale a 25%. Describe al grupo, no al sector.",
+  "alternativas": [
+    "Totalmente en desacuerdo",
+    "En desacuerdo",
+    "Neutral",
+    "De acuerdo",
+    "Totalmente de acuerdo"
+  ],
+  "items": [
+    {
+      "id": "1.1",
+      "enunciado": "Los datos de inventario y despacho se registran de forma rápida y centralizada en un único sistema digital.",
+      "frecuencias": [
+        1,
+        2,
+        0,
+        1,
+        0
+      ],
+      "acuerdo_pct": 25,
+      "desacuerdo_pct": 75,
+      "neutral_pct": 0,
+      "destacado_lamina_8": true
+    },
+    {
+      "id": "1.2",
+      "enunciado": "Los tiempos empleados en completar los ciclos logísticos de recepción y distribución son óptimos y sin retrasos.",
+      "frecuencias": [
+        0,
+        1,
+        3,
+        0,
+        0
+      ],
+      "acuerdo_pct": 0,
+      "desacuerdo_pct": 25,
+      "neutral_pct": 75,
+      "destacado_lamina_8": false
+    },
+    {
+      "id": "1.3",
+      "enunciado": "La mayoría de las tareas de la empresa se realizan de forma automatizada sin depender de procesos manuales o papel.",
+      "frecuencias": [
+        0,
+        1,
+        0,
+        3,
+        0
+      ],
+      "acuerdo_pct": 75,
+      "desacuerdo_pct": 25,
+      "neutral_pct": 0,
+      "destacado_lamina_8": false
+    },
+    {
+      "id": "1.4",
+      "enunciado": "La información operativa actual se encuentra organizada y accesible sin dispersión en múltiples archivos aislados.",
+      "frecuencias": [
+        1,
+        1,
+        1,
+        1,
+        0
+      ],
+      "acuerdo_pct": 25,
+      "desacuerdo_pct": 50,
+      "neutral_pct": 25,
+      "destacado_lamina_8": false
+    },
+    {
+      "id": "2.1",
+      "enunciado": "El volumen diario de datos generados en la comercialización requiere de herramientas de almacenamiento con mayor capacidad.",
+      "frecuencias": [
+        1,
+        2,
+        0,
+        1,
+        0
+      ],
+      "acuerdo_pct": 25,
+      "desacuerdo_pct": 75,
+      "neutral_pct": 0,
+      "destacado_lamina_8": false
+    },
+    {
+      "id": "2.2",
+      "enunciado": "Es necesario procesar en tiempo real la información de ventas e inventario para tomar decisiones inmediatas.",
+      "frecuencias": [
+        0,
+        1,
+        0,
+        2,
+        1
+      ],
+      "acuerdo_pct": 75,
+      "desacuerdo_pct": 25,
+      "neutral_pct": 0,
+      "destacado_lamina_8": false
+    },
+    {
+      "id": "2.3",
+      "enunciado": "La empresa necesita integrar datos provenientes de distintas fuentes (formatos de texto, tablas, imágenes o sensores).",
+      "frecuencias": [
+        0,
+        0,
+        0,
+        2,
+        2
+      ],
+      "acuerdo_pct": 100,
+      "desacuerdo_pct": 0,
+      "neutral_pct": 0,
+      "destacado_lamina_8": true
+    },
+    {
+      "id": "2.4",
+      "enunciado": "La automatización del cálculo de stock y alertas de vencimiento mejoraría la eficiencia operacional.",
+      "frecuencias": [
+        0,
+        0,
+        0,
+        2,
+        2
+      ],
+      "acuerdo_pct": 100,
+      "desacuerdo_pct": 0,
+      "neutral_pct": 0,
+      "destacado_lamina_8": true
+    },
+    {
+      "id": "2.5",
+      "enunciado": "Contar con modelos predictivos para anticipar la demanda de alimentos reduciría significativamente las mermas de productos.",
+      "frecuencias": [
+        0,
+        0,
+        1,
+        1,
+        2
+      ],
+      "acuerdo_pct": 75,
+      "desacuerdo_pct": 0,
+      "neutral_pct": 25,
+      "destacado_lamina_8": true
+    },
+    {
+      "id": "2.6",
+      "enunciado": "La empresa dispone de equipos computacionales y disposición del personal para adoptar una nueva plataforma digital.",
+      "frecuencias": [
+        0,
+        2,
+        1,
+        0,
+        1
+      ],
+      "acuerdo_pct": 25,
+      "desacuerdo_pct": 50,
+      "neutral_pct": 25,
+      "destacado_lamina_8": true
+    },
+    {
+      "id": "3.1",
+      "enunciado": "Reducir el consumo de papel e impresiones es un objetivo prioritario dentro de la gestión ambiental de la empresa.",
+      "frecuencias": [
+        0,
+        0,
+        2,
+        1,
+        1
+      ],
+      "acuerdo_pct": 50,
+      "desacuerdo_pct": 0,
+      "neutral_pct": 50,
+      "destacado_lamina_8": false
+    },
+    {
+      "id": "3.2",
+      "enunciado": "Diagramar y estandarizar formalmente los procesos operativos ayudaría a reducir fallas y desperdicios de productos.",
+      "frecuencias": [
+        0,
+        0,
+        1,
+        1,
+        2
+      ],
+      "acuerdo_pct": 75,
+      "desacuerdo_pct": 0,
+      "neutral_pct": 25,
+      "destacado_lamina_8": true
+    },
+    {
+      "id": "3.3",
+      "enunciado": "Es necesario que existan normas claras sobre quién tiene permiso para ver o cambiar la información del trabajo diario.",
+      "frecuencias": [
+        0,
+        0,
+        1,
+        2,
+        1
+      ],
+      "acuerdo_pct": 75,
+      "desacuerdo_pct": 0,
+      "neutral_pct": 25,
+      "destacado_lamina_8": true
+    },
+    {
+      "id": "4.1",
+      "enunciado": "Disponer de pantallas o tableros de control visuales (dashboards) facilitaría el monitoreo diario de los indicadores del negocio.",
+      "frecuencias": [
+        0,
+        0,
+        2,
+        1,
+        1
+      ],
+      "acuerdo_pct": 50,
+      "desacuerdo_pct": 0,
+      "neutral_pct": 50,
+      "destacado_lamina_8": false
+    },
+    {
+      "id": "4.2",
+      "enunciado": "Los equipos de computación e internet con los que trabajamos actualmente funcionan bien para usar un nuevo sistema.",
+      "frecuencias": [
+        0,
+        0,
+        1,
+        2,
+        1
+      ],
+      "acuerdo_pct": 75,
+      "desacuerdo_pct": 0,
+      "neutral_pct": 25,
+      "destacado_lamina_8": true
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+[
+  {
+    "autor": "Chacón Ramírez et al.",
+    "anio": 2023,
+    "ambito": "Venezuela",
+    "aporte": "Arquitectura nube + local + borde para Agro 4.0 bajo cortes eléctricos"
+  },
+  {
+    "autor": "Peña de Marchán",
+    "anio": 2024,
+    "ambito": "Venezuela",
+    "aporte": "Uso transparente y ético del Big Data → gobernanza y explicabilidad"
+  },
+  {
+    "autor": "Chávez",
+    "anio": 2025,
+    "ambito": "Internacional",
+    "aporte": "Integración de datos y optimización de recursos como claves del Big Data agro"
+  },
+  {
+    "autor": "Garavito Hernández et al.",
+    "anio": 2026,
+    "ambito": "Internacional",
+    "aporte": "Big Data + IA en la cadena de suministro; la calidad del dato de origen es el obstáculo principal"
+  },
+  {
+    "autor": "Hernández Romero",
+    "anio": 2026,
+    "ambito": "México",
+    "aporte": "PyMEs agroalimentarias adoptan sostenibilidad con soluciones de bajo costo; el capital es la barrera"
+  }
+]

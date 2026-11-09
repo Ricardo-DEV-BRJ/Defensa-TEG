@@ -1,0 +1,55 @@
+{
+  "fuente": "TEG Tabla 22 (precios referenciales a noviembre de 2026, InterServer)",
+  "moneda": "USD",
+  "rubros": [
+    {
+      "rubro": "Servidor privado virtual (6 meses)",
+      "descripcion": "VPS Linux InterServer, 2 porciones (4 GB RAM, 80 GB SSD)",
+      "cantidad": 6,
+      "unitario": 6.0,
+      "total": 36.0
+    },
+    {
+      "rubro": "Dominio web",
+      "descripcion": "Registro anual (USD 5–15 según extensión; se adopta el máximo)",
+      "cantidad": 1,
+      "unitario": 15.0,
+      "total": 15.0
+    },
+    {
+      "rubro": "Plataforma de datos",
+      "descripcion": "Docker, PostgreSQL y MinIO (código abierto)",
+      "cantidad": null,
+      "unitario": 0,
+      "total": 0
+    },
+    {
+      "rubro": "Desarrollo e implementación",
+      "descripcion": "240 horas aportadas por los investigadores",
+      "cantidad": 240,
+      "unitario": 0,
+      "total": 0
+    },
+    {
+      "rubro": "Capacitación",
+      "descripcion": "12 horas por roles, impartidas por los investigadores",
+      "cantidad": 1,
+      "unitario": 0,
+      "total": 0
+    }
+  ],
+  "subtotal": 51.0,
+  "contingencia_pct": 10,
+  "contingencia": 5.1,
+  "total": 56.1,
+  "recurrente_anual": {
+    "vps": 72.0,
+    "dominio": 15.0,
+    "total": 87.0
+  },
+  "ejemplo_pri": {
+    "ahorro_mensual_supuesto": 250.0,
+    "costo_recurrente_mensual": 7.25,
+    "resultado": "La inversión se recupera en menos de un mes (ilustrativo)."
+  }
+}

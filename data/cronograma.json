@@ -1,0 +1,89 @@
+{
+  "fuente": "TEG 6.4.8 y Tabla 24",
+  "unidad": "semana",
+  "total_semanas": 24,
+  "fases": [
+    {
+      "fase": "I",
+      "nombre": "Preparación y línea base",
+      "inicio": 1,
+      "fin": 4,
+      "actividades": [
+        "Acta de inicio y medición de la línea base",
+        "Modelado BPMN de procesos actuales y propuestos",
+        "Matriz de roles y permisos; bitácora de auditoría"
+      ]
+    },
+    {
+      "fase": "II",
+      "nombre": "Infraestructura y captura",
+      "inicio": 3,
+      "fin": 8,
+      "actividades": [
+        "Contratación del VPS y del dominio; servicio de despliegue",
+        "Despliegue de frontend, backend, base de datos y MinIO",
+        "Conector de importación del sistema administrativo"
+      ]
+    },
+    {
+      "fase": "III",
+      "nombre": "Integración y almacenamiento",
+      "inicio": 7,
+      "fin": 12,
+      "actividades": [
+        "Pipeline ETL con validación y deduplicación",
+        "Almacén dimensional y módulo multimoneda",
+        "Respaldos automáticos y pruebas de restauración"
+      ]
+    },
+    {
+      "fase": "IV",
+      "nombre": "Analítica y visualización",
+      "inicio": 11,
+      "fin": 18,
+      "actividades": [
+        "Stock mínimo de seguridad y punto de reorden",
+        "Clasificación por rotación y segmentación de clientes",
+        "Previsión de la demanda",
+        "Tableros de control y alertas"
+      ]
+    },
+    {
+      "fase": "V",
+      "nombre": "Capacitación, operación piloto y evaluación",
+      "inicio": 17,
+      "fin": 24,
+      "actividades": [
+        "Capacitación del personal por roles",
+        "Operación piloto asistida y ajustes",
+        "Evaluación de indicadores e informe de cierre"
+      ]
+    }
+  ],
+  "metas": [
+    {
+      "indicador": "Exactitud del inventario",
+      "meta": "≥ 98%"
+    },
+    {
+      "indicador": "Duplicados detectados antes del despacho",
+      "meta": "100%"
+    },
+    {
+      "indicador": "Usuarios con rol asignado",
+      "meta": "100% en el mes 1"
+    },
+    {
+      "indicador": "Reducción del uso de papel",
+      "meta": "80% a los 2 meses"
+    },
+    {
+      "indicador": "Reembolsos por desincronización",
+      "meta": "0 a los 3 meses"
+    },
+    {
+      "indicador": "Cumplimiento de inspecciones",
+      "meta": "≥ 95%"
+    }
+  ]
+}
