@@ -1,0 +1,23 @@
+<!--
+  Plantilla «Diagrama»: una figura protagonista (imagen del TEG o SVG propio) y hasta 3 notas.
+  - Sin notas, agrega la clase plantilla-diagrama--completo para usar todo el ancho.
+  - La figura nunca se deforma (object-fit: contain). Escribe un alt que la describa.
+  - Las notas aparecen una por paso (data-fragment).
+-->
+<div class="plantilla plantilla-diagrama">
+  <h2 class="plantilla__titulo">Título de la lámina</h2>
+  <div class="plantilla__cuerpo">
+    <figure class="figura">
+      <img
+        src="img/figuras-teg/fig15-arquitectura-multicapa.png"
+        alt="Descripción breve de lo que muestra la figura"
+      />
+      <figcaption>Número y nombre de la figura en el TEG</figcaption>
+    </figure>
+    <ul class="lista-ideas">
+      <li data-fragment="1">Primera nota sobre la figura</li>
+      <li data-fragment="2">Segunda nota</li>
+      <li data-fragment="3">Tercera nota</li>
+    </ul>
+  </div>
+</div>

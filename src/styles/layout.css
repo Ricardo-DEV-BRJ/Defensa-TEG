@@ -1,6 +1,6 @@
 /*
- * Estructura de página. Fase 0: escenario fijo de 1920×1080 sin escalar.
- * El escalado con transform: scale() llega en la Fase 1.2 (src/core/scaler.js).
+ * Estructura de página del motor (ADR-005 y ADR-006): escenario, láminas, fragmentos,
+ * vista general, pantalla negra e indicador «Ir a lámina».
  */
 *,
 *::before,
@@ -10,15 +10,148 @@
 
 body {
   margin: 0;
+  /* Mismo fondo que las láminas: las bandas fuera del escenario no se notan. */
+  background: var(--color-fondo);
 }
 
+/* ── Escenario: 1920×1080 centrado; scaler.js escribe --escala ─────────────── */
 .escenario {
-  display: grid;
-  place-items: center;
+  /* fixed: el tamaño sin escalar nunca genera barras de desplazamiento */
+  position: fixed;
+  top: 50%;
+  left: 50%;
   width: var(--escenario-ancho);
   height: var(--escenario-alto);
+  overflow: hidden;
+  font-family: var(--fuente-titulos);
+  font-size: var(--texto-cuerpo);
+  line-height: var(--interlineado-texto);
+  color: var(--color-texto);
+  background: var(--color-fondo);
+  /* Centro del escenario al centro de la ventana y escala alrededor de ese centro. */
+  transform: translate(-50%, -50%) scale(var(--escala, 1));
+  transform-origin: center;
+  /* Un clic para avanzar no debe seleccionar texto. */
+  user-select: none;
+}
+
+/* ── Láminas: solo la actual se ve ─────────────────────────────────────────── */
+.lamina {
+  display: none;
+  width: 100%;
+  height: 100%;
+  /* Margen seguro del 5 %: el contenido nunca entra en la zona de overscan. */
   padding: var(--margen-seguro-y) var(--margen-seguro-x);
+}
+
+.lamina[data-actual] {
+  display: block;
+}
+
+/* Lámina sin archivo en src/slides/: número y título (provisional). */
+.lamina-provisional {
+  display: grid;
+  place-content: center;
+  height: 100%;
+  text-align: center;
+}
+
+.lamina-provisional__numero {
+  margin: 0;
+  font-size: var(--texto-cifra);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--color-primario);
+}
+
+.lamina-provisional__titulo {
+  margin: var(--espacio-m) 0 0;
+  font-size: var(--texto-titulo);
+}
+
+/* ── Fragmentos (RF-03): data-fragment="n"; el deck marca data-visible ─────── */
+[data-fragment] {
+  transition:
+    opacity var(--duracion-fragmento) ease,
+    visibility var(--duracion-fragmento);
+}
+
+[data-fragment]:not([data-visible]) {
+  opacity: 0;
+  visibility: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-fragment] {
+    transition: none;
+  }
+}
+
+/* ── Vista general (tecla O): las 16 principales, sin las de reserva ───────── */
+.escenario[data-modo='vista-general'] {
+  display: grid;
+  grid-template-columns: repeat(4, max-content);
+  gap: var(--espacio-m);
+  place-content: center;
+  padding: var(--margen-seguro-y) var(--margen-seguro-x);
+}
+
+.escenario[data-modo='vista-general'] .lamina {
+  display: block;
+  width: var(--escenario-ancho);
+  height: var(--escenario-alto);
+  /* zoom reduce también el espacio que ocupa en la cuadrícula (384 × 216 px). */
+  zoom: var(--vista-general-zoom);
+  /* Bordes divididos por el zoom para que se vean de 1 px y 6 px. */
+  outline: calc(1px / var(--vista-general-zoom)) solid var(--color-secundario);
+  cursor: pointer;
+}
+
+.escenario[data-modo='vista-general'] .lamina[data-actual] {
+  outline: calc(6px / var(--vista-general-zoom)) solid var(--color-primario);
+}
+
+.escenario[data-modo='vista-general'] .lamina[data-reserva] {
+  display: none;
+}
+
+/* En las miniaturas, los fragmentos se ven todos. */
+.escenario[data-modo='vista-general'] [data-fragment] {
+  opacity: 1;
+  visibility: visible;
+  transition: none;
+}
+
+/* ── Pantalla negra (tecla B): cubre también las bandas fuera del escenario ── */
+body[data-negro]::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  background: var(--color-pantalla-negra);
+  cursor: none;
+}
+
+/* ── Indicador «Ir a lámina» (G + número + Enter) ──────────────────────────── */
+.ir-a {
+  position: absolute;
+  right: var(--margen-seguro-x);
+  bottom: var(--margen-seguro-y);
+  padding: var(--espacio-s) var(--espacio-m);
   font-size: var(--texto-min);
-  /* Provisional: deja ver el borde del escenario mientras no hay paleta (Fase 2.1). */
-  outline: 1px dashed currentColor;
+  color: var(--color-fondo);
+  background: var(--color-primario);
+}
+
+/* ── Guías (?guias en la URL): borde del escenario y margen seguro ─────────── */
+.escenario[data-guias] {
+  outline: 1px solid var(--color-secundario);
+}
+
+.escenario[data-guias]::after {
+  content: '';
+  position: absolute;
+  inset: var(--margen-seguro-y) var(--margen-seguro-x);
+  outline: 1px dashed var(--color-alerta);
+  pointer-events: none;
 }

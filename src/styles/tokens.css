@@ -1,17 +1,96 @@
 /*
- * Tokens de diseño: única fuente de colores, fuentes y espaciados (docs/identidad-visual.md).
- * Fase 0: solo las medidas estructurales fijadas en CLAUDE.md.
- * La paleta y las fuentes Barlow se agregan en la Fase 2.1.
+ * Tokens de diseño: única fuente de colores, fuentes, tamaños y espaciados
+ * (docs/identidad-visual.md y CLAUDE.md). Ningún otro archivo escribe colores, tamaños de
+ * letra ni espaciados a mano; tests/reglas-visuales.test.js lo comprueba.
  */
+
+/* ── Fuentes locales (public/fonts/, licencia SIL OFL): nada se descarga de internet ──
+ * Barlow Condensed: títulos y textos cortos. Barlow: párrafos y notas.
+ * Los archivos son el subconjunto «latin»: no traen → ← ↑ ≥ ≤ ≈ √ σ ●. Esos símbolos los
+ * dibuja la siguiente fuente de la lista (Segoe UI en Windows). */
+@font-face {
+  font-family: 'Barlow Condensed';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/barlow-condensed-latin-400-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Barlow Condensed';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/barlow-condensed-latin-700-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Barlow';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/barlow-latin-400-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Barlow';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/barlow-latin-700-normal.woff2') format('woff2');
+}
+
 :root {
-  /* Escenario fijo 16:9 */
+  /* ── Paleta (tema claro). Contraste medido sobre --color-fondo ── */
+  --color-texto: #13282b; /* 14,5:1 · texto principal */
+  --color-primario: #1d555b; /* 7,9:1 · títulos, capas, barras (UVM, petróleo) */
+  --color-acento: #88c426; /* 2,0:1 · SOLO formas y gráficos, NUNCA texto (UVM, verde Higuerón) */
+  --color-alerta: #860000; /* 9,9:1 · duplicados, nivel 1, semáforo rojo (UVM, rojo semilla) */
+  --color-exito-texto: #4f7d17; /* 4,6:1 · texto y cifras en verde */
+  --color-advertencia: #b06f00; /* 3,9:1 · semáforo ámbar: solo formas con etiqueta */
+  --color-secundario: #5c6b6d; /* 5,3:1 · notas, fuentes, «n = 4» */
+  --color-fondo: #f7f9f8; /* fondo de lámina */
+  --color-pantalla-negra: #000; /* tecla B; no forma parte de la paleta */
+
+  /* ── Familias ── */
+  --fuente-titulos: 'Barlow Condensed', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  --fuente-texto: 'Barlow', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+
+  /* ── Tamaños de letra en el escenario: ninguno menor que 28 px ── */
+  --texto-min: 28px; /* notas, fuentes, pies de figura */
+  --texto-cuerpo: 40px; /* listas y textos cortos */
+  --texto-destacado: 48px; /* subtítulos de columna, etiqueta de una cifra */
+  --texto-titulo: 72px; /* título de lámina */
+  --texto-portada: 80px; /* título de la portada */
+  --texto-cifra: 220px; /* cifra grande */
+
+  --interlineado-titulo: 1.05;
+  --interlineado-texto: 1.25;
+
+  /* ── Espaciado ── */
+  --espacio-xs: 8px;
+  --espacio-s: 16px;
+  --espacio-m: 32px;
+  --espacio-l: 56px;
+  --espacio-xl: 96px;
+
+  /* ── Formas ── */
+  --borde-fino: 2px;
+  --borde-grueso: 8px;
+  --marca-titulo-ancho: 120px; /* barra verde bajo los títulos */
+
+  /* Isologo UVM (solo láminas 1 y 16): se fija el alto y el ancho sigue su proporción */
+  --isologo-alto: 520px;
+
+  /* ── Escenario fijo 16:9 y margen seguro del 5 % por el overscan (96 px × 54 px) ── */
   --escenario-ancho: 1920px;
   --escenario-alto: 1080px;
-
-  /* Margen seguro del 5 % por el overscan del televisor (96 px × 54 px) */
   --margen-seguro-x: calc(var(--escenario-ancho) * 0.05);
   --margen-seguro-y: calc(var(--escenario-alto) * 0.05);
 
-  /* Tamaño mínimo de texto dentro del escenario */
-  --texto-min: 28px;
+  /* Vista general: miniaturas a 1/5 (384 × 216 px), 4 por fila dentro del margen seguro */
+  --vista-general-zoom: 0.2;
+
+  /* ── Movimiento (máximo 1,5 s) ── */
+  --duracion-fragmento: 400ms;
 }

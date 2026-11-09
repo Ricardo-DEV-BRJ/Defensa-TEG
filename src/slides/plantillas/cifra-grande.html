@@ -1,0 +1,29 @@
+<!--
+  Plantilla «Cifra grande»: un número protagonista y, debajo, su desglose (hasta 3 partes).
+  - Las cifras NUNCA se escriben a mano: data-dato="archivo.ruta" las toma de data/*.json
+    (por ejemplo data-dato="costos.total" data-formato="usd").
+  - El texto entre corchetes es solo un marcador hasta que src/core/datos.js las rellene.
+  - El desglose aparece en un segundo paso (data-fragment="1").
+-->
+<div class="plantilla plantilla-cifra">
+  <h2 class="plantilla__titulo">Título de la lámina</h2>
+  <div class="plantilla__cuerpo">
+    <p class="cifra"><span data-dato="archivo.total" data-formato="usd">[cifra]</span></p>
+    <p class="cifra__etiqueta">Qué representa la cifra, en una sola línea</p>
+    <ul class="desglose" data-fragment="1">
+      <li>
+        <span class="desglose__valor" data-dato="archivo.parte">[parte]</span>
+        <span class="desglose__concepto">Primer concepto</span>
+      </li>
+      <li>
+        <span class="desglose__valor" data-dato="archivo.parte">[parte]</span>
+        <span class="desglose__concepto">Segundo concepto</span>
+      </li>
+      <li>
+        <span class="desglose__valor" data-dato="archivo.parte">[parte]</span>
+        <span class="desglose__concepto">Tercer concepto</span>
+      </li>
+    </ul>
+  </div>
+  <p class="plantilla__pie">Fuente: tabla del TEG</p>
+</div>

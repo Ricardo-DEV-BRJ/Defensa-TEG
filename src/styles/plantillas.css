@@ -1,0 +1,274 @@
+/*
+ * Plantillas de lámina: portada, título + contenido, dos columnas, cifra grande y diagrama.
+ * Los esqueletos HTML están en src/slides/plantillas/ y se ven en /galeria.html (desarrollo).
+ * Todo valor sale de tokens.css. El verde acento solo se usa en formas (marcas y barras).
+ */
+
+/* ── Estructura común: título, cuerpo y pie ────────────────────────────────── */
+.plantilla {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: var(--espacio-l);
+  height: 100%;
+}
+
+.plantilla__titulo {
+  margin: 0;
+  font-size: var(--texto-titulo);
+  font-weight: 700;
+  line-height: var(--interlineado-titulo);
+  color: var(--color-primario);
+  text-wrap: balance;
+}
+
+/* Barra verde bajo el título: el acento como forma, no como texto. */
+.plantilla__titulo::after {
+  content: '';
+  display: block;
+  width: var(--marca-titulo-ancho);
+  height: var(--borde-grueso);
+  margin-top: var(--espacio-s);
+  background: var(--color-acento);
+}
+
+.plantilla__cuerpo {
+  min-height: 0;
+  margin: 0;
+}
+
+.plantilla__pie {
+  margin: 0;
+  font-family: var(--fuente-texto);
+  font-size: var(--texto-min);
+  color: var(--color-secundario);
+}
+
+/* ── Texto ─────────────────────────────────────────────────────────────────── */
+.lamina strong {
+  font-weight: 700;
+  color: var(--color-primario);
+}
+
+.parrafo {
+  margin: 0;
+  font-family: var(--fuente-texto);
+}
+
+.nota {
+  font-family: var(--fuente-texto);
+  font-size: var(--texto-min);
+  color: var(--color-secundario);
+}
+
+/* Rojo y verde nunca solos: acompáñalos de una palabra o un ícono (RNF-04). */
+.texto-alerta {
+  color: var(--color-alerta);
+}
+
+.texto-exito {
+  color: var(--color-exito-texto);
+}
+
+/* ── Lista de ideas (máximo 4): marca cuadrada verde ───────────────────────── */
+.lista-ideas {
+  display: grid;
+  align-content: start;
+  gap: var(--espacio-m);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lista-ideas > li {
+  position: relative;
+  padding-left: var(--espacio-l);
+}
+
+.lista-ideas > li::before {
+  content: '';
+  position: absolute;
+  top: 0.35em;
+  left: 0;
+  width: 0.55em;
+  height: 0.55em;
+  background: var(--color-acento);
+}
+
+/* ── Portada ───────────────────────────────────────────────────────────────── */
+.plantilla-portada {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: var(--espacio-xl);
+  height: 100%;
+}
+
+/* Isologo completo: solo se fija el alto; el ancho sigue la proporción (no se deforma). */
+.isologo {
+  display: block;
+  height: var(--isologo-alto);
+  width: auto;
+}
+
+.plantilla-portada__texto {
+  display: grid;
+  gap: var(--espacio-m);
+}
+
+.plantilla-portada__institucion {
+  margin: 0;
+  font-size: var(--texto-min);
+  font-weight: 700;
+  color: var(--color-secundario);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.plantilla-portada__titulo {
+  margin: 0;
+  font-size: var(--texto-portada);
+  font-weight: 700;
+  line-height: var(--interlineado-titulo);
+  color: var(--color-primario);
+  text-wrap: balance;
+}
+
+.plantilla-portada__titulo::after {
+  content: '';
+  display: block;
+  width: var(--marca-titulo-ancho);
+  height: var(--borde-grueso);
+  margin-top: var(--espacio-m);
+  background: var(--color-acento);
+}
+
+.plantilla-portada__personas {
+  display: grid;
+  gap: var(--espacio-s);
+  margin: 0;
+}
+
+.plantilla-portada__personas div {
+  display: flex;
+  gap: var(--espacio-s);
+}
+
+.plantilla-portada__personas dt {
+  font-weight: 700;
+  color: var(--color-primario);
+}
+
+.plantilla-portada__personas dd {
+  margin: 0;
+}
+
+.plantilla-portada__lugar {
+  margin: 0;
+  font-family: var(--fuente-texto);
+  font-size: var(--texto-min);
+  color: var(--color-secundario);
+}
+
+/* ── Dos columnas ──────────────────────────────────────────────────────────── */
+.plantilla-dos-columnas .plantilla__cuerpo {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--espacio-xl);
+}
+
+.columna__titulo {
+  margin: 0 0 var(--espacio-m);
+  padding-bottom: var(--espacio-s);
+  border-bottom: var(--borde-fino) solid var(--color-primario);
+  font-size: var(--texto-destacado);
+  font-weight: 700;
+  line-height: var(--interlineado-titulo);
+  color: var(--color-primario);
+}
+
+/* ── Cifra grande ──────────────────────────────────────────────────────────── */
+.plantilla-cifra .plantilla__cuerpo {
+  display: grid;
+  align-content: center;
+  gap: var(--espacio-m);
+}
+
+.cifra {
+  margin: 0;
+  font-size: var(--texto-cifra);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--color-primario);
+  font-variant-numeric: tabular-nums;
+}
+
+.cifra__etiqueta {
+  margin: 0;
+  font-size: var(--texto-destacado);
+}
+
+.desglose {
+  display: flex;
+  gap: var(--espacio-xl);
+  margin: var(--espacio-m) 0 0;
+  padding: var(--espacio-m) 0 0;
+  border-top: var(--borde-fino) solid var(--color-secundario);
+  list-style: none;
+}
+
+.desglose__valor {
+  display: block;
+  font-size: var(--texto-titulo);
+  font-weight: 700;
+  line-height: var(--interlineado-titulo);
+  font-variant-numeric: tabular-nums;
+}
+
+.desglose__concepto {
+  display: block;
+  font-family: var(--fuente-texto);
+  font-size: var(--texto-min);
+  color: var(--color-secundario);
+}
+
+/* ── Diagrama: figura protagonista y hasta 3 notas ─────────────────────────── */
+.plantilla-diagrama .plantilla__cuerpo {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  /* Una fila que ocupa el alto disponible y puede encogerse: la figura nunca lo desborda. */
+  grid-template-rows: minmax(0, 1fr);
+  gap: var(--espacio-l);
+}
+
+.plantilla-diagrama .lista-ideas {
+  align-self: center;
+}
+
+/* Sin notas: la figura ocupa todo el ancho. */
+.plantilla-diagrama--completo .plantilla__cuerpo {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.figura {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: var(--espacio-s);
+  min-height: 0;
+  margin: 0;
+}
+
+/* La figura se reduce para caber, pero nunca se deforma. */
+.figura > img,
+.figura > svg {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  object-fit: contain;
+}
+
+.figura > figcaption {
+  font-family: var(--fuente-texto);
+  font-size: var(--texto-min);
+  color: var(--color-secundario);
+  text-align: center;
+}

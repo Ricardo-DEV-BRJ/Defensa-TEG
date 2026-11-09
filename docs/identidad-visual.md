@@ -30,6 +30,9 @@ Descartados del manual: `#bcd4de` (ilegible sobre claro) y `#809e3e` (redundante
 - **Barlow Condensed** Regular y Bold (fuente corporativa del manual; licencia SIL OFL, gratuita) para títulos y textos cortos.
 - **Barlow** Regular para párrafos y notas (misma familia).
 - Descargar los `.woff2` y guardarlos en `public/fonts/` (no enlazar Google Fonts remoto).
+- Los archivos instalados son el subconjunto «latin» de fontsource (Barlow Condensed 400/700,
+  Barlow 400/700). No incluyen → ← ↑ ≥ ≤ ≈ √ σ ●: esos símbolos se ven con la fuente de respaldo
+  del sistema. En diagramas, conviene dibujar las flechas como formas SVG.
 - **Britannic Bold** (tipografía del isologo) es comercial: no se usa; el logo va como imagen.
 
 ## Imágenes disponibles
