@@ -1967,3 +1967,65 @@
     pointer-events: none;
   }
 }
+
+/* ── Efectos 3D con el cursor (inclinacion.js y data-flow.js, ADR-015) ───────
+ * Tarjeta inclinada: gira hacia el cursor con una sombra que se desplaza. La transición incluye
+ * la opacidad y la visibilidad de los fragmentos, para no anular su aparición.
+ */
+[data-inclinado] {
+  box-shadow: var(--sombra-x, 0) var(--sombra-y, 0) var(--espacio-m) var(--color-sombra);
+  transform: perspective(var(--perspectiva)) rotateX(var(--inclinar-x, 0deg))
+    rotateY(var(--inclinar-y, 0deg)) scale(var(--inclinacion-escala));
+  transition:
+    transform var(--duracion-inclinacion) ease-out,
+    box-shadow var(--duracion-inclinacion) ease-out,
+    opacity var(--duracion-fragmento) ease,
+    visibility var(--duracion-fragmento);
+}
+
+/* Las tarjetas de la lámina 4 heredan la perspectiva de su fila (para el volteo de entrada),
+ * centrada en el medio de la fila: sumada a la de la inclinación deformaría las de los extremos.
+ * Mientras una tarjeta está inclinada, la fila no aplica su perspectiva. */
+.tarjetas-icono:has(> [data-inclinado]) {
+  perspective: none;
+}
+
+/* Capas de la lámina 13: con el cursor encima, la pila gira y cada capa se adelanta según su
+ * nivel (la visualización, la más cercana). En reposo, plana. */
+.arquitectura__capas {
+  transform-style: preserve-3d;
+  transition: transform var(--duracion-giro) ease-out;
+}
+
+.arquitectura__capas[data-3d] {
+  transform: perspective(var(--perspectiva)) rotateX(var(--capas-x, 0deg))
+    rotateY(var(--capas-y, 0deg)) scale(var(--capas-escala));
+}
+
+.arquitectura__capas .capa {
+  transition:
+    transform var(--duracion-giro) ease-out,
+    box-shadow var(--duracion-giro) ease-out,
+    opacity var(--duracion-fragmento) ease,
+    visibility var(--duracion-fragmento);
+}
+
+.arquitectura__capas[data-3d] .capa {
+  box-shadow: 0 var(--espacio-xs) var(--espacio-m) var(--color-sombra);
+  transform: translateZ(calc(var(--capa-profundidad) * var(--nivel, 0)));
+}
+
+/* Con movimiento reducido, con los efectos apagados (E) y en la vista general: todo plano. */
+@media (prefers-reduced-motion: reduce) {
+  .arquitectura__capas,
+  .arquitectura__capas .capa {
+    transition: none;
+  }
+}
+
+.escenario:is([data-sin-efectos], [data-modo='vista-general']) [data-inclinado],
+.escenario:is([data-sin-efectos], [data-modo='vista-general']) .arquitectura__capas,
+.escenario:is([data-sin-efectos], [data-modo='vista-general']) .arquitectura__capas .capa {
+  box-shadow: none;
+  transform: none;
+}

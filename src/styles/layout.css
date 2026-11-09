@@ -155,3 +155,21 @@ body[data-negro]::after {
   outline: 1px dashed var(--color-alerta);
   pointer-events: none;
 }
+
+/* ── Partículas de fondo (particulas.js, ADR-015): detrás de las láminas ──────
+ * z-index −1 dentro del escenario (que ya es un contexto de apilamiento por su transform): se
+ * pinta sobre el fondo y debajo del contenido. No se ven en la vista general ni con la tecla E.
+ */
+.particulas {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.escenario[data-modo='vista-general'] .particulas,
+.escenario[data-sin-efectos] .particulas {
+  display: none;
+}

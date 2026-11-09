@@ -32,6 +32,8 @@ describe('mapa de teclas (RF-02 y RF-05)', () => {
     ['p', 'abrirPresentador'],
     ['t', 'reiniciarCronometro'],
     ['s', 'saltarAnimacion'],
+    ['e', 'alternarEfectos'],
+    ['E', 'alternarEfectos'],
     ['Escape', 'cerrar'],
     ['Enter', 'cerrar'],
   ])('%s → %s', (key, accion) => {

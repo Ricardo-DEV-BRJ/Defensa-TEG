@@ -10,6 +10,10 @@
  *    no se mueve nada, y la tecla S la lleva a su estado final (la ráfaga ya llegó).
  *  - Clic en una capa (o Enter / Espacio con el foco en ella): la amplía con sus componentes en
  *    lista; las demás muestran solo número y nombre. Otro clic la cierra.
+ *  - Capas en 3D (ADR-015): con el ratón encima, la pila gira hasta 6° hacia el cursor, se achica
+ *    un poco (para no invadir el margen ni los transversales) y las capas se separan en
+ *    profundidad (más arriba, más cerca); al salir vuelve a plano. En reposo
+ *    queda plana para que se lea. No actúa con movimiento reducido ni con los efectos apagados.
  *
  * Uso: <div class="arquitectura" data-componente="data-flow"> con un .flujo y capas
  * <li class="capa" data-capa="n">, n = 1 (captura) … 5 (visualización).
@@ -24,6 +28,7 @@ import {
   leerDuraciones,
   movimientoReducido,
 } from './comun.js';
+import { calcularInclinacion } from '../core/inclinacion.js';
 
 export { alternarAmpliada };
 
@@ -191,6 +196,25 @@ export function crear(elemento) {
   flujo.setAttribute('aria-label', 'Repetir el flujo de datos');
   ampliar(null);
 
+  // Capas en 3D: cada capa conoce su nivel (1 = captura) para separarse en profundidad.
+  const pila = elemento.querySelector('.arquitectura__capas');
+  for (const capa of capas) capa.nodo.style.setProperty('--nivel', String(capa.n));
+  const aplanar = () => pila?.removeAttribute('data-3d');
+  pila?.addEventListener('pointermove', (evento) => {
+    const apagados = elemento.closest('.escenario')?.hasAttribute('data-sin-efectos');
+    if (evento.pointerType !== 'mouse' || apagados || movimientoReducido(ventana)) return;
+    const caja = pila.getBoundingClientRect();
+    const { rotX, rotY } = calcularInclinacion(
+      (evento.clientX - caja.left) / caja.width,
+      (evento.clientY - caja.top) / caja.height,
+      { maxGrados: 6 },
+    );
+    pila.setAttribute('data-3d', '');
+    pila.style.setProperty('--capas-x', `${rotX.toFixed(2)}deg`);
+    pila.style.setProperty('--capas-y', `${rotY.toFixed(2)}deg`);
+  });
+  pila?.addEventListener('pointerleave', aplanar);
+
   return {
     activar() {
       ultimaAlta = capaMasAlta(visibles());
@@ -198,6 +222,7 @@ export function crear(elemento) {
     desactivar() {
       detener();
       ampliar(null);
+      aplanar();
       if (elemento.contains(documento.activeElement)) documento.activeElement.blur();
       ultimaAlta = 0;
     },

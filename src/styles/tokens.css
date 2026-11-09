@@ -58,6 +58,8 @@
   --color-capa: color-mix(in srgb, var(--color-primario) 8%, var(--color-fondo));
   /* Fondo de una fila marcada como duplicado o bloqueada (simulador de la lámina 14). */
   --color-alerta-suave: color-mix(in srgb, var(--color-alerta) 8%, var(--color-fondo));
+  /* Sombra de una tarjeta inclinada o de una capa en 3D (efectos, ADR-015). */
+  --color-sombra: color-mix(in srgb, var(--color-texto) 18%, transparent);
   /* Segmento vacío de un medidor de nivel (lámina 9). */
   --color-vacio-grafico: color-mix(in srgb, var(--color-secundario) 22%, var(--color-fondo));
 
@@ -97,6 +99,11 @@
   --flecha-punta: 24px;
   --icono-tamano: 72px; /* íconos dibujados en SVG (lámina 4) */
   --perspectiva: 1200px; /* profundidad del giro 3D de las tarjetas */
+  --capa-profundidad: 5px; /* separación en profundidad entre capas de la lámina 13 en 3D */
+  /* Al girar, el elemento se achica un poco: su borde más cercano no invade el margen seguro
+   * ni los elementos vecinos (medido en el navegador, ADR-015). */
+  --inclinacion-escala: 0.95;
+  --capas-escala: 0.92;
   --punto-tamano: 24px; /* puntos de la línea de tiempo (lámina 5) */
   --conector-ancho: 200px; /* columna de una flecha con texto entre dos cajas (lámina 6) */
   --conector-alto: 56px; /* fila de una flecha vertical entre dos cajas (lámina 6) */
@@ -136,4 +143,6 @@
   --duracion-flujo: 900ms;
   /* Cuenta de una cifra de 0 a su valor (lámina 15) */
   --duracion-conteo: 1200ms;
+  /* Seguimiento del cursor al inclinar una tarjeta (ADR-015) */
+  --duracion-inclinacion: 150ms;
 }

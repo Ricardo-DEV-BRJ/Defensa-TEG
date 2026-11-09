@@ -34,4 +34,4 @@ principal por página (16:9), en su estado final y sin las láminas de reserva (
 
 ## Atajos de teclado
 → / espacio / AvPag: avanzar · ← / RePag: retroceder · O: vista general · F: pantalla completa ·
-B: pantalla negra · P: presentador · T: reiniciar cronómetro · S: saltar animación · G + número + Enter: ir a lámina.
+B: pantalla negra · P: presentador · T: reiniciar cronómetro · S: saltar animación · E: efectos (partículas y 3D) · G + número + Enter: ir a lámina.

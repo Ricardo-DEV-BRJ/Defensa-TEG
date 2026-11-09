@@ -5,6 +5,8 @@ import { rellenarDatos } from './core/datos.js';
 import { iniciarTeclado } from './core/keyboard.js';
 import { iniciarRouter, leerHash } from './core/router.js';
 import { iniciarEscalado } from './core/scaler.js';
+import { iniciarInclinacion } from './core/inclinacion.js';
+import { iniciarParticulas } from './core/particulas.js';
 import * as barChart from './components/bar-chart.js';
 import * as counter from './components/counter.js';
 import * as dataFlow from './components/data-flow.js';
@@ -57,6 +59,9 @@ for (const ruta of rellenarDatos(escenario, datos)) {
 }
 
 iniciarEscalado(escenario);
+// Efectos (ADR-015): red de partículas detrás de las láminas e inclinación 3D con el cursor.
+const particulas = iniciarParticulas(escenario);
+iniciarInclinacion(escenario);
 iniciarRouter(deck);
 iniciarTeclado(
   {
@@ -67,6 +72,10 @@ iniciarTeclado(
     cerrar: () => deck.cerrarVistaGeneral(),
     pantallaNegra: () => deck.alternarNegro(),
     saltarAnimacion: () => deck.saltarAlFinal(),
+    alternarEfectos: () => {
+      escenario.toggleAttribute('data-sin-efectos');
+      particulas.actualizar();
+    },
     pantallaCompleta: alternarPantallaCompleta,
     // abrirPresentador (P) y reiniciarCronometro (T) llegan en la Fase 5.
   },

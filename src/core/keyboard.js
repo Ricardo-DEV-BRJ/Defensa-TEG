@@ -26,6 +26,7 @@ const TECLAS = new Map([
   ['p', 'abrirPresentador'],
   ['t', 'reiniciarCronometro'],
   ['s', 'saltarAnimacion'],
+  ['e', 'alternarEfectos'], // partículas y 3D (ADR-015)
   ['Escape', 'cerrar'],
   ['Enter', 'cerrar'],
 ]);

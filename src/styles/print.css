@@ -62,6 +62,14 @@
     break-before: page;
   }
 
+  /* Sin inclinaciones ni capas en 3D: cada lámina sale plana. */
+  [data-inclinado],
+  .arquitectura__capas,
+  .arquitectura__capas .capa {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+
   /* Todos los pasos a la vista. */
   [data-fragment] {
     opacity: 1 !important;
@@ -74,6 +82,7 @@
   .demo,
   .gantt__detalle,
   .flujo__paquetes,
+  .particulas,
   .ir-a,
   .escenario[data-guias]::after,
   body[data-negro]::after {

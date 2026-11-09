@@ -390,3 +390,31 @@ bundle (lo resuelven unas 30 líneas propias que se pueden explicar); framework 
     `--color-neutro-grafico` se conserva para la lámina de reserva 18 (cuestionario completo).
 - **Consecuencias:** el % de acuerdo no oculta un desacuerdo mayoritario. El neutral no se muestra
   en la lámina; el detalle completo de cada ítem queda para la reserva 18.
+
+## ADR-015 · Efectos: partículas de fondo, inclinación 3D y capas 3D (excepción a la regla de 1,5 s)
+- **Contexto:** los autores pidieron (10-11-2026) elementos 3D y partículas interactivas con el
+  cursor. Eligieron partículas muy tenues detrás de todas las láminas, tarjetas que se inclinan y
+  las capas de la lámina 13 en 3D. Las partículas son una animación continua: CLAUDE.md limita las
+  animaciones a 1,5 s.
+- **Decisión:**
+  - **Excepción:** las partículas de fondo son la única animación continua permitida. Se pausan con
+    la pestaña oculta y en la vista general, no se animan con `prefers-reduced-motion` (queda una
+    imagen fija), no se imprimen, y la tecla **E** apaga y enciende todos los efectos
+    (`data-sin-efectos` en el escenario).
+  - **Partículas** (`src/core/particulas.js`): un `<canvas>` de 1920 × 1080 detrás de las láminas
+    (z-index −1 dentro del escenario), 70 puntos con semilla fija, color acento a 35 % de opacidad,
+    líneas petróleo a 14 % como máximo entre puntos a menos de 160 px; el cursor aparta los puntos
+    a menos de 180 px y vuelven a su deriva en unos 5 s. Va a 60 cuadros por segundo sin GPU.
+  - **Inclinación** (`src/core/inclinacion.js`): paneles y tarjetas (lista en
+    `SELECTOR_INCLINABLE`) giran hasta 6° hacia el cursor, se achican al 95 % y proyectan una
+    sombra hacia el lado contrario; al salir vuelven a plano en 150 ms y se quita el atributo,
+    para que recuperen sus propias transiciones. Solo con ratón. No incluye el isologo (no se puede
+    deformar) ni los paneles de las demostraciones de la lámina 14.
+  - **Capas 3D** (en `data-flow.js`): en reposo, planas; con el ratón encima, la pila gira hasta
+    6°, se achica al 92 % y cada capa se adelanta 5 px por nivel. El achique y los ángulos se
+    midieron en el navegador: nada sale del margen seguro ni toca los transversales.
+  - La lógica (generador con semilla, movimiento de partículas, enlaces, cálculo de la
+    inclinación) es pura y tiene pruebas.
+- **Consecuencias:** las partículas pasan por detrás de los textos que no están en una caja con
+  fondo; si en el TV distraen o el equipo va lento, la tecla E los apaga sin recargar. La
+  impresión sale plana y sin partículas.
