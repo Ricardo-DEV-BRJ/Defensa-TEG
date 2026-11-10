@@ -1,0 +1,65 @@
+<!--
+  Lámina 21 · Reserva: cómo se construyó esta presentación (plantilla «Título + contenido» con los
+  bloques «cadena», «metas» y «panel»). Solo se llega por número (G 21 Enter).
+  Pregunta guía: ¿Cómo está hecha esta presentación?
+  Cifras desde data/construccion.json, medidas del propio repositorio con npm run metricas
+  (ADR-018); tests/construccion.test.js avisa si quedaron viejas.
+  1. El motor: contenido y cifras → motor propio → láminas y componentes.
+  2. Cuatro cifras: pruebas, componentes, decisiones y librerías en tiempo de ejecución.
+  3. La pila técnica.
+  Lighthouse: aún no se midió (Fase 6); no se muestra.
+-->
+<div class="plantilla">
+  <h2 class="plantilla__titulo">Cómo se construyó esta presentación</h2>
+  <div class="plantilla__cuerpo apilado">
+    <div class="cadenas cadenas--compacta cadenas--decision">
+      <ol class="cadenas__filas">
+        <li class="cadena" data-fragment="1">
+          <p class="cadena__paso">Contenido y cifras del TEG en archivos de datos (JSON)</p>
+          <span class="cadena__flecha"><span class="solo-lector">alimentan</span></span>
+          <p class="cadena__paso">
+            Motor propio: láminas, dirección, teclado y escalado (<span
+              data-dato="construccion.modulos_motor"
+            ></span>
+            módulos)
+          </p>
+          <span class="cadena__flecha"><span class="solo-lector">arma</span></span>
+          <p class="cadena__paso">
+            <span data-dato="construccion.laminas_principales"></span> láminas +
+            <span data-dato="construccion.laminas_reserva"></span> de reserva y
+            <span data-dato="construccion.componentes"></span> componentes interactivos
+          </p>
+        </li>
+      </ol>
+    </div>
+
+    <div class="metas escalonado" data-fragment="2">
+      <div class="panel meta">
+        <p class="meta__cifra" data-dato="construccion.pruebas" data-formato="numero"></p>
+        <p class="meta__indicador">pruebas automáticas que se ejecutan antes de cada publicación</p>
+      </div>
+      <div class="panel meta">
+        <p class="meta__cifra" data-dato="construccion.componentes"></p>
+        <p class="meta__indicador">componentes interactivos con su lógica separada y probada</p>
+      </div>
+      <div class="panel meta">
+        <p class="meta__cifra" data-dato="construccion.decisiones"></p>
+        <p class="meta__indicador">decisiones de arquitectura registradas (ADR)</p>
+      </div>
+      <div class="panel meta">
+        <p class="meta__cifra" data-dato="construccion.dependencias_en_ejecucion"></p>
+        <p class="meta__indicador">librerías externas al presentar: funciona sin internet</p>
+      </div>
+    </div>
+
+    <p class="nota" data-fragment="3">
+      HTML, CSS y JavaScript nativos (módulos ES) · Vite · Vitest · ESLint y Prettier · GitHub
+      Actions → GitHub Pages
+    </p>
+  </div>
+  <p class="plantilla__pie">
+    <span data-dato="construccion.repositorio"></span> ·
+    <span data-dato="construccion.commits"></span> commits · cifras medidas el
+    <span data-dato="construccion.fecha"></span>
+  </p>
+</div>

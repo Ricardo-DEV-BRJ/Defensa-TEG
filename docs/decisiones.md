@@ -473,3 +473,29 @@ bundle (lo resuelven unas 30 líneas propias que se pueden explicar); framework 
 - **Consecuencias:** las etiquetas del lienzo son decorativas (sin cifras). El fondo sigue siendo la
   única animación continua (ADR-015) y la tecla E lo apaga. La revisión automática ignora los
   lienzos decorativos (`canvas[aria-hidden]`) al medir el margen seguro.
+
+## ADR-018 · Publicación en GitHub Pages, cifras medidas del repositorio y licencia
+- **Contexto:** los autores pidieron (10-11-2026) publicar `dist/` en GitHub Pages en cada push a
+  `main`, completar el README (capturas, instrucciones, atajos, licencia) y crear la lámina de
+  reserva 21, «Cómo se construyó esta presentación», cuyas cifras (pruebas, componentes,
+  decisiones, commits) no pueden escribirse a mano.
+- **Decisión:**
+  - `.github/workflows/deploy.yml`: en cada push a `main` (o a mano) instala con `npm ci`, ejecuta
+    `npm run lint` y `npm test` (si algo falla, no se publica), construye `dist/` y lo publica con
+    las acciones oficiales de Pages (`configure-pages`, `upload-pages-artifact`, `deploy-pages`).
+    El build ya usa rutas relativas (`base: './'`), así que funciona en la subcarpeta del sitio.
+    Requisito en GitHub: Settings → Pages → Source: «GitHub Actions».
+  - `scripts/metricas.mjs` (`npm run metricas`) mide el repositorio y escribe
+    `data/construccion.json`: ejecuta Vitest para contar las pruebas, cuenta componentes, módulos
+    del motor, ADR, dependencias en tiempo de ejecución, láminas y commits, y deriva las direcciones
+    del repositorio y del sitio del remoto de git. `tests/construccion.test.js` falla si alguna
+    cifra estructural quedó vieja (por ejemplo, un ADR nuevo sin volver a medir).
+  - Lámina 21: el motor como cadena (contenido → motor → láminas), cuatro cifras de
+    `construccion.json` y la pila técnica. El puntaje de Lighthouse no se muestra: aún no se midió
+    (Fase 6).
+  - Licencia elegida por los autores: **MIT para el código**; el contenido del TEG, los textos de
+    las láminas, las capturas del sistema y el isologo UVM, con todos los derechos reservados. Las
+    fuentes Barlow conservan su SIL OFL 1.1, cuyo texto se publica junto a ellas en `public/fonts/`.
+- **Consecuencias:** antes de la defensa (y tras agregar pruebas o commits) conviene ejecutar
+  `npm run metricas` para que la lámina 21 muestre las cifras del día. Cada push a `main`
+  publica el sitio: lo que esté en `main` es público.

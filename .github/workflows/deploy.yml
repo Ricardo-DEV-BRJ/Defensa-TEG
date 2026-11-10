@@ -1,0 +1,66 @@
+# Publica la presentación (dist/) en GitHub Pages en cada push a main (ADR-018).
+# Antes de construir comprueba el formato (lint) y las pruebas: si algo falla, no se publica.
+# Requisito único en GitHub: Settings → Pages → Build and deployment → Source: «GitHub Actions».
+name: Publicar en GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  # Permite publicar a mano desde la pestaña Actions.
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Una publicación a la vez; si llegan dos pushes seguidos, se termina la que está en curso.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  construir:
+    name: Probar y construir
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar el repositorio
+        uses: actions/checkout@v4
+
+      - name: Instalar Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Instalar dependencias (versiones exactas de package-lock.json)
+        run: npm ci
+
+      - name: Formato y estilo (ESLint + Prettier)
+        run: npm run lint
+
+      - name: Pruebas (Vitest)
+        run: npm test
+
+      - name: Construir dist/
+        run: npm run build
+
+      - name: Preparar GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Subir dist/ como artefacto de Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  publicar:
+    name: Publicar
+    needs: construir
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.despliegue.outputs.page_url }}
+    steps:
+      - name: Publicar en GitHub Pages
+        id: despliegue
+        uses: actions/deploy-pages@v4

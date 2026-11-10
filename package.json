@@ -11,7 +11,8 @@
     "test": "vitest run",
     "lint": "eslint . && prettier --check .",
     "format": "prettier --write .",
-    "qr": "node scripts/generar-qr.mjs"
+    "qr": "node scripts/generar-qr.mjs",
+    "metricas": "node scripts/metricas.mjs"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
