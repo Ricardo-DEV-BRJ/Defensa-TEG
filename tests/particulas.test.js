@@ -1,13 +1,23 @@
-// Lógica pura de las partículas de fondo (src/core/particulas.js, ADR-015).
+// Lógica pura del fondo de partículas (src/core/particulas.js, ADR-015 y ADR-017).
 import { describe, expect, it } from 'vitest';
 import {
+  cantidadIconos,
   crearAleatorio,
-  crearParticulas,
+  crearIconos,
+  dentroDeZona,
   enlaces,
-  moverParticulas,
+  ETIQUETAS,
+  ICONOS,
+  moverIconos,
 } from '../src/core/particulas.js';
 
 const escenario = { ancho: 1920, alto: 1080 };
+const opciones = {
+  ...escenario,
+  iconos: Object.keys(ICONOS),
+  etiquetas: ETIQUETAS,
+  aleatorio: crearAleatorio(7),
+};
 
 describe('crearAleatorio', () => {
   it('la misma semilla da la misma secuencia, en [0, 1)', () => {
@@ -23,69 +33,118 @@ describe('crearAleatorio', () => {
   });
 });
 
-describe('crearParticulas', () => {
-  const particulas = crearParticulas(70, { ...escenario, aleatorio: crearAleatorio(7) });
+describe('cantidadIconos', () => {
+  it('uno cada 42 000 px² (49 en el escenario de 1920 × 1080) y nunca menos de 8', () => {
+    expect(cantidadIconos(1920, 1080)).toBe(49);
+    expect(cantidadIconos(100, 100)).toBe(8);
+  });
+});
 
-  it('reparte los puntos dentro del escenario con su deriva', () => {
-    expect(particulas).toHaveLength(70);
-    for (const p of particulas) {
-      expect(p.x).toBeGreaterThanOrEqual(0);
-      expect(p.x).toBeLessThan(escenario.ancho);
-      expect(p.y).toBeGreaterThanOrEqual(0);
-      expect(p.y).toBeLessThan(escenario.alto);
-      expect([p.vx, p.vy]).toEqual([p.vx0, p.vy0]);
+describe('crearIconos', () => {
+  const iconos = crearIconos(200, opciones);
+
+  it('reparte íconos y etiquetas dentro del escenario', () => {
+    expect(iconos).toHaveLength(200);
+    for (const icono of iconos) {
+      expect(icono.x).toBeGreaterThanOrEqual(0);
+      expect(icono.x).toBeLessThan(escenario.ancho);
+      expect(icono.y).toBeGreaterThanOrEqual(0);
+      expect(icono.y).toBeLessThan(escenario.alto);
     }
   });
 
-  it('se mueven despacio: entre 6 y 14 px por segundo', () => {
-    for (const p of particulas) {
-      const rapidez = Math.hypot(p.vx0, p.vy0);
-      expect(rapidez).toBeGreaterThanOrEqual(6);
-      expect(rapidez).toBeLessThanOrEqual(14);
+  it('cerca de una cuarta parte son etiquetas; el resto, íconos que existen', () => {
+    const textos = iconos.filter((i) => i.tipo === 'texto');
+    expect(textos.length / iconos.length).toBeGreaterThan(0.15);
+    expect(textos.length / iconos.length).toBeLessThan(0.35);
+    for (const icono of iconos) {
+      if (icono.tipo === 'texto') expect(ETIQUETAS).toContain(icono.forma);
+      else expect(ICONOS).toHaveProperty(icono.forma);
+    }
+  });
+
+  it('las etiquetas no llevan anillo y solo algunos íconos lo llevan', () => {
+    expect(iconos.some((i) => i.tipo === 'texto' && i.anillo)).toBe(false);
+    expect(iconos.some((i) => i.anillo)).toBe(true);
+  });
+
+  it('derivan despacio (9 a 27 px por segundo) y con una opacidad propia', () => {
+    for (const icono of iconos) {
+      const rapidez = Math.hypot(icono.vx, icono.vy);
+      expect(rapidez).toBeGreaterThanOrEqual(9);
+      expect(rapidez).toBeLessThanOrEqual(27);
+      expect(icono.alfa).toBeGreaterThanOrEqual(0.3);
+      expect(icono.alfa).toBeLessThanOrEqual(0.7);
     }
   });
 });
 
-describe('moverParticulas', () => {
-  const punto = (x, y, vx0 = 10, vy0 = 0) => ({ x, y, vx: vx0, vy: vy0, vx0, vy0 });
-
-  it('sin cursor, cada punto sigue su deriva', () => {
-    const [p] = moverParticulas([punto(100, 100)], 0.5, escenario);
-    expect(p.x).toBeCloseTo(105);
-    expect(p.y).toBeCloseTo(100);
+describe('moverIconos', () => {
+  const icono = (x, y, cambios = {}) => ({
+    tipo: 'icono',
+    forma: 'nube',
+    x,
+    y,
+    vx: 10,
+    vy: 0,
+    tam: 30,
+    rot: 0,
+    vrot: 0,
+    alfa: 0.5,
+    atenuado: 1,
+    ...cambios,
   });
 
-  it('al salir por un borde entra por el opuesto', () => {
-    const [derecha] = moverParticulas([punto(1919, 500)], 1, escenario);
-    const [arriba] = moverParticulas([punto(500, 2, 0, -10)], 1, escenario);
-    expect(derecha.x).toBeCloseTo(9);
-    expect(arriba.y).toBeCloseTo(1072);
+  it('sin cursor, cada ícono sigue su deriva', () => {
+    const [i] = moverIconos([icono(100, 100)], 0.5, escenario);
+    expect(i.x).toBeCloseTo(105);
+    expect(i.y).toBeCloseTo(100);
   });
 
-  it('el cursor aparta a los puntos cercanos, más cuanto más cerca', () => {
+  it('al salir por un borde (con su margen) reaparece por el opuesto', () => {
+    const [derecha] = moverIconos([icono(1920 + 39, 500)], 0.1, escenario);
+    const [izquierda] = moverIconos([icono(-39, 500, { vx: -10 })], 0.1, escenario);
+    expect(derecha.x).toBeCloseTo(-39);
+    expect(izquierda.x).toBeCloseTo(1920 + 39);
+  });
+
+  it('el cursor aparta a los íconos cercanos, más cuanto más cerca', () => {
     const cursor = { x: 500, y: 500 };
-    const quieto = (x) => punto(x, 500, 0, 0);
-    const [cerca, lejos, fuera] = moverParticulas([quieto(520), quieto(640), quieto(900)], 0.1, {
+    const quieto = (x) => icono(x, 500, { vx: 0 });
+    const [cerca, lejos, fuera] = moverIconos([quieto(520), quieto(600), quieto(900)], 1 / 60, {
       ...escenario,
       cursor,
     });
-    expect(cerca.vx).toBeGreaterThan(lejos.vx);
-    expect(lejos.vx).toBeGreaterThan(0);
-    expect(fuera.vx).toBe(0);
+    expect(cerca.x - 520).toBeGreaterThan(lejos.x - 600);
+    expect(lejos.x).toBeGreaterThan(600);
+    expect(fuera.x).toBe(900);
   });
 
-  it('después del empujón vuelve poco a poco a su deriva (unos 5 s)', () => {
-    let p = [{ ...punto(100, 100), vx: 300 }];
-    for (let i = 0; i < 60; i++) p = moverParticulas(p, 1 / 60, escenario);
-    expect(p[0].vx).toBeGreaterThan(10); // al segundo aún va más rápido: el regreso es suave
-    for (let i = 0; i < 240; i++) p = moverParticulas(p, 1 / 60, escenario);
-    expect(p[0].vx).toBeCloseTo(10, 0);
+  it('dentro de una zona se atenúa hasta el 10 % y fuera vuelve al 100 %', () => {
+    const zonas = [{ x: 0, y: 0, ancho: 400, alto: 400 }];
+    let dentro = [icono(200, 200, { vx: 0 })];
+    for (let i = 0; i < 120; i++) dentro = moverIconos(dentro, 1 / 60, { ...escenario, zonas });
+    expect(dentro[0].atenuado).toBeCloseTo(0.1, 2);
+    let fuera = [{ ...dentro[0], x: 900 }];
+    for (let i = 0; i < 120; i++) fuera = moverIconos(fuera, 1 / 60, { ...escenario, zonas });
+    expect(fuera[0].atenuado).toBeCloseTo(1, 2);
   });
 
-  it('no modifica las partículas recibidas', () => {
-    const original = [punto(100, 100)];
-    moverParticulas(original, 1, escenario);
+  it('no modifica los íconos recibidos', () => {
+    const original = [icono(100, 100)];
+    moverIconos(original, 1, escenario);
     expect(original[0].x).toBe(100);
+  });
+});
+
+describe('dentroDeZona', () => {
+  const zonas = [{ x: 10, y: 10, ancho: 100, alto: 50 }];
+
+  it('incluye los bordes y excluye lo de afuera', () => {
+    expect(dentroDeZona(10, 10, zonas)).toBe(true);
+    expect(dentroDeZona(110, 60, zonas)).toBe(true);
+    expect(dentroDeZona(111, 30, zonas)).toBe(false);
+    expect(dentroDeZona(50, 50, [])).toBe(false);
   });
 });
 

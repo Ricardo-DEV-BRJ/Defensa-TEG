@@ -418,3 +418,58 @@ bundle (lo resuelven unas 30 líneas propias que se pueden explicar); framework 
 - **Consecuencias:** las partículas pasan por detrás de los textos que no están en una caja con
   fondo; si en el TV distraen o el equipo va lento, la tecla E los apaga sin recargar. La
   impresión sale plana y sin partículas.
+
+## ADR-016 · Panel de controles para el ratón que se oculta solo
+- **Contexto:** los autores pidieron (10-11-2026) un panel con botones atractivos para poner la
+  pantalla completa y ver el mapa de láminas, que desaparezca si el cursor no se mueve.
+- **Decisión:**
+  - `src/core/controles.js` crea, dentro del escenario (escala igual que las láminas), una franja
+    petróleo translúcida abajo al centro, dentro del margen seguro, con botones redondos de ícono
+    SVG: anterior, contador («8 / 17»; las de reserva dicen «18 · reserva»), siguiente, mapa de
+    láminas (vista general, O) y pantalla completa (F, con ícono de entrar o salir).
+  - Aparece al mover el ratón o hacer clic, y se desvanece junto con el puntero cuando el ratón
+    queda quieto `--controles-espera` (2,5 s); no se oculta con el cursor encima ni con un botón
+    enfocado (Tab). Las teclas no lo muestran: con el presentador inalámbrico nunca aparece.
+  - Los botones llaman a las mismas acciones del deck que el teclado. Tras un clic el foco vuelve
+    al documento, para que Espacio y las flechas sigan pasando láminas. El botón del mapa queda en
+    verde mientras la vista general está abierta. No se imprime.
+  - La decisión de ocultar (`debeOcultar`) y el texto del contador (`textoContador`) son puros y
+    tienen pruebas.
+- **Consecuencias:** mientras está visible tapa una franja del pie de la lámina; desaparece a los
+  2,5 s de dejar quieto el ratón.
+
+## ADR-017 · Partículas del prototipo UVM: isologo en partículas, fondo de íconos y láminas petróleo
+- **Contexto:** los autores aportaron (10-11-2026) el prototipo `particulas-uvm.html` y pidieron
+  (1) el isologo de la portada formado con sus partículas, (2) que su fondo de partículas sea el de
+  todo el documento y (3) adoptar su fondo petróleo en algunas láminas. El prototipo carga Google
+  Fonts, incrusta el logo en base64 (108 KB) y escribe colores a mano, y estando en `src/` rompía
+  tres reglas visuales y el lint.
+- **Decisión:**
+  - El prototipo pasa a `docs/referencias/particulas-uvm.html` (referencia, fuera de la
+    presentación). Su logo con el interior transparente se guarda como
+    `public/img/uvm-isologo-particulas.png`: con el isologo oficial (interior blanco opaco) las
+    partículas formarían un disco blanco.
+  - **Isologo en partículas** (`src/components/isologo-particulas.js`, portada): cada partícula toma
+    el color de su punto del isologo (no se recolorea), llega desde toda la lámina al entrar y lo
+    arma; respira menos de medio píxel, el cursor la aparta y un clic sobre el isologo lo dispersa
+    (`data-interactivo`: no pasa de lámina). **Excepción a la regla del isologo «sin deformar»**,
+    pedida por los autores: en reposo queda completo y con sus colores; con movimiento reducido, al
+    imprimir, fuera de la portada o si el navegador no deja leer los píxeles (`file://`) se ve el
+    isologo oficial. La tecla S y la llegada con «anterior» lo dejan armado. Las partículas se
+    dibujan agrupadas por color (61 cuadros por segundo sin GPU; 39 sin agrupar).
+  - **Fondo de todo el documento** (`src/core/particulas.js`, reemplaza la red de puntos del
+    ADR-015): los 15 íconos de trazo, las etiquetas (KPI, ETL, SQL…) y la red del prototipo, uno
+    cada 42 000 px². Tema claro: petróleo al 35 %. Tema oscuro: los colores del prototipo (íconos
+    claros, etiquetas verde y celeste, red celeste). Detrás de títulos, párrafos, listas, tablas e
+    imágenes (y de lo marcado con `data-atenuar-fondo`) los íconos bajan al 10 %; las zonas se
+    miden cada medio segundo para seguir a los pasos.
+  - **Fondo petróleo** (`data-fondo="oscuro"`): el degradado del prototipo (`--fondo-oscuro`) en la
+    portada y el cierre, con textos en el color claro (7,9:1) y en celeste UVM (`--color-celeste`,
+    5,3:1). Va en el escenario mientras la lámina está en pantalla (detrás del lienzo de
+    partículas) y en la propia lámina en la vista general y en el PDF. Otra lámina lo adopta con
+    el mismo atributo.
+  - La lógica (muestreo del logo, objetivos con su color, muelle, dispersión, íconos, zonas) es pura
+    y tiene pruebas.
+- **Consecuencias:** las etiquetas del lienzo son decorativas (sin cifras). El fondo sigue siendo la
+  única animación continua (ADR-015) y la tecla E lo apaga. La revisión automática ignora los
+  lienzos decorativos (`canvas[aria-hidden]`) al medir el margen seguro.

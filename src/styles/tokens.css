@@ -51,6 +51,17 @@
   --color-secundario: #5c6b6d; /* 5,3:1 · notas, fuentes, «n = 4» */
   --color-fondo: #f7f9f8; /* fondo de lámina */
   --color-pantalla-negra: #000; /* tecla B; no forma parte de la paleta */
+  /* Láminas con fondo petróleo (ADR-017): celeste UVM («Celeste Valle») para textos secundarios y
+   * la red de partículas; su contraste sobre el petróleo es de 5,3 a 1. */
+  --color-celeste: #bcd4de;
+  /* Fondo del prototipo de partículas: brillo celeste suave sobre petróleo. */
+  --fondo-oscuro:
+    radial-gradient(
+      circle at 50% 42%,
+      color-mix(in srgb, var(--color-celeste) 16%, transparent) 0,
+      transparent 58%
+    ),
+    var(--color-primario);
   /* Gris neutro de los gráficos (punto medio de una escala divergente): validado con
    * dataviz/validate_palette.js junto a alerta y primario (ΔE ≥ 11 en todas las CVD). */
   --color-neutro-grafico: color-mix(in srgb, var(--color-secundario) 60%, var(--color-fondo));
@@ -60,6 +71,8 @@
   --color-alerta-suave: color-mix(in srgb, var(--color-alerta) 8%, var(--color-fondo));
   /* Sombra de una tarjeta inclinada o de una capa en 3D (efectos, ADR-015). */
   --color-sombra: color-mix(in srgb, var(--color-texto) 18%, transparent);
+  /* Fondo del panel de controles: petróleo casi opaco sobre la lámina (ADR-016). */
+  --color-controles: color-mix(in srgb, var(--color-primario) 88%, transparent);
   /* Segmento vacío de un medidor de nivel (lámina 9). */
   --color-vacio-grafico: color-mix(in srgb, var(--color-secundario) 22%, var(--color-fondo));
 
@@ -115,6 +128,11 @@
   --transversal-ancho: 220px; /* columnas de los componentes transversales (lámina 13) */
   --flujo-ancho: 48px; /* columna de la flecha «flujo de datos» (lámina 13) */
   --capa-nombre-ancho: 320px; /* columna con el nombre y la función de cada capa (lámina 13) */
+
+  /* Panel de controles (ADR-016): botones redondos y tiempo sin mover el ratón antes de ocultarse */
+  --controles-boton: 72px;
+  --controles-icono: 36px;
+  --controles-espera: 2500ms;
 
   /* Isologo UVM (solo portada y cierre): se fija el alto y el ancho sigue su proporción */
   --isologo-alto: 520px;

@@ -24,6 +24,7 @@ Duración objetivo: 19 minutos (máximo 20). Se proyecta en un televisor 16:9 co
 - Colores, fuentes y espaciados solo desde `src/styles/tokens.css` (ver identidad visual).
   `#88c426` nunca como color de texto sobre fondo claro.
 - Isologo UVM solo en las láminas 1 y 17 (portada y cierre), completo, sin deformar ni recolorear.
+  Excepción: en la portada se forma con partículas de sus propios colores (ADR-017).
 - Animaciones con CSS o Web Animations API, ≤ 1,5 s; respetar `prefers-reduced-motion`.
   Única excepción: las partículas de fondo (ADR-015), que se apagan con la tecla E.
   Todo componente animado debe poder saltar a su estado final (tecla S).

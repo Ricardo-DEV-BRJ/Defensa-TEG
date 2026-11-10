@@ -32,6 +32,15 @@ npm run qr -- https://…   # genera el QR del cierre (public/img/qr.svg y data/
 PDF de la presentación: con la presentación abierta, Ctrl+P → «Guardar como PDF». Sale una lámina
 principal por página (16:9), en su estado final y sin las láminas de reserva (`src/styles/print.css`).
 
+## Portada y fondo
+En la portada, el isologo se arma con partículas: el cursor las aparta y un clic sobre él lo dispersa.
+Detrás de todas las láminas flotan íconos de datos (se apagan con la tecla E). El prototipo original
+está en `docs/referencias/particulas-uvm.html`.
+
+## Panel de controles
+Al mover el ratón aparece abajo un panel con: anterior · contador · siguiente · mapa de láminas ·
+pantalla completa. Se oculta solo (junto con el puntero) cuando el ratón queda quieto 2,5 s.
+
 ## Atajos de teclado
 → / espacio / AvPag: avanzar · ← / RePag: retroceder · O: vista general · F: pantalla completa ·
 B: pantalla negra · P: presentador · T: reiniciar cronómetro · S: saltar animación · E: efectos (partículas y 3D) · G + número + Enter: ir a lámina.

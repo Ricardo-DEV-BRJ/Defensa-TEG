@@ -38,3 +38,11 @@ Descartados del manual: `#bcd4de` (ilegible sobre claro) y `#809e3e` (redundante
 ## Imágenes disponibles
 - `public/img/figuras-teg/`: Figura 1 (modelo teórico), 15 (arquitectura), 16 (BPMN venta y despacho), 17 (modelo en estrella), 18 (prototipo del tablero).
 - `public/img/capturas-sistema/`: 16 capturas del sistema AgroData JM tomadas del Anexo 20 (tablero ejecutivo, pagos y monedas, bitácora, etc.). Revisar cuáles usar en la lámina 14.
+
+## Láminas con fondo petróleo (ADR-017)
+- Portada y cierre llevan el fondo del prototipo de partículas (`data-fondo="oscuro"`, token
+  `--fondo-oscuro`): petróleo `#1d555b` con un brillo celeste suave.
+- Sobre ese fondo: texto principal en `--color-fondo` (7,9:1) y secundario en celeste UVM
+  `--color-celeste` `#bcd4de` («Celeste Valle», 5,3:1). El verde acento sigue siendo solo forma.
+- En la portada, el isologo se forma con partículas de sus propios colores; al imprimir o con
+  movimiento reducido se usa el isologo oficial.

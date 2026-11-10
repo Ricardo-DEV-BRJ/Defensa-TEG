@@ -5,6 +5,7 @@ import { rellenarDatos } from './core/datos.js';
 import { iniciarTeclado } from './core/keyboard.js';
 import { iniciarRouter, leerHash } from './core/router.js';
 import { iniciarEscalado } from './core/scaler.js';
+import { iniciarControles } from './core/controles.js';
 import { iniciarInclinacion } from './core/inclinacion.js';
 import { iniciarParticulas } from './core/particulas.js';
 import * as barChart from './components/bar-chart.js';
@@ -12,6 +13,7 @@ import * as counter from './components/counter.js';
 import * as dataFlow from './components/data-flow.js';
 import * as dedupSim from './components/dedup-sim.js';
 import * as gantt from './components/gantt.js';
+import * as isologoParticulas from './components/isologo-particulas.js';
 import * as levelMeter from './components/level-meter.js';
 import * as stockCalc from './components/stock-calc.js';
 
@@ -40,6 +42,7 @@ const componentes = {
   'data-flow': dataFlow,
   'dedup-sim': dedupSim,
   gantt,
+  'isologo-particulas': isologoParticulas,
   'level-meter': levelMeter,
   'stock-calc': stockCalc,
 };
@@ -60,7 +63,7 @@ for (const ruta of rellenarDatos(escenario, datos)) {
 
 iniciarEscalado(escenario);
 // Efectos (ADR-015): red de partículas detrás de las láminas e inclinación 3D con el cursor.
-const particulas = iniciarParticulas(escenario);
+const particulas = iniciarParticulas(escenario, { deck });
 iniciarInclinacion(escenario);
 iniciarRouter(deck);
 iniciarTeclado(
@@ -82,6 +85,19 @@ iniciarTeclado(
   // G + número acepta tantas cifras como tenga el total de láminas (20 → 2).
   { escenario, maxDigitos: String(deck.total).length },
 );
+
+// Panel de controles para el ratón (ADR-016): se oculta solo cuando el ratón queda quieto.
+// Se conecta antes de iniciar el deck para que el contador reciba el primer slidechange.
+iniciarControles(escenario, {
+  deck,
+  principales: datos.slides.laminas.filter((lamina) => !lamina.reserva).length,
+  acciones: {
+    anterior: () => deck.anterior(),
+    siguiente: () => deck.siguiente(),
+    vistaGeneral: () => deck.alternarVistaGeneral(),
+    pantallaCompleta: alternarPantallaCompleta,
+  },
+});
 
 // La lámina inicial sale del hash para que recargar conserve la posición (RF-04).
 // El router ya escucha, así que el primer slidechange escribe #/n en la dirección.

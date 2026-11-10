@@ -354,3 +354,55 @@
   color: var(--color-secundario);
   text-align: center;
 }
+
+/* ── Portada y cierre sobre fondo petróleo (ADR-017) ───────────────────────────
+ * Textos claros: principal en el color del fondo claro (7,9:1) y secundario en celeste (5,3:1).
+ */
+[data-fondo='oscuro'] .plantilla-portada__titulo,
+[data-fondo='oscuro'] .plantilla-portada__personas dt,
+[data-fondo='oscuro'] .plantilla-cierre__gracias {
+  color: var(--color-fondo);
+}
+
+[data-fondo='oscuro'] .plantilla-portada__institucion,
+[data-fondo='oscuro'] .plantilla-portada__lugar,
+[data-fondo='oscuro'] .plantilla-cierre__autor,
+[data-fondo='oscuro'] .plantilla-cierre__qr > figcaption {
+  color: var(--color-celeste);
+}
+
+/* ── Isologo en partículas (portada, isologo-particulas.js) ────────────────────
+ * El lienzo cubre la lámina entera, margen incluido (las partículas vuelan por ella al
+ * dispersarse), detrás del texto. Mientras está
+ * activo, el isologo oficial deja de verse pero conserva su lugar: las partículas lo dibujan
+ * exactamente ahí.
+ */
+.lamina:has(> .plantilla-portada > .isologo-particulas) {
+  position: relative;
+}
+
+.isologo-particulas {
+  position: relative;
+}
+
+.isologo-particulas[data-activo] {
+  cursor: pointer;
+}
+
+.isologo-particulas[data-activo] .isologo {
+  visibility: hidden;
+}
+
+.isologo-particulas__lienzo {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  display: none;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.lamina:has(.isologo-particulas[data-activo]) > .isologo-particulas__lienzo {
+  display: block;
+}

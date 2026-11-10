@@ -5,12 +5,18 @@
   Frase de cierre elegida por los autores (Ricardo Briceño). La frase final del guion, el
   agradecimiento y la invitación a preguntas se dicen (notas).
   1. «Gracias».
+  Fondo petróleo del prototipo de partículas (data-fondo="oscuro", ADR-017), como la portada.
   QR: pendiente hasta tener la URL. `npm run qr -- <url>` genera public/img/qr.svg y
   data/cierre.json, e imprime el bloque <figure> que va en el lugar del comentario «QR».
 -->
-<div class="plantilla-portada plantilla-cierre">
-  <img class="isologo" src="img/uvm-isologo.png" alt="Isologo de la Universidad Valle del Momboy" />
-  <div class="plantilla-cierre__texto">
+<div class="plantilla-portada plantilla-cierre" data-fondo="oscuro">
+  <img
+    class="isologo"
+    src="img/uvm-isologo.png"
+    alt="Isologo de la Universidad Valle del Momboy"
+    data-atenuar-fondo
+  />
+  <div class="plantilla-cierre__texto" data-atenuar-fondo>
     <figure class="plantilla-cierre__cita">
       <blockquote>
         <p class="plantilla-cierre__frase">

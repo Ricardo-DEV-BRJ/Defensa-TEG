@@ -2,10 +2,26 @@
   Lámina 1 · Portada (plantilla «Portada»).
   Pregunta guía: ¿Quiénes somos y qué venimos a defender?
   Sin fragmentos: todo se ve desde el inicio, mientras se saluda al jurado.
+  Fondo petróleo del prototipo de partículas (data-fondo="oscuro", ADR-017). El isologo se forma
+  con partículas (componente isologo-particulas): el cursor las aparta y un clic lo dispersa; con
+  movimiento reducido o al imprimir se ve el isologo oficial. data-atenuar-fondo: el fondo de
+  íconos se atenúa detrás del isologo y del texto.
 -->
-<div class="plantilla-portada">
-  <img class="isologo" src="img/uvm-isologo.png" alt="Isologo de la Universidad Valle del Momboy" />
-  <div class="plantilla-portada__texto">
+<div class="plantilla-portada" data-fondo="oscuro">
+  <div
+    class="isologo-particulas"
+    data-componente="isologo-particulas"
+    data-imagen="img/uvm-isologo-particulas.png"
+    data-interactivo
+    data-atenuar-fondo
+  >
+    <img
+      class="isologo"
+      src="img/uvm-isologo.png"
+      alt="Isologo de la Universidad Valle del Momboy"
+    />
+  </div>
+  <div class="plantilla-portada__texto" data-atenuar-fondo>
     <p class="plantilla-portada__institucion">Facultad de Ingeniería · Ingeniería en Computación</p>
     <h1 class="plantilla-portada__titulo">
       Diseño de un modelo sustentable de digitalización de procesos mediante Big Data para la

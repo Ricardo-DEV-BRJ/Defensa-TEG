@@ -173,3 +173,124 @@ body[data-negro]::after {
 .escenario[data-sin-efectos] .particulas {
   display: none;
 }
+
+/* ── Panel de controles (controles.js, ADR-016) ───────────────────────────────
+ * Franja petróleo translúcida abajo al centro, dentro del margen seguro, con botones redondos
+ * de ícono. Aparece con el ratón y se desvanece cuando queda quieto; oculta no recibe clics.
+ */
+.controles {
+  position: absolute;
+  bottom: var(--margen-seguro-y);
+  left: 50%;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-xs);
+  padding: var(--espacio-xs);
+  border-radius: calc(var(--controles-boton) / 2 + var(--espacio-xs));
+  background: var(--color-controles);
+  box-shadow: 0 var(--espacio-xs) var(--espacio-m) var(--color-sombra);
+  backdrop-filter: blur(var(--espacio-xs));
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, var(--espacio-s));
+  transition:
+    opacity var(--duracion-fragmento) ease,
+    transform var(--duracion-fragmento) ease,
+    visibility var(--duracion-fragmento);
+}
+
+.controles[data-visible] {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+}
+
+.controles__boton {
+  display: grid;
+  place-items: center;
+  width: var(--controles-boton);
+  height: var(--controles-boton);
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  color: var(--color-fondo);
+  background: transparent;
+  cursor: pointer;
+  transition:
+    background-color var(--duracion-inclinacion) ease,
+    color var(--duracion-inclinacion) ease,
+    transform var(--duracion-inclinacion) ease;
+}
+
+/* Al pasar el ratón y con el mapa abierto: círculo verde con el ícono en petróleo. */
+.controles__boton:hover,
+.controles__boton[aria-pressed='true'] {
+  color: var(--color-primario);
+  background: var(--color-acento);
+}
+
+.controles__boton:active {
+  transform: scale(0.92);
+}
+
+.controles__boton:focus-visible {
+  outline: var(--borde-fino) solid var(--color-acento);
+  outline-offset: var(--borde-fino);
+}
+
+.controles__icono {
+  width: var(--controles-icono);
+  height: var(--controles-icono);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.controles__contador {
+  min-width: calc(var(--controles-boton) * 1.6);
+  padding-inline: var(--espacio-s);
+  font-family: var(--fuente-titulos);
+  font-size: var(--texto-min);
+  font-weight: 700;
+  color: var(--color-fondo);
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Con el ratón quieto también desaparece el puntero (vuelve al moverlo). */
+body[data-cursor-oculto],
+body[data-cursor-oculto] * {
+  cursor: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .controles,
+  .controles__boton {
+    transition: none;
+  }
+}
+
+/* ── Láminas con fondo petróleo (data-fondo="oscuro", ADR-017) ─────────────────
+ * El fondo va en el escenario (detrás del lienzo de partículas) mientras esa lámina está en
+ * pantalla, y en las bandas de la ventana; en la vista general cada miniatura lleva el suyo.
+ */
+.escenario:not([data-modo='vista-general']):has(> .lamina[data-actual] > [data-fondo='oscuro']) {
+  background: var(--fondo-oscuro);
+}
+
+body:has(
+  > .escenario:not([data-modo='vista-general']) > .lamina[data-actual] > [data-fondo='oscuro']
+) {
+  background: var(--color-primario);
+}
+
+.escenario[data-modo='vista-general'] .lamina:has(> [data-fondo='oscuro']) {
+  background: var(--fondo-oscuro);
+}
+
+[data-fondo='oscuro'] {
+  color: var(--color-fondo);
+}

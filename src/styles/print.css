@@ -70,6 +70,15 @@
     box-shadow: none !important;
   }
 
+  /* Las láminas de fondo petróleo lo llevan en su propia página; el isologo sale oficial. */
+  .lamina:has(> [data-fondo='oscuro']) {
+    background: var(--fondo-oscuro);
+  }
+
+  .isologo-particulas .isologo {
+    visibility: visible !important;
+  }
+
   /* Todos los pasos a la vista. */
   [data-fragment] {
     opacity: 1 !important;
@@ -83,6 +92,8 @@
   .gantt__detalle,
   .flujo__paquetes,
   .particulas,
+  .isologo-particulas__lienzo,
+  .controles,
   .ir-a,
   .escenario[data-guias]::after,
   body[data-negro]::after {
