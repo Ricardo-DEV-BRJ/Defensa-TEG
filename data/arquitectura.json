@@ -30,7 +30,7 @@
       "nombre": "Almacenamiento analítico",
       "funcion": "Conservar datos integrados e históricos",
       "componentes": [
-        "MariaDB en el prototipo (el TEG propone PostgreSQL) + modelo en estrella",
+        "Base de datos MySql",
         "MinIO: data lake y respaldos 3-2-1",
         "Docker en VPS"
       ],

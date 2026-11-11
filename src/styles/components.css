@@ -1197,13 +1197,16 @@
 
 /* Estado de cada componente (láminas 13 y 14, ADR-019): ■ = ya funciona en el prototipo (Anexo 20);
  * □ y texto secundario = se implementa por fases (Cap. VI). Cambia la forma además del color, y
- * el pie de la lámina explica las dos marcas. Es un carácter unido al texto con un espacio que
- * no se corta: la marca nunca queda sola al final de una línea. */
+ * el pie de la lámina explica las dos marcas. El cuadrado es un fondo (forma, no texto: el
+ * acento nunca colorea letras) pintado detrás de un espacio que no se corta, así la marca nunca
+ * queda sola al final de una línea. */
 .capa__componentes > li[data-var-prototipo]::before,
 .lista-en-linea > li[data-var-prototipo]::before,
 .leyenda-estado > span::before {
-  content: '\25A0\00a0';
-  color: var(--color-acento);
+  content: '\00a0';
+  padding-left: 0.75em;
+  background: linear-gradient(var(--color-acento), var(--color-acento)) no-repeat left center /
+    0.6em 0.6em;
 }
 
 .capa__componentes > li[data-var-prototipo='0'],
@@ -1216,8 +1219,12 @@
 .capa__componentes > li[data-var-prototipo='0']::before,
 .lista-en-linea > li[data-var-prototipo='0']::before,
 .leyenda-estado > .leyenda-estado--fase::before {
-  content: '\25A1\00a0';
-  color: var(--color-secundario);
+  /* Cuadrado hueco: uno del color de fondo encima de otro secundario. */
+  background:
+    linear-gradient(var(--color-fondo), var(--color-fondo)) no-repeat var(--borde-fino) center /
+      calc(0.6em - 2 * var(--borde-fino)) calc(0.6em - 2 * var(--borde-fino)),
+    linear-gradient(var(--color-secundario), var(--color-secundario)) no-repeat left center / 0.6em
+      0.6em;
 }
 
 /* En los transversales la viñeta ya es un cuadrado verde: por fases queda hueco. */
