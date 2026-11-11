@@ -3,8 +3,10 @@
  *
  * Regla (data/arquitectura.json → deduplicacion; TEG 6.4.2 y 6.4.4.2): dos ventas con igual
  * cliente, productos, cantidades y monto registradas en menos de intervalo_sugerido_segundos
- * (60 s, valor de demostración) son un posible duplicado. La segunda queda con el despacho
- * bloqueado y solo el rol rol_que_anula (Administración) puede anularla.
+ * (900 s = 15 min, la ventana del prototipo: Anexo 20, p. 246) son un posible duplicado. En el
+ * proceso propuesto (Figura 16) la segunda queda con el despacho bloqueado y solo el rol
+ * rol_que_anula (Administración) puede anularla; en el prototipo se lista en Calidad de datos
+ * para revisarla antes del cierre de caja (ADR-019).
  *
  * Uso en una lámina: <div class="simulador" data-componente="dedup-sim"></div>
  * Vista: «Simular corte de luz» → la caja emite dos ventas iguales que quedan en cola →
@@ -32,6 +34,17 @@ const normalizar = (texto) => String(texto).trim().toLowerCase();
 export function claveVenta({ cliente, productos, monto }) {
   const lineas = productos.map(({ producto, cantidad }) => `${normalizar(producto)}×${cantidad}`);
   return [normalizar(cliente), lineas.sort().join(';'), Math.round(monto * 100)].join('|');
+}
+
+/**
+ * Texto corto de la ventana de deduplicación: minutos si son exactos, si no segundos.
+ * @param {number} segundos
+ * @returns {string} por ejemplo «15 min» o «45 s»
+ */
+export function textoIntervalo(segundos) {
+  return segundos >= 60 && segundos % 60 === 0
+    ? `${formatear(segundos / 60, 'numero')} min`
+    : `${formatear(segundos, 'numero')} s`;
 }
 
 /**
@@ -230,7 +243,7 @@ export function crear(elemento, datos) {
   // Los clics dentro del simulador no avanzan la lámina (ADR-006 §5).
   elemento.dataset.interactivo = '';
   const duraciones = leerDuraciones(ventana.getComputedStyle(elemento));
-  const intervalo = formatear(config.intervaloSegundos, 'numero');
+  const intervalo = textoIntervalo(config.intervaloSegundos);
   let estado = estadoInicial();
   let rol = roles.includes(config.ejemplo.rol_inicial) ? config.ejemplo.rol_inicial : roles[0];
   let animaciones = [];
@@ -292,7 +305,7 @@ export function crear(elemento, datos) {
               h(
                 'span',
                 { class: 'nota simulador__porque' },
-                `misma venta ${venta.segundo - original.segundo} s después (menos de ${intervalo} s)`,
+                `misma venta ${venta.segundo - original.segundo} s después (menos de ${intervalo})`,
               ),
             )
           : h('span', {}, 'Válida'),
@@ -410,9 +423,10 @@ export function crear(elemento, datos) {
     const regla = h(
       'p',
       { class: 'nota' },
-      `Regla: igual cliente, productos, cantidades y monto en menos de ${intervalo} s ` +
-        `(valor de demostración) → posible duplicado: se bloquea el despacho y solo ` +
-        `${config.rolQueAnula} puede anularla.`,
+      `Proceso propuesto (Figura 16): igual cliente, productos, cantidades y monto en menos ` +
+        `de ${intervalo} → posible duplicado: se bloquea el despacho y solo ` +
+        `${config.rolQueAnula} puede anularla. En el prototipo se lista en Calidad de datos ` +
+        `para revisarla antes del cierre de caja.`,
     );
     const nuevo = mensaje();
     elemento.replaceChildren(

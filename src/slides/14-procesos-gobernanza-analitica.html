@@ -9,7 +9,10 @@
      (captura-16 = Anexo 20, Figura 34).
   3. Modelos analíticos: SS, PR e IR.
   4. Demostración: el simulador de duplicados (src/components/dedup-sim.js) ocupa el lugar de
-     los tres paneles (ADR-010); con ← vuelven los paneles.
+     los tres paneles (ADR-010); con ← vuelven los paneles. Muestra el proceso propuesto
+     (Figura 16) con la ventana del prototipo (15 min) y aclara que el prototipo lista los
+     posibles duplicados en Calidad de datos, sin bloquear el despacho (ADR-019).
+  El −80 % de papel es la meta de la Tabla 25, no una medición del prototipo.
   5. Demostración: la calculadora de stock (src/components/stock-calc.js) reemplaza al simulador.
   Previsión y multimoneda se dicen (notas).
 -->
@@ -36,7 +39,7 @@
         </ul>
         <p class="nota" data-dato="arquitectura.modelo.programa_sustentable.figura"></p>
         <p class="dato-medio">
-          −<span
+          Meta: −<span
             data-dato="arquitectura.modelo.programa_sustentable.reduccion_papel_pct"
             data-formato="porcentaje"
           ></span>
@@ -54,11 +57,26 @@
           <li data-dato="arquitectura.modelo.gobernanza.roles.4"></li>
         </ul>
         <ul class="lista-en-linea">
-          <li data-dato="arquitectura.transversales.0.componentes.0"></li>
-          <li data-dato="arquitectura.transversales.0.componentes.1"></li>
-          <li data-dato="arquitectura.transversales.0.componentes.2"></li>
-          <li data-dato="arquitectura.transversales.0.componentes.3"></li>
-          <li data-dato="arquitectura.transversales.0.componentes.4"></li>
+          <li
+            data-dato="arquitectura.transversales.0.componentes.0"
+            data-vars="prototipo=arquitectura.transversales.0.en_prototipo.0"
+          ></li>
+          <li
+            data-dato="arquitectura.transversales.0.componentes.1"
+            data-vars="prototipo=arquitectura.transversales.0.en_prototipo.1"
+          ></li>
+          <li
+            data-dato="arquitectura.transversales.0.componentes.2"
+            data-vars="prototipo=arquitectura.transversales.0.en_prototipo.2"
+          ></li>
+          <li
+            data-dato="arquitectura.transversales.0.componentes.3"
+            data-vars="prototipo=arquitectura.transversales.0.en_prototipo.3"
+          ></li>
+          <li
+            data-dato="arquitectura.transversales.0.componentes.4"
+            data-vars="prototipo=arquitectura.transversales.0.en_prototipo.4"
+          ></li>
         </ul>
         <p class="nota">
           Referencia: <span data-dato="arquitectura.modelo.gobernanza.referencia"></span>

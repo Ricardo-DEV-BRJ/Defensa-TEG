@@ -51,5 +51,7 @@
     "ahorro_mensual_supuesto": 250.0,
     "costo_recurrente_mensual": 7.25,
     "resultado": "La inversión se recupera en menos de un mes (ilustrativo)."
-  }
+  },
+  "software_prototipo": "MariaDB, MinIO y Node.js (código abierto)",
+  "software_prototipo_nota": "Anexo 20, pp. 218 y 245. La Tabla 22 presupuesta Docker, PostgreSQL y MinIO; ambos conjuntos son libres y no cambian el total."
 }
