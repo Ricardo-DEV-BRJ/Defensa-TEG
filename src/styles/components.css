@@ -1195,6 +1195,43 @@
   color: var(--color-secundario);
 }
 
+/* Estado de cada componente (láminas 13 y 14, ADR-019): ■ = ya funciona en el prototipo (Anexo 20);
+ * □ y texto secundario = se implementa por fases (Cap. VI). Cambia la forma además del color, y
+ * el pie de la lámina explica las dos marcas. Es un carácter unido al texto con un espacio que
+ * no se corta: la marca nunca queda sola al final de una línea. */
+.capa__componentes > li[data-var-prototipo]::before,
+.lista-en-linea > li[data-var-prototipo]::before,
+.leyenda-estado > span::before {
+  content: '\25A0\00a0';
+  color: var(--color-acento);
+}
+
+.capa__componentes > li[data-var-prototipo='0'],
+.lista-en-linea > li[data-var-prototipo='0'],
+.lista-compacta > li[data-var-prototipo='0'],
+.leyenda-estado > .leyenda-estado--fase {
+  color: var(--color-secundario);
+}
+
+.capa__componentes > li[data-var-prototipo='0']::before,
+.lista-en-linea > li[data-var-prototipo='0']::before,
+.leyenda-estado > .leyenda-estado--fase::before {
+  content: '\25A1\00a0';
+  color: var(--color-secundario);
+}
+
+/* En los transversales la viñeta ya es un cuadrado verde: por fases queda hueco. */
+.lista-compacta > li[data-var-prototipo='0']::before {
+  border: var(--borde-fino) solid var(--color-secundario);
+  background: transparent;
+}
+
+.leyenda-estado {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espacio-l);
+}
+
 /* Componentes transversales: atraviesan todas las capas. */
 .transversal {
   display: grid;

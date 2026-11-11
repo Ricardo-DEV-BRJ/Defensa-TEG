@@ -6,32 +6,35 @@
       "nombre": "Captura de datos",
       "funcion": "Obtener los datos en su origen y trasladarlos de forma segura",
       "componentes": [
-        "Conector de reportes del sistema administrativo",
+        "Conector del sistema administrativo",
         "Formularios web: recepción, conteos, mermas, inspecciones",
         "Consumo según factura eléctrica",
         "Tabla de tasas BCV, USDT, EUR"
-      ]
+      ],
+      "en_prototipo": [1, 0, 0, 1]
     },
     {
       "n": 2,
       "nombre": "Integración e ingesta",
       "funcion": "Depurar, validar, deduplicar y transformar",
       "componentes": [
-        "Pipeline ETL (15 min existencias/alertas; diario ventas)",
+        "Pipeline ETL (prototipo: sincroniza a diario y recalcula cada 15 min si hay datos nuevos)",
         "Reglas de calidad",
         "Identificador único por transacción",
         "Conversión multimoneda"
-      ]
+      ],
+      "en_prototipo": [1, 1, 1, 1]
     },
     {
       "n": 3,
       "nombre": "Almacenamiento analítico",
       "funcion": "Conservar datos integrados e históricos",
       "componentes": [
-        "PostgreSQL: staging + modelo en estrella (3 hechos, 5 dimensiones)",
-        "MinIO: archivos y respaldos",
+        "MariaDB en el prototipo (el TEG propone PostgreSQL) + modelo en estrella",
+        "MinIO: data lake y respaldos 3-2-1",
         "Docker en VPS"
-      ]
+      ],
+      "en_prototipo": [1, 1, 0]
     },
     {
       "n": 4,
@@ -42,9 +45,12 @@
         "Previsión de demanda",
         "Rotación A/M/B",
         "Segmentación RFM",
-        "Conciliación y anomalías",
-        "Vencimientos y ambiente"
-      ]
+        "Detección de posibles duplicados",
+        "Conciliación de stock lógico y físico",
+        "Alertas de vencimiento",
+        "Control ambiental"
+      ],
+      "en_prototipo": [1, 1, 1, 1, 1, 0, 1, 0]
     },
     {
       "n": 5,
@@ -52,10 +58,12 @@
       "funcion": "Presentar la información a cada rol",
       "componentes": [
         "Tablero ejecutivo",
-        "Tablero operativo",
+        "Tablero operativo (módulos por rol)",
         "Tablero de sostenibilidad",
-        "Alertas por correo o mensajería, tipo semáforo"
-      ]
+        "Alertas en el panel, tipo semáforo",
+        "Alertas por correo o mensajería"
+      ],
+      "en_prototipo": [1, 1, 0, 1, 0]
     }
   ],
   "transversales": [
@@ -67,7 +75,8 @@
         "Cifrado TLS",
         "Respaldos",
         "Diccionario de datos"
-      ]
+      ],
+      "en_prototipo": [1, 1, 0, 1, 0]
     },
     {
       "nombre": "Sostenibilidad",
@@ -75,13 +84,14 @@
         "Procesos BPMN 2.0",
         "Indicadores de ecoeficiencia",
         "Capacitación del personal"
-      ]
+      ],
+      "en_prototipo": [0, 0, 0]
     }
   ],
   "deduplicacion": {
     "regla": "Se marca como posible duplicado una venta con igual cliente, productos, cantidades y monto registrada en un intervalo breve; se bloquea el despacho y solo el administrador puede anularla.",
-    "intervalo_sugerido_segundos": 60,
-    "nota": "El TEG dice 'intervalo breve'; 60 s es un valor de demostración.",
+    "intervalo_sugerido_segundos": 900,
+    "nota": "El TEG dice «intervalo breve»; el prototipo usa el mismo día y menos de 15 minutos (Anexo 20, p. 246).",
     "rol_que_anula": "Administración",
     "fuente_rol": "TEG 6.4.2 (Figura 16): «bloquea la orden y notifica al administrador, quien es el único rol autorizado para anularla»; Tabla 18, «Anular transacciones duplicadas»: Administración M (modificar), Gerencia A (aprobar), los demás sin acceso.",
     "ejemplo_demo": {
@@ -100,7 +110,8 @@
       "monto_usd": 45,
       "segundos_entre_ventas": 12,
       "rol_inicial": "Ventas"
-    }
+    },
+    "en_prototipo": "El prototipo detecta los posibles duplicados y los lista en Calidad de datos para revisarlos antes del cierre de caja; se corrigen en el sistema administrativo (Anexo 20, pp. 241 y 247). El bloqueo del despacho es parte del proceso propuesto (Figura 16) y se implementa por fases."
   },
   "formulas": {
     "SS": "z × σd × √L",
@@ -195,7 +206,8 @@
         }
       ],
       "figura": "Figura 16 (proceso propuesto de venta y despacho con control de duplicados)",
-      "reduccion_papel_pct": 80
+      "reduccion_papel_pct": 80,
+      "meta_papel_nota": "Meta de la implementación (Tabla 25), no una medición del prototipo"
     },
     "gobernanza": {
       "roles": [
@@ -220,7 +232,10 @@
       "reemplaza": "Hoja de cálculo paralela de precios en USDT y euros",
       "alerta_antiguedad_tasa_horas": 24,
       "alerta_margen_negativo": true,
-      "efecto": "Impide vender por debajo del costo real"
+      "efecto": "Alerta de margen negativo; en el prototipo, sobre ventas ya registradas (Anexo 20, p. 236)",
+      "efecto_teg": "El TEG (6.4.4.4) plantea que la alerta impida vender por debajo del costo real"
     }
-  }
+  },
+  "fuente_prototipo": "Anexo 20 (Manual de usuario del sistema AgroData JM), pp. 214–247",
+  "estado_nota": "en_prototipo: 1 = ya funciona en el prototipo descrito en el Anexo 20; 0 = se implementa por fases según el Cap. VI. La base de datos del prototipo es MariaDB (Anexo 20, p. 245; confirmado por los autores); el TEG (Tablas 19 y 21) propone PostgreSQL. El despliegue en VPS no consta en el Anexo 20, que solo describe el entorno de pruebas (localhost), por eso figura como fase."
 }

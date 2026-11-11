@@ -499,3 +499,31 @@ bundle (lo resuelven unas 30 líneas propias que se pueden explicar); framework 
 - **Consecuencias:** antes de la defensa (y tras agregar pruebas o commits) conviene ejecutar
   `npm run metricas` para que la lámina 21 muestre las cifras del día. Cada push a `main`
   publica el sitio: lo que esté en `main` es público.
+
+## ADR-019 · Modelo propuesto frente al prototipo del Anexo 20
+- **Contexto:** al comparar la defensa con el Manual de usuario del sistema (TEG, Anexo 20,
+  pp. 214–247) aparecieron diferencias con el Cap. VI: el prototipo no tiene formularios de
+  captura ni conciliación física del inventario; los posibles duplicados se listan en Calidad
+  de datos y no bloquean el despacho; la sincronización es diaria (02:00) con recálculo cada
+  15 min; la base de datos es MariaDB (el TEG propone PostgreSQL; confirmado por los autores el
+  11-11-2026); el despliegue en VPS con Docker no consta en el manual; la parte ambiental y el
+  papel evitado figuran como fase futura (p. 222).
+- **Decisión:** la presentación sigue mostrando el modelo del Cap. VI, pero distingue en
+  pantalla lo que ya funciona en el prototipo de lo que se implementa por fases:
+  - `data/arquitectura.json`: cada capa y transversal tiene `en_prototipo` (1 / 0) en paralelo a
+    `componentes`; se separan «Conciliación y anomalías» y «Vencimientos y ambiente» en sus
+    partes, la base de datos dice MariaDB y el ETL describe la sincronización real.
+  - Láminas 13 y 14: cada componente lleva `data-vars="prototipo=…"`; el CSS pone ■ (prototipo) o
+    □ con texto secundario (por fases): cambia la forma, no solo el color. El pie de la lámina 13
+    explica las dos marcas.
+  - Simulador de duplicados: ventana de 15 min (`intervalo_sugerido_segundos` = 900, Anexo 20,
+    p. 246), texto «proceso propuesto (Figura 16)» y aclaración de que el prototipo lista los
+    posibles duplicados en Calidad de datos antes del cierre de caja. `textoIntervalo()` da
+    «15 min» en lugar de «900 s».
+  - Láminas 14 y 16: el −80 % de papel y los indicadores son metas de la implementación
+    (Tabla 25). Lámina 15: el software libre del prototipo (MariaDB, MinIO, Node.js).
+  - Notas de las láminas 13 a 17 y `docs/guion.md` ajustados con el mismo criterio.
+- **Consecuencias:** la defensa no afirma nada que el prototipo no haga, y el jurado ve qué parte
+  del modelo ya está validada. Si el prototipo se despliega en el VPS antes de la defensa, basta
+  cambiar a 1 el estado de «Docker en VPS» en `data/arquitectura.json`.
+

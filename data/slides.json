@@ -142,7 +142,7 @@
       "segundos": 105,
       "expositor": "Rafael Pérez",
       "pregunta": "¿Qué es AgroData JM y cómo fluyen los datos?",
-      "notas": "Tres pilares: Programa Sustentable, gobernanza, arquitectura. Cinco capas + dos transversales. Docker en un VPS: si se va la luz en la empresa, datos y tableros siguen disponibles; al volver, el conector importa lo pendiente y la deduplicación frena los cobros repetidos.",
+      "notas": "Tres pilares: Programa Sustentable, gobernanza, arquitectura. Cinco capas + dos transversales. Marcas: ■ ya funciona en el prototipo (Anexo 20), □ se implementa por fases (Cap. VI). Base de datos: MariaDB en el prototipo; el TEG propone PostgreSQL. El prototipo sincroniza a diario (02:00) y recalcula cada 15 min si hay datos nuevos: el panel muestra cifras hasta la última venta cargada. Docker en un VPS es lo propuesto (Fase II): así, si se va la luz en la empresa, los tableros siguen disponibles.",
       "reserva": false
     },
     {
@@ -153,7 +153,7 @@
       "segundos": 90,
       "expositor": "Rafael Pérez",
       "pregunta": "¿Cómo resuelve cada componente un problema del diagnóstico?",
-      "notas": "BPMN de venta y despacho con control de duplicados (solo el administrador anula). Matriz de roles y bitácora. SS = z·σd·√L, PR = d̄·L + SS, IR = UV/IP. Previsión: promedio móvil y suavizamiento → Holt-Winters con 24 meses; MAPE. Multimoneda reemplaza el Excel. Demostrar simulador y calculadora.",
+      "notas": "Proceso propuesto (Figura 16): el despacho se bloquea y solo Administración anula. Prototipo: detecta los posibles duplicados (mismo día, menos de 15 min) y los lista en Calidad de datos para revisarlos antes del cierre de caja. Matriz de roles y bitácora (captura real del Anexo 20). SS = z·σd·√L, PR = d̄·L + SS, IR = UV/IP. Previsión: promedio móvil y suavizamiento → Holt-Winters con 24 meses; MAPE. Multimoneda reemplaza el Excel: alerta si la tasa tiene más de 24 h y lista las ventas con margen negativo. El −80 % de papel es una meta. Demostrar simulador y calculadora.",
       "reserva": false
     },
     {
@@ -164,7 +164,7 @@
       "segundos": 75,
       "expositor": "Ricardo Briceño",
       "pregunta": "¿Se puede llevar a la práctica?",
-      "notas": "Técnica: equipos nivel 3, 75% aptos, software libre. Económica: USD 56,10; recurrente ≈ USD 87/año; 240 h + 12 h aportadas por los autores. Operativa: respaldo gerencial; riesgo de resistencia al cambio. Legal: facturación intacta, precios en Bs a tasa BCV. Ilustración: con USD 250/mes de ahorro se recupera en menos de un mes.",
+      "notas": "Técnica: equipos nivel 3, 75% aptos, software libre (el prototipo usa MariaDB, MinIO y Node.js; el TEG presupuesta Docker, PostgreSQL y MinIO: costo 0 en ambos casos). Económica: USD 56,10; recurrente ≈ USD 87/año; 240 h + 12 h aportadas por los autores. Operativa: respaldo gerencial; riesgo de resistencia al cambio. Legal: facturación intacta, precios en Bs a tasa BCV. Ilustración: con USD 250/mes de ahorro se recupera en menos de un mes.",
       "reserva": false
     },
     {
@@ -175,7 +175,7 @@
       "segundos": 45,
       "expositor": "Ricardo Briceño",
       "pregunta": "¿Cómo se implementa y cómo sabremos que funcionó?",
-      "notas": "Cinco fases en 24 semanas con solapamientos. Metas: exactitud de inventario ≥ 98%, 100% duplicados detectados, 100% usuarios con rol en el mes 1, −80% papel. PHVA, comité quincenal, evaluaciones a 3 y 6 meses.",
+      "notas": "Cinco fases en 24 semanas con solapamientos. Metas de la implementación (Tabla 25): exactitud de inventario ≥ 98%, 100% duplicados detectados, 100% usuarios con rol en el mes 1, −80% papel. El prototipo ya cubre los roles y la detección de duplicados; la exactitud del inventario y el papel dependen de los conteos y de la confirmación digital del despacho, que llegan con las fases. PHVA, comité quincenal, evaluaciones a 3 y 6 meses.",
       "reserva": false
     },
     {
@@ -186,7 +186,7 @@
       "segundos": 30,
       "expositor": "Ricardo Briceño",
       "pregunta": "¿Qué debe recordar el jurado?",
-      "notas": "«Una arquitectura de datos ligera, montada sobre lo que la empresa ya tiene, por USD 56,10, ataca la causa de los reembolsos, empieza a medir mermas, papel y energía, y se puede replicar en otras PyMEs de Trujillo». Agradecer e invitar a preguntas.",
+      "notas": "«Una arquitectura de datos ligera, montada sobre lo que la empresa ya tiene, por USD 56,10, ataca la causa de los reembolsos, deja definidos los indicadores para medir mermas, papel y energía desde la línea base, y se puede replicar en otras PyMEs de Trujillo». Agradecer e invitar a preguntas.",
       "reserva": false
     },
     {

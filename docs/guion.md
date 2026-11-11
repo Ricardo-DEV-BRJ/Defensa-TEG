@@ -91,28 +91,28 @@ Si van atrasados, se recortan los Caps. II y III, nunca el VI. Al minuto 10 debe
 
 ## Lámina 13 · Estructura del modelo y arquitectura (1:45)
 - **Pregunta guía:** ¿Qué es AgroData JM y cómo fluyen los datos?
-- **En pantalla:** Figura 15 / animación de capas (`data/arquitectura.json`): Captura → Integración (ETL cada 15 min existencias, diario ventas; deduplicación; multimoneda) → Almacenamiento (PostgreSQL en estrella: 3 hechos, 5 dimensiones; MinIO) → Analítica → Visualización. Transversales: gobernanza y sostenibilidad.
-- **Qué decir:** tres pilares (Programa Sustentable, gobernanza, arquitectura). Docker en un VPS: si se va la luz en la empresa, datos y tableros siguen disponibles; al volver, el conector importa lo pendiente y la deduplicación frena los cobros repetidos antes del despacho.
+- **En pantalla:** animación de capas (`data/arquitectura.json`): Captura → Integración (ETL; deduplicación; multimoneda) → Almacenamiento (MariaDB en el prototipo, el TEG propone PostgreSQL; modelo en estrella; MinIO) → Analítica → Visualización. Transversales: gobernanza y sostenibilidad. Cada componente lleva ■ si ya funciona en el prototipo (Anexo 20) o □ si se implementa por fases (Cap. VI); el pie explica las marcas (ADR-019).
+- **Qué decir:** tres pilares (Programa Sustentable, gobernanza, arquitectura). Explicar las marcas: lo lleno ya funciona en el prototipo; lo hueco (formularios de captura, conciliación física, control ambiental, tablero de sostenibilidad, alertas por correo, Docker en VPS) llega con las fases. El prototipo sincroniza a diario y recalcula cada 15 min si hay datos nuevos. Lo propuesto es Docker en un VPS: así, si se va la luz en la empresa, los tableros siguen disponibles.
 
 ## Lámina 14 · Procesos, gobernanza y modelos analíticos (1:30)
 - **Pregunta guía:** ¿Cómo resuelve cada componente un problema del diagnóstico?
-- **En pantalla:** Programa Sustentable (6 procesos BPMN; Figura 16; −80% papel) · Gobernanza (roles Gerencia, Administración, Ventas, Almacén, Soporte TI; bitácora; TLS; respaldos; ISO/IEC 27001) · Modelos: SS = z·σd·√L, PR = d̄·L + SS, IR = UV/IP. Demostración: simulador de duplicados y calculadora de stock.
-- **Qué decir:** previsión con promedio móvil y suavizamiento → Holt-Winters con 24 meses; MAPE. Módulo multimoneda reemplaza el Excel y alerta si la tasa tiene más de 24 h o el margen es negativo. Mostrar captura real del sistema (`public/img/capturas-sistema/`).
+- **En pantalla:** Programa Sustentable (6 procesos BPMN; Figura 16; meta −80% papel) · Gobernanza (roles Gerencia, Administración, Ventas, Almacén, Soporte TI; bitácora; TLS; respaldos; ISO/IEC 27001; con las marcas ■/□) · Modelos: SS = z·σd·√L, PR = d̄·L + SS, IR = UV/IP. Demostración: simulador de duplicados (ventana de 15 min, la del prototipo) y calculadora de stock.
+- **Qué decir:** el simulador muestra el proceso propuesto (Figura 16): el despacho se bloquea y solo Administración anula. En el prototipo, los posibles duplicados (mismo día, menos de 15 min) se listan en Calidad de datos para revisarlos antes del cierre de caja. Previsión con promedio móvil y suavizamiento → Holt-Winters con 24 meses; MAPE. El módulo multimoneda reemplaza el Excel: alerta si la tasa tiene más de 24 h y lista las ventas con margen negativo. El −80% de papel es una meta, no una medición.
 
 ## Lámina 15 · Factibilidad (1:15)
 - **Pregunta guía:** ¿Se puede llevar a la práctica?
-- **En pantalla:** cuatro tarjetas (`data/costos.json`): Técnica (equipos nivel 3, 75% aptos, software libre) · Económica (**USD 56,10** = 36,00 + 15,00 + 5,10; recurrente ≈ USD 87/año; 240 h + 12 h aportadas) · Operativa (respaldo gerencial, 100% a favor de automatizar; riesgo: cambio) · Legal (CRBV 28, 60, 305; facturación intacta; precios en Bs a tasa BCV).
+- **En pantalla:** cuatro tarjetas (`data/costos.json`): Técnica (equipos nivel 3, 75% aptos, software libre del prototipo: MariaDB, MinIO y Node.js) · Económica (**USD 56,10** = 36,00 + 15,00 + 5,10; recurrente ≈ USD 87/año; 240 h + 12 h aportadas) · Operativa (respaldo gerencial, 100% a favor de automatizar; riesgo: cambio) · Legal (CRBV 28, 60, 305; facturación intacta; precios en Bs a tasa BCV).
 - **Qué decir:** el retorno se calcula con la línea base; ilustración: con USD 250/mes de ahorro se recupera en menos de un mes.
 
 ## Lámina 16 · Implementación e indicadores (0:45)
 - **Pregunta guía:** ¿Cómo se implementa y cómo sabremos que funcionó?
-- **En pantalla:** Gantt de 24 semanas (`data/cronograma.json`) y metas: exactitud ≥ 98%, 100% duplicados detectados, 100% usuarios con rol en el mes 1, −80% papel.
-- **Qué decir:** PHVA, comité quincenal, evaluaciones a 3 y 6 meses; matriz de riesgos disponible.
+- **En pantalla:** Gantt de 24 semanas (`data/cronograma.json`) y metas de la implementación: exactitud ≥ 98%, 100% duplicados detectados, 100% usuarios con rol en el mes 1, −80% papel.
+- **Qué decir:** son metas al implementar, no mediciones del prototipo: el prototipo ya cubre roles y detección de duplicados; la exactitud del inventario y el papel dependen de los conteos y de la confirmación digital del despacho. PHVA, comité quincenal, evaluaciones a 3 y 6 meses; matriz de riesgos disponible.
 
 ## Lámina 17 · Cierre (0:30)
 - **Pregunta guía:** ¿Qué debe recordar el jurado?
 - **En pantalla:** una frase grande, «Gracias», isologo UVM y QR.
-- **Qué decir:** «Una arquitectura de datos ligera, montada sobre lo que la empresa ya tiene, por USD 56,10, ataca la causa de los reembolsos, empieza a medir mermas, papel y energía, y se puede replicar en otras PyMEs de Trujillo».
+- **Qué decir:** «Una arquitectura de datos ligera, montada sobre lo que la empresa ya tiene, por USD 56,10, ataca la causa de los reembolsos, deja definidos los indicadores para medir mermas, papel y energía desde la línea base, y se puede replicar en otras PyMEs de Trujillo».
 
 ---
 
@@ -120,12 +120,14 @@ Si van atrasados, se recortan los Caps. II y III, nunca el VI. Al minuto 10 debe
 1. **¿Por qué Big Data con un solo reporte diario?** No se define solo por volumen (Joyanes Aguilar, 2016); aquí es variedad: ventas, registros operativos, inspecciones y tasas multimoneda. Por eso VPS y no clúster.
 2. **¿Confiables los porcentajes con 4 encuestados?** Describen a ese grupo; cada respuesta = 25%. Las conclusiones se apoyan en la triangulación.
 3. **¿Por qué no Alfa de Cronbach?** n = 4 y un ítem por indicador → coeficiente inestable. Validez por 3 expertos; credibilidad por triangulación.
-4. **¿El modelo elimina las ventas duplicadas?** No en la caja (el sistema administrativo no se modifica); las detecta y bloquea antes del despacho y concilia stock. Para la causa eléctrica: UPS.
-5. **¿Y si se va la luz o internet en la empresa?** La plataforma vive en el VPS; al volver, importación ordenada y deduplicación. Formulario de contingencia numerado.
+4. **¿El modelo elimina las ventas duplicadas?** No en la caja (el sistema administrativo no se modifica). El prototipo ya las detecta (mismo día, menos de 15 min) y las lista en Calidad de datos para corregirlas antes del cierre; el bloqueo del despacho y la conciliación física son del proceso propuesto, por fases. Para la causa eléctrica: UPS.
+5. **¿Y si se va la luz o internet en la empresa?** Lo propuesto es alojar la plataforma en un VPS: los tableros siguen disponibles y, al volver, se importa lo pendiente con deduplicación. Formulario de contingencia numerado. El prototipo actual corre en el entorno de pruebas.
 6. **¿Cómo predicen sin historial?** Promedio móvil y suavizamiento con criterio gerencial; Holt-Winters con 24 meses; MAPE.
 7. **¿Es realista USD 56,10?** VPS 6 meses + dominio + 10%. Bajo porque no se compran equipos, software libre y 240 h aportadas por los autores. Tener a mano una estimación si la empresa pagara el desarrollo.
 8. **¿Dónde está lo sustentable?** Medir y reducir mermas, papel (−80%) y energía; ODS 2, 9 y 12; dimensiones económica y social.
-9. **¿Por qué no sensores IoT?** Presupuesto: inspecciones en formularios; sensores y edge como ampliación futura.
+9. **¿Por qué no sensores IoT?** Presupuesto: el Cap. VI propone inspecciones en formularios y deja sensores y edge como ampliación futura. En el prototipo, las alertas ambientales y el papel evitado aún no están (Anexo 20, p. 222).
 10. **¿Resistencia al cambio?** Capacitación por roles (12 h), usuarios de referencia, semáforos, operación asistida, manual (Anexo 20).
 11. **¿USDT y euros tienen problemas legales?** Facturación en el sistema actual y precios en Bs a tasa BCV; otras monedas solo para costos internos.
-12. **¿El sistema ya está desarrollado?** El alcance declarado es el diseño, pero hay manual de usuario y capturas. Definir antes si se muestra demo y cómo se explica.
+12. **¿El sistema ya está desarrollado?** Es un prototipo funcional con datos sintéticos (Anexo 20): valida la capa analítica (stock de seguridad, punto de reorden, rotación, previsión, RFM), la gobernanza (roles y bitácora), la calidad de datos y el módulo multimoneda. La captura operativa (formularios, conteos, mermas), el control ambiental y el despliegue en VPS son las siguientes fases.
+13. **¿Por qué MariaDB si el TEG dice PostgreSQL?** Ambas son bases relacionales libres y no cambian el costo ni la arquitectura; el prototipo se construyó con MariaDB y el modelo admite cualquiera de las dos.
+14. **¿Por qué el prototipo tiene módulos de cobranza, comisiones o proveedores?** Salen de los mismos datos de ventas y compras, sin costo adicional, y aprovechan la capa analítica; el foco de la defensa sigue siendo inventario, duplicados y multimoneda.

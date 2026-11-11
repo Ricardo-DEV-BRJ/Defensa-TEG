@@ -8,7 +8,9 @@
   Componente data-flow (src/components/data-flow.js, ADR-011): al aparecer cada capa, una ráfaga
   de paquetes sube por la flecha hasta ella (clic en la flecha la repite); clic en una capa la
   amplía con sus componentes. data-capa = número de la capa (1 = captura).
-  Los tres pilares y el VPS ante cortes se dicen (notas).
+  Cada componente lleva data-vars="prototipo=…en_prototipo.i": 1 = ya funciona en el prototipo
+  del Anexo 20, 0 = se implementa por fases (Cap. VI). El pie explica las dos marcas (ADR-019).
+  Los tres pilares, la base de datos y el despliegue se dicen (notas).
 -->
 <div class="plantilla">
   <h2 class="plantilla__titulo">Estructura del modelo y arquitectura</h2>
@@ -17,11 +19,26 @@
       <section class="transversal" data-fragment="6">
         <h3 class="transversal__titulo" data-dato="arquitectura.transversales.0.nombre"></h3>
         <ul class="lista-compacta">
-          <li data-dato="arquitectura.transversales.0.componentes.0"></li>
-          <li data-dato="arquitectura.transversales.0.componentes.1"></li>
-          <li data-dato="arquitectura.transversales.0.componentes.2"></li>
-          <li data-dato="arquitectura.transversales.0.componentes.3"></li>
-          <li data-dato="arquitectura.transversales.0.componentes.4"></li>
+          <li
+            data-dato="arquitectura.transversales.0.componentes.0"
+            data-vars="prototipo=arquitectura.transversales.0.en_prototipo.0"
+          ></li>
+          <li
+            data-dato="arquitectura.transversales.0.componentes.1"
+            data-vars="prototipo=arquitectura.transversales.0.en_prototipo.1"
+          ></li>
+          <li
+            data-dato="arquitectura.transversales.0.componentes.2"
+            data-vars="prototipo=arquitectura.transversales.0.en_prototipo.2"
+          ></li>
+          <li
+            data-dato="arquitectura.transversales.0.componentes.3"
+            data-vars="prototipo=arquitectura.transversales.0.en_prototipo.3"
+          ></li>
+          <li
+            data-dato="arquitectura.transversales.0.componentes.4"
+            data-vars="prototipo=arquitectura.transversales.0.en_prototipo.4"
+          ></li>
         </ul>
       </section>
       <p class="flujo" data-fragment="1"><span class="flujo__texto">Flujo de datos</span></p>
@@ -33,10 +50,26 @@
             <p class="capa__funcion" data-dato="arquitectura.capas.4.funcion"></p>
           </div>
           <ul class="capa__componentes">
-            <li data-dato="arquitectura.capas.4.componentes.0"></li>
-            <li data-dato="arquitectura.capas.4.componentes.1"></li>
-            <li data-dato="arquitectura.capas.4.componentes.2"></li>
-            <li data-dato="arquitectura.capas.4.componentes.3"></li>
+            <li
+              data-dato="arquitectura.capas.4.componentes.0"
+              data-vars="prototipo=arquitectura.capas.4.en_prototipo.0"
+            ></li>
+            <li
+              data-dato="arquitectura.capas.4.componentes.1"
+              data-vars="prototipo=arquitectura.capas.4.en_prototipo.1"
+            ></li>
+            <li
+              data-dato="arquitectura.capas.4.componentes.2"
+              data-vars="prototipo=arquitectura.capas.4.en_prototipo.2"
+            ></li>
+            <li
+              data-dato="arquitectura.capas.4.componentes.3"
+              data-vars="prototipo=arquitectura.capas.4.en_prototipo.3"
+            ></li>
+            <li
+              data-dato="arquitectura.capas.4.componentes.4"
+              data-vars="prototipo=arquitectura.capas.4.en_prototipo.4"
+            ></li>
           </ul>
         </li>
         <li class="capa" data-capa="4" data-fragment="4">
@@ -46,12 +79,38 @@
             <p class="capa__funcion" data-dato="arquitectura.capas.3.funcion"></p>
           </div>
           <ul class="capa__componentes">
-            <li data-dato="arquitectura.capas.3.componentes.0"></li>
-            <li data-dato="arquitectura.capas.3.componentes.1"></li>
-            <li data-dato="arquitectura.capas.3.componentes.2"></li>
-            <li data-dato="arquitectura.capas.3.componentes.3"></li>
-            <li data-dato="arquitectura.capas.3.componentes.4"></li>
-            <li data-dato="arquitectura.capas.3.componentes.5"></li>
+            <li
+              data-dato="arquitectura.capas.3.componentes.0"
+              data-vars="prototipo=arquitectura.capas.3.en_prototipo.0"
+            ></li>
+            <li
+              data-dato="arquitectura.capas.3.componentes.1"
+              data-vars="prototipo=arquitectura.capas.3.en_prototipo.1"
+            ></li>
+            <li
+              data-dato="arquitectura.capas.3.componentes.2"
+              data-vars="prototipo=arquitectura.capas.3.en_prototipo.2"
+            ></li>
+            <li
+              data-dato="arquitectura.capas.3.componentes.3"
+              data-vars="prototipo=arquitectura.capas.3.en_prototipo.3"
+            ></li>
+            <li
+              data-dato="arquitectura.capas.3.componentes.4"
+              data-vars="prototipo=arquitectura.capas.3.en_prototipo.4"
+            ></li>
+            <li
+              data-dato="arquitectura.capas.3.componentes.5"
+              data-vars="prototipo=arquitectura.capas.3.en_prototipo.5"
+            ></li>
+            <li
+              data-dato="arquitectura.capas.3.componentes.6"
+              data-vars="prototipo=arquitectura.capas.3.en_prototipo.6"
+            ></li>
+            <li
+              data-dato="arquitectura.capas.3.componentes.7"
+              data-vars="prototipo=arquitectura.capas.3.en_prototipo.7"
+            ></li>
           </ul>
         </li>
         <li class="capa" data-capa="3" data-fragment="3">
@@ -61,9 +120,18 @@
             <p class="capa__funcion" data-dato="arquitectura.capas.2.funcion"></p>
           </div>
           <ul class="capa__componentes">
-            <li data-dato="arquitectura.capas.2.componentes.0"></li>
-            <li data-dato="arquitectura.capas.2.componentes.1"></li>
-            <li data-dato="arquitectura.capas.2.componentes.2"></li>
+            <li
+              data-dato="arquitectura.capas.2.componentes.0"
+              data-vars="prototipo=arquitectura.capas.2.en_prototipo.0"
+            ></li>
+            <li
+              data-dato="arquitectura.capas.2.componentes.1"
+              data-vars="prototipo=arquitectura.capas.2.en_prototipo.1"
+            ></li>
+            <li
+              data-dato="arquitectura.capas.2.componentes.2"
+              data-vars="prototipo=arquitectura.capas.2.en_prototipo.2"
+            ></li>
           </ul>
         </li>
         <li class="capa" data-capa="2" data-fragment="2">
@@ -73,10 +141,22 @@
             <p class="capa__funcion" data-dato="arquitectura.capas.1.funcion"></p>
           </div>
           <ul class="capa__componentes">
-            <li data-dato="arquitectura.capas.1.componentes.0"></li>
-            <li data-dato="arquitectura.capas.1.componentes.1"></li>
-            <li data-dato="arquitectura.capas.1.componentes.2"></li>
-            <li data-dato="arquitectura.capas.1.componentes.3"></li>
+            <li
+              data-dato="arquitectura.capas.1.componentes.0"
+              data-vars="prototipo=arquitectura.capas.1.en_prototipo.0"
+            ></li>
+            <li
+              data-dato="arquitectura.capas.1.componentes.1"
+              data-vars="prototipo=arquitectura.capas.1.en_prototipo.1"
+            ></li>
+            <li
+              data-dato="arquitectura.capas.1.componentes.2"
+              data-vars="prototipo=arquitectura.capas.1.en_prototipo.2"
+            ></li>
+            <li
+              data-dato="arquitectura.capas.1.componentes.3"
+              data-vars="prototipo=arquitectura.capas.1.en_prototipo.3"
+            ></li>
           </ul>
         </li>
         <li class="capa" data-capa="1" data-fragment="1">
@@ -86,21 +166,46 @@
             <p class="capa__funcion" data-dato="arquitectura.capas.0.funcion"></p>
           </div>
           <ul class="capa__componentes">
-            <li data-dato="arquitectura.capas.0.componentes.0"></li>
-            <li data-dato="arquitectura.capas.0.componentes.1"></li>
-            <li data-dato="arquitectura.capas.0.componentes.2"></li>
-            <li data-dato="arquitectura.capas.0.componentes.3"></li>
+            <li
+              data-dato="arquitectura.capas.0.componentes.0"
+              data-vars="prototipo=arquitectura.capas.0.en_prototipo.0"
+            ></li>
+            <li
+              data-dato="arquitectura.capas.0.componentes.1"
+              data-vars="prototipo=arquitectura.capas.0.en_prototipo.1"
+            ></li>
+            <li
+              data-dato="arquitectura.capas.0.componentes.2"
+              data-vars="prototipo=arquitectura.capas.0.en_prototipo.2"
+            ></li>
+            <li
+              data-dato="arquitectura.capas.0.componentes.3"
+              data-vars="prototipo=arquitectura.capas.0.en_prototipo.3"
+            ></li>
           </ul>
         </li>
       </ol>
       <section class="transversal" data-fragment="6">
         <h3 class="transversal__titulo" data-dato="arquitectura.transversales.1.nombre"></h3>
         <ul class="lista-compacta">
-          <li data-dato="arquitectura.transversales.1.componentes.0"></li>
-          <li data-dato="arquitectura.transversales.1.componentes.1"></li>
-          <li data-dato="arquitectura.transversales.1.componentes.2"></li>
+          <li
+            data-dato="arquitectura.transversales.1.componentes.0"
+            data-vars="prototipo=arquitectura.transversales.1.en_prototipo.0"
+          ></li>
+          <li
+            data-dato="arquitectura.transversales.1.componentes.1"
+            data-vars="prototipo=arquitectura.transversales.1.en_prototipo.1"
+          ></li>
+          <li
+            data-dato="arquitectura.transversales.1.componentes.2"
+            data-vars="prototipo=arquitectura.transversales.1.en_prototipo.2"
+          ></li>
         </ul>
       </section>
     </div>
   </div>
+  <p class="plantilla__pie leyenda-estado" data-fragment="6">
+    <span class="leyenda-estado--si">Ya funciona en el prototipo (Anexo 20)</span>
+    <span class="leyenda-estado--fase">Se implementa por fases (Cap. VI)</span>
+  </p>
 </div>

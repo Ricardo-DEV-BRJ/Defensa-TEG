@@ -11,6 +11,7 @@ import {
   puedeAnular,
   puedeDespachar,
   simular,
+  textoIntervalo,
   ventasDelCorte,
 } from '../src/components/dedup-sim.js';
 
@@ -197,5 +198,20 @@ describe('calcularTiempos', () => {
   it('las dos filas importadas terminan de aparecer en 1,5 s o menos', () => {
     const { despacho } = calcularTiempos(1, { retardo: 250, paso: 300 });
     expect(despacho.retardo + despacho.duracion).toBeLessThanOrEqual(1500);
+  });
+});
+
+describe('textoIntervalo', () => {
+  it.each([
+    [900, '15 min'],
+    [60, '1 min'],
+    [45, '45 s'],
+    [90, '90 s'],
+  ])('%s s → %s', (segundos, esperado) => {
+    expect(textoIntervalo(segundos)).toBe(esperado);
+  });
+
+  it('la ventana de los datos es la del prototipo: 15 minutos (Anexo 20, p. 246)', () => {
+    expect(INTERVALO).toBe(900);
   });
 });
