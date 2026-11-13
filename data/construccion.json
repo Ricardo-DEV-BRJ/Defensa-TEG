@@ -1,11 +1,11 @@
 {
   "fuente": "Generado con npm run metricas (scripts/metricas.mjs) a partir del repositorio",
-  "fecha": "2026-11-11",
+  "fecha": "2026-11-13",
   "pruebas": 393,
   "archivos_de_prueba": 22,
   "componentes": 8,
   "modulos_motor": 8,
-  "decisiones": 19,
+  "decisiones": 20,
   "dependencias_en_ejecucion": 0,
   "laminas_principales": 17,
   "laminas_reserva": 4,

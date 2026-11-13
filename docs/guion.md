@@ -6,8 +6,8 @@ Si van atrasados, se recortan los Caps. II y III, nunca el VI. Al minuto 10 debe
 | Bloque | Láminas | Tiempo | Expositor |
 | --- | --- | --- | --- |
 | Apertura | 1 | 0:45 | Rafael Pérez |
-| Cap. I – Planteamiento | 2–4 | 2:45 | Rafael Pérez |
-| Cap. II – Marco teórico | 5–6 | 2:00 | Rafael Pérez |
+| Cap. I – Planteamiento | 2–4 | 2:55 | Rafael Pérez |
+| Cap. II – Marco teórico | 5–6 | 1:50 | Rafael Pérez |
 | Cap. III – Marco metodológico | 7 | 2:15 | Ricardo Briceño |
 | Cap. IV – Resultados | 8–10 | 4:00 | Ricardo Briceño |
 | Cap. V – Conclusiones | 11–12 | 1:30 | Ricardo Briceño |
@@ -22,9 +22,10 @@ Si van atrasados, se recortan los Caps. II y III, nunca el VI. Al minuto 10 debe
 - **En pantalla:** título completo, isologo UVM, Facultad de Ingeniería, Ingeniería en Computación, autores (Br. Rafael Pérez, Técn. Ricardo Briceño), tutora MSc. Yajaira Segovia, Trujillo 2026.
 - **Qué decir:** saludo y frase gancho: «Una PyME agrocomercial puede perder dinero sin perder un solo producto: basta con que se vaya la luz».
 
-## Lámina 2 · Contexto y problema (1:15)
+## Lámina 2 · Contexto y problema (1:25)
 - **Pregunta guía:** ¿Qué le pasa hoy a la Empresa Agro Comercializadora JM?
-- **En pantalla:** esquema causa → efecto con cuatro problemas:
+- **Al llegar (paso 0):** el Problema General del TEG, para leerlo en voz alta: «¿Cómo diseñar un modelo sustentable de digitalización de procesos mediante Big Data para la Empresa Agro Comercializadora JM?» (1.2.1, pág. 27). Con el primer paso lo reemplazan las cadenas (ADR-020).
+- **En pantalla (pasos 1–4):** esquema causa → efecto con cuatro problemas:
   1. Fallas eléctricas → desincronización entre stock lógico y físico → ventas duplicadas y reembolsos.
   2. Precios en divisas (USDT, euros) en un Excel paralelo → riesgo de vender bajo costo.
   3. Sin control de temperatura y humedad en el almacén → riesgo de mermas por deterioro.
@@ -41,7 +42,7 @@ Si van atrasados, se recortan los Caps. II y III, nunca el VI. Al minuto 10 debe
 - **En pantalla:** cuatro tarjetas con ícono (teórica, metodológica, práctica, social), cada una con una frase de apoyo que resume su apartado del TEG (1.4.1 a 1.4.4), y columnas «Incluye» / «No incluye».
 - **Qué decir:** incluye diseño conceptual, lógico y estructural, desde requerimientos hasta tableros. No incluye rutas VRP/TSP (línea futura). Limitaciones: presupuesto de PyME, sin historial depurado, resistencia al cambio, brecha digital. Vínculo con el Desarrollo Humano Sustentable de la UVM.
 
-## Lámina 5 · Antecedentes (0:50)
+## Lámina 5 · Antecedentes (0:40)
 - **Pregunta guía:** ¿Qué dicen otros estudios y qué tomamos de cada uno?
 - **En pantalla:** línea de tiempo con los 5 autores y su aporte (`data/antecedentes.json`).
 - **Qué decir:** no leer. Destacar Chacón Ramírez et al. (2023) → plataforma en la nube ante cortes; Hernández Romero (2026) → enfoque de bajo costo.
