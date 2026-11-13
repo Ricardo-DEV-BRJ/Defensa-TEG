@@ -150,21 +150,21 @@
   transition: none;
 }
 
-/* ── Pregunta de entrada (lámina 2, ADR-020) ───────────────────────────────
- * Al llegar a la lámina (paso 0) se ve la pregunta en lugar de las cadenas; con el primer
- * fragmento, las cadenas la reemplazan. En la vista general y al imprimir se ven las cadenas.
+/* ── Pregunta del problema (lámina 2, ADR-020) ─────────────────────────────
+ * Último paso de la lámina: tras las cadenas del contexto, la pregunta ocupa su lugar para
+ * leerla; después vienen los objetivos. En la vista general y al imprimir se ven las cadenas.
  */
-.pregunta-entrada {
+.pregunta-problema {
   display: grid;
   align-content: center;
   gap: var(--espacio-m);
 }
 
-.pregunta-entrada > p {
+.pregunta-problema > p {
   margin: 0;
 }
 
-.pregunta-entrada__texto {
+.pregunta-problema__texto {
   font-family: var(--fuente-titulos);
   font-size: var(--texto-titulo);
   font-weight: 700;
@@ -174,18 +174,23 @@
   max-width: 34ch;
 }
 
-.escenario[data-modo='vista-general'] .pregunta-entrada {
+.pregunta-problema[data-fragment]:not([data-visible]),
+.escenario[data-modo='vista-general'] .pregunta-problema {
   display: none;
 }
 
 @media screen {
   .escenario:not([data-modo='vista-general'])
-    .plantilla:has(.cadenas [data-fragment][data-visible])
-    > .pregunta-entrada,
-  .escenario:not([data-modo='vista-general'])
-    .plantilla:has(> .pregunta-entrada):not(:has(.cadenas [data-fragment][data-visible]))
+    .plantilla:has(> .pregunta-problema[data-visible])
     > .cadenas {
     display: none;
+  }
+}
+
+/* Al pasar de display: none a visible, parte de opacidad 0 (la transición es la del fragmento). */
+@starting-style {
+  .pregunta-problema[data-visible] {
+    opacity: 0;
   }
 }
 

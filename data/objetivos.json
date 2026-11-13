@@ -5,7 +5,7 @@
   "problema_general": {
     "fuente": "TEG, 1.2.1 Problema General (pág. 27)",
     "texto": "¿Cómo diseñar un modelo sustentable de digitalización de procesos mediante Big Data para la Empresa Agro Comercializadora JM?",
-    "nota": "Copia literal del TEG; como en el objetivo general, se unifican «Big Data» y «Empresa Agro Comercializadora JM» en mayúsculas. Se lee en la lámina 2 antes de las cadenas causa → efecto (ADR-020)."
+    "nota": "Copia literal del TEG; como en el objetivo general, se unifican «Big Data» y «Empresa Agro Comercializadora JM» en mayúsculas. Se lee al final de la lámina 2, después de las cadenas causa → efecto y antes de los objetivos (ADR-020)."
   },
   "general": {
     "texto_teg": "Diseñar un modelo sustentable de digitalización de procesos mediante big data para la empresa agro comercializadora JM para optimizar la gestión logística y reducir las mermas de productos agrícolas.",
