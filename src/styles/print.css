@@ -86,10 +86,10 @@
   }
 
   /* Lo que solo sirve en vivo: demostraciones de la lámina 14 (se imprimen sus paneles),
-   * pregunta de entrada de la lámina 2 (se imprimen sus cadenas), recuadro de actividades del
+   * pregunta del problema de la lámina 2 (se imprimen sus cadenas), recuadro de actividades del
    * Gantt, paquetes del flujo de datos, guías, pantalla negra e indicador «Ir a lámina». */
   .demo,
-  .pregunta-entrada,
+  .pregunta-problema,
   .gantt__detalle,
   .flujo__paquetes,
   .particulas,

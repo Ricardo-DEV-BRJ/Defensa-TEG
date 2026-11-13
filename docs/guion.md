@@ -24,13 +24,13 @@ Si van atrasados, se recortan los Caps. II y III, nunca el VI. Al minuto 10 debe
 
 ## Lámina 2 · Contexto y problema (1:25)
 - **Pregunta guía:** ¿Qué le pasa hoy a la Empresa Agro Comercializadora JM?
-- **Al llegar (paso 0):** el Problema General del TEG, para leerlo en voz alta: «¿Cómo diseñar un modelo sustentable de digitalización de procesos mediante Big Data para la Empresa Agro Comercializadora JM?» (1.2.1, pág. 27). Con el primer paso lo reemplazan las cadenas (ADR-020).
 - **En pantalla (pasos 1–4):** esquema causa → efecto con cuatro problemas:
   1. Fallas eléctricas → desincronización entre stock lógico y físico → ventas duplicadas y reembolsos.
   2. Precios en divisas (USDT, euros) en un Excel paralelo → riesgo de vender bajo costo.
   3. Sin control de temperatura y humedad en el almacén → riesgo de mermas por deterioro.
   4. Sin roles ni permisos de usuario → todo el personal administrativo cambia precios; y, en el mismo paso, sin Programa Sustentable formal → carpetas de despacho en papel (TEG 1.1).
 - **Qué decir:** tres niveles en una frase (global: sostenibilidad + digitalización; Latinoamérica: barreras de costo y brecha academia-empresa; Venezuela: volatilidad, multimoneda, fallas de servicios) y bajar a la empresa. La desincronización no causa mermas físicas, sí pérdidas económicas.
+- **Paso 5 (cierre de la lámina):** el Problema General del TEG ocupa el lugar de las cadenas, para leerlo en voz alta: «¿Cómo diseñar un modelo sustentable de digitalización de procesos mediante Big Data para la Empresa Agro Comercializadora JM?» (1.2.1, pág. 27). Orden: contexto → pregunta → objetivos (ADR-020).
 
 ## Lámina 3 · Objetivos (0:45)
 - **Pregunta guía:** ¿Qué nos propusimos lograr?
