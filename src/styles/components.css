@@ -150,6 +150,45 @@
   transition: none;
 }
 
+/* ── Pregunta de entrada (lámina 2, ADR-020) ───────────────────────────────
+ * Al llegar a la lámina (paso 0) se ve la pregunta en lugar de las cadenas; con el primer
+ * fragmento, las cadenas la reemplazan. En la vista general y al imprimir se ven las cadenas.
+ */
+.pregunta-entrada {
+  display: grid;
+  align-content: center;
+  gap: var(--espacio-m);
+}
+
+.pregunta-entrada > p {
+  margin: 0;
+}
+
+.pregunta-entrada__texto {
+  font-family: var(--fuente-titulos);
+  font-size: var(--texto-titulo);
+  font-weight: 700;
+  line-height: var(--interlineado-titulo);
+  color: var(--color-primario);
+  text-wrap: balance;
+  max-width: 34ch;
+}
+
+.escenario[data-modo='vista-general'] .pregunta-entrada {
+  display: none;
+}
+
+@media screen {
+  .escenario:not([data-modo='vista-general'])
+    .plantilla:has(.cadenas [data-fragment][data-visible])
+    > .pregunta-entrada,
+  .escenario:not([data-modo='vista-general'])
+    .plantilla:has(> .pregunta-entrada):not(:has(.cadenas [data-fragment][data-visible]))
+    > .cadenas {
+    display: none;
+  }
+}
+
 /* ── Cadena: causa → efecto → consecuencia (láminas 2 y 10) ────────────────
  * Cinco columnas: caja · flecha · caja · flecha · caja. La cabecera y todas las filas
  * comparten columnas (subgrid), así las causas quedan alineadas a la izquierda y los

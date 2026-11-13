@@ -527,3 +527,18 @@ bundle (lo resuelven unas 30 líneas propias que se pueden explicar); framework 
   del modelo ya está validada. Si el prototipo se despliega en el VPS antes de la defensa, basta
   cambiar a 1 el estado de «Docker en VPS» en `data/arquitectura.json`.
 
+## ADR-020 · Problema General al inicio de la lámina 2
+- **Contexto:** los autores pidieron (13-11-2026) que el problema de la investigación aparezca en
+  pantalla para leerlo y que el jurado entienda mejor de qué se habla. Eligieron solo la pregunta
+  del Problema General (TEG 1.2.1, pág. 27) y dentro de la lámina 2, sin renumerar.
+- **Decisión:**
+  - `data/objetivos.json → problema_general`: texto literal y fuente; como en el objetivo general,
+    «Big Data» y «Empresa Agro Comercializadora JM» van en mayúsculas.
+  - Lámina 2: un `.pregunta-entrada` antes de las cadenas. En pantalla, al llegar (paso 0) se ve la
+    pregunta y no las cadenas; con el primer fragmento, las cadenas la reemplazan (`:has()`, sin
+    JavaScript ni pasos nuevos). En la vista general y al imprimir se ven las cadenas.
+  - Tiempos: la lámina 2 pasa de 75 a 85 s y la 5 (antecedentes, que no se leen) de 50 a 40 s; el
+    total sigue en 1.140 s.
+- **Consecuencias:** la navegación de la lámina 2 no cambia (cuatro pasos); al volver desde la
+  lámina 3 se llega con las cadenas visibles, como antes.
+

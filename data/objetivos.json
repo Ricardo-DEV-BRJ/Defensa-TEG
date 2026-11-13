@@ -2,6 +2,11 @@
   "fuente": "TEG, 1.3 Objetivos de la investigación (págs. 27–28) y 5.1 Conclusiones (págs. 117–118)",
   "verificado_contra_teg": true,
   "nota": "texto_teg y conclusion_teg son copias literales del TEG; verbo + complemento es lo que se ve en pantalla (lámina 3), sin el punto final. En el objetivo general se unifican «Big Data» y «Empresa Agro Comercializadora JM» en mayúsculas, como en el resto del TEG. resumen es la versión corta del guion. Las conclusiones literales se muestran en las láminas 11 (objetivos 1 y 2) y 12 (objetivos 3 y 4 y general); una prueba lo exige.",
+  "problema_general": {
+    "fuente": "TEG, 1.2.1 Problema General (pág. 27)",
+    "texto": "¿Cómo diseñar un modelo sustentable de digitalización de procesos mediante Big Data para la Empresa Agro Comercializadora JM?",
+    "nota": "Copia literal del TEG; como en el objetivo general, se unifican «Big Data» y «Empresa Agro Comercializadora JM» en mayúsculas. Se lee en la lámina 2 antes de las cadenas causa → efecto (ADR-020)."
+  },
   "general": {
     "texto_teg": "Diseñar un modelo sustentable de digitalización de procesos mediante big data para la empresa agro comercializadora JM para optimizar la gestión logística y reducir las mermas de productos agrícolas.",
     "verbo": "Diseñar",

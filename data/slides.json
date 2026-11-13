@@ -18,10 +18,10 @@
       "archivo": "02-contexto-problema.html",
       "titulo": "Contexto y problema",
       "capitulo": "I",
-      "segundos": 75,
+      "segundos": 85,
       "expositor": "Rafael Pérez",
       "pregunta": "¿Qué le pasa hoy a la Empresa Agro Comercializadora JM?",
-      "notas": "Tres niveles en una frase (global, Latinoamérica, Venezuela) y bajar a la empresa. Cuatro problemas: fallas eléctricas → desincronización y reembolsos; Excel paralelo en USDT/EUR; sin control de temperatura y humedad; sin roles de acceso y despacho en papel. La desincronización no causa mermas físicas, sí pérdidas económicas.",
+      "notas": "Al llegar, leer en voz alta el Problema General que está en pantalla (TEG 1.2.1, pág. 27). Luego avanzar: tres niveles en una frase (global, Latinoamérica, Venezuela) y bajar a la empresa. Cuatro problemas: fallas eléctricas → desincronización y reembolsos; Excel paralelo en USDT/EUR; sin control de temperatura y humedad; sin roles de acceso y despacho en papel. La desincronización no causa mermas físicas, sí pérdidas económicas.",
       "reserva": false
     },
     {
@@ -51,7 +51,7 @@
       "archivo": "05-antecedentes.html",
       "titulo": "Antecedentes",
       "capitulo": "II",
-      "segundos": 50,
+      "segundos": 40,
       "expositor": "Rafael Pérez",
       "pregunta": "¿Qué dicen otros estudios y qué tomamos de cada uno?",
       "notas": "No leer la tabla. Destacar Chacón Ramírez et al. (2023): nube ante cortes eléctricos; y Hernández Romero (2026): bajo costo con compromiso directivo.",
