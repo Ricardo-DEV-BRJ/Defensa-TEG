@@ -167,8 +167,8 @@ describe('objetivos.json', () => {
     });
   });
 
-  it('las láminas 11 y 12 muestran literales las cuatro conclusiones y la general', () => {
-    const html = [11, 12]
+  it('las láminas 12 y 13 muestran literales las cuatro conclusiones y la general', () => {
+    const html = [12, 13]
       .map((id) => slides.laminas.find((l) => l.id === id).archivo)
       .map((archivo) => readFileSync(new URL(`../src/slides/${archivo}`, import.meta.url), 'utf8'))
       .join('\n');
@@ -236,12 +236,12 @@ describe('enlaces data-dato de las láminas', () => {
   });
 });
 
-describe('lámina 8 (bar-chart)', () => {
+describe('lámina 9 (bar-chart)', () => {
   const html = readFileSync(
-    new URL('../src/slides/08-resultados-personal.html', import.meta.url),
+    new URL('../src/slides/09-resultados-personal.html', import.meta.url),
     'utf8',
   );
-  const destacados = likert.items.filter((item) => item.destacado_lamina_8);
+  const destacados = likert.items.filter((item) => item.destacado_lamina_9);
   const gruposEnLamina = [...html.matchAll(/data-componente="bar-chart" data-grupo="(\d+)"/g)].map(
     ([, grupo]) => Number(grupo),
   );
@@ -249,24 +249,24 @@ describe('lámina 8 (bar-chart)', () => {
   it('cada ítem destacado tiene resumen para pantalla y un grupo (paso) de la lámina', () => {
     for (const item of destacados) {
       expect(item.resumen, item.id).toBeTruthy();
-      expect(gruposEnLamina, item.id).toContain(item.grupo_lamina_8);
+      expect(gruposEnLamina, item.id).toContain(item.grupo_lamina_9);
     }
   });
 
   it('la lámina tiene un gráfico por grupo, y ningún grupo queda vacío', () => {
-    const gruposEnDatos = [...new Set(destacados.map((item) => item.grupo_lamina_8))].sort();
+    const gruposEnDatos = [...new Set(destacados.map((item) => item.grupo_lamina_9))].sort();
     expect([...gruposEnLamina].sort()).toEqual(gruposEnDatos);
   });
 
   it('solo los ítems destacados tienen grupo', () => {
-    const conGrupo = likert.items.filter((item) => 'grupo_lamina_8' in item);
+    const conGrupo = likert.items.filter((item) => 'grupo_lamina_9' in item);
     expect(conGrupo).toEqual(destacados);
   });
 });
 
-describe('lámina 16 (Gantt)', () => {
+describe('lámina 17 (Gantt)', () => {
   const html = readFileSync(
-    new URL('../src/slides/16-implementacion.html', import.meta.url),
+    new URL('../src/slides/17-implementacion.html', import.meta.url),
     'utf8',
   );
 

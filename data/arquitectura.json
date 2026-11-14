@@ -95,7 +95,7 @@
     "rol_que_anula": "Administración",
     "fuente_rol": "TEG 6.4.2 (Figura 16): «bloquea la orden y notifica al administrador, quien es el único rol autorizado para anularla»; Tabla 18, «Anular transacciones duplicadas»: Administración M (modificar), Gerencia A (aprobar), los demás sin acceso.",
     "ejemplo_demo": {
-      "nota": "Venta ficticia para la demostración de la lámina 14 (dedup-sim); no es un dato del TEG.",
+      "nota": "Venta ficticia para la demostración de la lámina 15 (dedup-sim); no es un dato del TEG.",
       "cliente": "Cliente de ejemplo",
       "productos": [
         {
@@ -127,7 +127,7 @@
       "PR_esperado": 71.43
     },
     "calculadora": {
-      "nota": "Deslizadores de la calculadora de la lámina 14 (stock-calc). Las definiciones son las del TEG 6.4.5 (fórmulas 1 y 2); los rangos y pasos son de la demostración, no datos del TEG. Valores iniciales: ejemplo_demo.",
+      "nota": "Deslizadores de la calculadora de la lámina 15 (stock-calc). Las definiciones son las del TEG 6.4.5 (fórmulas 1 y 2); los rangos y pasos son de la demostración, no datos del TEG. Valores iniciales: ejemplo_demo.",
       "variables": [
         {
           "clave": "z",
@@ -218,7 +218,7 @@
         "Soporte TI"
       ],
       "referencia": "ISO/IEC 27001",
-      "matriz": "TEG Tabla 18 (lámina de reserva 18)",
+      "matriz": "TEG Tabla 18 (lámina de reserva 19)",
       "controles": "Ver transversales → Gobernanza y seguridad (Tabla 19)"
     },
     "prevision": {

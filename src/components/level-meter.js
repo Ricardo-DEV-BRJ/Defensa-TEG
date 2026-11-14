@@ -1,5 +1,5 @@
 /**
- * level-meter: medidores de nivel (1 a 4) que se llenan segmento a segmento (lámina 9).
+ * level-meter: medidores de nivel (1 a 4) que se llenan segmento a segmento (lámina 10).
  *
  * Uso: en la lista de indicadores, <ul class="niveles" data-componente="level-meter">, con un
  * .medidor por indicador cuyo data-vars="nivel=observacion.areas.…" apunta a su nivel en

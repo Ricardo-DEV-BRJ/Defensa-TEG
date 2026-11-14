@@ -1,4 +1,4 @@
-# Guion de defensa – Modelo AgroData JM (19 min + 1 de margen)
+# Guion de defensa – Modelo AgroData JM (19:40 + 20 s de margen)
 
 Cada lámina responde a una **pregunta guía**. Tiempos y notas también están en `data/slides.json`.
 Si van atrasados, se recortan los Caps. II y III, nunca el VI. Al minuto 10 deberían estar terminando el Cap. IV.
@@ -7,13 +7,13 @@ Si van atrasados, se recortan los Caps. II y III, nunca el VI. Al minuto 10 debe
 | --- | --- | --- | --- |
 | Apertura | 1 | 0:45 | Rafael Pérez |
 | Cap. I – Planteamiento | 2–4 | 2:55 | Rafael Pérez |
-| Cap. II – Marco teórico | 5–6 | 1:50 | Rafael Pérez |
-| Cap. III – Marco metodológico | 7 | 2:15 | Ricardo Briceño |
-| Cap. IV – Resultados | 8–10 | 4:00 | Ricardo Briceño |
-| Cap. V – Conclusiones | 11–12 | 1:30 | Ricardo Briceño |
-| Cap. VI – La propuesta | 13–16 | 5:15 | Rafael (13–14), Ricardo (15–16) |
-| Cierre | 17 | 0:30 | Ricardo Briceño |
-| **Total** | **17** | **19:00** | |
+| Cap. II – Marco teórico | 5–7 | 2:30 | Rafael Pérez |
+| Cap. III – Marco metodológico | 8 | 2:15 | Ricardo Briceño |
+| Cap. IV – Resultados | 9–11 | 4:00 | Ricardo Briceño |
+| Cap. V – Conclusiones | 12–13 | 1:30 | Ricardo Briceño |
+| Cap. VI – La propuesta | 14–17 | 5:15 | Rafael (14–15), Ricardo (16–17) |
+| Cierre | 18 | 0:30 | Ricardo Briceño |
+| **Total** | **18** | **19:40** | |
 
 ---
 
@@ -47,26 +47,37 @@ Si van atrasados, se recortan los Caps. II y III, nunca el VI. Al minuto 10 debe
 - **En pantalla:** línea de tiempo con los 5 autores y su aporte (`data/antecedentes.json`).
 - **Qué decir:** no leer. Destacar Chacón Ramírez et al. (2023) → plataforma en la nube ante cortes; Hernández Romero (2026) → enfoque de bajo costo.
 
-## Lámina 6 · Bases teóricas, modelo integrador y bases legales (1:10)
-- **Pregunta guía:** ¿Sobre qué conceptos y normas se apoya el modelo?
-- **En pantalla:** Figura 1 (modelo teórico integrador); en el paso 4, los autores de cada concepto (`data/bases-teoricas.json`, TEG 2.2, págs. 42–62) ocupan el lugar de la figura; en el paso 5, la franja de leyes.
-- **Qué decir:** sostenibilidad = marco normativo; Big Data, XAI y Edge = motor tecnológico. Autores: no leer la lista; nombrar Larrouyet (2015) y García (2023) para el desarrollo sustentable y Joyanes Aguilar (2016) para el Big Data. ODS 2, 9 y 12. LOCTI (innovación, soberanía alimentaria); Infogobierno (seguridad, software libre); Mensajes de Datos art. 4 (papel → digital); Delitos Informáticos art. 6 (credenciales, bitácora); CRBV 305 y LOA art. 3.
+## Lámina 6 · Bases teóricas y modelo integrador (0:55)
+- **Pregunta guía:** ¿Sobre qué conceptos y autores se apoya el modelo?
+- **En pantalla:** Figura 1 (modelo teórico integrador). Cada tarjeta lleva debajo los autores del TEG 2.2 en que se apoya (`data/bases-teoricas.json → tarjetas`): Programas sustentables (Larrouyet, García, Cuéllar Estrada, Martos-Pedrero et al., Álava Rosado, Álvarez Goyes y Sánchez Parrales, Colome Villacis); Digitalización y Big Data (Schwab, Trujillo Valdiviezo et al., Joyanes Aguilar, Camargo et al., Mendoza Melendez y Salazar Rubina, Cao et al.); Integración (Castillo Ortiz et al., Baldeón-Palpa et al., Pezzini). La arquitectura propuesta es elaboración propia.
+- **Qué decir:** sostenibilidad = marco normativo; Big Data, XAI y Edge = motor tecnológico. No leer todos los autores: nombrar Larrouyet (2015) y García (2023) para el desarrollo sustentable y Joyanes Aguilar (2016) para el Big Data. ODS 2, 9 y 12.
 
-## Lámina 7 · Cómo se investigó (2:15)
+## Lámina 7 · Bases legales (0:55)
+- **Pregunta guía:** ¿Qué normas respaldan el modelo?
+- **En pantalla:** una fila por norma, una por paso (`data/marco-legal.json`, TEG 2.3, págs. 63–66): nombre completo y año, artículos y qué respalda en el modelo.
+- **Qué decir (con calma, una norma por paso):**
+  1. Ley Orgánica de Ciencia, Tecnología e Innovación (2014), arts. 1 y 7: innovación de procesos y soberanía alimentaria.
+  2. Ley de Infogobierno (2013), arts. 4 y 12: seguridad de la información y tecnologías libres.
+  3. Ley sobre Mensajes de Datos y Firmas Electrónicas (2001), art. 4: del papel a lo digital, con el mismo valor probatorio.
+  4. Ley Especial contra los Delitos Informáticos (2001), art. 6: acceso indebido; por eso credenciales, roles y bitácora.
+  5. Constitución (1999), art. 305: agricultura sustentable y seguridad alimentaria.
+  6. Ley Orgánica del Ambiente (2006), art. 3: criterios ambientales en la actividad agrocomercial.
+
+## Lámina 8 · Cómo se investigó (2:15)
 - **Pregunta guía:** ¿Cómo obtuvimos el diagnóstico y por qué es confiable?
 - **En pantalla:** 1) Aplicada y proyectiva (proyecto factible), mixta, campo y documental, triangulación concurrente. 2) Censo N = 6 (2 gerentes, 4 operativos) + 100% registros del 2.º trimestre 2026. 3) Entrevista → gerentes; Likert → operativos; observación 1–4 → instalaciones; matriz de fuentes → registros. 4) Juicio de 3 expertos (Ing. Yerson Gonzales, Lic. Ana Ojeda, Lic. María Godoy).
 - **Qué decir:** sin Alfa de Cronbach porque con n = 4 y un ítem por indicador sería inestable; confiabilidad por expertos y triangulación. Fases: diagnóstico (BPMN), caracterización de fuentes, diseño, factibilidad e indicadores. Decirlo con seguridad.
 
-## Lámina 8 · Lo que dijo el personal operativo (1:30)
+## Lámina 9 · Lo que dijo el personal operativo (1:30)
 - **Pregunta guía:** ¿Qué percibe el personal sobre el registro de datos y lo que necesita?
 - **En pantalla:** barras de % de acuerdo (`bar-chart`) con los ítems destacados de `data/likert.json`, en dos pasos: «Lo que necesitan» (2.3 y 2.4 = 100%; 2.5, 3.2 y 3.3 = 75%) y «Cómo están hoy» (4.2 = 75%; 1.1 y 2.6 = 25%, con «75% en desacuerdo» y «50% en desacuerdo» junto a la barra). Pie: «n = 4, cada respuesta = 25%».
 - **Qué decir:** consenso total en integrar datos y automatizar el inventario. En lo actual, el 75% está en desacuerdo con que el registro sea rápido y centralizado (1.1) y el 50% duda de los equipos y la disposición para una nueva plataforma (2.6).
 
-## Lámina 9 · Gerencia, observación y fuentes (1:15)
+## Lámina 10 · Gerencia, observación y fuentes (1:15)
 - **Pregunta guía:** ¿Qué confirmaron la entrevista, la observación y la matriz de fuentes?
 - **En pantalla:** tres columnas desde `data/observacion.json`: entrevista; niveles 1–4 (temperatura/humedad, mermas, energía = 1; papel y consolidación = 2; equipos = 3); matriz: 1 reporte diario .xls.
 
-## Lámina 10 · Discusión (1:15)
+## Lámina 11 · Discusión (1:15)
 - **Pregunta guía:** ¿Qué aprendimos al cruzar las fuentes?
 - **En pantalla:** tres tarjetas «dato → interpretación → decisión»:
   1. 75% cree estar automatizado, pero apoyo en nivel 2 → digitalización como conversión → integrar.
@@ -74,11 +85,11 @@ Si van atrasados, se recortan los Caps. II y III, nunca el VI. Al minuto 10 debe
   3. 50% duda de la disposición, 75% dice que los equipos sirven → barrera humana → capacitación por roles y semáforos.
 - **Qué decir:** lámina clave del diagnóstico. Limitaciones: n pequeño, un ítem por indicador, sin registros históricos → la propuesta mide primero la línea base.
 
-## Láminas 11 y 12 · Un objetivo, una conclusión (0:45 + 0:45)
+## Láminas 12 y 13 · Un objetivo, una conclusión (0:45 + 0:45)
 - **Pregunta guía:** ¿Se cumplieron los objetivos? (11) · ¿Se cumplió el objetivo general? (12)
 - **En pantalla:** las conclusiones **literales** del TEG (5.1, `data/objetivos.json`), cada una junto
-  a su objetivo y con marca de cumplido. Lámina 11: objetivos 1 (Describir) y 2 (Identificar).
-  Lámina 12: objetivos 3 (Determinar) y 4 (Proponer) y la conclusión general.
+  a su objetivo y con marca de cumplido. Lámina 12: objetivos 1 (Describir) y 2 (Identificar).
+  Lámina 13: objetivos 3 (Determinar) y 4 (Proponer) y la conclusión general.
 - **Ideas clave para decir (resumen):**
 
 | Objetivo | Conclusión |
@@ -90,27 +101,27 @@ Si van atrasados, se recortan los Caps. II y III, nunca el VI. Al minuto 10 debe
 
 - **Qué decir:** objetivo general alcanzado, ajustado a la escala de la empresa; no se generaliza. Recomendaciones: línea base el primer mes; UPS en caja y equipo del sistema; roles y bitácora ya; capacitación; extensión UVM. Líneas futuras: LSTM + NDVI, blockchain, huella de carbono, VRP/TSP.
 
-## Lámina 13 · Estructura del modelo y arquitectura (1:45)
+## Lámina 14 · Estructura del modelo y arquitectura (1:45)
 - **Pregunta guía:** ¿Qué es AgroData JM y cómo fluyen los datos?
 - **En pantalla:** animación de capas (`data/arquitectura.json`): Captura → Integración (ETL; deduplicación; multimoneda) → Almacenamiento (MariaDB en el prototipo, el TEG propone PostgreSQL; modelo en estrella; MinIO) → Analítica → Visualización. Transversales: gobernanza y sostenibilidad. Cada componente lleva ■ si ya funciona en el prototipo (Anexo 20) o □ si se implementa por fases (Cap. VI); el pie explica las marcas (ADR-019).
 - **Qué decir:** tres pilares (Programa Sustentable, gobernanza, arquitectura). Explicar las marcas: lo lleno ya funciona en el prototipo; lo hueco (formularios de captura, conciliación física, control ambiental, tablero de sostenibilidad, alertas por correo, Docker en VPS) llega con las fases. El prototipo sincroniza a diario y recalcula cada 15 min si hay datos nuevos. Lo propuesto es Docker en un VPS: así, si se va la luz en la empresa, los tableros siguen disponibles.
 
-## Lámina 14 · Procesos, gobernanza y modelos analíticos (1:30)
+## Lámina 15 · Procesos, gobernanza y modelos analíticos (1:30)
 - **Pregunta guía:** ¿Cómo resuelve cada componente un problema del diagnóstico?
 - **En pantalla:** Programa Sustentable (6 procesos BPMN; Figura 16; meta −80% papel) · Gobernanza (roles Gerencia, Administración, Ventas, Almacén, Soporte TI; bitácora; TLS; respaldos; ISO/IEC 27001; con las marcas ■/□) · Modelos: SS = z·σd·√L, PR = d̄·L + SS, IR = UV/IP. Demostración: simulador de duplicados (ventana de 15 min, la del prototipo) y calculadora de stock.
 - **Qué decir:** el simulador muestra el proceso propuesto (Figura 16): el despacho se bloquea y solo Administración anula. En el prototipo, los posibles duplicados (mismo día, menos de 15 min) se listan en Calidad de datos para revisarlos antes del cierre de caja. Previsión con promedio móvil y suavizamiento → Holt-Winters con 24 meses; MAPE. El módulo multimoneda reemplaza el Excel: alerta si la tasa tiene más de 24 h y lista las ventas con margen negativo. El −80% de papel es una meta, no una medición.
 
-## Lámina 15 · Factibilidad (1:15)
+## Lámina 16 · Factibilidad (1:15)
 - **Pregunta guía:** ¿Se puede llevar a la práctica?
 - **En pantalla:** cuatro tarjetas (`data/costos.json`): Técnica (equipos nivel 3, 75% aptos, software libre del prototipo: MariaDB, MinIO y Node.js) · Económica (**USD 56,10** = 36,00 + 15,00 + 5,10; recurrente ≈ USD 87/año; 240 h + 12 h aportadas) · Operativa (respaldo gerencial, 100% a favor de automatizar; riesgo: cambio) · Legal (CRBV 28, 60, 305; facturación intacta; precios en Bs a tasa BCV).
 - **Qué decir:** el retorno se calcula con la línea base; ilustración: con USD 250/mes de ahorro se recupera en menos de un mes.
 
-## Lámina 16 · Implementación e indicadores (0:45)
+## Lámina 17 · Implementación e indicadores (0:45)
 - **Pregunta guía:** ¿Cómo se implementa y cómo sabremos que funcionó?
 - **En pantalla:** Gantt de 24 semanas (`data/cronograma.json`) y metas de la implementación: exactitud ≥ 98%, 100% duplicados detectados, 100% usuarios con rol en el mes 1, −80% papel.
 - **Qué decir:** son metas al implementar, no mediciones del prototipo: el prototipo ya cubre roles y detección de duplicados; la exactitud del inventario y el papel dependen de los conteos y de la confirmación digital del despacho. PHVA, comité quincenal, evaluaciones a 3 y 6 meses; matriz de riesgos disponible.
 
-## Lámina 17 · Cierre (0:30)
+## Lámina 18 · Cierre (0:30)
 - **Pregunta guía:** ¿Qué debe recordar el jurado?
 - **En pantalla:** una frase grande, «Gracias», isologo UVM y QR.
 - **Qué decir:** «Una arquitectura de datos ligera, montada sobre lo que la empresa ya tiene, por USD 56,10, ataca la causa de los reembolsos, deja definidos los indicadores para medir mermas, papel y energía desde la línea base, y se puede replicar en otras PyMEs de Trujillo».

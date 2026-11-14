@@ -1,4 +1,4 @@
-// Lógica pura del cronograma (lámina 16, src/components/gantt.js).
+// Lógica pura del cronograma (lámina 17, src/components/gantt.js).
 import { describe, expect, it } from 'vitest';
 import cronograma from '../data/cronograma.json';
 import { filasDelGantt, rotuloAntes } from '../src/components/gantt.js';

@@ -1,5 +1,5 @@
 /**
- * dedup-sim: simulador de corte de luz y ventas duplicadas (lámina 14).
+ * dedup-sim: simulador de corte de luz y ventas duplicadas (lámina 15).
  *
  * Regla (data/arquitectura.json → deduplicacion; TEG 6.4.2 y 6.4.4.2): dos ventas con igual
  * cliente, productos, cantidades y monto registradas en menos de intervalo_sugerido_segundos

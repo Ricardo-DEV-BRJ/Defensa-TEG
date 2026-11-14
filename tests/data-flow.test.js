@@ -1,4 +1,4 @@
-// Lógica pura del flujo de datos (lámina 13, src/components/data-flow.js) y su marcado.
+// Lógica pura del flujo de datos (lámina 14, src/components/data-flow.js) y su marcado.
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import arquitectura from '../data/arquitectura.json';
@@ -91,8 +91,8 @@ describe('cuándo lanzar una ráfaga y qué capa ampliar', () => {
   });
 });
 
-describe('lámina 13', () => {
-  const html = readFileSync(new URL('../src/slides/13-arquitectura.html', import.meta.url), 'utf8');
+describe('lámina 14', () => {
+  const html = readFileSync(new URL('../src/slides/14-arquitectura.html', import.meta.url), 'utf8');
   const capas = [
     ...html.matchAll(
       /<li class="capa" data-capa="(\d+)"[^>]*>([\s\S]*?)<\/li>\s*(?=<li class="capa"|<\/ol>)/g,

@@ -1,4 +1,4 @@
-// Lógica pura del simulador de duplicados (lámina 14, src/components/dedup-sim.js).
+// Lógica pura del simulador de duplicados (lámina 15, src/components/dedup-sim.js).
 import { describe, expect, it } from 'vitest';
 import arquitectura from '../data/arquitectura.json';
 import {

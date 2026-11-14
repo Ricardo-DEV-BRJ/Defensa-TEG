@@ -65,15 +65,15 @@
   /* Gris neutro de los gráficos (punto medio de una escala divergente): validado con
    * dataviz/validate_palette.js junto a alerta y primario (ΔE ≥ 11 en todas las CVD). */
   --color-neutro-grafico: color-mix(in srgb, var(--color-secundario) 60%, var(--color-fondo));
-  /* Fondo de una capa de la arquitectura (lámina 13): petróleo muy suave sobre el fondo. */
+  /* Fondo de una capa de la arquitectura (lámina 14): petróleo muy suave sobre el fondo. */
   --color-capa: color-mix(in srgb, var(--color-primario) 8%, var(--color-fondo));
-  /* Fondo de una fila marcada como duplicado o bloqueada (simulador de la lámina 14). */
+  /* Fondo de una fila marcada como duplicado o bloqueada (simulador de la lámina 15). */
   --color-alerta-suave: color-mix(in srgb, var(--color-alerta) 8%, var(--color-fondo));
   /* Sombra de una tarjeta inclinada o de una capa en 3D (efectos, ADR-015). */
   --color-sombra: color-mix(in srgb, var(--color-texto) 18%, transparent);
   /* Fondo del panel de controles: petróleo casi opaco sobre la lámina (ADR-016). */
   --color-controles: color-mix(in srgb, var(--color-primario) 88%, transparent);
-  /* Segmento vacío de un medidor de nivel (lámina 9). */
+  /* Segmento vacío de un medidor de nivel (lámina 10). */
   --color-vacio-grafico: color-mix(in srgb, var(--color-secundario) 22%, var(--color-fondo));
 
   /* ── Familias ── */
@@ -91,7 +91,7 @@
   --texto-titulo: 72px; /* título de lámina */
   --texto-portada: 80px; /* título de la portada */
   --texto-cifra: 220px; /* cifra grande */
-  --texto-cifra-media: 120px; /* cifra protagonista dentro de una tarjeta (lámina 15) */
+  --texto-cifra-media: 120px; /* cifra protagonista dentro de una tarjeta (lámina 16) */
 
   --interlineado-titulo: 1.05;
   --interlineado-texto: 1.25;
@@ -112,7 +112,7 @@
   --flecha-punta: 24px;
   --icono-tamano: 72px; /* íconos dibujados en SVG (lámina 4) */
   --perspectiva: 1200px; /* profundidad del giro 3D de las tarjetas */
-  --capa-profundidad: 5px; /* separación en profundidad entre capas de la lámina 13 en 3D */
+  --capa-profundidad: 5px; /* separación en profundidad entre capas de la lámina 14 en 3D */
   /* Al girar, el elemento se achica un poco: su borde más cercano no invade el margen seguro
    * ni los elementos vecinos (medido en el navegador, ADR-015). */
   --inclinacion-escala: 0.95;
@@ -121,13 +121,13 @@
   --conector-ancho: 200px; /* columna de una flecha con texto entre dos cajas (lámina 6) */
   --conector-alto: 56px; /* fila de una flecha vertical entre dos cajas (lámina 6) */
   --barra-alto: 24px; /* grosor de una barra de datos (tope de la guía de visualización) */
-  --grafico-fila-alto: 64px; /* alto de cada fila del gráfico de barras (lámina 8) */
+  --grafico-fila-alto: 64px; /* alto de cada fila del gráfico de barras (lámina 9) */
   --radio-barra: 4px; /* extremo redondeado de una barra; la base queda recta */
   --separacion-grafico: 2px; /* hueco del color del fondo entre marcas que se tocan */
   --medidor-segmento: 28px; /* ancho de cada uno de los 4 segmentos de un medidor de nivel */
-  --transversal-ancho: 220px; /* columnas de los componentes transversales (lámina 13) */
-  --flujo-ancho: 48px; /* columna de la flecha «flujo de datos» (lámina 13) */
-  --capa-nombre-ancho: 320px; /* columna con el nombre y la función de cada capa (lámina 13) */
+  --transversal-ancho: 220px; /* columnas de los componentes transversales (lámina 14) */
+  --flujo-ancho: 48px; /* columna de la flecha «flujo de datos» (lámina 14) */
+  --capa-nombre-ancho: 320px; /* columna con el nombre y la función de cada capa (lámina 14) */
 
   /* Panel de controles (ADR-016): botones redondos y tiempo sin mover el ratón antes de ocultarse */
   --controles-boton: 72px;
@@ -136,7 +136,7 @@
 
   /* Isologo UVM (solo portada y cierre): se fija el alto y el ancho sigue su proporción */
   --isologo-alto: 520px;
-  /* Código QR del cierre (lámina 17): legible desde las primeras filas del público */
+  /* Código QR del cierre (lámina 18): legible desde las primeras filas del público */
   --qr-alto: 280px;
 
   /* ── Escenario fijo 16:9 y margen seguro del 5 % por el overscan (96 px × 54 px) ── */
@@ -157,9 +157,9 @@
   --retardo-paso: 250ms;
   /* Giro de una tarjeta: 4 tarjetas → 3 × 250 + 600 = 1,35 s */
   --duracion-giro: 600ms;
-  /* Viaje de un paquete de datos por la flecha (lámina 13): 3 paquetes → 2 × 250 + 900 = 1,4 s */
+  /* Viaje de un paquete de datos por la flecha (lámina 14): 3 paquetes → 2 × 250 + 900 = 1,4 s */
   --duracion-flujo: 900ms;
-  /* Cuenta de una cifra de 0 a su valor (lámina 15) */
+  /* Cuenta de una cifra de 0 a su valor (lámina 16) */
   --duracion-conteo: 1200ms;
   /* Seguimiento del cursor al inclinar una tarjeta (ADR-015) */
   --duracion-inclinacion: 150ms;

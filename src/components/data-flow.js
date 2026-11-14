@@ -1,5 +1,5 @@
 /**
- * data-flow: flujo de datos por la arquitectura de capas (lámina 13).
+ * data-flow: flujo de datos por la arquitectura de capas (lámina 14).
  *
  * Las cinco capas y los transversales están en el HTML de la lámina (data-dato desde
  * data/arquitectura.json), porque el deck cuenta sus pasos al crear las láminas: una capa por

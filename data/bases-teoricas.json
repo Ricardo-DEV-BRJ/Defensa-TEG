@@ -1,7 +1,7 @@
 {
   "fuente": "TEG, 2.2 Bases teóricas (págs. 42–62)",
   "verificado_contra_teg": true,
-  "nota": "Por concepto, los autores que el TEG cita de forma directa (con su año). En citados_en van los que el TEG cita a través de otra fuente (como se citó en…), para responder preguntas; no van en pantalla. Lámina 6, paso 4 (ADR-021).",
+  "nota": "Por concepto, los autores que el TEG cita de forma directa (con su año). En citados_en van los que el TEG cita a través de otra fuente (como se citó en…), para responder preguntas; no van en pantalla. En tarjetas, los autores que se muestran dentro de cada tarjeta de la Figura 1 (lámina 6, ADR-021): los de 2.2.1 en Programas sustentables; los de transformación digital, Big Data, arquitectura, trazabilidad y edge en Digitalización y Big Data; los de analítica, decisiones y XAI en la tarjeta central. La arquitectura propuesta es elaboración propia (2.2.3).",
   "pilares": [
     {
       "nombre": "Programas sustentables",
@@ -81,6 +81,39 @@
           "autores": "Cao et al. (2020)",
           "pagina": "62"
         }
+      ]
+    }
+  ],
+  "tarjetas": [
+    {
+      "tarjeta": "Programas sustentables",
+      "autores": [
+        "Larrouyet (2015)",
+        "García (2023)",
+        "Cuéllar Estrada (2025)",
+        "Martos-Pedrero et al. (2022)",
+        "Álava Rosado (2021)",
+        "Álvarez Goyes y Sánchez Parrales (2026)",
+        "Colome Villacis (2025)"
+      ]
+    },
+    {
+      "tarjeta": "Digitalización y Big Data",
+      "autores": [
+        "Schwab (2016)",
+        "Trujillo Valdiviezo et al. (2022)",
+        "Joyanes Aguilar (2016)",
+        "Camargo et al. (2015)",
+        "Mendoza Melendez y Salazar Rubina (2026)",
+        "Cao et al. (2020)"
+      ]
+    },
+    {
+      "tarjeta": "Integración, transparencia y Big Data",
+      "autores": [
+        "Castillo Ortiz et al. (2025)",
+        "Baldeón-Palpa et al. (2025)",
+        "Pezzini (2024)"
       ]
     }
   ]

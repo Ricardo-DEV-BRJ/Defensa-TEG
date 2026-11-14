@@ -1,4 +1,4 @@
-// Lógica pura de la calculadora de stock (lámina 14, src/components/stock-calc.js).
+// Lógica pura de la calculadora de stock (lámina 15, src/components/stock-calc.js).
 import { describe, expect, it } from 'vitest';
 import arquitectura from '../data/arquitectura.json';
 import {

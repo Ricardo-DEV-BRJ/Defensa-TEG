@@ -5,14 +5,14 @@ const principales = slides.laminas.filter((lamina) => !lamina.reserva);
 const reserva = slides.laminas.filter((lamina) => lamina.reserva);
 
 describe('data/slides.json', () => {
-  it('numera las láminas de 1 a 21 sin saltos', () => {
+  it('numera las láminas de 1 a 22 sin saltos', () => {
     const ids = slides.laminas.map((lamina) => lamina.id);
-    expect(ids).toEqual(Array.from({ length: 21 }, (_, i) => i + 1));
+    expect(ids).toEqual(Array.from({ length: 22 }, (_, i) => i + 1));
   });
 
-  it('tiene 17 láminas principales y las de reserva son la 18 a la 21, al final', () => {
-    expect(principales).toHaveLength(17);
-    expect(reserva.map((lamina) => lamina.id)).toEqual([18, 19, 20, 21]);
+  it('tiene 18 láminas principales y las de reserva son la 19 a la 22, al final', () => {
+    expect(principales).toHaveLength(18);
+    expect(reserva.map((lamina) => lamina.id)).toEqual([19, 20, 21, 22]);
   });
 
   it('el archivo de cada lámina empieza por su número con dos cifras', () => {

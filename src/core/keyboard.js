@@ -38,7 +38,7 @@ const TECLAS_DEL_PRESENTADOR = new Set(['PageDown', 'PageUp']);
 export const SELECTOR_INTERACTIVO =
   'a, button, input, select, textarea, label, summary, [data-interactivo]';
 const SELECTOR_CONTROL = 'input, select, textarea, [contenteditable=""], [contenteditable="true"]';
-// role=button: elementos que se comportan como botón sin serlo (capas de la lámina 13).
+// role=button: elementos que se comportan como botón sin serlo (capas de la lámina 14).
 const SELECTOR_BOTON = 'button, a[href], summary, [role="button"]';
 
 // ── Lógica pura ──────────────────────────────────────────────────────────────

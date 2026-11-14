@@ -85,13 +85,11 @@
     visibility: visible !important;
   }
 
-  /* Lo que solo sirve en vivo: demostraciones de la lámina 14 (se imprimen sus paneles),
-   * pregunta del problema de la lámina 2 (se imprimen sus cadenas), autores de la lámina 6
-   * (se imprime la figura), recuadro de actividades del Gantt, paquetes del flujo de datos,
-   * guías, pantalla negra e indicador «Ir a lámina». */
+  /* Lo que solo sirve en vivo: demostraciones de la lámina 15 (se imprimen sus paneles),
+   * pregunta del problema de la lámina 2 (se imprimen sus cadenas), recuadro de actividades del
+   * Gantt, paquetes del flujo de datos, guías, pantalla negra e indicador «Ir a lámina». */
   .demo,
   .pregunta-problema,
-  .bases-autores,
   .gantt__detalle,
   .flujo__paquetes,
   .particulas,

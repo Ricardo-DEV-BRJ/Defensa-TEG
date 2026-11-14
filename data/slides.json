@@ -1,6 +1,6 @@
 {
-  "duracion_objetivo_segundos": 1140,
-  "margen_segundos": 60,
+  "duracion_objetivo_segundos": 1180,
+  "margen_segundos": 20,
   "laminas": [
     {
       "id": 1,
@@ -59,18 +59,29 @@
     },
     {
       "id": 6,
-      "archivo": "06-bases-teoricas-legales.html",
-      "titulo": "Bases teóricas, modelo integrador y bases legales",
+      "archivo": "06-bases-teoricas.html",
+      "titulo": "Bases teóricas y modelo integrador",
       "capitulo": "II",
-      "segundos": 70,
+      "segundos": 55,
       "expositor": "Rafael Pérez",
-      "pregunta": "¿Sobre qué conceptos y normas se apoya el modelo?",
-      "notas": "Figura 1: sostenibilidad como marco normativo, Big Data/XAI/Edge como motor tecnológico. Paso 4, autores: no leer la lista; nombrar los de base, Larrouyet y García (desarrollo sustentable) y Joyanes Aguilar (Big Data), y decir que cada concepto tiene su autor en pantalla. ODS 2, 9 y 12. Leyes: LOCTI, Infogobierno, Mensajes de Datos (art. 4, papel → digital), Delitos Informáticos (art. 6, credenciales y bitácora), CRBV 305 y LOA 3.",
+      "pregunta": "¿Sobre qué conceptos y autores se apoya el modelo?",
+      "notas": "Figura 1: sostenibilidad como marco normativo, Big Data/XAI/Edge como motor tecnológico. Cada tarjeta lleva debajo sus autores: no leerlos todos; nombrar Larrouyet (2015) y García (2023) para el desarrollo sustentable y Joyanes Aguilar (2016) para el Big Data. La arquitectura propuesta es elaboración propia. ODS 2, 9 y 12.",
       "reserva": false
     },
     {
       "id": 7,
-      "archivo": "07-metodologia.html",
+      "archivo": "07-bases-legales.html",
+      "titulo": "Bases legales",
+      "capitulo": "II",
+      "segundos": 55,
+      "expositor": "Rafael Pérez",
+      "pregunta": "¿Qué normas respaldan el modelo?",
+      "notas": "Leer con calma, una norma por paso: LOCTI (2014), arts. 1 y 7: innovación de procesos y soberanía alimentaria. Infogobierno (2013), arts. 4 y 12: seguridad de la información y tecnologías libres. Mensajes de Datos y Firmas Electrónicas (2001), art. 4: del papel a lo digital con el mismo valor probatorio. Delitos Informáticos (2001), art. 6: credenciales, roles y bitácora. CRBV (1999), art. 305: agricultura sustentable y seguridad alimentaria. Ley Orgánica del Ambiente (2006), art. 3: criterios ambientales.",
+      "reserva": false
+    },
+    {
+      "id": 8,
+      "archivo": "08-metodologia.html",
       "titulo": "Cómo se investigó",
       "capitulo": "III",
       "segundos": 135,
@@ -80,8 +91,8 @@
       "reserva": false
     },
     {
-      "id": 8,
-      "archivo": "08-resultados-personal.html",
+      "id": 9,
+      "archivo": "09-resultados-personal.html",
       "titulo": "Lo que dijo el personal operativo",
       "capitulo": "IV",
       "segundos": 90,
@@ -91,8 +102,8 @@
       "reserva": false
     },
     {
-      "id": 9,
-      "archivo": "09-gerencia-observacion-fuentes.html",
+      "id": 10,
+      "archivo": "10-gerencia-observacion-fuentes.html",
       "titulo": "Gerencia, observación y fuentes de datos",
       "capitulo": "IV",
       "segundos": 75,
@@ -102,8 +113,8 @@
       "reserva": false
     },
     {
-      "id": 10,
-      "archivo": "10-discusion.html",
+      "id": 11,
+      "archivo": "11-discusion.html",
       "titulo": "Discusión: las contradicciones que dieron forma al modelo",
       "capitulo": "IV",
       "segundos": 75,
@@ -113,8 +124,8 @@
       "reserva": false
     },
     {
-      "id": 11,
-      "archivo": "11-conclusiones.html",
+      "id": 12,
+      "archivo": "12-conclusiones.html",
       "titulo": "Un objetivo, una conclusión",
       "capitulo": "V",
       "segundos": 45,
@@ -124,8 +135,8 @@
       "reserva": false
     },
     {
-      "id": 12,
-      "archivo": "12-conclusiones-propuesta.html",
+      "id": 13,
+      "archivo": "13-conclusiones-propuesta.html",
       "titulo": "Un objetivo, una conclusión (continuación)",
       "capitulo": "V",
       "segundos": 45,
@@ -135,8 +146,8 @@
       "reserva": false
     },
     {
-      "id": 13,
-      "archivo": "13-arquitectura.html",
+      "id": 14,
+      "archivo": "14-arquitectura.html",
       "titulo": "Estructura del modelo y arquitectura",
       "capitulo": "VI",
       "segundos": 105,
@@ -146,8 +157,8 @@
       "reserva": false
     },
     {
-      "id": 14,
-      "archivo": "14-procesos-gobernanza-analitica.html",
+      "id": 15,
+      "archivo": "15-procesos-gobernanza-analitica.html",
       "titulo": "Procesos, gobernanza y modelos analíticos",
       "capitulo": "VI",
       "segundos": 90,
@@ -157,8 +168,8 @@
       "reserva": false
     },
     {
-      "id": 15,
-      "archivo": "15-factibilidad.html",
+      "id": 16,
+      "archivo": "16-factibilidad.html",
       "titulo": "Factibilidad",
       "capitulo": "VI",
       "segundos": 75,
@@ -168,8 +179,8 @@
       "reserva": false
     },
     {
-      "id": 16,
-      "archivo": "16-implementacion.html",
+      "id": 17,
+      "archivo": "17-implementacion.html",
       "titulo": "Implementación e indicadores",
       "capitulo": "VI",
       "segundos": 45,
@@ -179,8 +190,8 @@
       "reserva": false
     },
     {
-      "id": 17,
-      "archivo": "17-cierre.html",
+      "id": 18,
+      "archivo": "18-cierre.html",
       "titulo": "Cierre",
       "capitulo": "—",
       "segundos": 30,
@@ -190,8 +201,8 @@
       "reserva": false
     },
     {
-      "id": 18,
-      "archivo": "18-reserva-likert.html",
+      "id": 19,
+      "archivo": "19-reserva-likert.html",
       "titulo": "Reserva: resultados completos del cuestionario",
       "capitulo": "IV",
       "segundos": 0,
@@ -201,8 +212,8 @@
       "reserva": true
     },
     {
-      "id": 19,
-      "archivo": "19-reserva-roles.html",
+      "id": 20,
+      "archivo": "20-reserva-roles.html",
       "titulo": "Reserva: matriz de roles y permisos",
       "capitulo": "VI",
       "segundos": 0,
@@ -212,8 +223,8 @@
       "reserva": true
     },
     {
-      "id": 20,
-      "archivo": "20-reserva-riesgos.html",
+      "id": 21,
+      "archivo": "21-reserva-riesgos.html",
       "titulo": "Reserva: matriz de riesgos",
       "capitulo": "VI",
       "segundos": 0,
@@ -223,8 +234,8 @@
       "reserva": true
     },
     {
-      "id": 21,
-      "archivo": "21-reserva-como-se-construyo.html",
+      "id": 22,
+      "archivo": "22-reserva-como-se-construyo.html",
       "titulo": "Reserva: cómo se construyó esta presentación",
       "capitulo": "—",
       "segundos": 0,

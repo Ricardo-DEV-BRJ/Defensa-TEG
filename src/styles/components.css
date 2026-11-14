@@ -92,7 +92,7 @@
   color: var(--color-secundario);
 }
 
-/* Variante con marca de cumplido (lámina 11): tercera columna con el check, texto a 40 px. */
+/* Variante con marca de cumplido (lámina 12): tercera columna con el check, texto a 40 px. */
 .lista-verbos--cumplidos {
   grid-template-columns: max-content minmax(0, 1fr) auto;
   font-size: var(--texto-cuerpo);
@@ -102,7 +102,7 @@
   font-size: var(--texto-destacado);
 }
 
-/* Variante para conclusiones literales del TEG (láminas 11 y 12): párrafos completos a 28 px. */
+/* Variante para conclusiones literales del TEG (láminas 12 y 13): párrafos completos a 28 px. */
 .lista-verbos--literal {
   font-size: var(--texto-min);
   line-height: var(--interlineado-texto);
@@ -113,12 +113,12 @@
   line-height: var(--interlineado-titulo);
 }
 
-/* La lámina 12 continúa la numeración de la 11 (objetivos 3 y 4). */
+/* La lámina 13 continúa la numeración de la 11 (objetivos 3 y 4). */
 .lista-verbos--desde-3 {
   counter-reset: paso 2;
 }
 
-/* Texto destacado largo y literal (conclusión general, lámina 12). */
+/* Texto destacado largo y literal (conclusión general, lámina 13). */
 .destacado--literal .destacado__texto {
   font-size: var(--texto-min);
   line-height: var(--interlineado-texto);
@@ -194,7 +194,7 @@
   }
 }
 
-/* ── Cadena: causa → efecto → consecuencia (láminas 2 y 10) ────────────────
+/* ── Cadena: causa → efecto → consecuencia (láminas 2 y 11) ────────────────
  * Cinco columnas: caja · flecha · caja · flecha · caja. La cabecera y todas las filas
  * comparten columnas (subgrid), así las causas quedan alineadas a la izquierda y los
  * efectos a la derecha. Una fila de dos cajas cruza el centro con una flecha larga.
@@ -256,7 +256,7 @@
   font-size: var(--texto-compacto);
 }
 
-/* Variante «dato → interpretación → decisión» (lámina 10): el dato en texto normal con
+/* Variante «dato → interpretación → decisión» (lámina 11): el dato en texto normal con
  * sus cifras en negrita; la decisión en petróleo con una barra verde (forma) a la izquierda. */
 .cadenas--decision .cadena > .cadena__paso:first-child {
   font-weight: 400;
@@ -687,7 +687,7 @@
 
 .integrador__caja {
   display: grid;
-  grid-template-rows: auto 1fr;
+  grid-template-rows: auto 1fr auto;
   border: var(--borde-fino) solid var(--color-primario);
   border-radius: var(--radio);
   overflow: hidden;
@@ -749,6 +749,58 @@
 
 .integrador__lista {
   padding: var(--espacio-s) var(--espacio-m);
+}
+
+/* Autores del TEG 2.2 en que se apoya cada tarjeta (ADR-021): al pie, separados por una línea
+ * fina y en color secundario, para que no compitan con los conceptos. */
+.integrador__caja > .integrador__autores {
+  padding: var(--espacio-xs) var(--espacio-m);
+  border-top: var(--borde-fino) solid var(--color-vacio-grafico);
+  color: var(--color-secundario);
+}
+
+/* ── Bases legales (lámina 8, ADR-022) ───────────────────────────────────────
+ * Una fila por norma: nombre completo y año, artículos y qué respalda en el modelo. Una norma
+ * por paso, para leerlas con calma.
+ */
+.leyes {
+  gap: 0;
+  justify-content: center;
+}
+
+.leyes__fila {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 0.7fr) minmax(0, 2fr);
+  gap: var(--espacio-m);
+  align-items: baseline;
+  padding: var(--espacio-s) 0;
+  border-bottom: var(--borde-fino) solid var(--color-vacio-grafico);
+  font-size: var(--texto-compacto);
+  line-height: var(--interlineado-titulo);
+}
+
+/* Las filas de normas, a tamaño de cuerpo: se leen en voz alta. */
+.leyes__fila:not(.leyes__fila--encabezado) {
+  font-size: var(--texto-cuerpo);
+}
+
+.leyes__fila--encabezado {
+  padding-top: 0;
+  border-bottom-color: var(--color-primario);
+  font-size: var(--texto-min);
+  font-weight: 700;
+  color: var(--color-secundario);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.leyes__ley > strong {
+  font-family: var(--fuente-titulos);
+  color: var(--color-primario);
+}
+
+.leyes__articulos {
+  white-space: nowrap;
 }
 
 /* Conectores: flecha dibujada (línea + punta) y su rótulo (fuente condensada: cabe en el hueco). */
@@ -850,94 +902,6 @@
   transform: translateY(-50%);
 }
 
-/* ── Autores de las bases teóricas (lámina 6, ADR-021) ──────────────────────
- * Paso 4: dos columnas, una por pilar; en cada fila el concepto y sus autores. Ocupa el lugar
- * de la figura del modelo integrador; en la vista general y al imprimir se ve la figura.
- */
-.autores {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--espacio-l);
-}
-
-.autores__pilar {
-  border-top: var(--borde-fino) solid var(--color-primario);
-  padding-top: var(--espacio-s);
-}
-
-.autores__titulo {
-  margin: 0 0 var(--espacio-s);
-  font-family: var(--fuente-titulos);
-  font-size: var(--texto-compacto);
-  color: var(--color-primario);
-}
-
-.autores__lista {
-  display: grid;
-  gap: var(--espacio-xs);
-  margin: 0;
-}
-
-.autores__fila {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: var(--espacio-s);
-  align-items: baseline;
-}
-
-.autores__fila > dt {
-  font-family: var(--fuente-titulos);
-  font-size: var(--texto-min);
-  font-weight: 700;
-}
-
-.autores__fila > dd {
-  margin: 0;
-  font-size: var(--texto-min);
-  color: var(--color-secundario);
-}
-
-.bases-autores[data-fragment]:not([data-visible]),
-.escenario[data-modo='vista-general'] .bases-autores {
-  display: none;
-}
-
-@media screen {
-  .escenario:not([data-modo='vista-general'])
-    .apilado:has(> .bases-autores[data-visible])
-    > .bases-figura {
-    display: none;
-  }
-}
-
-@starting-style {
-  .bases-autores[data-visible] {
-    opacity: 0;
-  }
-}
-
-/* ── Franja de leyes: sigla en negrita y artículos (de marco-legal.json) ────── */
-.franja-leyes {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--espacio-s);
-  margin: 0;
-  padding: 0;
-  font-size: var(--texto-min);
-  list-style: none;
-}
-
-.franja-leyes > li {
-  padding: var(--espacio-xs) var(--espacio-s);
-  border: var(--borde-fino) solid var(--color-secundario);
-  border-radius: var(--radio);
-  white-space: nowrap;
-}
-
-.franja-leyes strong {
-  margin-right: var(--espacio-xs);
-}
-
 /* ── Panel: recuadro con etiqueta, para agrupar un bloque de información ─────── */
 .panel {
   padding: var(--espacio-m);
@@ -996,7 +960,7 @@
   transition: none;
 }
 
-/* ── Triangulación (lámina 7): cuatro fuentes que convergen en el diagnóstico ── */
+/* ── Triangulación (lámina 8): cuatro fuentes que convergen en el diagnóstico ── */
 .triangulacion {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -1078,7 +1042,7 @@
   background: var(--color-primario);
 }
 
-/* ── Gráfico de barras (lámina 8, bar-chart.js) ──────────────────────────────
+/* ── Gráfico de barras (lámina 9, bar-chart.js) ──────────────────────────────
  * SVG de una fila por ítem: texto a la izquierda; pista gris y barra del % de acuerdo a la
  * derecha, con el valor en la punta. Un solo color de datos (petróleo): no lleva leyenda, la
  * nota sobre el gráfico dice qué mide. Los textos usan el color de texto, no el de la barra.
@@ -1125,7 +1089,7 @@
   transform-origin: left center;
 }
 
-/* ── Tres columnas (lámina 9: entrevista · observación · matriz) ─────────────── */
+/* ── Tres columnas (lámina 10: entrevista · observación · matriz) ─────────────── */
 .columnas-3 {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1228,7 +1192,7 @@
   gap: var(--espacio-s);
 }
 
-/* ── Arquitectura por capas (lámina 13) ──────────────────────────────────────
+/* ── Arquitectura por capas (lámina 14) ──────────────────────────────────────
  * Columnas: transversal · flecha de flujo · capas apiladas · transversal.
  * Las capas se leen de abajo (captura) hacia arriba (visualización): los datos suben.
  */
@@ -1305,7 +1269,7 @@
   color: var(--color-secundario);
 }
 
-/* Estado de cada componente (láminas 13 y 14, ADR-019): ■ = ya funciona en el prototipo (Anexo 20);
+/* Estado de cada componente (láminas 14 y 15, ADR-019): ■ = ya funciona en el prototipo (Anexo 20);
  * □ y texto secundario = se implementa por fases (Cap. VI). Cambia la forma además del color, y
  * el pie de la lámina explica las dos marcas. El cuadrado es un fondo (forma, no texto: el
  * acento nunca colorea letras) pintado detrás de un espacio que no se corta, así la marca nunca
@@ -1436,7 +1400,7 @@
   color: var(--color-primario);
 }
 
-/* ── Fórmula: nombre arriba y expresión grande (lámina 14) ─────────────────── */
+/* ── Fórmula: nombre arriba y expresión grande (lámina 15) ─────────────────── */
 .formula {
   margin: 0 0 var(--espacio-m);
 }
@@ -1477,12 +1441,12 @@
   color: var(--color-secundario);
 }
 
-/* Panel con separación vertical entre sus bloques (lámina 14). */
+/* Panel con separación vertical entre sus bloques (lámina 15). */
 .panel--espaciado > * + * {
   margin-top: var(--espacio-s);
 }
 
-/* ── Cuadrícula de 2 × 2 tarjetas (lámina 15) ─────────────────────────────── */
+/* ── Cuadrícula de 2 × 2 tarjetas (lámina 16) ─────────────────────────────── */
 .cuadricula-2 {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1494,7 +1458,7 @@
   font-size: var(--texto-cifra-media);
 }
 
-/* ── Gantt (lámina 16): una fila por fase sobre una pista de semanas ──────────
+/* ── Gantt (lámina 17): una fila por fase sobre una pista de semanas ──────────
  * .gantt recibe --total (semanas) y --meses; cada fila, --inicio y --fin (semanas, ambas
  * incluidas) desde cronograma.json con data-vars. La barra empieza en (inicio − 1) / total
  * y mide (fin − inicio + 1) / total del ancho de la pista. Las filas no tienen hueco entre
@@ -1618,7 +1582,7 @@
   transition: none;
 }
 
-/* ── Metas (lámina 16): indicador, cifra de la meta y línea base ───────────── */
+/* ── Metas (lámina 17): indicador, cifra de la meta y línea base ───────────── */
 .metas {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -1682,7 +1646,7 @@
   outline-offset: var(--borde-fino);
 }
 
-/* ── Pasos de demostración (lámina 14: simulador y calculadora) ────────────────
+/* ── Pasos de demostración (lámina 15: simulador y calculadora) ────────────────
  * Cada .demo es un paso que, mientras se ve, ocupa el lugar de los tres paneles (ADR-010).
  * Si hay varias visibles, solo se ve la última. En la vista general se ven los paneles, que son
  * el contenido de la lámina.
@@ -1693,7 +1657,7 @@
   display: none;
 }
 
-/* Solo en pantalla: al imprimir, la lámina 14 sale con sus paneles (print.css oculta las .demo). */
+/* Solo en pantalla: al imprimir, la lámina 15 sale con sus paneles (print.css oculta las .demo). */
 @media screen {
   .escenario:not([data-modo='vista-general'])
     .plantilla__cuerpo:has(> .demo[data-visible])
@@ -1709,7 +1673,7 @@
   }
 }
 
-/* ── Simulador de duplicados (lámina 14, dedup-sim.js) ─────────────────────── */
+/* ── Simulador de duplicados (lámina 15, dedup-sim.js) ─────────────────────── */
 .simulador {
   display: grid;
   align-content: start;
@@ -1842,7 +1806,7 @@
   font-weight: 700;
 }
 
-/* ── Calculadora de stock (lámina 14, stock-calc.js) ───────────────────────── */
+/* ── Calculadora de stock (lámina 15, stock-calc.js) ───────────────────────── */
 .calculadora {
   display: grid;
   align-content: start;
@@ -1997,7 +1961,7 @@
   border-radius: var(--radio-barra);
 }
 
-/* ── Flujo de datos (lámina 13, data-flow.js) ─────────────────────────────────
+/* ── Flujo de datos (lámina 14, data-flow.js) ─────────────────────────────────
  * Paquetes: puntos verdes con un anillo del color del fondo, encima de la flecha. data-flow.js
  * los mueve con transform en cada cuadro; sin ráfaga quedan transparentes.
  */
@@ -2066,7 +2030,7 @@
   background: var(--color-acento);
 }
 
-/* ── Gantt interactivo (lámina 16, gantt.js) ──────────────────────────────────
+/* ── Gantt interactivo (lámina 17, gantt.js) ──────────────────────────────────
  * Cada fase es un botón; sus actividades salen en un recuadro debajo del cronograma, encima
  * de lo que haya ahí (las metas), hasta que se cierra.
  */
@@ -2144,7 +2108,7 @@
   perspective: none;
 }
 
-/* Capas de la lámina 13: con el cursor encima, la pila gira y cada capa se adelanta según su
+/* Capas de la lámina 14: con el cursor encima, la pila gira y cada capa se adelanta según su
  * nivel (la visualización, la más cercana). En reposo, plana. */
 .arquitectura__capas {
   transform-style: preserve-3d;
