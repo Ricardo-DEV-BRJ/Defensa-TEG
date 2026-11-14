@@ -43,7 +43,7 @@
       "segundos": 45,
       "expositor": "Rafael Pérez",
       "pregunta": "¿Por qué vale la pena y hasta dónde llega?",
-      "notas": "Justificación teórica, metodológica, práctica y social. Incluye diseño conceptual, lógico y estructural. No incluye rutas VRP/TSP (línea futura). Limitaciones: presupuesto, sin historial de datos, resistencia al cambio, brecha digital. Vínculo con el DHS de la UVM.",
+      "notas": "Justificación teórica, metodológica, práctica y social. Incluye diseño conceptual, lógico y estructural. No incluye rutas VRP/TSP (línea futura). Paso 4, limitaciones en pantalla: presupuesto (hardware y sensores, 15 % a 30 % del presupuesto anual), sin historial de datos depurado, resistencia al cambio, brecha digital y entorno fuera del control del modelo. Vínculo con el DHS de la UVM.",
       "reserva": false
     },
     {

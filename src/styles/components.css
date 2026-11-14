@@ -515,6 +515,61 @@
   height: 0.8em;
 }
 
+/* ── Limitaciones (lámina 4, ADR-023) ────────────────────────────────────────
+ * Paso 4: las cinco limitaciones del TEG 1.5.2 ocupan el lugar de la justificación; el alcance
+ * sigue a la vista. En la vista general y al imprimir se ve la justificación.
+ */
+.lista-limitaciones {
+  display: grid;
+  gap: var(--espacio-s);
+  margin: 0;
+  padding: 0;
+  font-size: var(--texto-cuerpo);
+  line-height: var(--interlineado-titulo);
+  list-style: none;
+}
+
+.lista-limitaciones > li {
+  position: relative;
+  padding-left: var(--espacio-l);
+}
+
+/* Marca: triángulo de advertencia (forma, no solo color). */
+.lista-limitaciones > li::before {
+  content: '';
+  position: absolute;
+  top: 0.15em;
+  left: 0;
+  width: 0.8em;
+  height: 0.7em;
+  background: var(--color-advertencia);
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}
+
+.lista-limitaciones strong {
+  font-family: var(--fuente-titulos);
+  color: var(--color-primario);
+}
+
+.limitaciones[data-fragment]:not([data-visible]),
+.escenario[data-modo='vista-general'] .limitaciones {
+  display: none;
+}
+
+@media screen {
+  .escenario:not([data-modo='vista-general'])
+    .apilado:has(> .limitaciones[data-visible])
+    > .bloque-justificacion {
+    display: none;
+  }
+}
+
+@starting-style {
+  .limitaciones[data-visible] {
+    opacity: 0;
+  }
+}
+
 /* Aclaración debajo de un elemento de la lista. */
 .lista-marcas .nota {
   display: block;

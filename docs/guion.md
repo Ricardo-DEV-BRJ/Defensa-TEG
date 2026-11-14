@@ -39,8 +39,8 @@ Si van atrasados, se recortan los Caps. II y III, nunca el VI. Al minuto 10 debe
 
 ## Lámina 4 · Justificación, alcance y limitaciones (0:45)
 - **Pregunta guía:** ¿Por qué vale la pena y hasta dónde llega?
-- **En pantalla:** cuatro tarjetas con ícono (teórica, metodológica, práctica, social), cada una con una frase de apoyo que resume su apartado del TEG (1.4.1 a 1.4.4), y columnas «Incluye» / «No incluye».
-- **Qué decir:** incluye diseño conceptual, lógico y estructural, desde requerimientos hasta tableros. No incluye rutas VRP/TSP (línea futura). Limitaciones: presupuesto de PyME, sin historial depurado, resistencia al cambio, brecha digital. Vínculo con el Desarrollo Humano Sustentable de la UVM.
+- **En pantalla:** cuatro tarjetas con ícono (teórica, metodológica, práctica, social), cada una con una frase de apoyo que resume su apartado del TEG (1.4.1 a 1.4.4), y columnas «Incluye» / «No incluye». En el paso 4, las cinco limitaciones del TEG 1.5.2 (pág. 32) ocupan el lugar de las tarjetas (`data/objetivos.json → limitaciones`, ADR-023).
+- **Qué decir:** incluye diseño conceptual, lógico y estructural, desde requerimientos hasta tableros. No incluye rutas VRP/TSP (línea futura). Limitaciones (en pantalla): presupuesto, porque hardware y sensores cuestan entre el 15 % y el 30 % del presupuesto anual; falta de un historial de datos depurado; resistencia al cambio; brecha digital del personal; y un entorno institucional, económico y de servicios fuera del control del modelo. Vínculo con el Desarrollo Humano Sustentable de la UVM.
 
 ## Lámina 5 · Antecedentes (0:40)
 - **Pregunta guía:** ¿Qué dicen otros estudios y qué tomamos de cada uno?

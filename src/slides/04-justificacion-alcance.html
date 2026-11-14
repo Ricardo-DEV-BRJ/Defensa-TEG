@@ -5,12 +5,39 @@
   Paso 1: las cuatro justificaciones entran volteándose; cada texto de apoyo resume su
   apartado del TEG (1.4.1 a 1.4.4).
   Paso 2: lo que incluye el alcance. Paso 3: lo que no incluye (TEG 1.5.1).
-  Las limitaciones y el vínculo con el DHS de la UVM se dicen (notas); no van en pantalla.
+  Paso 4: las cinco limitaciones (TEG 1.5.2, data/objetivos.json → limitaciones) ocupan el
+  lugar de la justificación; el alcance sigue a la vista (ADR-023). En la vista general y al
+  imprimir se ve la justificación. El vínculo con el DHS de la UVM se dice (notas).
 -->
 <div class="plantilla">
   <h2 class="plantilla__titulo">Justificación, alcance y limitaciones</h2>
   <div class="plantilla__cuerpo apilado">
-    <div>
+    <div class="limitaciones" data-fragment="4">
+      <p class="etiqueta">Limitaciones</p>
+      <ul class="lista-limitaciones">
+        <li>
+          <strong data-dato="objetivos.limitaciones.items.0.titulo"></strong>:
+          <span data-dato="objetivos.limitaciones.items.0.texto"></span>
+        </li>
+        <li>
+          <strong data-dato="objetivos.limitaciones.items.1.titulo"></strong>:
+          <span data-dato="objetivos.limitaciones.items.1.texto"></span>
+        </li>
+        <li>
+          <strong data-dato="objetivos.limitaciones.items.2.titulo"></strong>:
+          <span data-dato="objetivos.limitaciones.items.2.texto"></span>
+        </li>
+        <li>
+          <strong data-dato="objetivos.limitaciones.items.3.titulo"></strong>:
+          <span data-dato="objetivos.limitaciones.items.3.texto"></span>
+        </li>
+        <li>
+          <strong data-dato="objetivos.limitaciones.items.4.titulo"></strong>:
+          <span data-dato="objetivos.limitaciones.items.4.texto"></span>
+        </li>
+      </ul>
+    </div>
+    <div class="bloque-justificacion">
       <p class="etiqueta" data-fragment="1">Justificación</p>
       <ul class="tarjetas-icono" data-fragment="1">
         <li class="tarjeta-icono">

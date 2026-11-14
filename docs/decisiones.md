@@ -577,3 +577,15 @@ bundle (lo resuelven unas 30 líneas propias que se pueden explicar); framework 
     20 s hasta los 20 minutos.
 - **Consecuencias:** 18 láminas principales. Si en los ensayos hace falta volver a 19:00, conviene
   recortar 40 s en los Caps. II y III.
+
+## ADR-023 · Limitaciones en pantalla en la lámina 4
+- **Contexto:** los autores notaron (14-11-2026) que las limitaciones solo se decían en las notas
+  y pidieron que aparezcan en la presentación, publicadas directamente en `main`.
+- **Decisión:** `data/objetivos.json → limitaciones` con las cinco limitaciones del TEG 1.5.2
+  (pág. 32), resumidas sin cambiar su sentido. Lámina 4: nuevo paso 4 con `.limitaciones`, que
+  ocupa el lugar de la justificación (`:has()`, sin JavaScript); el alcance sigue a la vista.
+  Marca: triángulo ámbar (forma además de color). En la vista general y al imprimir se ve la
+  justificación.
+- **Consecuencias:** la lámina pasa de tres a cuatro pasos sin cambiar su tiempo (45 s): las
+  limitaciones ya se decían.
+

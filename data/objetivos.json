@@ -42,5 +42,31 @@
       "texto_teg": "Proponer la arquitectura lógica, la infraestructura tecnológica y las interfaces del modelo de digitalización y Big Data, con base en los requerimientos diagnosticados, para responder a las necesidades de eficiencia económica y ecoeficiencia ambiental de la Empresa Agro Comercializadora JM.",
       "conclusion_teg": "En relación con el cuarto objetivo, se propuso el Modelo AgroData JM, estructurado en cinco capas (captura de datos, integración, almacenamiento analítico, analítica y visualización) y dos componentes transversales de gobernanza y sostenibilidad, desarrollado en el Capítulo VI. La arquitectura se apoya en la infraestructura existente, que el 75,0 % del personal consideró apta (ítem 4.2) y que la observación ubicó en el nivel 3, y se complementa con una plataforma alojada en un servidor privado virtual (VPS), que integra el frontend, el backend, la base de datos y el almacenamiento de objetos, sin adquisición de equipos, con una inversión estimada de USD 56,10. Su eficacia deberá comprobarse mediante la operación piloto y los indicadores definidos en la propuesta."
     }
-  ]
+  ],
+  "limitaciones": {
+    "fuente": "TEG, 1.5.2 Limitaciones (pág. 32)",
+    "nota": "Resumen fiel del párrafo del TEG, dividido en sus cinco limitaciones; el rango del presupuesto (15 % a 30 %) es literal. Se muestran en el paso 4 de la lámina 4 (ADR-023).",
+    "items": [
+      {
+        "titulo": "Presupuesto",
+        "texto": "hardware y sensores cuestan entre el 15 % y el 30 % del presupuesto anual de operaciones de una PyME"
+      },
+      {
+        "titulo": "Datos",
+        "texto": "no hay un historial centralizado y depurado, lo que retrasa los modelos predictivos"
+      },
+      {
+        "titulo": "Resistencia al cambio",
+        "texto": "propia de las culturas corporativas tradicionales"
+      },
+      {
+        "titulo": "Brecha digital",
+        "texto": "del personal interno"
+      },
+      {
+        "titulo": "Entorno",
+        "texto": "fragmentación institucional, economía y servicios públicos: fuera del control del modelo"
+      }
+    ]
+  }
 }
