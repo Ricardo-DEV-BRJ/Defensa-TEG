@@ -543,3 +543,17 @@ bundle (lo resuelven unas 30 líneas propias que se pueden explicar); framework 
     total sigue en 1.140 s.
 - **Consecuencias:** al volver desde la lámina 3 se llega al estado final, es decir, a la
   pregunta, que enlaza con los objetivos.
+
+## ADR-021 · Autores de las bases teóricas en la lámina 6
+- **Contexto:** los autores pidieron (14-11-2026) que la lámina de bases teóricas indique los
+  autores en los que se apoya cada concepto. La figura del modelo integrador ya ocupa la lámina.
+- **Decisión:**
+  - `data/bases-teoricas.json`: los dos pilares del TEG 2.2 (págs. 42–62) con sus 13 conceptos,
+    los autores citados de forma directa y la página. Los citados a través de otra fuente
+    («como se citó en…») van en `citados_en`, para preguntas; no van en pantalla.
+  - Lámina 6: nuevo paso 4 con `.bases-autores` (dos columnas, concepto y autores), que ocupa el
+    lugar de la figura (`:has()`, sin JavaScript); la franja de leyes pasa al paso 5. En la vista
+    general y al imprimir se ve la figura.
+- **Consecuencias:** la lámina pasa de cuatro a cinco pasos sin cambiar su tiempo (70 s): la lista
+  no se lee, se nombran dos o tres autores.
+

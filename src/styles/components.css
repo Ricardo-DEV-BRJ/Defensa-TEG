@@ -850,6 +850,72 @@
   transform: translateY(-50%);
 }
 
+/* ── Autores de las bases teóricas (lámina 6, ADR-021) ──────────────────────
+ * Paso 4: dos columnas, una por pilar; en cada fila el concepto y sus autores. Ocupa el lugar
+ * de la figura del modelo integrador; en la vista general y al imprimir se ve la figura.
+ */
+.autores {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--espacio-l);
+}
+
+.autores__pilar {
+  border-top: var(--borde-fino) solid var(--color-primario);
+  padding-top: var(--espacio-s);
+}
+
+.autores__titulo {
+  margin: 0 0 var(--espacio-s);
+  font-family: var(--fuente-titulos);
+  font-size: var(--texto-compacto);
+  color: var(--color-primario);
+}
+
+.autores__lista {
+  display: grid;
+  gap: var(--espacio-xs);
+  margin: 0;
+}
+
+.autores__fila {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--espacio-s);
+  align-items: baseline;
+}
+
+.autores__fila > dt {
+  font-family: var(--fuente-titulos);
+  font-size: var(--texto-min);
+  font-weight: 700;
+}
+
+.autores__fila > dd {
+  margin: 0;
+  font-size: var(--texto-min);
+  color: var(--color-secundario);
+}
+
+.bases-autores[data-fragment]:not([data-visible]),
+.escenario[data-modo='vista-general'] .bases-autores {
+  display: none;
+}
+
+@media screen {
+  .escenario:not([data-modo='vista-general'])
+    .apilado:has(> .bases-autores[data-visible])
+    > .bases-figura {
+    display: none;
+  }
+}
+
+@starting-style {
+  .bases-autores[data-visible] {
+    opacity: 0;
+  }
+}
+
 /* ── Franja de leyes: sigla en negrita y artículos (de marco-legal.json) ────── */
 .franja-leyes {
   display: flex;

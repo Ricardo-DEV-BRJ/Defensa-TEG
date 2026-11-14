@@ -49,8 +49,8 @@ Si van atrasados, se recortan los Caps. II y III, nunca el VI. Al minuto 10 debe
 
 ## Lámina 6 · Bases teóricas, modelo integrador y bases legales (1:10)
 - **Pregunta guía:** ¿Sobre qué conceptos y normas se apoya el modelo?
-- **En pantalla:** Figura 1 (modelo teórico integrador) y franja de leyes.
-- **Qué decir:** sostenibilidad = marco normativo; Big Data, XAI y Edge = motor tecnológico. ODS 2, 9 y 12. LOCTI (innovación, soberanía alimentaria); Infogobierno (seguridad, software libre); Mensajes de Datos art. 4 (papel → digital); Delitos Informáticos art. 6 (credenciales, bitácora); CRBV 305 y LOA art. 3.
+- **En pantalla:** Figura 1 (modelo teórico integrador); en el paso 4, los autores de cada concepto (`data/bases-teoricas.json`, TEG 2.2, págs. 42–62) ocupan el lugar de la figura; en el paso 5, la franja de leyes.
+- **Qué decir:** sostenibilidad = marco normativo; Big Data, XAI y Edge = motor tecnológico. Autores: no leer la lista; nombrar Larrouyet (2015) y García (2023) para el desarrollo sustentable y Joyanes Aguilar (2016) para el Big Data. ODS 2, 9 y 12. LOCTI (innovación, soberanía alimentaria); Infogobierno (seguridad, software libre); Mensajes de Datos art. 4 (papel → digital); Delitos Informáticos art. 6 (credenciales, bitácora); CRBV 305 y LOA art. 3.
 
 ## Lámina 7 · Cómo se investigó (2:15)
 - **Pregunta guía:** ¿Cómo obtuvimos el diagnóstico y por qué es confiable?
