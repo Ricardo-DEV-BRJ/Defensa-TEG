@@ -1,4 +1,4 @@
-// Generador del QR de la lámina 17 (scripts/generar-qr.mjs, ADR-009).
+// Generador del QR de la lámina 18 (scripts/generar-qr.mjs, ADR-009).
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { generarSvg, leerColor, textoVisible, validarUrl } from '../scripts/generar-qr.mjs';

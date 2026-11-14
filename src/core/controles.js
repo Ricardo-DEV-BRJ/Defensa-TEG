@@ -24,7 +24,7 @@ export function debeOcultar({ inactivoMs, espera, sobrePanel = false, conFoco = 
 }
 
 /**
- * Texto del contador: «8 / 17» en las principales; las de reserva no cuentan en el total.
+ * Texto del contador: «8 / 18» en las principales; las de reserva no cuentan en el total.
  * @param {number} lamina
  * @param {number} principales cantidad de láminas principales
  * @returns {string}

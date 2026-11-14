@@ -1,0 +1,120 @@
+{
+  "fuente": "TEG, 2.2 Bases teóricas (págs. 42–62)",
+  "verificado_contra_teg": true,
+  "nota": "Por concepto, los autores que el TEG cita de forma directa (con su año). En citados_en van los que el TEG cita a través de otra fuente (como se citó en…), para responder preguntas; no van en pantalla. En tarjetas, los autores que se muestran dentro de cada tarjeta de la Figura 1 (lámina 6, ADR-021): los de 2.2.1 en Programas sustentables; los de transformación digital, Big Data, arquitectura, trazabilidad y edge en Digitalización y Big Data; los de analítica, decisiones y XAI en la tarjeta central. La arquitectura propuesta es elaboración propia (2.2.3).",
+  "pilares": [
+    {
+      "nombre": "Programas sustentables",
+      "conceptos": [
+        {
+          "concepto": "Desarrollo sustentable",
+          "autores": "Larrouyet (2015); García (2023)",
+          "pagina": "42–44"
+        },
+        {
+          "concepto": "Sostenibilidad empresarial y Triple Bottom Line",
+          "autores": "Cuéllar Estrada (2025)",
+          "pagina": "44–45"
+        },
+        {
+          "concepto": "RSE en el sector agroalimentario",
+          "autores": "Martos-Pedrero et al. (2022)",
+          "pagina": "45–46",
+          "citados_en": "Aguinis (2011) y Freeman (1984), citados en Martos-Pedrero et al. (2022)"
+        },
+        {
+          "concepto": "Gestión responsable de recursos e insumos",
+          "autores": "Álava Rosado (2021)",
+          "pagina": "46–47"
+        },
+        {
+          "concepto": "Logística verde",
+          "autores": "Álvarez Goyes y Sánchez Parrales (2026)",
+          "pagina": "47–49",
+          "citados_en": "Suárez y Silva (2020), citados en Álvarez Goyes y Sánchez Parrales (2026)"
+        },
+        {
+          "concepto": "Economía circular",
+          "autores": "Colome Villacis (2025)",
+          "pagina": "49–50"
+        }
+      ]
+    },
+    {
+      "nombre": "Digitalización y Big Data",
+      "conceptos": [
+        {
+          "concepto": "Transformación digital",
+          "autores": "Schwab (2016); Trujillo Valdiviezo et al. (2022)",
+          "pagina": "50–52"
+        },
+        {
+          "concepto": "Big Data y su arquitectura",
+          "autores": "Joyanes Aguilar (2016); Camargo et al. (2015)",
+          "pagina": "52–56",
+          "citados_en": "McKinsey Global Institute (2011), citado en Joyanes Aguilar (2016)"
+        },
+        {
+          "concepto": "Analítica y modelos predictivos",
+          "autores": "Castillo Ortiz et al. (2025)",
+          "pagina": "56–57",
+          "citados_en": "Burgos-Artizzu et al. (2007) y Balafoutis et al. (2017), citados en Castillo Ortiz et al. (2025)"
+        },
+        {
+          "concepto": "Decisiones basadas en datos",
+          "autores": "Baldeón-Palpa et al. (2025)",
+          "pagina": "57–60",
+          "citados_en": "Kultygin y Lokhtina (2021), Sudiantini et al. (2024) y Fruhwirth et al. (2020), citados en Baldeón-Palpa et al. (2025)"
+        },
+        {
+          "concepto": "Trazabilidad digital",
+          "autores": "Mendoza Melendez y Salazar Rubina (2026)",
+          "pagina": "60–61"
+        },
+        {
+          "concepto": "Inteligencia artificial explicable",
+          "autores": "Pezzini (2024)",
+          "pagina": "61–62"
+        },
+        {
+          "concepto": "Edge computing",
+          "autores": "Cao et al. (2020)",
+          "pagina": "62"
+        }
+      ]
+    }
+  ],
+  "tarjetas": [
+    {
+      "tarjeta": "Programas sustentables",
+      "autores": [
+        "Larrouyet (2015)",
+        "García (2023)",
+        "Cuéllar Estrada (2025)",
+        "Martos-Pedrero et al. (2022)",
+        "Álava Rosado (2021)",
+        "Álvarez Goyes y Sánchez Parrales (2026)",
+        "Colome Villacis (2025)"
+      ]
+    },
+    {
+      "tarjeta": "Digitalización y Big Data",
+      "autores": [
+        "Schwab (2016)",
+        "Trujillo Valdiviezo et al. (2022)",
+        "Joyanes Aguilar (2016)",
+        "Camargo et al. (2015)",
+        "Mendoza Melendez y Salazar Rubina (2026)",
+        "Cao et al. (2020)"
+      ]
+    },
+    {
+      "tarjeta": "Integración, transparencia y Big Data",
+      "autores": [
+        "Castillo Ortiz et al. (2025)",
+        "Baldeón-Palpa et al. (2025)",
+        "Pezzini (2024)"
+      ]
+    }
+  ]
+}

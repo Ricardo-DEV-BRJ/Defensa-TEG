@@ -3,7 +3,7 @@
  * está el ratón, con una sombra que se desplaza, y vuelven a plano al salir. Solo responde al
  * ratón (no hay animación continua), no actúa con prefers-reduced-motion, en la vista general ni
  * con los efectos apagados (tecla E), y nunca toca el isologo ni los paneles con controles (las
- * demostraciones de la lámina 14).
+ * demostraciones de la lámina 15).
  *
  * Parte pura (tests/inclinacion.test.js): calcularInclinacion. Parte de vista:
  * iniciarInclinacion.

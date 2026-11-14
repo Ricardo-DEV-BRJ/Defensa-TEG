@@ -543,3 +543,37 @@ bundle (lo resuelven unas 30 líneas propias que se pueden explicar); framework 
     total sigue en 1.140 s.
 - **Consecuencias:** al volver desde la lámina 3 se llega al estado final, es decir, a la
   pregunta, que enlaza con los objetivos.
+
+## ADR-021 · Autores de las bases teóricas dentro de las tarjetas de la lámina 6
+- **Contexto:** los autores pidieron (14-11-2026) que la lámina de bases teóricas indique los
+  autores en que se apoya. Una primera versión los mostraba aparte, en un paso que reemplazaba la
+  figura; se pidió en cambio ponerlos dentro de las tarjetas de la Figura 1.
+- **Decisión:**
+  - `data/bases-teoricas.json`: los 13 conceptos del TEG 2.2 (págs. 42–62) con sus autores
+    citados de forma directa y la página; los citados a través de otra fuente («como se citó
+    en…») van en `citados_en`, para preguntas. En `tarjetas`, los autores de cada tarjeta:
+    los de 2.2.1 en Programas sustentables; transformación digital, Big Data, arquitectura,
+    trazabilidad y edge en Digitalización y Big Data; analítica, decisiones y XAI en la tarjeta
+    central. La arquitectura propuesta es elaboración propia (2.2.3) y no lleva autores.
+  - Lámina 6: cada tarjeta lleva al pie una `.lista-en-linea.integrador__autores` (texto
+    secundario, 28 px, separada por una línea fina). La lámina conserva sus tres pasos.
+- **Consecuencias:** los autores se ven junto al concepto que sostienen, sin pasos extra. La
+  asignación de cada subsección a una tarjeta es de los autores de la presentación: el TEG no la
+  hace explícita en la Figura 1.
+
+## ADR-022 · Bases legales en lámina propia (lámina 7) y renumeración
+- **Contexto:** los autores pidieron (14-11-2026) separar las bases legales en una lámina nueva
+  con toda la información, para leerla con calma.
+- **Decisión:**
+  - Nueva `07-bases-legales.html`: una fila por norma (nombre completo y año, artículos, qué
+    respalda en el modelo), desde `data/marco-legal.json`, una norma por paso (6 pasos), a
+    tamaño de cuerpo (40 px). Se retira la franja de leyes de la lámina 6 y su CSS.
+  - La lámina 6 pasa a llamarse «Bases teóricas y modelo integrador»
+    (`06-bases-teoricas.html`).
+  - Las láminas 7 a 21 pasan a ser 8 a 22: archivos, `data/slides.json`, comentarios, pruebas,
+    `docs/guion.md`, `CLAUDE.md` y README. Las claves `destacado_lamina_8` y `grupo_lamina_8`
+    pasan a `_lamina_9`. Los ADR anteriores conservan la numeración de su fecha.
+  - Tiempos: lámina 6 de 70 a 55 s, lámina 7 nueva de 55 s; total 1.180 s (19:40) y margen de
+    20 s hasta los 20 minutos.
+- **Consecuencias:** 18 láminas principales. Si en los ensayos hace falta volver a 19:00, conviene
+  recortar 40 s en los Caps. II y III.

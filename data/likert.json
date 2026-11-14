@@ -24,8 +24,8 @@
       "acuerdo_pct": 25,
       "desacuerdo_pct": 75,
       "neutral_pct": 0,
-      "destacado_lamina_8": true,
-      "grupo_lamina_8": 2
+      "destacado_lamina_9": true,
+      "grupo_lamina_9": 2
     },
     {
       "id": "1.2",
@@ -40,7 +40,7 @@
       "acuerdo_pct": 0,
       "desacuerdo_pct": 25,
       "neutral_pct": 75,
-      "destacado_lamina_8": false
+      "destacado_lamina_9": false
     },
     {
       "id": "1.3",
@@ -55,7 +55,7 @@
       "acuerdo_pct": 75,
       "desacuerdo_pct": 25,
       "neutral_pct": 0,
-      "destacado_lamina_8": false
+      "destacado_lamina_9": false
     },
     {
       "id": "1.4",
@@ -70,7 +70,7 @@
       "acuerdo_pct": 25,
       "desacuerdo_pct": 50,
       "neutral_pct": 25,
-      "destacado_lamina_8": false
+      "destacado_lamina_9": false
     },
     {
       "id": "2.1",
@@ -85,7 +85,7 @@
       "acuerdo_pct": 25,
       "desacuerdo_pct": 75,
       "neutral_pct": 0,
-      "destacado_lamina_8": false
+      "destacado_lamina_9": false
     },
     {
       "id": "2.2",
@@ -100,7 +100,7 @@
       "acuerdo_pct": 75,
       "desacuerdo_pct": 25,
       "neutral_pct": 0,
-      "destacado_lamina_8": false
+      "destacado_lamina_9": false
     },
     {
       "id": "2.3",
@@ -116,8 +116,8 @@
       "acuerdo_pct": 100,
       "desacuerdo_pct": 0,
       "neutral_pct": 0,
-      "destacado_lamina_8": true,
-      "grupo_lamina_8": 1
+      "destacado_lamina_9": true,
+      "grupo_lamina_9": 1
     },
     {
       "id": "2.4",
@@ -133,8 +133,8 @@
       "acuerdo_pct": 100,
       "desacuerdo_pct": 0,
       "neutral_pct": 0,
-      "destacado_lamina_8": true,
-      "grupo_lamina_8": 1
+      "destacado_lamina_9": true,
+      "grupo_lamina_9": 1
     },
     {
       "id": "2.5",
@@ -150,8 +150,8 @@
       "acuerdo_pct": 75,
       "desacuerdo_pct": 0,
       "neutral_pct": 25,
-      "destacado_lamina_8": true,
-      "grupo_lamina_8": 1
+      "destacado_lamina_9": true,
+      "grupo_lamina_9": 1
     },
     {
       "id": "2.6",
@@ -167,8 +167,8 @@
       "acuerdo_pct": 25,
       "desacuerdo_pct": 50,
       "neutral_pct": 25,
-      "destacado_lamina_8": true,
-      "grupo_lamina_8": 2
+      "destacado_lamina_9": true,
+      "grupo_lamina_9": 2
     },
     {
       "id": "3.1",
@@ -183,7 +183,7 @@
       "acuerdo_pct": 50,
       "desacuerdo_pct": 0,
       "neutral_pct": 50,
-      "destacado_lamina_8": false
+      "destacado_lamina_9": false
     },
     {
       "id": "3.2",
@@ -199,8 +199,8 @@
       "acuerdo_pct": 75,
       "desacuerdo_pct": 0,
       "neutral_pct": 25,
-      "destacado_lamina_8": true,
-      "grupo_lamina_8": 1
+      "destacado_lamina_9": true,
+      "grupo_lamina_9": 1
     },
     {
       "id": "3.3",
@@ -216,8 +216,8 @@
       "acuerdo_pct": 75,
       "desacuerdo_pct": 0,
       "neutral_pct": 25,
-      "destacado_lamina_8": true,
-      "grupo_lamina_8": 1
+      "destacado_lamina_9": true,
+      "grupo_lamina_9": 1
     },
     {
       "id": "4.1",
@@ -232,7 +232,7 @@
       "acuerdo_pct": 50,
       "desacuerdo_pct": 0,
       "neutral_pct": 50,
-      "destacado_lamina_8": false
+      "destacado_lamina_9": false
     },
     {
       "id": "4.2",
@@ -248,9 +248,9 @@
       "acuerdo_pct": 75,
       "desacuerdo_pct": 0,
       "neutral_pct": 25,
-      "destacado_lamina_8": true,
-      "grupo_lamina_8": 2
+      "destacado_lamina_9": true,
+      "grupo_lamina_9": 2
     }
   ],
-  "nota_lamina_8": "grupo_lamina_8 = paso de la lámina 8 en que aparece el ítem: 1 «Lo que necesitan», 2 «Cómo están hoy»."
+  "nota_lamina_9": "grupo_lamina_9 = paso de la lámina 9 en que aparece el ítem: 1 «Lo que necesitan», 2 «Cómo están hoy»."
 }

@@ -1,5 +1,5 @@
 /**
- * stock-calc: calculadora de inventario de seguridad y punto de reorden (lámina 14).
+ * stock-calc: calculadora de inventario de seguridad y punto de reorden (lámina 15).
  *
  * Fórmulas del TEG 6.4.5 (Chopra y Meindl, 2013; data/arquitectura.json → formulas):
  *   SS = z × σd × √L        (1)   inventario de seguridad

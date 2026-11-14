@@ -1,4 +1,4 @@
-// Lógica pura de los medidores de nivel (lámina 9, src/components/level-meter.js).
+// Lógica pura de los medidores de nivel (lámina 10, src/components/level-meter.js).
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import observacion from '../data/observacion.json';
@@ -37,9 +37,9 @@ describe('tiempoDeSegmento', () => {
     );
   });
 
-  it('con los medidores de la lámina 9 todo termina en 1,5 s o menos', () => {
+  it('con los medidores de la lámina 10 todo termina en 1,5 s o menos', () => {
     const html = readFileSync(
-      new URL('../src/slides/09-gerencia-observacion-fuentes.html', import.meta.url),
+      new URL('../src/slides/10-gerencia-observacion-fuentes.html', import.meta.url),
       'utf8',
     );
     const lista = html.match(/<ul class="niveles"[^>]*>([\s\S]*?)<\/ul>\s*<!--/)[1];
@@ -50,10 +50,10 @@ describe('tiempoDeSegmento', () => {
   });
 });
 
-describe('lámina 9', () => {
+describe('lámina 10', () => {
   it('la lista de indicadores usa el componente level-meter; la leyenda no', () => {
     const html = readFileSync(
-      new URL('../src/slides/09-gerencia-observacion-fuentes.html', import.meta.url),
+      new URL('../src/slides/10-gerencia-observacion-fuentes.html', import.meta.url),
       'utf8',
     );
     expect(html).toContain('<ul class="niveles" data-componente="level-meter">');

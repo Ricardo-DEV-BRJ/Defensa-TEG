@@ -1,0 +1,79 @@
+<!--
+  Lámina 7 · Bases legales (plantilla «Título + contenido» con el bloque «leyes»).
+  Pregunta guía: ¿Qué normas respaldan el modelo?
+  Lámina propia para leer con calma las seis normas del TEG 2.3 (págs. 63–66), desde
+  data/marco-legal.json: nombre completo y año, artículos y qué respaldan en el modelo. Una
+  norma por paso (pasos 1 a 6), en el orden del TEG (ADR-022).
+-->
+<div class="plantilla">
+  <h2 class="plantilla__titulo">Bases legales</h2>
+  <div class="plantilla__cuerpo apilado leyes" role="table" aria-label="Bases legales del modelo">
+    <div class="leyes__fila leyes__fila--encabezado" role="row">
+      <div role="columnheader">Norma</div>
+      <div role="columnheader">Artículos</div>
+      <div role="columnheader">Qué respalda en el modelo</div>
+    </div>
+    <div class="leyes__fila" role="row" data-fragment="1">
+      <div class="leyes__ley" role="cell">
+        <strong data-dato="marco-legal.leyes.0.nombre"></strong>
+        (<span data-dato="marco-legal.leyes.0.anio"></span>)
+      </div>
+      <div class="leyes__articulos" role="cell">
+        Arts. <span data-dato="marco-legal.leyes.0.articulos.0"></span> y
+        <span data-dato="marco-legal.leyes.0.articulos.1"></span>
+      </div>
+      <div class="leyes__relacion" role="cell" data-dato="marco-legal.leyes.0.relacion"></div>
+    </div>
+    <div class="leyes__fila" role="row" data-fragment="2">
+      <div class="leyes__ley" role="cell">
+        <strong data-dato="marco-legal.leyes.1.nombre"></strong>
+        (<span data-dato="marco-legal.leyes.1.anio"></span>)
+      </div>
+      <div class="leyes__articulos" role="cell">
+        Arts. <span data-dato="marco-legal.leyes.1.articulos.0"></span> y
+        <span data-dato="marco-legal.leyes.1.articulos.1"></span>
+      </div>
+      <div class="leyes__relacion" role="cell" data-dato="marco-legal.leyes.1.relacion"></div>
+    </div>
+    <div class="leyes__fila" role="row" data-fragment="3">
+      <div class="leyes__ley" role="cell">
+        <strong data-dato="marco-legal.leyes.2.nombre"></strong>
+        (<span data-dato="marco-legal.leyes.2.anio"></span>)
+      </div>
+      <div class="leyes__articulos" role="cell">
+        Art. <span data-dato="marco-legal.leyes.2.articulos.0"></span>
+      </div>
+      <div class="leyes__relacion" role="cell" data-dato="marco-legal.leyes.2.relacion"></div>
+    </div>
+    <div class="leyes__fila" role="row" data-fragment="4">
+      <div class="leyes__ley" role="cell">
+        <strong data-dato="marco-legal.leyes.3.nombre"></strong>
+        (<span data-dato="marco-legal.leyes.3.anio"></span>)
+      </div>
+      <div class="leyes__articulos" role="cell">
+        Art. <span data-dato="marco-legal.leyes.3.articulos.0"></span>
+      </div>
+      <div class="leyes__relacion" role="cell" data-dato="marco-legal.leyes.3.relacion"></div>
+    </div>
+    <div class="leyes__fila" role="row" data-fragment="5">
+      <div class="leyes__ley" role="cell">
+        <strong data-dato="marco-legal.leyes.4.nombre"></strong>
+        (<span data-dato="marco-legal.leyes.4.anio"></span>)
+      </div>
+      <div class="leyes__articulos" role="cell">
+        Art. <span data-dato="marco-legal.leyes.4.articulos.0"></span>
+      </div>
+      <div class="leyes__relacion" role="cell" data-dato="marco-legal.leyes.4.relacion"></div>
+    </div>
+    <div class="leyes__fila" role="row" data-fragment="6">
+      <div class="leyes__ley" role="cell">
+        <strong data-dato="marco-legal.leyes.5.nombre"></strong>
+        (<span data-dato="marco-legal.leyes.5.anio"></span>)
+      </div>
+      <div class="leyes__articulos" role="cell">
+        Art. <span data-dato="marco-legal.leyes.5.articulos.0"></span>
+      </div>
+      <div class="leyes__relacion" role="cell" data-dato="marco-legal.leyes.5.relacion"></div>
+    </div>
+  </div>
+</div>

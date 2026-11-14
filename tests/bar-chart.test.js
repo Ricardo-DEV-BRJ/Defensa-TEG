@@ -1,4 +1,4 @@
-// Lógica pura del componente bar-chart (lámina 8).
+// Lógica pura del componente bar-chart (lámina 9).
 import { describe, expect, it } from 'vitest';
 import likert from '../data/likert.json';
 import {
@@ -14,8 +14,8 @@ const item = (id, acuerdo, grupo, destacado = true) => ({
   id,
   resumen: `Ítem ${id}`,
   acuerdo_pct: acuerdo,
-  destacado_lamina_8: destacado,
-  grupo_lamina_8: grupo,
+  destacado_lamina_9: destacado,
+  grupo_lamina_9: grupo,
 });
 
 describe('prepararBarras', () => {
@@ -85,7 +85,7 @@ describe('desacuerdo junto a la barra', () => {
     expect(desacuerdoDestacado(25, undefined)).toBe(false);
   });
 
-  it('con likert.json, en la lámina 8 solo lo llevan 1.1 (75%) y 2.6 (50%)', () => {
+  it('con likert.json, en la lámina 9 solo lo llevan 1.1 (75%) y 2.6 (50%)', () => {
     const conDesacuerdo = [1, 2]
       .flatMap((grupo) => prepararBarras(likert.items, grupo))
       .filter((barra) => barra.mostrarDesacuerdo)

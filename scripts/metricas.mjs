@@ -1,4 +1,4 @@
-// Cifras de la lámina de reserva 21 («Cómo se construyó esta presentación»), medidas en el propio
+// Cifras de la lámina de reserva 22 («Cómo se construyó esta presentación»), medidas en el propio
 // repositorio: pruebas (ejecuta Vitest), componentes, módulos del motor, decisiones (ADR),
 // dependencias en tiempo de ejecución, láminas, commits y direcciones del repositorio y del sitio.
 // Uso: npm run metricas   → escribe data/construccion.json (ADR-018).

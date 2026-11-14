@@ -1,4 +1,4 @@
-// Cifras de la lámina 21 (data/construccion.json) frente al repositorio (ADR-018).
+// Cifras de la lámina 22 (data/construccion.json) frente al repositorio (ADR-018).
 // Si falla «está al día», ejecuta: npm run metricas
 import { readdirSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
@@ -75,8 +75,8 @@ describe('data/construccion.json está al día (si falla: npm run metricas)', ()
   });
 });
 
-describe('lámina de reserva 21', () => {
-  const entrada = slides.laminas.find((lamina) => lamina.id === 21);
+describe('lámina de reserva 22', () => {
+  const entrada = slides.laminas.find((lamina) => lamina.id === 22);
 
   it('existe, es de reserva y toma sus cifras de construccion.json', () => {
     expect(entrada.reserva).toBe(true);

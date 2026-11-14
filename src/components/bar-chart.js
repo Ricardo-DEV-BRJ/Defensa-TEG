@@ -1,8 +1,8 @@
 /**
- * bar-chart: barras horizontales en SVG con el % de acuerdo de los ítems Likert (lámina 8).
+ * bar-chart: barras horizontales en SVG con el % de acuerdo de los ítems Likert (lámina 9).
  *
  * Uso en una lámina: <div class="barras" data-componente="bar-chart" data-grupo="1"></div>
- * Dibuja los ítems de data/likert.json con destacado_lamina_8 y grupo_lamina_8 igual a
+ * Dibuja los ítems de data/likert.json con destacado_lamina_9 y grupo_lamina_9 igual a
  * data-grupo, de mayor a menor acuerdo. Las barras crecen desde la base (Web Animations) cuando
  * su fragmento se vuelve visible; la tecla S, volver con «anterior» y el movimiento reducido las
  * dejan en su estado final. Contrato del ADR-006 §7: crear(elemento, datos) devuelve
@@ -37,13 +37,13 @@ export function desacuerdoDestacado(acuerdo, desacuerdo) {
 /**
  * Ítems destacados de un grupo, de mayor a menor acuerdo (empates: orden del cuestionario).
  * @param {object[]} items likert.items
- * @param {number} grupo valor de grupo_lamina_8
+ * @param {number} grupo valor de grupo_lamina_9
  * @returns {{ id: string, texto: string, valor: number, desacuerdo: number,
  *   mostrarDesacuerdo: boolean }[]}
  */
 export function prepararBarras(items, grupo) {
   const barras = (items ?? [])
-    .filter((item) => item.destacado_lamina_8 && item.grupo_lamina_8 === grupo)
+    .filter((item) => item.destacado_lamina_9 && item.grupo_lamina_9 === grupo)
     .map((item) => ({
       id: item.id,
       texto: item.resumen,
