@@ -607,3 +607,18 @@ bundle (lo resuelven unas 30 líneas propias que se pueden explicar); framework 
 - **Consecuencias:** 17 láminas principales y 4 de reserva (18 a 21). Lo que se decía en la
   lámina 15 (procesos BPMN, roles y bitácora, SS/PR/IR, multimoneda) ya no tiene lámina propia;
   si el jurado pregunta, la reserva 19 (matriz de roles) y la lámina 14 sirven de apoyo.
+
+## ADR-025 · Llegada más lenta del isologo en partículas (portada)
+- **Contexto:** los autores notaron (17-11-2026) que en la portada casi no se ve cómo las
+  partículas arman el isologo. Con el muelle del ADR-017 (k entre 0,025 y 0,06, amortiguación
+  0,86) el logo quedaba armado en 0,35 a 0,6 s y recorría la mitad del camino en unos 0,1 s.
+- **Decisión:** al entrar a la portada, la fuerza del muelle («retorno») sube con una rampa
+  cúbica de `RETORNO_INICIAL` (0,003) a 1 en `DURACION_LLEGADA_MS` (3.500 ms), calculada por la
+  función pura `retornoLlegada`. Las partículas se ven viajar despacio al principio y aceleran al
+  final: el isologo queda armado entre 2,3 y 2,9 s (probado con la física real en
+  `tests/isologo-particulas.test.js` y con capturas en Chrome a 0,3, 1, 1,8, 2,6 y 4 s). La
+  dispersión por clic sigue rearmando en poco más de 1 s; la tecla S y la llegada con «anterior»
+  siguen dejándolo armado al instante; con movimiento reducido se ve el isologo oficial.
+- **Consecuencias:** es una segunda excepción a la regla de animaciones de 1,5 s como máximo
+  (anotada en `CLAUDE.md`). Para cambiar la duración basta con `DURACION_LLEGADA_MS`.
+

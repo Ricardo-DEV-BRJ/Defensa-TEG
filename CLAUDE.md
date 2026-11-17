@@ -26,7 +26,8 @@ Duración objetivo: 18 minutos 10 segundos (máximo 20). Se proyecta en un telev
 - Isologo UVM solo en las láminas 1 y 17 (portada y cierre), completo, sin deformar ni recolorear.
   Excepción: en la portada se forma con partículas de sus propios colores (ADR-017).
 - Animaciones con CSS o Web Animations API, ≤ 1,5 s; respetar `prefers-reduced-motion`.
-  Única excepción: las partículas de fondo (ADR-015), que se apagan con la tecla E.
+  Excepciones: las partículas de fondo (ADR-015), que se apagan con la tecla E, y la llegada del
+  isologo en partículas de la portada, que tarda unos 3 s para que se vea (ADR-025).
   Todo componente animado debe poder saltar a su estado final (tecla S).
 - Separar lógica pura (testeable) de la vista en los componentes interactivos.
 - Idioma de la interfaz, comentarios y commits: español.

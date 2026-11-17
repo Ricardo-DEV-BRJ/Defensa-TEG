@@ -3,11 +3,14 @@ import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { crearAleatorio } from '../src/core/particulas.js';
 import {
+  DURACION_LLEGADA_MS,
+  RETORNO_INICIAL,
   dispersar,
   mezclar,
   moverPuntoLogo,
   objetivosDesdePixeles,
   pasoDeMuestreo,
+  retornoLlegada,
 } from '../src/components/isologo-particulas.js';
 
 describe('pasoDeMuestreo', () => {
@@ -73,6 +76,41 @@ describe('moverPuntoLogo', () => {
     const p = punto({ x: 100, y: 50 });
     moverPuntoLogo(p, 0, { cursor: { x: 90, y: 50 } });
     expect(p.x).toBeGreaterThan(100);
+  });
+});
+
+describe('retornoLlegada (ADR-025)', () => {
+  it('arranca en RETORNO_INICIAL, crece sin bajar y llega a 1 al terminar', () => {
+    expect(retornoLlegada(0)).toBe(RETORNO_INICIAL);
+    let anterior = 0;
+    for (let t = 0; t <= DURACION_LLEGADA_MS; t += 250) {
+      const valor = retornoLlegada(t);
+      expect(valor).toBeGreaterThanOrEqual(anterior);
+      anterior = valor;
+    }
+    expect(retornoLlegada(DURACION_LLEGADA_MS)).toBe(1);
+    expect(retornoLlegada(DURACION_LLEGADA_MS * 2)).toBe(1);
+    expect(retornoLlegada(-100)).toBe(RETORNO_INICIAL);
+  });
+
+  it('una duración no válida deja el muelle completo', () => {
+    expect(retornoLlegada(100, 0)).toBe(1);
+  });
+
+  it('el isologo tarda más de 2 s en armarse (antes, menos de 0,7 s)', () => {
+    const tiempoDeLlegada = (retorno) => {
+      const p = { x: 0, y: 0, vx: 0, vy: 0, tx: 800, ty: 400, k: 0.06, fase: 0 };
+      for (let cuadro = 0; cuadro < 900; cuadro++) {
+        const t = (cuadro * 1000) / 60;
+        moverPuntoLogo(p, t, { retorno: retorno(t) });
+        if (Math.hypot(p.x - p.tx, p.y - p.ty) < 3) return t;
+      }
+      return Infinity;
+    };
+    expect(tiempoDeLlegada(() => 1)).toBeLessThan(700);
+    const ahora = tiempoDeLlegada((t) => retornoLlegada(t));
+    expect(ahora).toBeGreaterThan(2000);
+    expect(ahora).toBeLessThan(DURACION_LLEGADA_MS + 500);
   });
 });
 

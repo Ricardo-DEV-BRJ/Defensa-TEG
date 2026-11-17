@@ -3,9 +3,10 @@
  * prototipo docs/referencias/particulas-uvm.html.
  *
  * Cada partícula toma el color de su punto del isologo (no se recolorea) y un «muelle» la lleva a
- * su sitio: al entrar a la portada las partículas llegan desde todo el escenario y arman el logo,
- * que luego «respira» (menos de medio píxel). El cursor las aparta y un clic sobre el isologo lo
- * dispersa; se vuelve a armar solo. En reposo el isologo queda completo.
+ * su sitio: al entrar a la portada las partículas llegan desde todo el escenario y arman el logo
+ * de forma gradual, en DURACION_LLEGADA_MS (ADR-025), y luego «respira» (menos de medio píxel).
+ * El cursor las aparta y un clic sobre el isologo lo dispersa; se vuelve a armar solo. En reposo
+ * el isologo queda completo.
  *
  * Uso: <div class="isologo-particulas" data-componente="isologo-particulas" data-interactivo
  *        data-imagen="img/uvm-isologo-particulas.png"> <img class="isologo" …> </div>
@@ -15,7 +16,7 @@
  * La tecla S y la llegada con «anterior» dejan el logo armado al instante.
  *
  * Parte pura (tests/isologo-particulas.test.js): pasoDeMuestreo, objetivosDesdePixeles, mezclar,
- * moverPuntoLogo y dispersar. Parte de vista: crear (ADR-006 §7).
+ * moverPuntoLogo, dispersar y retornoLlegada. Parte de vista: crear (ADR-006 §7).
  */
 import { movimientoReducido } from './comun.js';
 
@@ -112,6 +113,30 @@ export function moverPuntoLogo(p, t, { retorno = 1, cursor = null, radio = 110 }
 }
 
 /**
+ * Duración de la rampa de llegada al entrar a la portada (ADR-025). Con el muelle y la
+ * amortiguación de moverPuntoLogo, el isologo queda armado entre 2,3 y 2,9 s (antes, en menos
+ * de 0,7 s: casi no se veía).
+ */
+export const DURACION_LLEGADA_MS = 3500;
+
+/** Fuerza mínima del muelle al empezar la llegada: las partículas arrancan despacio. */
+export const RETORNO_INICIAL = 0.003;
+
+/**
+ * Fuerza del muelle («retorno», de RETORNO_INICIAL a 1) durante la llegada: crece con una curva
+ * cúbica, así que al principio las partículas se ven viajar despacio por la lámina y después
+ * aceleran hasta asentarse en el isologo.
+ * @param {number} transcurrido milisegundos desde que empezó la llegada
+ * @param {number} [duracion]
+ * @returns {number} entre RETORNO_INICIAL y 1
+ */
+export function retornoLlegada(transcurrido, duracion = DURACION_LLEGADA_MS) {
+  if (!(duracion > 0)) return 1;
+  const x = Math.min(1, Math.max(0, transcurrido / duracion));
+  return RETORNO_INICIAL + (1 - RETORNO_INICIAL) * x ** 3;
+}
+
+/**
  * Clic en (x, y): cada partícula sale despedida, más fuerte cuanto más cerca del clic (con un
  * tope), con un poco de azar. MODIFICA las partículas.
  * @param {object[]} puntos
@@ -173,6 +198,8 @@ export function crear(elemento) {
   let puntos = [];
   let medida = '';
   let retorno = 1;
+  // Llegada al entrar: null = no hay; -1 = empieza en el próximo cuadro; si no, su instante.
+  let llegadaDesde = null;
   let cursor = null;
   let cuadroPendiente = 0;
 
@@ -271,7 +298,14 @@ export function crear(elemento) {
   }
 
   function cuadro(t) {
-    retorno = Math.min(1, retorno + 0.012);
+    if (llegadaDesde !== null) {
+      if (llegadaDesde < 0) llegadaDesde = t;
+      retorno = retornoLlegada(t - llegadaDesde);
+      if (retorno >= 1) llegadaDesde = null;
+    } else {
+      // Tras un clic que dispersó el logo, se vuelve a armar en poco más de un segundo.
+      retorno = Math.min(1, retorno + 0.012);
+    }
     for (const p of puntos) moverPuntoLogo(p, t, { retorno, cursor });
     pintar();
     cuadroPendiente = ventana.requestAnimationFrame(cuadro);
@@ -283,7 +317,7 @@ export function crear(elemento) {
     contexto.clearRect(0, 0, ancho, alto);
   }
 
-  // Al entrar: las partículas salen de puntos al azar de la portada y arman el logo.
+  // Al entrar: las partículas salen de puntos al azar de la portada y arman el logo despacio.
   function empezar() {
     if (!activo || !imagen || movimientoReducido(ventana) || !prepararObjetivos()) return;
     for (const p of puntos) {
@@ -292,7 +326,8 @@ export function crear(elemento) {
       p.vx = 0;
       p.vy = 0;
     }
-    retorno = 1;
+    retorno = RETORNO_INICIAL;
+    llegadaDesde = -1;
     elemento.setAttribute('data-activo', '');
     ventana.cancelAnimationFrame(cuadroPendiente);
     cuadroPendiente = ventana.requestAnimationFrame(cuadro);
@@ -308,6 +343,7 @@ export function crear(elemento) {
   elemento.addEventListener('pointerdown', (evento) => {
     if (!elemento.hasAttribute('data-activo')) return;
     const { x, y } = enEscenario(evento);
+    llegadaDesde = null;
     retorno = 0;
     dispersar(puntos, x, y);
   });
@@ -325,6 +361,7 @@ export function crear(elemento) {
     // Estado final: el logo armado, sin el viaje de las partículas.
     saltarAlFinal() {
       if (!elemento.hasAttribute('data-activo')) return;
+      llegadaDesde = null;
       retorno = 1;
       for (const p of puntos) {
         p.x = p.tx;
