@@ -2,7 +2,7 @@
   "fuente": "TEG 6.4.8 (fases en semanas) y 6.6.2, Tabla 24 (actividades por quincenas)",
   "fuente_metas": "TEG 6.6.3, Tabla 25",
   "verificado_contra_teg": true,
-  "nota": "6.4.8 da las fases en semanas; la Tabla 24 las reparte en doce quincenas (Q1 = semanas 1 y 2). Las actividades son las de la Tabla 24. En la Tabla 24 la Fase II se titula «Plataforma en la nube y captura»; aquí se usa el nombre de 6.4.8. En las metas, «meta» es el texto literal de la Tabla 25; «cifra» y «complemento» la separan para mostrarla en la lámina 17; «antes del despacho» sale de la fórmula del indicador en la Tabla 25.",
+  "nota": "6.4.8 da las fases en semanas; la Tabla 24 las reparte en doce quincenas (Q1 = semanas 1 y 2). Las actividades son las de la Tabla 24. En la Tabla 24 la Fase II se titula «Plataforma en la nube y captura»; aquí se usa el nombre de 6.4.8. En las metas, «meta» es el texto literal de la Tabla 25; «cifra» y «complemento» la separan para mostrarla en la lámina 16; «antes del despacho» sale de la fórmula del indicador en la Tabla 25.",
   "unidad": "semana",
   "total_semanas": 24,
   "total_quincenas": 12,

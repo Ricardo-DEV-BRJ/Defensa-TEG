@@ -589,3 +589,21 @@ bundle (lo resuelven unas 30 líneas propias que se pueden explicar); framework 
 - **Consecuencias:** la lámina pasa de tres a cuatro pasos sin cambiar su tiempo (45 s): las
   limitaciones ya se decían.
 
+## ADR-024 · Se retira la lámina 15 (procesos, gobernanza y modelos analíticos) y renumeración
+- **Contexto:** los autores pidieron (16-11-2026) eliminar la lámina 15, «Procesos, gobernanza y
+  modelos analíticos», que llevaba el simulador de duplicados y la calculadora de stock.
+- **Decisión:**
+  - Se borran `15-procesos-gobernanza-analitica.html`, los componentes `dedup-sim.js` y
+    `stock-calc.js`, sus pruebas, su CSS (`.demo`, `.simulador`, `.calculadora`, `.formula`,
+    `.fichas`, `.boton`, etc.), los tokens que solo usaban (`--color-alerta-suave`,
+    `--fuente-formulas`), las capturas del README y los datos de demostración de
+    `data/arquitectura.json` (`deduplicacion.ejemplo_demo`, `formulas.ejemplo_demo` y
+    `formulas.calculadora`). Los datos del TEG (regla de deduplicación, fórmulas, alerta de
+    reorden) se conservan.
+  - Las láminas 16 a 22 pasan a ser 15 a 21: archivos, `data/slides.json`, comentarios, pruebas,
+    `docs/guion.md`, `CLAUDE.md` y README. Los ADR anteriores conservan la numeración de su fecha.
+  - Tiempos: no se reparten los 90 s de la lámina retirada; total 1.090 s (18:10) y margen de
+    110 s hasta los 20 minutos.
+- **Consecuencias:** 17 láminas principales y 4 de reserva (18 a 21). Lo que se decía en la
+  lámina 15 (procesos BPMN, roles y bitácora, SS/PR/IR, multimoneda) ya no tiene lámina propia;
+  si el jurado pregunta, la reserva 19 (matriz de roles) y la lámina 14 sirven de apoyo.

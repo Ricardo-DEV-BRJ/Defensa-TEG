@@ -1324,7 +1324,7 @@
   color: var(--color-secundario);
 }
 
-/* Estado de cada componente (láminas 14 y 15, ADR-019): ■ = ya funciona en el prototipo (Anexo 20);
+/* Estado de cada componente (lámina 14, ADR-019): ■ = ya funciona en el prototipo (Anexo 20);
  * □ y texto secundario = se implementa por fases (Cap. VI). Cambia la forma además del color, y
  * el pie de la lámina explica las dos marcas. El cuadrado es un fondo (forma, no texto: el
  * acento nunca colorea letras) pintado detrás de un espacio que no se corta, así la marca nunca
@@ -1430,52 +1430,6 @@
   transform: rotate(180deg);
 }
 
-/* Lista compacta con texto de 28 px (listas largas dentro de un panel). */
-.lista-compacta--min {
-  font-size: var(--texto-min);
-}
-
-/* ── Fichas: etiquetas cortas en fila (roles) ──────────────────────────────── */
-.fichas {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--espacio-xs);
-  margin: 0;
-  padding: 0;
-  font-size: var(--texto-min);
-  list-style: none;
-}
-
-.fichas > li {
-  padding: var(--espacio-xs) var(--espacio-s);
-  border: var(--borde-fino) solid var(--color-primario);
-  border-radius: var(--radio);
-  font-weight: 700;
-  line-height: var(--interlineado-titulo);
-  color: var(--color-primario);
-}
-
-/* ── Fórmula: nombre arriba y expresión grande (lámina 15) ─────────────────── */
-.formula {
-  margin: 0 0 var(--espacio-m);
-}
-
-.formula__nombre {
-  margin: 0;
-  font-family: var(--fuente-texto);
-  font-size: var(--texto-min);
-  color: var(--color-secundario);
-}
-
-.formula__expresion {
-  margin: var(--espacio-xs) 0 0;
-  font-family: var(--fuente-formulas);
-  font-size: var(--texto-cuerpo);
-  font-weight: 400;
-  line-height: var(--interlineado-titulo);
-  color: var(--color-primario);
-}
-
 /* ── Captura del sistema: imagen sin deformar, con borde y pie ─────────────── */
 .captura {
   margin: 0;
@@ -1496,12 +1450,7 @@
   color: var(--color-secundario);
 }
 
-/* Panel con separación vertical entre sus bloques (lámina 15). */
-.panel--espaciado > * + * {
-  margin-top: var(--espacio-s);
-}
-
-/* ── Cuadrícula de 2 × 2 tarjetas (lámina 16) ─────────────────────────────── */
+/* ── Cuadrícula de 2 × 2 tarjetas (lámina 15) ─────────────────────────────── */
 .cuadricula-2 {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1513,7 +1462,7 @@
   font-size: var(--texto-cifra-media);
 }
 
-/* ── Gantt (lámina 17): una fila por fase sobre una pista de semanas ──────────
+/* ── Gantt (lámina 16): una fila por fase sobre una pista de semanas ──────────
  * .gantt recibe --total (semanas) y --meses; cada fila, --inicio y --fin (semanas, ambas
  * incluidas) desde cronograma.json con data-vars. La barra empieza en (inicio − 1) / total
  * y mide (fin − inicio + 1) / total del ancho de la pista. Las filas no tienen hueco entre
@@ -1637,7 +1586,7 @@
   transition: none;
 }
 
-/* ── Metas (lámina 17): indicador, cifra de la meta y línea base ───────────── */
+/* ── Metas (lámina 16): indicador, cifra de la meta y línea base ───────────── */
 .metas {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -1674,346 +1623,6 @@
   line-height: var(--interlineado-texto);
   font-weight: 400;
   color: var(--color-texto);
-}
-
-/* ── Botones de los componentes interactivos ───────────────────────────────── */
-.boton {
-  padding: var(--espacio-s) var(--espacio-m);
-  border: var(--borde-fino) solid var(--color-primario);
-  border-radius: var(--radio);
-  font-family: var(--fuente-titulos);
-  font-size: var(--texto-compacto);
-  font-weight: 700;
-  line-height: var(--interlineado-titulo);
-  color: var(--color-fondo);
-  background: var(--color-primario);
-  cursor: pointer;
-}
-
-.boton--secundario {
-  color: var(--color-primario);
-  background: transparent;
-}
-
-.boton:focus-visible,
-.simulador__rol select:focus-visible {
-  outline: var(--borde-fino) solid var(--color-texto);
-  outline-offset: var(--borde-fino);
-}
-
-/* ── Pasos de demostración (lámina 15: simulador y calculadora) ────────────────
- * Cada .demo es un paso que, mientras se ve, ocupa el lugar de los tres paneles (ADR-010).
- * Si hay varias visibles, solo se ve la última. En la vista general se ven los paneles, que son
- * el contenido de la lámina.
- */
-.demo[data-fragment]:not([data-visible]),
-.demo[data-visible]:has(~ .demo[data-visible]),
-.escenario[data-modo='vista-general'] .demo {
-  display: none;
-}
-
-/* Solo en pantalla: al imprimir, la lámina 15 sale con sus paneles (print.css oculta las .demo). */
-@media screen {
-  .escenario:not([data-modo='vista-general'])
-    .plantilla__cuerpo:has(> .demo[data-visible])
-    > :not(.demo) {
-    display: none;
-  }
-}
-
-/* Al pasar de display: none a visible, parte de opacidad 0 (la transición es la del fragmento). */
-@starting-style {
-  .demo[data-visible] {
-    opacity: 0;
-  }
-}
-
-/* ── Simulador de duplicados (lámina 15, dedup-sim.js) ─────────────────────── */
-.simulador {
-  display: grid;
-  align-content: start;
-  gap: var(--espacio-m);
-}
-
-.simulador p {
-  margin: 0;
-}
-
-.simulador__etapas {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--espacio-m);
-}
-
-.simulador__etapa > * + * {
-  margin-top: var(--espacio-s);
-}
-
-/* Estado de la luz: punto verde con luz, rojo sin luz (siempre con su palabra). */
-.simulador__luz {
-  display: flex;
-  align-items: center;
-  gap: var(--espacio-s);
-  font-size: var(--texto-compacto);
-  font-weight: 700;
-}
-
-.simulador__luz::before {
-  content: '';
-  flex: none;
-  width: var(--punto-tamano);
-  height: var(--punto-tamano);
-  border-radius: 50%;
-  background: var(--color-acento);
-}
-
-.simulador__luz[data-luz='sin'] {
-  color: var(--color-alerta);
-}
-
-.simulador__luz[data-luz='sin']::before {
-  background: var(--color-alerta);
-}
-
-.simulador__lista {
-  display: grid;
-  gap: var(--espacio-s);
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-/* Ticket de la caja: borde punteado, como un comprobante. */
-.simulador__ticket {
-  display: grid;
-  padding: var(--espacio-s);
-  border: var(--borde-fino) dashed var(--color-secundario);
-  border-radius: var(--radio);
-  font-size: var(--texto-compacto);
-  line-height: var(--interlineado-titulo);
-}
-
-.simulador__fila {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  column-gap: var(--espacio-s);
-  padding: var(--espacio-s);
-  border: var(--borde-fino) solid var(--color-vacio-grafico);
-  border-left: var(--borde-grueso) solid var(--color-acento);
-  border-radius: var(--radio);
-  font-size: var(--texto-compacto);
-  line-height: var(--interlineado-titulo);
-}
-
-.simulador__fila--duplicado,
-.simulador__fila--bloqueado {
-  border-color: var(--color-alerta);
-  background: var(--color-alerta-suave);
-}
-
-.simulador__fila--liberado > span {
-  color: var(--color-exito-texto);
-}
-
-.simulador__fila--bloqueado > span {
-  color: var(--color-alerta);
-}
-
-.simulador__fila--cancelado {
-  border-left-color: var(--color-secundario);
-}
-
-.simulador__fila--cancelado > span {
-  color: var(--color-secundario);
-}
-
-.simulador__porque {
-  display: block;
-}
-
-.simulador__controles {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--espacio-m);
-}
-
-.simulador__rol {
-  display: flex;
-  align-items: center;
-  gap: var(--espacio-s);
-  font-size: var(--texto-compacto);
-  font-weight: 700;
-}
-
-.simulador__rol select {
-  padding: var(--espacio-xs) var(--espacio-s);
-  border: var(--borde-fino) solid var(--color-primario);
-  border-radius: var(--radio);
-  font: inherit;
-  font-weight: 400;
-  color: var(--color-texto);
-  background: var(--color-fondo);
-}
-
-.simulador__mensaje {
-  font-size: var(--texto-compacto);
-  font-weight: 700;
-}
-
-/* ── Calculadora de stock (lámina 15, stock-calc.js) ───────────────────────── */
-.calculadora {
-  display: grid;
-  align-content: start;
-  gap: var(--espacio-m);
-}
-
-.calculadora p {
-  margin: 0;
-}
-
-.calculadora__cuerpo {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--espacio-m);
-}
-
-.calculadora__entradas,
-.calculadora__resultados {
-  display: grid;
-  align-content: start;
-  gap: var(--espacio-m);
-}
-
-.calculadora .etiqueta,
-.calculadora .formula {
-  margin: 0;
-}
-
-/* Definición a la izquierda, valor a la derecha y el deslizador debajo, a todo el ancho. */
-.calculadora__variable {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: baseline;
-  column-gap: var(--espacio-s);
-}
-
-.calculadora__etiqueta {
-  font-size: var(--texto-min);
-  line-height: var(--interlineado-titulo);
-}
-
-.calculadora__lectura {
-  font-size: var(--texto-compacto);
-  white-space: nowrap;
-}
-
-.calculadora__valor {
-  font-weight: 700;
-  color: var(--color-primario);
-}
-
-.calculadora__simbolo {
-  font-family: var(--fuente-formulas);
-}
-
-.calculadora__entradas .boton {
-  justify-self: start;
-}
-
-/* Deslizador grande, para manejarlo con el ratón frente al jurado. */
-.calculadora__deslizador {
-  grid-column: 1 / -1;
-  width: 100%;
-  height: var(--espacio-m);
-  margin: 0;
-  background: transparent;
-  cursor: pointer;
-  appearance: none;
-}
-
-.calculadora__deslizador::-webkit-slider-runnable-track {
-  height: var(--borde-grueso);
-  border-radius: var(--radio-barra);
-  background: var(--color-vacio-grafico);
-}
-
-.calculadora__deslizador::-webkit-slider-thumb {
-  width: var(--espacio-m);
-  height: var(--espacio-m);
-  margin-top: calc((var(--borde-grueso) - var(--espacio-m)) / 2);
-  border-radius: 50%;
-  background: var(--color-primario);
-  appearance: none;
-}
-
-.calculadora__deslizador::-moz-range-track {
-  height: var(--borde-grueso);
-  border-radius: var(--radio-barra);
-  background: var(--color-vacio-grafico);
-}
-
-.calculadora__deslizador::-moz-range-thumb {
-  width: var(--espacio-m);
-  height: var(--espacio-m);
-  border: none;
-  border-radius: 50%;
-  background: var(--color-primario);
-}
-
-.calculadora__deslizador:focus-visible {
-  outline: var(--borde-fino) solid var(--color-texto);
-  outline-offset: var(--borde-fino);
-}
-
-/* Composición del punto de reorden: demanda durante la reposición + inventario de seguridad.
- * Cada tramo recibe su flex-grow desde stock-calc.js; un hueco del fondo los separa. */
-.calculadora__barra {
-  display: flex;
-  gap: var(--separacion-grafico);
-  height: var(--barra-alto);
-}
-
-.calculadora__segmento {
-  flex: 0 1 0;
-  min-width: 0;
-}
-
-.calculadora__segmento--demanda,
-.calculadora__muestra--demanda {
-  background: var(--color-primario);
-}
-
-.calculadora__segmento--ss,
-.calculadora__muestra--ss {
-  background: var(--color-acento);
-}
-
-.calculadora__segmento:last-child {
-  border-radius: 0 var(--radio-barra) var(--radio-barra) 0;
-}
-
-.calculadora__leyenda {
-  display: grid;
-  gap: var(--espacio-xs);
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  font-size: var(--texto-min);
-}
-
-.calculadora__leyenda li {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  column-gap: var(--espacio-xs);
-}
-
-.calculadora__muestra {
-  flex: none;
-  width: var(--punto-tamano);
-  height: var(--punto-tamano);
-  border-radius: var(--radio-barra);
 }
 
 /* ── Flujo de datos (lámina 14, data-flow.js) ─────────────────────────────────
@@ -2085,7 +1694,7 @@
   background: var(--color-acento);
 }
 
-/* ── Gantt interactivo (lámina 17, gantt.js) ──────────────────────────────────
+/* ── Gantt interactivo (lámina 16, gantt.js) ──────────────────────────────────
  * Cada fase es un botón; sus actividades salen en un recuadro debajo del cronograma, encima
  * de lo que haya ahí (las metas), hasta que se cierra.
  */

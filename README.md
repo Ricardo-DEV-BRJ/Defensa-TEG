@@ -14,20 +14,17 @@ push a `main`; ver [Publicar en GitHub Pages](#publicar-en-github-pages)).
 | Portada: el isologo se arma con partículas | Resultados del cuestionario (barras SVG) |
 | --- | --- |
 | ![Portada con el isologo UVM formado por partículas sobre fondo petróleo](docs/capturas/01-portada.png) | ![Lámina 9: porcentaje de acuerdo por ítem, con el desacuerdo destacado](docs/capturas/08-resultados.png) |
-| **Arquitectura por capas (flujo de datos y capas 3D)** | **Simulador de corte de luz y ventas duplicadas** |
-| ![Lámina 14: cinco capas y dos componentes transversales](docs/capturas/13-arquitectura.png) | ![Lámina 15: la venta duplicada marcada en rojo y el despacho bloqueado](docs/capturas/14-simulador.png) |
-| **Calculadora de inventario de seguridad y punto de reorden** | **Mapa de láminas y panel de controles** |
-| ![Lámina 15: deslizadores de z, σd, L y d̄ con SS y PR en vivo](docs/capturas/14-calculadora.png) | ![Vista general de las 18 láminas con el panel de controles abajo](docs/capturas/mapa.png) |
+| **Arquitectura por capas (flujo de datos y capas 3D)** | **Mapa de láminas y panel de controles** |
+| ![Lámina 14: cinco capas y dos componentes transversales](docs/capturas/13-arquitectura.png) | ![Vista general de las láminas con el panel de controles abajo](docs/capturas/mapa.png) |
 
 ## Características
 
-- **18 láminas** para 19 minutos y 40 segundos (más **4 de reserva**, solo por número), en un escenario fijo de
+- **17 láminas** para 18 minutos y 10 segundos (más **4 de reserva**, solo por número), en un escenario fijo de
   1920 × 1080 que se escala a cualquier pantalla, con margen seguro del 5 % para el televisor.
 - **Cifras desde `data/*.json`**, transcritas y verificadas contra el TEG: ningún número del TEG está
   escrito a mano en las láminas, y las pruebas comprueban que cada dato exista.
 - **Componentes interactivos** con su lógica separada y probada: barras de resultados, medidores de
-  nivel, flujo de datos por capas (con capas 3D), simulador de duplicados, calculadora SS/PR,
-  contador de costos, cronograma (Gantt) y el isologo en partículas.
+  nivel, flujo de datos por capas (con capas 3D), contador de costos, cronograma (Gantt) y el isologo en partículas.
 - **Sin internet al presentar:** HTML, CSS y JavaScript nativos, sin librerías en tiempo de ejecución;
   las fuentes están dentro del repositorio.
 - **Pensada para la defensa:** pasos con el control remoto, tecla S para terminar animaciones,
@@ -61,7 +58,7 @@ En el navegador, **F** pone la pantalla completa y **→** avanza. Para ir a una
 | `npm run format` | Corrige el formato con Prettier |
 | `npm run build` | Genera `dist/`, la versión que se publica |
 | `npm run preview` | Sirve `dist/` en local para probar la versión publicada |
-| `npm run metricas` | Mide el repositorio y actualiza las cifras de la lámina 22 (`data/construccion.json`) |
+| `npm run metricas` | Mide el repositorio y actualiza las cifras de la lámina 21 (`data/construccion.json`) |
 | `npm run qr -- https://…` | Genera el QR del cierre (`public/img/qr.svg`) |
 
 `dist/` se abre con `npm run preview` o desde el sitio publicado. Abrirlo con doble clic
@@ -85,7 +82,7 @@ requiere un plan de pago de GitHub).
 
 ### Antes de la defensa
 
-1. `npm run metricas` para que la lámina 22 muestre las cifras del día, y `npm test`.
+1. `npm run metricas` para que la lámina 21 muestre las cifras del día, y `npm test`.
 2. Probar en el televisor de la sala: pantalla completa, control remoto y la tecla **E** (apaga los
    efectos si el equipo va lento o distraen).
 3. Tener el PDF como respaldo.

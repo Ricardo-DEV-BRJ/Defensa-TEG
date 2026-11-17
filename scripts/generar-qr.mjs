@@ -1,4 +1,4 @@
-// Genera el código QR de la lámina 18 (cierre) como un SVG estático (ADR-009).
+// Genera el código QR de la lámina 17 (cierre) como un SVG estático (ADR-009).
 // Uso: npm run qr -- https://ejemplo.org/ruta
 // Escribe public/img/qr.svg con los colores de tokens.css y guarda la URL en data/cierre.json.
 // Se ejecuta en desarrollo: la presentación solo muestra la imagen, sin internet ni librerías.
@@ -79,7 +79,7 @@ async function principal() {
   const cierre = { qr: { url, texto: textoVisible(url), archivo: 'img/qr.svg' } };
   writeFileSync(new URL('data/cierre.json', raiz), `${JSON.stringify(cierre, null, 2)}\n`);
   console.log(`QR listo para ${url}: public/img/qr.svg y data/cierre.json.`);
-  console.log('Falta mostrarlo: en src/slides/18-cierre.html, cambia el comentario «QR» por:');
+  console.log('Falta mostrarlo: en src/slides/17-cierre.html, cambia el comentario «QR» por:');
   console.log(`  <figure class="plantilla-cierre__qr">
     <img src="img/qr.svg" alt="Código QR" />
     <figcaption data-dato="cierre.qr.texto"></figcaption>

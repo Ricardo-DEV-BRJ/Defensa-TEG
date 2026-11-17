@@ -11,7 +11,7 @@
 | RF-06 | Vista de presentador (`presenter.html`) sincronizada por BroadcastChannel: lámina actual y siguiente, pregunta guía, notas, expositor, cronómetro. |
 | RF-07 | Cronómetro total y por lámina con colores verde / ámbar (80%) / rojo (100%) e indicador de adelanto o atraso acumulado. |
 | RF-08 | Modo ensayo: registrar duración real por lámina en localStorage y exportarla como JSON. |
-| RF-09 | Componentes interactivos: barras Likert, flujo de datos por capas, simulador de duplicados, calculadora SS/PR, contador, Gantt. |
+| RF-09 | Componentes interactivos: barras Likert, flujo de datos por capas, contador, Gantt. |
 | RF-10 | Exportar a PDF con `@media print` (una lámina por página, componentes en estado final). |
 | RF-11 | Barra de progreso con marcas por capítulo. |
 
@@ -25,5 +25,5 @@
 | RNF-05 | Animaciones ≤ 1,5 s; respeta `prefers-reduced-motion`. |
 | RNF-06 | Cambio de lámina < 100 ms; Lighthouse ≥ 90 en rendimiento y accesibilidad. |
 | RNF-07 | Cifras solo desde `data/*.json`. |
-| RNF-08 | Lógica cubierta por pruebas Vitest (router, cronómetro, fórmulas, deduplicación). |
+| RNF-08 | Lógica cubierta por pruebas Vitest (router, cronómetro, componentes). |
 | RNF-09 | Código en español, ESLint + Prettier sin errores. |

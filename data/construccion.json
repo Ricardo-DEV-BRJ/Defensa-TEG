@@ -1,15 +1,15 @@
 {
   "fuente": "Generado con npm run metricas (scripts/metricas.mjs) a partir del repositorio",
-  "fecha": "2026-11-14",
-  "pruebas": 393,
-  "archivos_de_prueba": 22,
-  "componentes": 8,
+  "fecha": "2026-11-17",
+  "pruebas": 343,
+  "archivos_de_prueba": 20,
+  "componentes": 6,
   "modulos_motor": 8,
-  "decisiones": 23,
+  "decisiones": 24,
   "dependencias_en_ejecucion": 0,
-  "laminas_principales": 18,
+  "laminas_principales": 17,
   "laminas_reserva": 4,
-  "commits": 9,
+  "commits": 21,
   "repositorio": "https://github.com/Ricardo-DEV-BRJ/Defensa-TEG",
   "sitio": "https://ricardo-dev-brj.github.io/Defensa-TEG/"
 }

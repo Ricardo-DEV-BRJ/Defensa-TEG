@@ -26,9 +26,9 @@ describe('textoContador', () => {
   const principales = slides.laminas.filter((lamina) => !lamina.reserva).length;
 
   it('cuenta sobre las láminas principales', () => {
-    expect(principales).toBe(18);
-    expect(textoContador(1, principales)).toBe('1 / 18');
-    expect(textoContador(18, principales)).toBe('18 / 18');
+    expect(principales).toBe(17);
+    expect(textoContador(1, principales)).toBe('1 / 17');
+    expect(textoContador(17, principales)).toBe('17 / 17');
   });
 
   it('las de reserva se marcan como reserva, fuera del total', () => {

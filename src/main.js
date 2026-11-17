@@ -11,11 +11,9 @@ import { iniciarParticulas } from './core/particulas.js';
 import * as barChart from './components/bar-chart.js';
 import * as counter from './components/counter.js';
 import * as dataFlow from './components/data-flow.js';
-import * as dedupSim from './components/dedup-sim.js';
 import * as gantt from './components/gantt.js';
 import * as isologoParticulas from './components/isologo-particulas.js';
 import * as levelMeter from './components/level-meter.js';
-import * as stockCalc from './components/stock-calc.js';
 
 // Todo data/*.json y el HTML de cada lámina entran al bundle para no usar fetch (ADR-006 §8).
 // Claves: nombre del archivo sin extensión (datos) y nombre con extensión (plantillas).
@@ -40,11 +38,9 @@ const componentes = {
   'bar-chart': barChart,
   counter,
   'data-flow': dataFlow,
-  'dedup-sim': dedupSim,
   gantt,
   'isologo-particulas': isologoParticulas,
   'level-meter': levelMeter,
-  'stock-calc': stockCalc,
 };
 
 const escenario = document.querySelector('.escenario');

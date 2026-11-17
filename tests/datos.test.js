@@ -85,13 +85,6 @@ describe('metodologia.json', () => {
 });
 
 describe('arquitectura.json', () => {
-  it('el ejemplo de la calculadora da el SS y el PR esperados', () => {
-    const { z, sigma_d, L, d_media, SS_esperado, PR_esperado } = arquitectura.formulas.ejemplo_demo;
-    const ss = z * sigma_d * Math.sqrt(L);
-    expect(centavos(ss)).toBe(SS_esperado);
-    expect(centavos(d_media * L + ss)).toBe(PR_esperado);
-  });
-
   it('la reducción de papel del Programa Sustentable coincide con la meta del cronograma', () => {
     const meta = cronograma.metas.find((m) => m.indicador.includes('papel'));
     const pct = arquitectura.modelo.programa_sustentable.reduccion_papel_pct;
@@ -264,9 +257,9 @@ describe('lámina 9 (bar-chart)', () => {
   });
 });
 
-describe('lámina 17 (Gantt)', () => {
+describe('lámina 16 (Gantt)', () => {
   const html = readFileSync(
-    new URL('../src/slides/17-implementacion.html', import.meta.url),
+    new URL('../src/slides/16-implementacion.html', import.meta.url),
     'utf8',
   );
 

@@ -1,4 +1,4 @@
-# Guion de defensa – Modelo AgroData JM (19:40 + 20 s de margen)
+# Guion de defensa – Modelo AgroData JM (18:10 + 1:50 de margen)
 
 Cada lámina responde a una **pregunta guía**. Tiempos y notas también están en `data/slides.json`.
 Si van atrasados, se recortan los Caps. II y III, nunca el VI. Al minuto 10 deberían estar terminando el Cap. IV.
@@ -11,9 +11,9 @@ Si van atrasados, se recortan los Caps. II y III, nunca el VI. Al minuto 10 debe
 | Cap. III – Marco metodológico | 8 | 2:15 | Ricardo Briceño |
 | Cap. IV – Resultados | 9–11 | 4:00 | Ricardo Briceño |
 | Cap. V – Conclusiones | 12–13 | 1:30 | Ricardo Briceño |
-| Cap. VI – La propuesta | 14–17 | 5:15 | Rafael (14–15), Ricardo (16–17) |
-| Cierre | 18 | 0:30 | Ricardo Briceño |
-| **Total** | **18** | **19:40** | |
+| Cap. VI – La propuesta | 14–16 | 3:45 | Rafael (14), Ricardo (15–16) |
+| Cierre | 17 | 0:30 | Ricardo Briceño |
+| **Total** | **17** | **18:10** | |
 
 ---
 
@@ -106,22 +106,17 @@ Si van atrasados, se recortan los Caps. II y III, nunca el VI. Al minuto 10 debe
 - **En pantalla:** animación de capas (`data/arquitectura.json`): Captura → Integración (ETL; deduplicación; multimoneda) → Almacenamiento (MariaDB en el prototipo, el TEG propone PostgreSQL; modelo en estrella; MinIO) → Analítica → Visualización. Transversales: gobernanza y sostenibilidad. Cada componente lleva ■ si ya funciona en el prototipo (Anexo 20) o □ si se implementa por fases (Cap. VI); el pie explica las marcas (ADR-019).
 - **Qué decir:** tres pilares (Programa Sustentable, gobernanza, arquitectura). Explicar las marcas: lo lleno ya funciona en el prototipo; lo hueco (formularios de captura, conciliación física, control ambiental, tablero de sostenibilidad, alertas por correo, Docker en VPS) llega con las fases. El prototipo sincroniza a diario y recalcula cada 15 min si hay datos nuevos. Lo propuesto es Docker en un VPS: así, si se va la luz en la empresa, los tableros siguen disponibles.
 
-## Lámina 15 · Procesos, gobernanza y modelos analíticos (1:30)
-- **Pregunta guía:** ¿Cómo resuelve cada componente un problema del diagnóstico?
-- **En pantalla:** Programa Sustentable (6 procesos BPMN; Figura 16; meta −80% papel) · Gobernanza (roles Gerencia, Administración, Ventas, Almacén, Soporte TI; bitácora; TLS; respaldos; ISO/IEC 27001; con las marcas ■/□) · Modelos: SS = z·σd·√L, PR = d̄·L + SS, IR = UV/IP. Demostración: simulador de duplicados (ventana de 15 min, la del prototipo) y calculadora de stock.
-- **Qué decir:** el simulador muestra el proceso propuesto (Figura 16): el despacho se bloquea y solo Administración anula. En el prototipo, los posibles duplicados (mismo día, menos de 15 min) se listan en Calidad de datos para revisarlos antes del cierre de caja. Previsión con promedio móvil y suavizamiento → Holt-Winters con 24 meses; MAPE. El módulo multimoneda reemplaza el Excel: alerta si la tasa tiene más de 24 h y lista las ventas con margen negativo. El −80% de papel es una meta, no una medición.
-
-## Lámina 16 · Factibilidad (1:15)
+## Lámina 15 · Factibilidad (1:15)
 - **Pregunta guía:** ¿Se puede llevar a la práctica?
 - **En pantalla:** cuatro tarjetas (`data/costos.json`): Técnica (equipos nivel 3, 75% aptos, software libre del prototipo: MariaDB, MinIO y Node.js) · Económica (**USD 56,10** = 36,00 + 15,00 + 5,10; recurrente ≈ USD 87/año; 240 h + 12 h aportadas) · Operativa (respaldo gerencial, 100% a favor de automatizar; riesgo: cambio) · Legal (CRBV 28, 60, 305; facturación intacta; precios en Bs a tasa BCV).
 - **Qué decir:** el retorno se calcula con la línea base; ilustración: con USD 250/mes de ahorro se recupera en menos de un mes.
 
-## Lámina 17 · Implementación e indicadores (0:45)
+## Lámina 16 · Implementación e indicadores (0:45)
 - **Pregunta guía:** ¿Cómo se implementa y cómo sabremos que funcionó?
 - **En pantalla:** Gantt de 24 semanas (`data/cronograma.json`) y metas de la implementación: exactitud ≥ 98%, 100% duplicados detectados, 100% usuarios con rol en el mes 1, −80% papel.
 - **Qué decir:** son metas al implementar, no mediciones del prototipo: el prototipo ya cubre roles y detección de duplicados; la exactitud del inventario y el papel dependen de los conteos y de la confirmación digital del despacho. PHVA, comité quincenal, evaluaciones a 3 y 6 meses; matriz de riesgos disponible.
 
-## Lámina 18 · Cierre (0:30)
+## Lámina 17 · Cierre (0:30)
 - **Pregunta guía:** ¿Qué debe recordar el jurado?
 - **En pantalla:** una frase grande, «Gracias», isologo UVM y QR.
 - **Qué decir:** «Una arquitectura de datos ligera, montada sobre lo que la empresa ya tiene, por USD 56,10, ataca la causa de los reembolsos, deja definidos los indicadores para medir mermas, papel y energía desde la línea base, y se puede replicar en otras PyMEs de Trujillo».

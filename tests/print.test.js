@@ -34,8 +34,8 @@ describe('print.css', () => {
     expect(print).toMatch(/print-color-adjust:\s*exact/);
   });
 
-  it('oculta lo que solo sirve en vivo (demostraciones, recuadro del Gantt, paquetes, guías)', () => {
-    for (const selector of ['.demo', '.gantt__detalle', '.flujo__paquetes', '.ir-a']) {
+  it('oculta lo que solo sirve en vivo (recuadro del Gantt, paquetes, guías)', () => {
+    for (const selector of ['.gantt__detalle', '.flujo__paquetes', '.ir-a']) {
       expect(print).toContain(selector);
     }
   });

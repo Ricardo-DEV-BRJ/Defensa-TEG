@@ -1,10 +1,10 @@
 # Defensa TEG – Modelo AgroData JM
 
-Presentación web de 18 láminas (+4 de reserva) para la defensa del Trabajo Especial de Grado
+Presentación web de 17 láminas (+4 de reserva) para la defensa del Trabajo Especial de Grado
 «Diseño de un modelo sustentable de digitalización de procesos mediante Big Data para la Empresa
 Agro Comercializadora JM» (UVM, Ingeniería en Computación, 2026).
 Autores: Br. Rafael Pérez y Técn. Ricardo Briceño. Tutora: MSc. Yajaira Segovia.
-Duración objetivo: 19 minutos 40 segundos (máximo 20). Se proyecta en un televisor 16:9 con respaldo eléctrico.
+Duración objetivo: 18 minutos 10 segundos (máximo 20). Se proyecta en un televisor 16:9 con respaldo eléctrico.
 
 ## Fuentes de verdad (leer antes de trabajar)
 - Contenido, orden y tiempos: `docs/guion.md` y `data/slides.json`.
@@ -23,7 +23,7 @@ Duración objetivo: 19 minutos 40 segundos (máximo 20). Se proyecta en un telev
 - Texto mínimo 28 px en el escenario; máximo 3–4 ideas por lámina.
 - Colores, fuentes y espaciados solo desde `src/styles/tokens.css` (ver identidad visual).
   `#88c426` nunca como color de texto sobre fondo claro.
-- Isologo UVM solo en las láminas 1 y 18 (portada y cierre), completo, sin deformar ni recolorear.
+- Isologo UVM solo en las láminas 1 y 17 (portada y cierre), completo, sin deformar ni recolorear.
   Excepción: en la portada se forma con partículas de sus propios colores (ADR-017).
 - Animaciones con CSS o Web Animations API, ≤ 1,5 s; respetar `prefers-reduced-motion`.
   Única excepción: las partículas de fondo (ADR-015), que se apagan con la tecla E.
@@ -41,6 +41,6 @@ Duración objetivo: 19 minutos 40 segundos (máximo 20). Se proyecta en un telev
 - Antes de un cambio grande (arquitectura, módulo nuevo), proponer un plan y esperar aprobación.
 - Una lámina o un módulo por tarea. Una rama por función; commits convencionales
   (`feat:`, `fix:`, `content:`, `style:`, `test:`, `docs:`).
-- Toda lógica de cálculo (fórmulas SS/PR/IR, deduplicación, cronómetro, router) lleva prueba en `tests/`.
+- Toda lógica de cálculo (cronómetro, router, contadores, cronograma) lleva prueba en `tests/`.
 - Ejecutar `npm test` y `npm run lint` antes de dar una tarea por terminada.
 - Al terminar un módulo, explicar brevemente cómo funciona: los autores deben poder defenderlo ante el jurado.

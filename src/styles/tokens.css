@@ -67,8 +67,6 @@
   --color-neutro-grafico: color-mix(in srgb, var(--color-secundario) 60%, var(--color-fondo));
   /* Fondo de una capa de la arquitectura (lámina 14): petróleo muy suave sobre el fondo. */
   --color-capa: color-mix(in srgb, var(--color-primario) 8%, var(--color-fondo));
-  /* Fondo de una fila marcada como duplicado o bloqueada (simulador de la lámina 15). */
-  --color-alerta-suave: color-mix(in srgb, var(--color-alerta) 8%, var(--color-fondo));
   /* Sombra de una tarjeta inclinada o de una capa en 3D (efectos, ADR-015). */
   --color-sombra: color-mix(in srgb, var(--color-texto) 18%, transparent);
   /* Fondo del panel de controles: petróleo casi opaco sobre la lámina (ADR-016). */
@@ -79,9 +77,6 @@
   /* ── Familias ── */
   --fuente-titulos: 'Barlow Condensed', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
   --fuente-texto: 'Barlow', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-  /* Fórmulas: fuente matemática del sistema (no se descarga). Barlow no tiene σ ni √ y pone la
-   * barra de d̄ cruzando la d (parece «đ»); Cambria Math viene con Windows. */
-  --fuente-formulas: 'Cambria Math', 'STIX Two Math', 'Latin Modern Math', 'Times New Roman', serif;
 
   /* ── Tamaños de letra en el escenario: ninguno menor que 28 px ── */
   --texto-min: 28px; /* notas, fuentes, pies de figura */
@@ -91,7 +86,7 @@
   --texto-titulo: 72px; /* título de lámina */
   --texto-portada: 80px; /* título de la portada */
   --texto-cifra: 220px; /* cifra grande */
-  --texto-cifra-media: 120px; /* cifra protagonista dentro de una tarjeta (lámina 16) */
+  --texto-cifra-media: 120px; /* cifra protagonista dentro de una tarjeta (lámina 15) */
 
   --interlineado-titulo: 1.05;
   --interlineado-texto: 1.25;
@@ -136,7 +131,7 @@
 
   /* Isologo UVM (solo portada y cierre): se fija el alto y el ancho sigue su proporción */
   --isologo-alto: 520px;
-  /* Código QR del cierre (lámina 18): legible desde las primeras filas del público */
+  /* Código QR del cierre (lámina 17): legible desde las primeras filas del público */
   --qr-alto: 280px;
 
   /* ── Escenario fijo 16:9 y margen seguro del 5 % por el overscan (96 px × 54 px) ── */
@@ -159,7 +154,7 @@
   --duracion-giro: 600ms;
   /* Viaje de un paquete de datos por la flecha (lámina 14): 3 paquetes → 2 × 250 + 900 = 1,4 s */
   --duracion-flujo: 900ms;
-  /* Cuenta de una cifra de 0 a su valor (lámina 16) */
+  /* Cuenta de una cifra de 0 a su valor (lámina 15) */
   --duracion-conteo: 1200ms;
   /* Seguimiento del cursor al inclinar una tarjeta (ADR-015) */
   --duracion-inclinacion: 150ms;

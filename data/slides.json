@@ -1,5 +1,5 @@
 {
-  "duracion_objetivo_segundos": 1180,
+  "duracion_objetivo_segundos": 1090,
   "margen_segundos": 20,
   "laminas": [
     {
@@ -158,18 +158,7 @@
     },
     {
       "id": 15,
-      "archivo": "15-procesos-gobernanza-analitica.html",
-      "titulo": "Procesos, gobernanza y modelos analíticos",
-      "capitulo": "VI",
-      "segundos": 90,
-      "expositor": "Rafael Pérez",
-      "pregunta": "¿Cómo resuelve cada componente un problema del diagnóstico?",
-      "notas": "Proceso propuesto (Figura 16): el despacho se bloquea y solo Administración anula. Prototipo: detecta los posibles duplicados (mismo día, menos de 15 min) y los lista en Calidad de datos para revisarlos antes del cierre de caja. Matriz de roles y bitácora (captura real del Anexo 20). SS = z·σd·√L, PR = d̄·L + SS, IR = UV/IP. Previsión: promedio móvil y suavizamiento → Holt-Winters con 24 meses; MAPE. Multimoneda reemplaza el Excel: alerta si la tasa tiene más de 24 h y lista las ventas con margen negativo. El −80 % de papel es una meta. Demostrar simulador y calculadora.",
-      "reserva": false
-    },
-    {
-      "id": 16,
-      "archivo": "16-factibilidad.html",
+      "archivo": "15-factibilidad.html",
       "titulo": "Factibilidad",
       "capitulo": "VI",
       "segundos": 75,
@@ -179,8 +168,8 @@
       "reserva": false
     },
     {
-      "id": 17,
-      "archivo": "17-implementacion.html",
+      "id": 16,
+      "archivo": "16-implementacion.html",
       "titulo": "Implementación e indicadores",
       "capitulo": "VI",
       "segundos": 45,
@@ -190,8 +179,8 @@
       "reserva": false
     },
     {
-      "id": 18,
-      "archivo": "18-cierre.html",
+      "id": 17,
+      "archivo": "17-cierre.html",
       "titulo": "Cierre",
       "capitulo": "—",
       "segundos": 30,
@@ -201,8 +190,8 @@
       "reserva": false
     },
     {
-      "id": 19,
-      "archivo": "19-reserva-likert.html",
+      "id": 18,
+      "archivo": "18-reserva-likert.html",
       "titulo": "Reserva: resultados completos del cuestionario",
       "capitulo": "IV",
       "segundos": 0,
@@ -212,8 +201,8 @@
       "reserva": true
     },
     {
-      "id": 20,
-      "archivo": "20-reserva-roles.html",
+      "id": 19,
+      "archivo": "19-reserva-roles.html",
       "titulo": "Reserva: matriz de roles y permisos",
       "capitulo": "VI",
       "segundos": 0,
@@ -223,8 +212,8 @@
       "reserva": true
     },
     {
-      "id": 21,
-      "archivo": "21-reserva-riesgos.html",
+      "id": 20,
+      "archivo": "20-reserva-riesgos.html",
       "titulo": "Reserva: matriz de riesgos",
       "capitulo": "VI",
       "segundos": 0,
@@ -234,8 +223,8 @@
       "reserva": true
     },
     {
-      "id": 22,
-      "archivo": "22-reserva-como-se-construyo.html",
+      "id": 21,
+      "archivo": "21-reserva-como-se-construyo.html",
       "titulo": "Reserva: cómo se construyó esta presentación",
       "capitulo": "—",
       "segundos": 0,

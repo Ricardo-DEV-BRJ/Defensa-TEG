@@ -1,4 +1,4 @@
-// Lógica pura del contador (lámina 16, src/components/counter.js).
+// Lógica pura del contador (lámina 15, src/components/counter.js).
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import costos from '../data/costos.json';
@@ -38,10 +38,10 @@ describe('valorEnInstante', () => {
   });
 });
 
-describe('lámina 16', () => {
+describe('lámina 15', () => {
   it('la cifra del costo total usa el contador con su dato y su formato', () => {
     const html = readFileSync(
-      new URL('../src/slides/16-factibilidad.html', import.meta.url),
+      new URL('../src/slides/15-factibilidad.html', import.meta.url),
       'utf8',
     );
     expect(html).toMatch(

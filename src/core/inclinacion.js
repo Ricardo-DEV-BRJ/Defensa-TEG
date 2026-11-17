@@ -2,8 +2,7 @@
  * Inclinación 3D con el cursor (ADR-015): paneles y tarjetas se inclinan unos grados hacia donde
  * está el ratón, con una sombra que se desplaza, y vuelven a plano al salir. Solo responde al
  * ratón (no hay animación continua), no actúa con prefers-reduced-motion, en la vista general ni
- * con los efectos apagados (tecla E), y nunca toca el isologo ni los paneles con controles (las
- * demostraciones de la lámina 15).
+ * con los efectos apagados (tecla E), y nunca toca el isologo.
  *
  * Parte pura (tests/inclinacion.test.js): calcularInclinacion. Parte de vista:
  * iniciarInclinacion.
@@ -88,11 +87,10 @@ export function iniciarInclinacion(escenario, { ventana = window } = {}) {
   }
 
   escenario.addEventListener('pointermove', (evento) => {
-    const objetivo =
+    const elemento =
       evento.pointerType === 'mouse' && permitido()
         ? evento.target.closest?.(SELECTOR_INCLINABLE)
         : null;
-    const elemento = objetivo && !objetivo.closest('.demo') ? objetivo : null;
     if (elemento !== actual) {
       soltar(actual);
       actual = elemento;

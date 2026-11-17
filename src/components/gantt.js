@@ -1,5 +1,5 @@
 /**
- * gantt: cronograma de implementación de la lámina 17, armado desde data/cronograma.json.
+ * gantt: cronograma de implementación de la lámina 16, armado desde data/cronograma.json.
  *
  * Uso: <div class="gantt" data-fragment="1" data-vars="total=… meses=…" data-componente="gantt">
  * con una <ol class="gantt__filas"> vacía. El componente crea una fila por fase (número, nombre,

@@ -1,5 +1,5 @@
 /**
- * counter: una cifra que cuenta desde 0 hasta su valor al aparecer (lámina 16: USD 56,10).
+ * counter: una cifra que cuenta desde 0 hasta su valor al aparecer (lámina 15: USD 56,10).
  *
  * Uso: se agrega a un elemento que ya muestra su dato con data-dato y data-formato:
  *   <p class="cifra" data-componente="counter" data-dato="costos.total" data-formato="usd">
